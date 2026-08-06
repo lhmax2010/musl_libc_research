@@ -115,6 +115,87 @@ MUSL_LD="$MUSL_PREFIX/bin/ld.musl-clang"
 [[ -x "$MUSL_LD" ]] || fail "ld.musl-clang wrapper was not installed"
 grep -Eq '^cc="?clang"?$' "$MUSL_CC" || fail "musl-clang does not invoke clang"
 grep -Eq '^cc="?clang"?$' "$MUSL_LD" || fail "ld.musl-clang does not invoke clang"
+
+LDWRAPPER_BEFORE="$BUILD_ROOT/ld.musl-clang.before"
+LDWRAPPER_PATCHED="$BUILD_ROOT/ld.musl-clang.patched"
+cp -p -- "$MUSL_LD" "$LDWRAPPER_BEFORE"
+echo "ldwrapper_before_begin"
+cat "$LDWRAPPER_BEFORE"
+echo "ldwrapper_before_end"
+
+ldwrapper_before_line="$(grep '^exec ' "$LDWRAPPER_BEFORE" | tail -n 1)"
+[[ -n "$ldwrapper_before_line" ]] || fail "ld.musl-clang has no exec linker line"
+case "$ldwrapper_before_line" in
+    'exec $($cc -print-prog-name=ld)'*) ldwrapper_style="ld" ;;
+    'exec $cc '*|'exec "$cc" '*) ldwrapper_style="cc-driver" ;;
+    *) fail "unrecognized ld.musl-clang exec style: $ldwrapper_before_line" ;;
+esac
+[[ "$ldwrapper_before_line" == *" -lc "* ]] || \
+    fail "ld.musl-clang exec line has no standalone -lc"
+
+group_rtlib_archive="$(readlink -f "$RTLIB_ARCHIVE")"
+[[ -n "$group_rtlib_archive" && -f "$group_rtlib_archive" ]] || \
+    fail "selected runtime archive cannot be canonicalized: $RTLIB_ARCHIVE"
+group_rtlib_dir="$(dirname "$group_rtlib_archive")"
+group_rtlib_eh=""
+if [[ -f "$group_rtlib_dir/libgcc_eh.a" ]]; then
+    group_rtlib_eh="$group_rtlib_dir/libgcc_eh.a"
+fi
+
+if [[ "$ldwrapper_style" == "ld" ]]; then
+    ldwrapper_group_args="--start-group -lc $group_rtlib_archive"
+    if [[ -n "$group_rtlib_eh" ]]; then
+        ldwrapper_group_args="$ldwrapper_group_args $group_rtlib_eh"
+    fi
+    ldwrapper_group_args="$ldwrapper_group_args --end-group"
+else
+    ldwrapper_group_args="-Wl,--start-group -lc $group_rtlib_archive"
+    if [[ -n "$group_rtlib_eh" ]]; then
+        ldwrapper_group_args="$ldwrapper_group_args $group_rtlib_eh"
+    fi
+    ldwrapper_group_args="$ldwrapper_group_args -Wl,--end-group"
+fi
+ldwrapper_after_line="${ldwrapper_before_line/ -lc / $ldwrapper_group_args }"
+[[ "$ldwrapper_after_line" != "$ldwrapper_before_line" ]] || \
+    fail "ld.musl-clang -lc replacement made no change"
+
+ldwrapper_replacements=0
+while IFS= read -r wrapper_line || [[ -n "$wrapper_line" ]]; do
+    if [[ "$wrapper_line" == "$ldwrapper_before_line" ]]; then
+        printf '%s\n' "$ldwrapper_after_line"
+        ldwrapper_replacements=$((ldwrapper_replacements + 1))
+    else
+        printf '%s\n' "$wrapper_line"
+    fi
+done < "$LDWRAPPER_BEFORE" > "$LDWRAPPER_PATCHED"
+[[ "$ldwrapper_replacements" -eq 1 ]] || \
+    fail "expected one ld.musl-clang linker line replacement, got $ldwrapper_replacements"
+chmod 0755 "$LDWRAPPER_PATCHED"
+mv -f -- "$LDWRAPPER_PATCHED" "$MUSL_LD"
+
+echo "ldwrapper_after_begin"
+cat "$MUSL_LD"
+echo "ldwrapper_after_end"
+echo "ldwrapper_diff_begin"
+set +e
+diff -u "$LDWRAPPER_BEFORE" "$MUSL_LD"
+ldwrapper_diff_rc=$?
+set -e
+[[ "$ldwrapper_diff_rc" -eq 1 ]] || fail "unexpected ld.musl-clang diff status: $ldwrapper_diff_rc"
+echo "ldwrapper_diff_end"
+
+grep -Eq '^cc="?clang"?$' "$MUSL_CC" || fail "patched musl-clang does not invoke clang"
+grep -Eq '^cc="?clang"?$' "$MUSL_LD" || fail "patched ld.musl-clang does not invoke clang"
+{
+    echo "ldwrapper_patch=start-group"
+    echo "ldwrapper_style=$ldwrapper_style"
+    echo "ldwrapper_group_rtlib_archive=$group_rtlib_archive"
+    echo "ldwrapper_group_libgcc_eh=${group_rtlib_eh:-NOT_PRESENT}"
+    printf 'ldwrapper_before_line=%s\n' "$ldwrapper_before_line"
+    printf 'ldwrapper_after_line=%s\n' "$ldwrapper_after_line"
+    echo "ldwrapper_clang_gate=PASS"
+} >> "$DECISION"
+echo "gate.ldwrapper_patch=PASS style=$ldwrapper_style"
 export PATH="$MUSL_PREFIX/bin:$PATH"
 
 record_and_run() {
