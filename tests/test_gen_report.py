@@ -72,6 +72,37 @@ sample_end=OK
         self.assertIn("missing=sample_end=OK", samples[0].invalid_reasons)
         self.assertTrue(samples[1].valid)
 
+    def test_primary_plus_supplement_have_expected_cell_counts(self) -> None:
+        samples = []
+        for name in ("results.txt", "results-supplement.txt"):
+            path = ROOT / "results" / name
+            samples.extend(parse_malloc_samples(path.read_text(encoding="utf-8"), name))
+
+        valid = [sample for sample in samples if sample.valid]
+        invalid = [sample for sample in samples if not sample.valid]
+        counts = {
+            (variant, threads): sum(
+                sample.variant == variant and sample.threads == threads
+                for sample in valid
+            )
+            for variant in ("glibc-dyn", "musl-static", "musl-dyn")
+            for threads in (1, 4)
+        }
+
+        self.assertEqual(32, len(valid))
+        self.assertEqual(1, len(invalid))
+        self.assertEqual(
+            {
+                ("glibc-dyn", 1): 5,
+                ("glibc-dyn", 4): 6,
+                ("musl-static", 1): 5,
+                ("musl-static", 4): 6,
+                ("musl-dyn", 1): 5,
+                ("musl-dyn", 4): 5,
+            },
+            counts,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -30,19 +30,52 @@ concatenated to that field and ceased to be parseable as a marker. The report
 generator consequently attributes the musl-static value `310.7` to the prior
 musl-dynamic four-thread configuration.
 
-Therefore the generated malloc table is invalid and must not be used. The raw
-startup, memory, thread, DNS, and locale evidence remains archived, but the
-complete measurement/report phase is not marked PASS.
+The original generated malloc table was therefore invalid and was not used.
+The raw startup, memory, thread, DNS, and locale evidence remains archived.
 
-## Read-only investigation and disposition
+## Root cause
 
 The relevant dmesg filter showed only boot-time Smack initialization/denials
 and an `oom_control` deprecation warning; it showed no corresponding OOM kill,
 segfault, or micro-process event. The measurement-time journal filter returned
-no matching lines. The cause is therefore unconfirmed; it is not attributed to
-Smack, memory pressure, or transport without evidence.
+no matching lines.
 
-No sample was edited or deleted, no parser was changed, and no benchmark was
-rerun. This is a new unpreauthorized measurement-integrity failure, so execution
-parked pending direction. Exact counts and raw evidence are preserved in
-`measurement-integrity-audit.log`.
+The authorized root-cause determination is that the board-side single-sample
+output was truncated because `sdb shell` output was not fully drained. The raw
+sample has no trailing newline, so the next header was concatenated to its
+partial `malloc.threads` line. No corresponding process exception was
+recorded. The report parser also lacked a sample-completeness check and carried
+subsequent numeric fields across the concatenated header, causing the silent
+misattribution.
+
+## Remediation and verification
+
+- `scripts/gen_report.py` now splits and resynchronizes any recognized sample
+  header found mid-line, marks the preceding partial malloc sample INVALID,
+  and requires all four malloc keys before accepting a sample. The immutable
+  original data regresses to exactly 29 VALID and 1 INVALID sample; the next
+  musl-static sample retains its original attribution.
+- `scripts/run_board.sh` now emits a standalone `sample_end=OK` after every
+  successful probe. New sentinel-declared data marks a missing sentinel
+  INVALID instead of accepting a silently truncated sample.
+- `results/results-supplement.txt` contains the authorized rep=6, t=4,
+  three-variant alternating supplement. Its governor, frequency, temperature,
+  and residual-process gates passed; all three samples include the sentinel
+  and are VALID.
+- The report merges all and only VALID samples without selection or weighting.
+  Final t=1 counts are 5/5/5; final t=4 counts are glibc-dyn 6,
+  musl-static 6, and musl-dyn 5. The final combined set is 32 VALID and
+  1 INVALID, with no new supplement INVALID.
+
+The original `results/results.txt` was neither edited nor deleted and remains
+SHA-256
+`78a1b548df00c7742e3fa5d3cca598faa1da5bdfccdf28c365e019bf5ee596f1`.
+The parser regression, final completeness audit, and raw incident evidence are
+preserved under `results/logs/`. The regenerated report is delivered for
+FatTank data review; no performance conclusion is asserted here.
+
+## Lesson
+
+Transport completion must be an explicit property of every board probe.
+Field cardinality alone cannot prove sample completeness: a terminal sentinel,
+header-bound attribution, and required-key validation are all necessary.

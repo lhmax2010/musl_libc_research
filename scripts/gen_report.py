@@ -179,6 +179,16 @@ def extract_sections(lines: list[str], wanted: tuple[str, ...]) -> list[str]:
     return output
 
 
+def discover_measurement_paths(results_path: Path) -> list[Path]:
+    paths = [results_path]
+    supplement = results_path.with_name(
+        f"{results_path.stem}-supplement{results_path.suffix}"
+    )
+    if supplement.is_file():
+        paths.append(supplement)
+    return paths
+
+
 def main(results_path: Path, decision_path: Path) -> int:
     text = results_path.read_text(encoding="utf-8", errors="replace")
     lines = text.splitlines()
@@ -194,7 +204,15 @@ def main(results_path: Path, decision_path: Path) -> int:
         if int(round_no) not in invalid_rounds
     ]
 
-    malloc_samples = parse_malloc_samples(text, results_path.name)
+    measurement_paths = discover_measurement_paths(results_path)
+    malloc_samples: list[MallocSample] = []
+    for measurement_path in measurement_paths:
+        malloc_samples.extend(
+            parse_malloc_samples(
+                measurement_path.read_text(encoding="utf-8", errors="replace"),
+                measurement_path.name,
+            )
+        )
     valid_malloc = [sample for sample in malloc_samples if sample.valid]
     invalid_malloc = [sample for sample in malloc_samples if not sample.valid]
     malloc: dict[tuple[str, int], list[float]] = {}
@@ -283,6 +301,25 @@ def main(results_path: Path, decision_path: Path) -> int:
     )
     for sample in invalid_malloc:
         output.append(f"- INVALID `{sample.label}`：{'; '.join(sample.invalid_reasons)}")
+    primary_invalid = [
+        sample for sample in invalid_malloc if sample.source == results_path.name
+    ]
+    supplement_invalid = [
+        sample for sample in invalid_malloc if sample.source != results_path.name
+    ]
+    output.extend(
+        [
+            "",
+            "### 合并方法与 INVALID 清单",
+            "",
+            "- `results.txt` 保持只读；补测仅来自独立的 `results-supplement.txt`，内容为 rep=6 的 t=4 三变体交替轮。",
+            "- 每个单元格使用原始与补测文件中全部 VALID 样本的 median，并逐格报告 n；不剔除、不挑选、不加权。",
+            "- malloc VALID 必须集齐 threads、iters_per_thread、ns_per_op_mean、checksum；声明哨兵机制的数据源还必须具有独立 `sample_end=OK`。",
+            f"- startup INVALID：**{len(invalid_rounds)}**；原始 malloc INVALID："
+            f"**{len(primary_invalid)}**；补测 malloc INVALID："
+            f"**{len(supplement_invalid)}**。",
+        ]
+    )
 
     output.extend(
         [
@@ -306,8 +343,12 @@ def main(results_path: Path, decision_path: Path) -> int:
             f"- 三个对比变体均在同一 Tizen chroot 内由平台 clang {clang_version} 编译，并使用同一 `%optflags`；编译器混淆已消除，结论直接适用于平台 LLVM 语境，剩余变量为 libc 与链接方式。",
             f"- builtins 运行库选择为 `{rtlib}`；三变体一致性门禁状态为 `{rtlib_consistency}`。",
             "- musl 是独立 ABI 世界，不能直接链接平台 glibc ABI 的共享库；静态链接不支持常规 `dlopen` 插件模型，musl 忽略 `nsswitch.conf`，locale 基本只提供 C/C.UTF-8。",
+            "- 安装采用方案 A（`rpm -Uvh --noplugins`）：仅跳过触发环境限制的 security 插件钩子，RPM 文件布局与数据库记录保持不变；探针由 root sdb 直接执行且不依赖 Smack manifest 注册，因此该安装偏离不影响测量有效性。",
+            "- 原始 malloc 截断事故保留为 1 个 INVALID，防御性解析不再跨 header 错归；rep=6 补测保存在独立文件。详见 `results/logs/incident-board-measurement-malloc-truncation.md`。",
             "",
-            f"原始数据：`{results_path}`；编译器决策：`{decision_path}`。",
+            "测量数据："
+            + "、".join(f"`{path}`" for path in measurement_paths)
+            + f"；编译器决策：`{decision_path}`。",
         ]
     )
     print("\n".join(output))

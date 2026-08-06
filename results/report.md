@@ -1,7 +1,5 @@
 # musl vs glibc GBS 快速 Demo 报告
 
-> **状态：部分数据无效。** malloc 矩阵发生一次输出截断与配置行拼接；当前 malloc 表存在错归，禁止用于结论。原始数据保留，等待授权后决定是否补测。
-
 ## 1. 启动时间（fork+exec→exit，三元组交替配对）
 
 - 有效轮次：**30**；INVALID 轮次：无
@@ -11,12 +9,22 @@
 - 配对 delta，musl-static vs glibc-dyn（方案差异）：**-58.1%**
 - 配对 delta，musl-static vs musl-dyn（链接方式贡献）：**-32.9%**
 
-## 2. malloc churn（ns/op，各轮中位数）
+## 2. malloc churn（ns/op，各轮 VALID 样本中位数）
 
 | 线程 | glibc-dyn | musl-static | musl-dyn | static/glibc | static/dyn |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 171.3 | 310.4 | 312.1 | 1.81x | 0.99x |
-| 4 | 193.5 | 974.6 | 983.2 | 5.04x | 0.99x |
+| 1 | 171.3 (n=5) | 310.7 (n=5) | 312.1 (n=5) | 1.81x (n=5/5) | 1.00x (n=5/5) |
+| 4 | 193.5 (n=6) | 976.4 (n=6) | 983.2 (n=5) | 5.05x (n=6/6) | 0.99x (n=6/5) |
+
+- malloc 样本完整性：VALID **32**；INVALID **1**。
+- INVALID `results.txt:malloccfg=musl-dyn,rep=2,threads=4`：midline_header_after_partial_output; missing=iters_per_thread,ns_per_op_mean,checksum
+
+### 合并方法与 INVALID 清单
+
+- `results.txt` 保持只读；补测仅来自独立的 `results-supplement.txt`，内容为 rep=6 的 t=4 三变体交替轮。
+- 每个单元格使用原始与补测文件中全部 VALID 样本的 median，并逐格报告 n；不剔除、不挑选、不加权。
+- malloc VALID 必须集齐 threads、iters_per_thread、ns_per_op_mean、checksum；声明哨兵机制的数据源还必须具有独立 `sample_end=OK`。
+- startup INVALID：**0**；原始 malloc INVALID：**1**；补测 malloc INVALID：**0**。
 
 ## 3. 其余测量原文
 
@@ -243,6 +251,6 @@ measurement.finish_utc=2026-08-06T08:28:20Z
 - builtins 运行库选择为 `libgcc.a`；三变体一致性门禁状态为 `PASS`。
 - musl 是独立 ABI 世界，不能直接链接平台 glibc ABI 的共享库；静态链接不支持常规 `dlopen` 插件模型，musl 忽略 `nsswitch.conf`，locale 基本只提供 C/C.UTF-8。
 - 安装采用方案 A（`rpm -Uvh --noplugins`）：仅跳过触发环境限制的 security 插件钩子，RPM 文件布局与数据库记录保持不变；探针由 root sdb 直接执行且不依赖 Smack manifest 注册，因此该安装偏离不影响测量有效性。
-- malloc 完整性审计仅发现 29/30 个配置和值；`musl-dyn,rep=2,threads=4` 输出截断，并将随后 `musl-static,rep=3,threads=1` 的 310.7 ns/op 错归。故本报告 malloc 表无效，未授权补测前不得引用。
+- 原始 malloc 截断事故保留为 1 个 INVALID，防御性解析不再跨 header 错归；rep=6 补测保存在独立文件。详见 `results/logs/incident-board-measurement-malloc-truncation.md`。
 
-原始数据：`/home/linhao/Toolchain/development/musl-libc-research/results/results.txt`；编译器决策：`/home/linhao/Toolchain/development/musl-libc-research/results/logs/compiler-decision.txt`。
+测量数据：`results/results.txt`、`results/results-supplement.txt`；编译器决策：`results/logs/compiler-decision.txt`。
