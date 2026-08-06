@@ -1,0 +1,74 @@
+### supplement environment
+supplement.start_utc=2026-08-06T08:56:14Z
+measurement.sample_sentinel=required
+supplement.rep=6
+supplement.threads=4
+supplement.order=musl-static,musl-dyn,glibc-dyn
+measurement.target=192.168.108.25
+
+### residual processes before
+residual.micro.glibc-dyn=NONE
+residual.micro.musl-static=NONE
+residual.micro.musl-dyn=NONE
+residual_check_rc=0
+
+### governor
+governor.cpu0=performance
+governor.cpu1=performance
+governor.cpu2=performance
+governor.cpu3=performance
+
+### temperature before
+temperature.supplement.before.thermal_zone0=32615
+
+### frequencies before
+supplement_freq,6,before,cpu0,1500000,1500000
+supplement_freq,6,before,cpu1,1500000,1500000
+supplement_freq,6,before,cpu2,1500000,1500000
+supplement_freq,6,before,cpu3,1500000,1500000
+frequency.before.remote_rc=0
+
+### malloc supplement t4 rep6
+malloccfg=musl-static,rep=6,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=978.2
+malloc.wall_worst_thread_ns=1962075332
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-dyn,rep=6,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=974.3
+malloc.wall_worst_thread_ns=1957721184
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=glibc-dyn,rep=6,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=193.5
+malloc.wall_worst_thread_ns=401860944
+malloc.checksum=26cddf
+
+sample_end=OK
+
+### frequencies after
+supplement_freq,6,after,cpu0,1500000,1500000
+supplement_freq,6,after,cpu1,1500000,1500000
+supplement_freq,6,after,cpu2,1500000,1500000
+supplement_freq,6,after,cpu3,1500000,1500000
+frequency.after.remote_rc=0
+
+### temperature after
+temperature.supplement.after.thermal_zone0=33102
+
+### residual processes after
+residual.after.micro.glibc-dyn=NONE
+residual.after.micro.musl-static=NONE
+residual.after.micro.musl-dyn=NONE
+residual_after_check_rc=0
+
+supplement.finish_utc=2026-08-06T08:56:43Z
+supplement_valid=1
