@@ -60,6 +60,14 @@ large-file configuration remapped mimalloc's `mmap` call to `mmap64` while the
 musl static link world provides `mmap`. This is a strongly evidenced inference,
 not an authorized remediation decision.
 
+The upstream prompt had required a bare clang invocation for `mimalloc.o`.
+That caused it to use the chroot glibc headers; under the inherited large-file
+configuration those headers redirected `mmap` to the `mmap64` ABI symbol.
+musl 1.2.5 has removed the LFS64 aliases from its ABI and its `libc.a` exports
+only `mmap`. The object belongs to the musl link domain, so the prompt's header
+environment was incorrect. Responsibility is in the prompt design, not the
+implementation.
+
 ## Disposition
 
 This is a new, unpreauthorized failure. No optflag was removed, no compatibility
@@ -71,3 +79,18 @@ treatment requires explicit authorization.
 No release 2 RPM was generated. Deployment, the one-positive/three-negative
 runtime banner gate, the four-variant board session, and the data-filled report
 remain NOT_RUN. There is no performance conclusion.
+
+## Authorized remediation
+
+The `mimalloc.o` compile invocation now uses the already validated
+`musl-inst/bin/musl-clang` wrapper. The backend remains the same chroot clang
+22.1.8 and the expanded RPM optflags are unchanged; only the header environment
+switches to musl. This corrects the link-domain mismatch and mechanically
+prevents glibc headers from introducing the same class of LFS64 aliases.
+
+Before any variant link, a new gate scans `nm -u mimalloc.o` for `mmap64`,
+`munmap64`, `open64`, `openat64`, `pread64`, `pwrite64`, `lseek64`,
+`ftruncate64`, `fstat64`, `stat64`, and `mmap2`. It prints the raw matched lines
+between scan markers, fails with the complete list if any are present, and
+otherwise prints `gate.mimalloc_lfs64_symbols=PASS`. The compiler decision
+record now identifies the musl header environment and clang 22.1.8 backend.

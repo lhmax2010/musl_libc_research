@@ -228,9 +228,21 @@ record_and_run() {
 
 COMMON_FLAGS=("${OPTFLAGS_ARRAY[@]}" "$RTLIB_FLAG" -static-libgcc -pthread)
 MIMALLOC_OBJECT="$BUILD_ROOT/mimalloc.o"
-record_and_run clang "${OPTFLAGS_ARRAY[@]}" -O2 -DNDEBUG -DMI_MALLOC_OVERRIDE \
+record_and_run "$MUSL_CC" "${OPTFLAGS_ARRAY[@]}" -O2 -DNDEBUG -DMI_MALLOC_OVERRIDE \
     -I "$MIMALLOC_SOURCE_DIR/include" \
     -c "$MIMALLOC_SOURCE_DIR/src/static.c" -o "$MIMALLOC_OBJECT"
+echo "mimalloc_compile_env=musl-clang(headers=musl, backend=clang $EXPECTED_CLANG_VERSION)" >> "$DECISION"
+mimalloc_lfs64_symbols="$(
+    nm -u "$MIMALLOC_OBJECT" \
+        | grep -E '[[:space:]](mmap64|munmap64|open64|openat64|pread64|pwrite64|lseek64|ftruncate64|fstat64|stat64|mmap2)$' \
+        || true
+)"
+echo "gate.mimalloc_lfs64_symbols.scan_begin"
+[[ -z "$mimalloc_lfs64_symbols" ]] || printf '%s\n' "$mimalloc_lfs64_symbols"
+echo "gate.mimalloc_lfs64_symbols.scan_end"
+[[ -z "$mimalloc_lfs64_symbols" ]] || \
+    fail "mimalloc.o references forbidden LFS64 symbols"
+echo "gate.mimalloc_lfs64_symbols=PASS"
 record_and_run clang "${COMMON_FLAGS[@]}" "$MICRO_SOURCE" \
     -Wl,-Map,"$BUILD_ROOT/micro.glibc-dyn.map" \
     -o "$PAYLOAD/bin/micro.glibc-dyn"
