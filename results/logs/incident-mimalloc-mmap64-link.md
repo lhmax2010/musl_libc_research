@@ -94,3 +94,8 @@ Before any variant link, a new gate scans `nm -u mimalloc.o` for `mmap64`,
 between scan markers, fails with the complete list if any are present, and
 otherwise prints `gate.mimalloc_lfs64_symbols=PASS`. The compiler decision
 record now identifies the musl header environment and clang 22.1.8 backend.
+
+The first verification attempt did not reach object generation: the stock musl
+wrapper hid clang's compiler-resource `stdatomic.h`. Therefore the LFS64 scan
+and the absence of `mmap64` are not yet verified by a completed object. That new
+failure is archived separately in `incident-mimalloc-stdatomic-include.md`.
