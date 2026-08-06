@@ -51,7 +51,10 @@ fi
 
 runtime_dir="$(clang -print-runtime-dir)"
 libgcc_file="$(clang -print-libgcc-file-name)"
-mapfile -t compiler_rt_candidates < <(
+compiler_rt_candidates=()
+while IFS= read -r line; do
+    compiler_rt_candidates+=("$line")
+done < <(
     find "$runtime_dir" -maxdepth 1 -type f \
         \( -name 'libclang_rt.builtins-arm*.a' -o -name 'libclang_rt.builtins.a' \) \
         -print | sort
