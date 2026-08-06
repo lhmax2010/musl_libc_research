@@ -13,7 +13,7 @@ MICRO_SOURCE="$3"
 TIMER_SOURCE="$4"
 EXPECTED_CLANG_VERSION="22.1.8"
 PRIVATE_ROOT="/opt/usr/musl-demo"
-PRIVATE_LOADER="$PRIVATE_ROOT/lib/ld-musl-armhf.so.1"
+PRIVATE_LOADER="$PRIVATE_ROOT/lib/ld-musl-arm.so.1"
 BUILD_ROOT="$PWD"
 MUSL_SOURCE_DIR="$BUILD_ROOT/musl-1.2.5"
 MUSL_PREFIX="$BUILD_ROOT/musl-inst"
@@ -85,6 +85,7 @@ fi
     echo "musl_static_rtlib=$RTLIB_NAME"
     echo "musl_dyn_rtlib=$RTLIB_NAME"
     echo "rtlib_consistency=PASS"
+    echo "musl_ldso_name=ld-musl-arm.so.1"
     echo "clang_version_begin"
     printf '%s\n' "$clang_version_text"
     echo "clang_version_end"
@@ -304,21 +305,66 @@ while IFS= read -r needed; do
 done <<< "$glibc_needed"
 echo "gate.micro.glibc-dyn=PASS interpreter=$glibc_interp"
 
-check_arm_hard_float() {
-    local binary="$1"
-    grep -Eq 'Class:[[:space:]]+ELF32' < <(readelf -hW "$binary") || \
-        fail "$binary is not ELF32"
-    grep -Eq 'Machine:[[:space:]]+ARM' < <(readelf -hW "$binary") || \
-        fail "$binary is not ARM"
-    grep -Eq 'Tag_ABI_VFP_args: VFP registers|ABI_VFP_args.*AAPCS VFP' \
-        < <(readelf -AW "$binary") || \
-        fail "$binary is not tagged ARM hard-float"
+vfp_args_of() {
+    local tag_line
+    tag_line="$(readelf -AW "$1" | grep -m 1 'Tag_ABI_VFP_args' || true)"
+    if [[ -n "$tag_line" ]]; then
+        printf '%s\n' "$tag_line"
+    else
+        printf '%s\n' "ABSENT"
+    fi
 }
 
-for path in "$GLIBC_DYN_BIN" "$STATIC_BIN" "$MUSL_DYN_BIN"; do
-    check_arm_hard_float "$path"
-done
-echo "gate.arm32_hard_float_all_variants=PASS"
+check_arm_abi_consistency() {
+    local path
+    local glibc_vfp_args static_vfp_args musl_dyn_vfp_args binsh_vfp_args
+    local abi_consistency="PASS"
+    local abi_failure=""
+
+    for path in "$GLIBC_DYN_BIN" "$STATIC_BIN" "$MUSL_DYN_BIN"; do
+        grep -Eq 'Class:[[:space:]]+ELF32' < <(readelf -hW "$path") || \
+            fail "$path is not ELF32"
+        grep -Eq 'Machine:[[:space:]]+ARM' < <(readelf -hW "$path") || \
+            fail "$path is not ARM"
+    done
+
+    glibc_vfp_args="$(vfp_args_of "$GLIBC_DYN_BIN")"
+    static_vfp_args="$(vfp_args_of "$STATIC_BIN")"
+    musl_dyn_vfp_args="$(vfp_args_of "$MUSL_DYN_BIN")"
+    binsh_vfp_args="$(vfp_args_of /bin/sh)"
+
+    if [[ "$glibc_vfp_args" != "$static_vfp_args" || \
+          "$glibc_vfp_args" != "$musl_dyn_vfp_args" ]]; then
+        abi_consistency="FAIL"
+        abi_failure="variant Tag_ABI_VFP_args values differ"
+    fi
+    if [[ "$glibc_vfp_args" == *"VFP registers"* || \
+          "$static_vfp_args" == *"VFP registers"* || \
+          "$musl_dyn_vfp_args" == *"VFP registers"* ]]; then
+        abi_consistency="FAIL"
+        abi_failure="${abi_failure:+$abi_failure; }softfp variant is tagged VFP registers"
+    fi
+    if [[ "$binsh_vfp_args" != "$glibc_vfp_args" || \
+          "$binsh_vfp_args" != "$static_vfp_args" || \
+          "$binsh_vfp_args" != "$musl_dyn_vfp_args" ]]; then
+        abi_consistency="FAIL"
+        abi_failure="${abi_failure:+$abi_failure; }variants differ from chroot /bin/sh"
+    fi
+
+    {
+        echo "platform_float_abi=softfp"
+        printf 'variant_vfp_args=glibc-dyn:%s | musl-static:%s | musl-dyn:%s\n' \
+            "$glibc_vfp_args" "$static_vfp_args" "$musl_dyn_vfp_args"
+        printf 'binsh_vfp_args=%s\n' "$binsh_vfp_args"
+        echo "abi_consistency=$abi_consistency"
+    } >> "$DECISION"
+
+    [[ "$abi_consistency" == "PASS" ]] || \
+        fail "ARM float ABI consistency failed: $abi_failure"
+}
+
+check_arm_abi_consistency
+echo "gate.arm32_softfp_abi_consistency=PASS"
 
 {
     echo "glibc_dyn_interpreter=$glibc_interp"

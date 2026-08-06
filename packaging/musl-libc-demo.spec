@@ -53,7 +53,7 @@ install -m 0755 payload/bin/micro.musl-static %{buildroot}/opt/usr/musl-demo/bin
 install -m 0755 payload/bin/micro.musl-dyn %{buildroot}/opt/usr/musl-demo/bin/
 install -m 0755 payload/bin/timer %{buildroot}/opt/usr/musl-demo/bin/
 install -m 0755 payload/lib/libc.so %{buildroot}/opt/usr/musl-demo/lib/libc.so
-ln -s libc.so %{buildroot}/opt/usr/musl-demo/lib/ld-musl-armhf.so.1
+ln -s libc.so %{buildroot}/opt/usr/musl-demo/lib/ld-musl-arm.so.1
 install -m 0644 payload/share/build-commands.txt %{buildroot}/opt/usr/musl-demo/share/
 install -m 0644 payload/share/artifacts.sha256 %{buildroot}/opt/usr/musl-demo/share/
 install -m 0644 payload/share/sizes-prestrip.txt %{buildroot}/opt/usr/musl-demo/share/
@@ -65,7 +65,7 @@ install -m 0644 payload/share/compiler-decision.txt %{buildroot}/opt/usr/musl-de
 /opt/usr/musl-demo/bin/micro.musl-dyn
 /opt/usr/musl-demo/bin/timer
 /opt/usr/musl-demo/lib/libc.so
-/opt/usr/musl-demo/lib/ld-musl-armhf.so.1
+/opt/usr/musl-demo/lib/ld-musl-arm.so.1
 /opt/usr/musl-demo/share/build-commands.txt
 /opt/usr/musl-demo/share/artifacts.sha256
 /opt/usr/musl-demo/share/sizes-prestrip.txt

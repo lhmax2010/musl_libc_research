@@ -17,7 +17,7 @@ RPM 只安装到：
 ```text
 /opt/usr/musl-demo/bin/{micro.glibc-dyn,micro.musl-static,micro.musl-dyn,timer}
 /opt/usr/musl-demo/lib/libc.so
-/opt/usr/musl-demo/lib/ld-musl-armhf.so.1 -> libc.so
+/opt/usr/musl-demo/lib/ld-musl-arm.so.1 -> libc.so
 /opt/usr/musl-demo/share/{build-commands.txt,artifacts.sha256,sizes-prestrip.txt,compiler-decision.txt}
 ```
 

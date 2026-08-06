@@ -96,5 +96,5 @@ for variant in micro.glibc-dyn micro.musl-static micro.musl-dyn; do
     sdb shell "$PRIVATE_ROOT/bin/$variant" 2>&1 | tr -d '\r' | tee -a "$LOG_FILE"
 done
 
-echo "DEPLOY_PASS musl-dyn used package interpreter $PRIVATE_ROOT/lib/ld-musl-armhf.so.1" \
+echo "DEPLOY_PASS musl-dyn used package interpreter $PRIVATE_ROOT/lib/ld-musl-arm.so.1" \
     | tee -a "$LOG_FILE"
