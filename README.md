@@ -116,8 +116,8 @@ python3 scripts/gen_report.py results/results.txt > results/report.md
 |---|---|---|
 | Phase 0 取源与共识 | PASS | `fetch-musl.log` 中 S1、S3 一致，官方 GPG PASS；Alpine 端点 403，记录为 UNAVAILABLE |
 | 一字节篡改测试 | PASS | `results/logs/fetch-musl-tamper-test.log`，退出码 6，篡改 tarball 被删除后由可信备份恢复 |
-| Phase 1 GBS 构建 | BLOCKED | Bash 3.2 修复 commit `1f99c6d` 已使 rtlib 探测与 musl 构建完成；clang 22.1.8、`libgcc.a` 三变体一致性 PASS，但 `micro.musl-static` 链接时 `__aeabi_uidiv`/`__aeabi_ldivmod` 等 builtins 未解析，ELF 门禁尚未执行。见 `results/logs/gbs-build.log` 与 incident 归档 |
-| Phase 2 板端部署/smoke | NOT_RUN | Phase 1 未产生 RPM；等待 musl wrapper/libgcc ARM EABI 链接失败的处置授权，构建成功后再运行 `SDB_TARGET=192.168.108.25 scripts/deploy.sh` |
+| Phase 1 GBS 构建 | BLOCKED | wrapper start-group 修复 commit `6e8ba8a` 已通过 `gate.ldwrapper_patch`，`micro.musl-static` 也通过 ELF 门禁；随后 `micro.musl-dyn` 的解释器门禁发现期望 `ld-musl-armhf.so.1`、实际 `ld-musl-arm.so.1`。GBS profile 使用 `-mfloat-abi=softfp`/`__SOFTFP__`，musl 配置判定 `__ARM_PCS_VFP=false`；见完整构建日志与 interpreter incident 归档 |
+| Phase 2 板端部署/smoke | NOT_RUN | Phase 1 在新的动态解释器门禁失败处停车、未产生 RPM；等待该 ABI/interpreter 不一致的处置授权，构建成功后再运行 `SDB_TARGET=192.168.108.25 scripts/deploy.sh` |
 | Phase 3 板端测量 | NOT_RUN | 依赖部署；精确补跑命令：`SDB_TARGET=192.168.108.25 scripts/run_board.sh` |
 | Phase 4 实测报告 | NOT_RUN | 依赖板端 `results/results.txt`，`run_board.sh` 成功后自动生成；单独补跑命令：`python3 scripts/gen_report.py results/results.txt > results/report.md` |
 

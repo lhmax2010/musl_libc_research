@@ -39,3 +39,15 @@ strip, ELF gates, artifact hashes, and RPM packaging did not run.
 This is a new, unpreauthorized link failure. No wrapper, link order, compiler,
 runtime-library selection, or gate logic was changed, and the build was not
 retried. Deployment, board measurement, and report generation remain NOT_RUN.
+
+## Authorized follow-up
+
+The subsequent authorization identified the `ld.musl-clang` archive ordering
+as the root cause and allowed a bounded start group around `-lc`, the selected
+absolute `libgcc.a`, and the same-directory `libgcc_eh.a`. Commit `6e8ba8a`
+implemented only that wrapper post-processing step.
+
+The next GBS run logged both `gate.ldwrapper_patch=PASS style=ld` and
+`gate.micro.musl-static=PASS`, confirming that the group resolved this incident.
+The run then stopped at a separate musl-dynamic interpreter mismatch, archived
+in `incident-musl-dyn-interpreter.md`.
