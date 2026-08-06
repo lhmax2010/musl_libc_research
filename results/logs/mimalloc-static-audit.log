@@ -23,3 +23,17 @@ formal_gbs_build=NOT_RUN reason=FatTank_source_digest_review_unchecked rerun=scr
 board_deploy_runtime_gate=NOT_RUN reason=no_reviewed_RPM rerun=scripts/deploy.sh
 four_variant_measurement=NOT_RUN reason=no_reviewed_deployment rerun=SDB_TARGET=192.168.108.25 scripts/run_board.sh
 report_mimalloc_data=NOT_RUN reason=no_results_mimalloc
+continuation_review_checkbox=CHECKED
+continuation_frozen_sha256=PASS
+formal_gbs_invoked=YES
+formal_gbs_exit_code=1
+formal_gbs_last_reached_stage=RPM_PREP
+formal_gbs_failure=cp_cannot_stat_mimalloc-2.1.7.sha256
+source5_hash_gate=NOT_REACHED
+mimalloc_compile=NOT_RUN
+mimalloc_link_gates=NOT_RUN
+release2_rpm=NOT_GENERATED
+deploy_runtime_banner_gates=NOT_RUN
+four_variant_board_session=NOT_RUN
+data_filled_report=NOT_RUN
+continuation_disposition=PARKED_NEW_UNPREAUTHORIZED_FAILURE

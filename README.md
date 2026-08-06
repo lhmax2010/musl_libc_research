@@ -133,7 +133,8 @@ python3 scripts/gen_report.py results/results.txt > results/report.md
 | Phase 2 板端部署/smoke | PASS | 采用方案 A `rpm -Uvh --noplugins`，RPM 数据库记录、四个 bin 的 host/board 哈希、`User::Shell` 标签和三变体 smoke 全部 PASS；宏与 cpio 降级均未执行 |
 | Phase 3 板端测量 | COMPLETE / AWAITING REVIEW | 原始 30 个 startup 三元组全部频率有效；malloc 原始数据保留 1 个截断 INVALID，rep=6 t=4 三变体补测通过 governor/频率/温度/残留进程门控并新增 3 个 VALID；原始 `results.txt` SHA-256 不变 |
 | Phase 4 实测报告 | GENERATED / AWAITING REVIEW | `results/report.md` 按全部 VALID 样本合并并逐格报告 n；startup/mem/threads/DNS/locale 完整性审计通过，等待 FatTank 数据核验，不在此自行下性能结论 |
-| mimalloc 来源冻结 | PASS / AWAITING REVIEW | 官方 v2.1.7 归档 SHA-256 与 Conan Center 一致，SHA-512 与 vcpkg 一致；FatTank 人工审核框尚未勾选 |
-| mimalloc GBS / deploy / 四方实测 | NOT_RUN | fail-closed 停在来源人工审核闸门；勾选后依次运行 `scripts/build_gbs.sh`、`scripts/deploy.sh`、`SDB_TARGET=192.168.108.25 scripts/run_board.sh` |
+| mimalloc 来源冻结 | PASS | 官方 v2.1.7 归档 SHA-256 与 Conan Center 一致，SHA-512 与 vcpkg 一致；FatTank 人工审核已确认并勾选 |
+| mimalloc GBS | BLOCKED | 正式构建在 RPM prep 停车：spec Source6 未进入导出目录，`mimalloc-2.1.7.sha256` 仅存在于 `scripts/`；未授权自行修复 |
+| mimalloc deploy / 四方实测 | NOT_RUN | release 2 RPM 未生成；运行期横幅、同会话测量和数据填充报告均未执行 |
 
 `tests/fixtures/` 仅用于报告解析器的本地回归测试，不是板端数据，也不会写入 `results/report.md`。
