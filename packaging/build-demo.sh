@@ -228,8 +228,20 @@ record_and_run() {
 
 COMMON_FLAGS=("${OPTFLAGS_ARRAY[@]}" "$RTLIB_FLAG" -static-libgcc -pthread)
 MIMALLOC_OBJECT="$BUILD_ROOT/mimalloc.o"
+RESDIR="$(clang -print-resource-dir)"
+echo "gate.mimalloc_resource_dir=$RESDIR"
+test -f "$RESDIR/include/stdatomic.h" || {
+    echo "GATE: stdatomic.h not in $RESDIR/include" >&2
+    exit 1
+}
+echo "gate.mimalloc_stdatomic_header=PASS path=$RESDIR/include/stdatomic.h"
+{
+    echo "mimalloc_isystem_resource=$RESDIR/include"
+    echo "mimalloc_include_order=musl_first_resource_fill"
+} >> "$DECISION"
 record_and_run "$MUSL_CC" "${OPTFLAGS_ARRAY[@]}" -O2 -DNDEBUG -DMI_MALLOC_OVERRIDE \
     -I "$MIMALLOC_SOURCE_DIR/include" \
+    -isystem "$RESDIR/include" \
     -c "$MIMALLOC_SOURCE_DIR/src/static.c" -o "$MIMALLOC_OBJECT"
 echo "mimalloc_compile_env=musl-clang(headers=musl, backend=clang $EXPECTED_CLANG_VERSION)" >> "$DECISION"
 mimalloc_lfs64_symbols="$(

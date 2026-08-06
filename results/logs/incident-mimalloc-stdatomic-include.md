@@ -59,3 +59,18 @@ making clang's compiler-resource headers available requires a new authorization.
 No release 2 RPM was generated. Deployment, the one-positive/three-negative
 runtime banner gate, the four-variant board session, and the data-filled report
 remain NOT_RUN. No performance conclusion is asserted.
+
+## Authorized remediation
+
+The stock wrapper remains unchanged and retains `-nostdinc`. Immediately before
+the mimalloc compile, the build now resolves `RESDIR` with
+`clang -print-resource-dir`, prints the actual value, and asserts that
+`$RESDIR/include/stdatomic.h` exists. Failure prints the required `GATE:` line
+and exits before compilation.
+
+The existing `musl-clang` invocation receives one additional user argument,
+`-isystem "$RESDIR/include"`, after the mimalloc project include. Because the
+wrapper places its own `-isystem "$libc_inc"` before the complete user-argument
+segment, musl headers retain priority and the clang resource tree fills only
+missing compiler-owned headers. The compiler decision records both the resolved
+resource include path and `mimalloc_include_order=musl_first_resource_fill`.
