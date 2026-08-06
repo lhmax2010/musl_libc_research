@@ -134,7 +134,7 @@ python3 scripts/gen_report.py results/results.txt > results/report.md
 | Phase 3 板端测量 | COMPLETE / AWAITING REVIEW | 原始 30 个 startup 三元组全部频率有效；malloc 原始数据保留 1 个截断 INVALID，rep=6 t=4 三变体补测通过 governor/频率/温度/残留进程门控并新增 3 个 VALID；原始 `results.txt` SHA-256 不变 |
 | Phase 4 实测报告 | GENERATED / AWAITING REVIEW | `results/report.md` 按全部 VALID 样本合并并逐格报告 n；startup/mem/threads/DNS/locale 完整性审计通过，等待 FatTank 数据核验，不在此自行下性能结论 |
 | mimalloc 来源冻结 | PASS | 官方 v2.1.7 归档 SHA-256 与 Conan Center 一致，SHA-512 与 vcpkg 一致；FatTank 人工审核已确认并勾选 |
-| mimalloc GBS | BLOCKED | Source6、Source 前置检查、双哈希与 musl 构建 PASS；`mimalloc.o` 已切换到 musl wrapper，但其 `-nostdinc` 隐藏 clang 资源头文件，编译因找不到 `stdatomic.h` 停车；LFS64 与后续门禁未到达 |
-| mimalloc deploy / 四方实测 | NOT_RUN | release 2 RPM 未生成；运行期横幅、同会话测量和数据填充报告均未执行 |
+| mimalloc GBS | PASS | musl-first + clang resource fill 编译 PASS；LFS64、mimalloc 符号归属、ELF、softfp 门禁全部 PASS；release 2 RPM SHA-256 `f55957aaca2968877e8cf4dc6bd017e7875a8ed7bd1783b067574fd2f4030ead` |
+| mimalloc deploy / 四方实测 | NOT_RUN | 本轮明确只到 host RPM，板端占用中；运行期横幅、同会话测量和数据填充报告均未执行 |
 
 `tests/fixtures/` 仅用于报告解析器的本地回归测试，不是板端数据，也不会写入 `results/report.md`。

@@ -74,3 +74,25 @@ wrapper places its own `-isystem "$libc_inc"` before the complete user-argument
 segment, musl headers retain priority and the clang resource tree fills only
 missing compiler-owned headers. The compiler decision records both the resolved
 resource include path and `mimalloc_include_order=musl_first_resource_fill`.
+
+## Verification
+
+The formal rerun resolved `RESDIR` to `/usr/lib/clang/22`, found
+`/usr/lib/clang/22/include/stdatomic.h`, and compiled `mimalloc.o` successfully.
+The raw build log records:
+
+```text
+gate.mimalloc_resource_dir=/usr/lib/clang/22
+gate.mimalloc_stdatomic_header=PASS path=/usr/lib/clang/22/include/stdatomic.h
+gate.mimalloc_lfs64_symbols.scan_begin
+gate.mimalloc_lfs64_symbols.scan_end
+gate.mimalloc_lfs64_symbols=PASS
+```
+
+The empty scan region proves no forbidden LFS64-family symbol was present.
+There were also no unresolved `__atomic_*` symbols. The fourth variant linked,
+all mimalloc owner, ELF, and softfp gates passed, and GBS produced release 2.
+The RPM SHA-256 is
+`f55957aaca2968877e8cf4dc6bd017e7875a8ed7bd1783b067574fd2f4030ead`.
+Per the host-only authorization, deployment and board measurement remain
+NOT_RUN.
