@@ -1,0 +1,16 @@
+fetch_started=2026-08-06T10:28:28Z
+version=2.1.7
+official_url=https://github.com/microsoft/mimalloc/archive/refs/tags/v2.1.7.tar.gz
+official_sha256=0eed39319f139afde8515010ff59baf24de9e47ea316a315398e8027d198202d
+official_sha512=4e30976758015c76a146acc1bfc8501e2e5c61b81db77d253de0d58a8edef987669243f232210667b32ef8da3a33286642acb56ba526fd24c4ba925b44403730
+frozen_sha256_verdict=PASS
+source=vcpkg commit=d8e2b83a6b6981e7e019b9b6ad8884be1765720a version=2.1.7 sha512=4e30976758015c76a146acc1bfc8501e2e5c61b81db77d253de0d58a8edef987669243f232210667b32ef8da3a33286642acb56ba526fd24c4ba925b44403730
+source_verdict.vcpkg=PASS
+source=conan-center commit=a8ab0ecbeaa1eeba447d8fccda1c43f110cdbdc3 version=2.1.7 sha256=0eed39319f139afde8515010ff59baf24de9e47ea316a315398e8027d198202d
+source_verdict.conan_center=PASS
+archive=/home/linhao/Toolchain/development/musl-libc-research/packaging/mimalloc-2.1.7.tar.gz.frozen
+archive_sha256=0eed39319f139afde8515010ff59baf24de9e47ea316a315398e8027d198202d
+independent_sources_confirmed=2
+validation=PASS
+source_review=REQUIRED before formal GBS build
+fetch_finished=2026-08-06T10:28:31Z
