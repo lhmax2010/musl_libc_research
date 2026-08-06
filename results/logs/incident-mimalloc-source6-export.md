@@ -52,3 +52,17 @@ explicit authorization prompt.
 Deployment, the four runtime banner gates, the four-variant board session, and
 the data-filled report remain NOT_RUN. Execution is parked without a performance
 conclusion.
+
+## Authorized remediation
+
+The packaging surface now contains `packaging/mimalloc-2.1.7.sha256`, copied
+byte-for-byte from the reviewed `scripts/mimalloc-2.1.7.sha256`. `diff` is
+empty, and both files contain the exact FatTank-reviewed SHA-256
+`0eed39319f139afde8515010ff59baf24de9e47ea316a315398e8027d198202d`.
+
+`scripts/build_gbs.sh` now parses every `SourceN` declaration from the spec and
+checks the same-named file under `packaging/` before invoking GBS. It reports
+each Source0 through Source6 individually, prints a complete missing list on
+failure, and exits 8 without entering GBS if any source is absent. The initial
+full scan passed all seven declarations. Mechanical self-check output is
+archived in `source6-packaging-fix.log`.

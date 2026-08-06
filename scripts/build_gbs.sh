@@ -10,14 +10,16 @@ LOG_DIR="$ROOT_DIR/results/logs"
 RPM_DIR="$ROOT_DIR/results/rpms"
 LOG_FILE="$LOG_DIR/gbs-build-mimalloc.log"
 REVIEW_FILE="$LOG_DIR/mimalloc-source-review.md"
+SPEC_FILE="$ROOT_DIR/packaging/musl-libc-demo.spec"
 
-for tool in cpio gbs rpm2cpio; do
+for tool in awk cpio gbs rpm2cpio; do
     if ! command -v "$tool" >/dev/null 2>&1; then
         echo "ERROR required host tool missing: $tool" >&2
         exit 2
     fi
 done
 [[ -f "$CONFIG" ]] || { echo "ERROR GBS config not found: $CONFIG" >&2; exit 2; }
+[[ -f "$SPEC_FILE" ]] || { echo "ERROR package spec not found: $SPEC_FILE" >&2; exit 2; }
 [[ -f "$REVIEW_FILE" ]] || {
     echo "MIMALLOC_BUILD_BLOCKED source review file missing: $REVIEW_FILE" >&2
     exit 7
@@ -31,7 +33,40 @@ fi
 mkdir -p "$LOG_DIR" "$RPM_DIR" "$GBS_ROOT"
 cd "$ROOT_DIR"
 
-echo "command=gbs -c $CONFIG build -A armv7l --include-all -B $GBS_ROOT" | tee "$LOG_FILE"
+: > "$LOG_FILE"
+source_count=0
+missing_sources=()
+while IFS='|' read -r source_key source_name; do
+    [[ -n "$source_key" && -n "$source_name" ]] || continue
+    source_count=$((source_count + 1))
+    source_path="$ROOT_DIR/packaging/$source_name"
+    if [[ -f "$source_path" ]]; then
+        echo "source_preflight.$source_key=PASS name=$source_name" | tee -a "$LOG_FILE"
+    else
+        missing_sources+=("$source_key:$source_name")
+        echo "source_preflight.$source_key=MISSING name=$source_name" | tee -a "$LOG_FILE"
+    fi
+done < <(
+    awk '
+        $1 ~ /^Source[0-9]+:$/ {
+            key=$1
+            sub(/:$/, "", key)
+            print key "|" $2
+        }
+    ' "$SPEC_FILE"
+)
+[[ "$source_count" -gt 0 ]] || {
+    echo "SOURCE_PREFLIGHT_FAIL no SourceN declarations found in $SPEC_FILE" | tee -a "$LOG_FILE" >&2
+    exit 8
+}
+if (( ${#missing_sources[@]} > 0 )); then
+    echo "SOURCE_PREFLIGHT_FAIL missing_count=${#missing_sources[@]}" | tee -a "$LOG_FILE" >&2
+    printf 'source_preflight.missing=%s\n' "${missing_sources[@]}" | tee -a "$LOG_FILE" >&2
+    exit 8
+fi
+echo "SOURCE_PREFLIGHT_PASS count=$source_count" | tee -a "$LOG_FILE"
+
+echo "command=gbs -c $CONFIG build -A armv7l --include-all -B $GBS_ROOT" | tee -a "$LOG_FILE"
 gbs -c "$CONFIG" build -A armv7l --include-all -B "$GBS_ROOT" 2>&1 | tee -a "$LOG_FILE"
 
 rpm_path="$(
