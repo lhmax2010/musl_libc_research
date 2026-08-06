@@ -299,7 +299,7 @@ glibc_needed="$(needed_of "$GLIBC_DYN_BIN")"
 grep -q '^libc\.so\.6$' <<< "$glibc_needed" || fail "glibc-dyn does not need libc.so.6"
 while IFS= read -r needed; do
     case "$needed" in
-        libc.so.6|libpthread.so.0) ;;
+        libc.so.6|libpthread.so.0|ld-linux.so.3) ;;
         *) fail "glibc-dyn has unexpected DT_NEEDED: $needed" ;;
     esac
 done <<< "$glibc_needed"
