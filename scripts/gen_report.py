@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Generate results/report.md from the immutable board results.txt."""
+"""Generate results/report.md from immutable board measurement files."""
 
 from __future__ import annotations
 
+from dataclasses import dataclass, field
 import math
 import re
 import statistics
@@ -11,6 +12,43 @@ from pathlib import Path
 
 
 VARIANTS = ("glibc-dyn", "musl-static", "musl-dyn")
+MALLOC_EXPECTED_KEYS = (
+    "threads",
+    "iters_per_thread",
+    "ns_per_op_mean",
+    "checksum",
+)
+SAMPLE_HEADER_TOKEN = re.compile(
+    r"(?:malloccfg|memcfg|threadscfg|dnscfg|localecfg)="
+)
+MALLOC_HEADER = re.compile(
+    r"malloccfg=(glibc-dyn|musl-static|musl-dyn),rep=(\d+),threads=(\d+)$"
+)
+MALLOC_VALUE = re.compile(
+    r"malloc\.(threads|iters_per_thread|ns_per_op_mean|checksum)=(.+)$"
+)
+
+
+@dataclass
+class MallocSample:
+    source: str
+    variant: str
+    rep: int
+    threads: int
+    values: dict[str, str] = field(default_factory=dict)
+    sentinel_seen: bool = False
+    invalid_reasons: list[str] = field(default_factory=list)
+
+    @property
+    def valid(self) -> bool:
+        return not self.invalid_reasons
+
+    @property
+    def label(self) -> str:
+        return (
+            f"{self.source}:malloccfg={self.variant},rep={self.rep},"
+            f"threads={self.threads}"
+        )
 
 
 def median(values: list[float]) -> float:
@@ -19,6 +57,14 @@ def median(values: list[float]) -> float:
 
 def fmt_number(value: float, digits: int = 1) -> str:
     return "NOT_RUN" if math.isnan(value) else f"{value:.{digits}f}"
+
+
+def fmt_sample_cell(value: float, count: int) -> str:
+    return f"{fmt_number(value)} (n={count})"
+
+
+def fmt_ratio_cell(value: float, numerator_n: int, denominator_n: int) -> str:
+    return f"{fmt_number(value, 2)}x (n={numerator_n}/{denominator_n})"
 
 
 def parse_decisions(path: Path) -> dict[str, str]:
@@ -30,6 +76,90 @@ def parse_decisions(path: Path) -> dict[str, str]:
             key, value = line.split("=", 1)
             result[key] = value
     return result
+
+
+def resynchronize_sample_headers(text: str) -> list[tuple[str, bool]]:
+    """Split a header found mid-line and mark only the new header as resynced."""
+
+    output: list[tuple[str, bool]] = []
+    for physical_line in text.splitlines():
+        starts = [match.start() for match in SAMPLE_HEADER_TOKEN.finditer(physical_line)]
+        if not starts:
+            output.append((physical_line, False))
+            continue
+        if starts[0] > 0:
+            output.append((physical_line[: starts[0]], False))
+        for index, start in enumerate(starts):
+            end = starts[index + 1] if index + 1 < len(starts) else len(physical_line)
+            output.append((physical_line[start:end], start > 0))
+    return output
+
+
+def parse_malloc_samples(text: str, source: str) -> list[MallocSample]:
+    """Parse complete malloc samples without carrying values across headers."""
+
+    physical_lines = text.splitlines()
+    sentinel_required = any(
+        line.strip() == "measurement.sample_sentinel=required"
+        for line in physical_lines
+    ) or any(line.strip() == "sample_end=OK" for line in physical_lines)
+    samples: list[MallocSample] = []
+    current: MallocSample | None = None
+
+    def finish_current() -> None:
+        nonlocal current
+        if current is None:
+            return
+        missing = [key for key in MALLOC_EXPECTED_KEYS if key not in current.values]
+        if missing:
+            current.invalid_reasons.append("missing=" + ",".join(missing))
+        if sentinel_required and not current.sentinel_seen:
+            current.invalid_reasons.append("missing=sample_end=OK")
+        if "ns_per_op_mean" in current.values:
+            try:
+                float(current.values["ns_per_op_mean"])
+            except ValueError:
+                current.invalid_reasons.append("invalid=ns_per_op_mean")
+        samples.append(current)
+        current = None
+
+    for line, midline_header in resynchronize_sample_headers(text):
+        is_sample_header = SAMPLE_HEADER_TOKEN.match(line) is not None
+        if is_sample_header:
+            if current is not None and midline_header:
+                current.invalid_reasons.append("midline_header_after_partial_output")
+            finish_current()
+            if line.startswith("malloccfg="):
+                header = MALLOC_HEADER.fullmatch(line)
+                if header:
+                    current = MallocSample(
+                        source=source,
+                        variant=header.group(1),
+                        rep=int(header.group(2)),
+                        threads=int(header.group(3)),
+                    )
+                else:
+                    current = MallocSample(source, "UNKNOWN", -1, -1)
+                    current.invalid_reasons.append("malformed=malloccfg")
+            continue
+        if line.startswith("### "):
+            finish_current()
+            continue
+        if current is None:
+            continue
+        if line == "sample_end=OK":
+            current.sentinel_seen = True
+            continue
+        value = MALLOC_VALUE.fullmatch(line)
+        if value:
+            key = value.group(1)
+            if key in current.values:
+                current.invalid_reasons.append(f"duplicate={key}")
+            else:
+                current.values[key] = value.group(2)
+
+    finish_current()
+    return samples
 
 
 def extract_sections(lines: list[str], wanted: tuple[str, ...]) -> list[str]:
@@ -64,23 +194,14 @@ def main(results_path: Path, decision_path: Path) -> int:
         if int(round_no) not in invalid_rounds
     ]
 
+    malloc_samples = parse_malloc_samples(text, results_path.name)
+    valid_malloc = [sample for sample in malloc_samples if sample.valid]
+    invalid_malloc = [sample for sample in malloc_samples if not sample.valid]
     malloc: dict[tuple[str, int], list[float]] = {}
-    current_variant: str | None = None
-    current_threads: int | None = None
-    for line in lines:
-        config = re.match(
-            r"malloccfg=(glibc-dyn|musl-static|musl-dyn),rep=\d+,threads=(\d+)$",
-            line,
+    for sample in valid_malloc:
+        malloc.setdefault((sample.variant, sample.threads), []).append(
+            float(sample.values["ns_per_op_mean"])
         )
-        if config:
-            current_variant = config.group(1)
-            current_threads = int(config.group(2))
-            continue
-        value = re.match(r"malloc\.ns_per_op_mean=([0-9.]+)$", line)
-        if value and current_variant is not None and current_threads is not None:
-            malloc.setdefault((current_variant, current_threads), []).append(
-                float(value.group(1))
-            )
 
     decisions = parse_decisions(decision_path)
     clang_version = decisions.get("expected_clang_version", "UNKNOWN")
@@ -118,14 +239,20 @@ def main(results_path: Path, decision_path: Path) -> int:
     output.extend(
         [
             "",
-            "## 2. malloc churn（ns/op，各轮中位数）",
+            "## 2. malloc churn（ns/op，各轮 VALID 样本中位数）",
             "",
             "| 线程 | glibc-dyn | musl-static | musl-dyn | static/glibc | static/dyn |",
             "|---:|---:|---:|---:|---:|---:|",
         ]
     )
     for threads in (1, 4):
-        values = {variant: median(malloc.get((variant, threads), [])) for variant in VARIANTS}
+        values_by_variant = {
+            variant: malloc.get((variant, threads), []) for variant in VARIANTS
+        }
+        values = {
+            variant: median(values_by_variant[variant]) for variant in VARIANTS
+        }
+        counts = {variant: len(values_by_variant[variant]) for variant in VARIANTS}
         static_glibc = (
             values["musl-static"] / values["glibc-dyn"]
             if not math.isnan(values["musl-static"])
@@ -141,10 +268,21 @@ def main(results_path: Path, decision_path: Path) -> int:
             else math.nan
         )
         output.append(
-            f"| {threads} | {fmt_number(values['glibc-dyn'])} | "
-            f"{fmt_number(values['musl-static'])} | {fmt_number(values['musl-dyn'])} | "
-            f"{fmt_number(static_glibc, 2)}x | {fmt_number(static_dynamic, 2)}x |"
+            f"| {threads} | {fmt_sample_cell(values['glibc-dyn'], counts['glibc-dyn'])} | "
+            f"{fmt_sample_cell(values['musl-static'], counts['musl-static'])} | "
+            f"{fmt_sample_cell(values['musl-dyn'], counts['musl-dyn'])} | "
+            f"{fmt_ratio_cell(static_glibc, counts['musl-static'], counts['glibc-dyn'])} | "
+            f"{fmt_ratio_cell(static_dynamic, counts['musl-static'], counts['musl-dyn'])} |"
         )
+    output.extend(
+        [
+            "",
+            f"- malloc 样本完整性：VALID **{len(valid_malloc)}**；"
+            f"INVALID **{len(invalid_malloc)}**。",
+        ]
+    )
+    for sample in invalid_malloc:
+        output.append(f"- INVALID `{sample.label}`：{'; '.join(sample.invalid_reasons)}")
 
     output.extend(
         [
@@ -182,4 +320,6 @@ if __name__ == "__main__":
         raise SystemExit(2)
     input_path = Path(sys.argv[1])
     default_decision = input_path.parent / "logs" / "compiler-decision.txt"
-    raise SystemExit(main(input_path, Path(sys.argv[2]) if len(sys.argv) == 3 else default_decision))
+    raise SystemExit(
+        main(input_path, Path(sys.argv[2]) if len(sys.argv) == 3 else default_decision)
+    )
