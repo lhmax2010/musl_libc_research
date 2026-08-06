@@ -9,6 +9,7 @@
 | `micro.glibc-dyn` | 平台 glibc | 动态 | chroot 平台 clang |
 | `micro.musl-static` | musl 1.2.5 | 静态 | 同一个 clang，经 `musl-clang` |
 | `micro.musl-dyn` | musl 1.2.5 | 动态、包内 loader | 同一个 clang，经 `musl-clang` |
+| `micro.musl-mi` | musl 1.2.5 + mimalloc 2.1.7 | 静态、mimalloc 目标文件优先于 libc | 同一个 clang，经 `musl-clang` |
 
 三条命令使用同一份展开后的 `%optflags` 和相同 builtins 运行库选择。构建脚本要求 clang 版本精确为 `22.1.8`；不一致时立即失败，不能静默放宽。`timer` 也由平台 clang 动态链接 glibc，但它只是测量仪器，不参与三变体结论。
 
@@ -40,6 +41,17 @@ RPM 只安装到：
 ```bash
 scripts/fetch_musl.sh
 ```
+
+第四变体的 mimalloc 来源独立冻结：
+
+```bash
+scripts/fetch_mimalloc.sh
+```
+
+脚本只校验已冻结 SHA-256，并与固定提交上的 vcpkg SHA-512、Conan
+Center SHA-256 比对。正式 GBS 构建还要求 FatTank 在
+`results/logs/mimalloc-source-review.md` 勾选人工审核项；自动化不会代为
+勾选。
 
 ## 构建
 
@@ -121,5 +133,7 @@ python3 scripts/gen_report.py results/results.txt > results/report.md
 | Phase 2 板端部署/smoke | PASS | 采用方案 A `rpm -Uvh --noplugins`，RPM 数据库记录、四个 bin 的 host/board 哈希、`User::Shell` 标签和三变体 smoke 全部 PASS；宏与 cpio 降级均未执行 |
 | Phase 3 板端测量 | COMPLETE / AWAITING REVIEW | 原始 30 个 startup 三元组全部频率有效；malloc 原始数据保留 1 个截断 INVALID，rep=6 t=4 三变体补测通过 governor/频率/温度/残留进程门控并新增 3 个 VALID；原始 `results.txt` SHA-256 不变 |
 | Phase 4 实测报告 | GENERATED / AWAITING REVIEW | `results/report.md` 按全部 VALID 样本合并并逐格报告 n；startup/mem/threads/DNS/locale 完整性审计通过，等待 FatTank 数据核验，不在此自行下性能结论 |
+| mimalloc 来源冻结 | PASS / AWAITING REVIEW | 官方 v2.1.7 归档 SHA-256 与 Conan Center 一致，SHA-512 与 vcpkg 一致；FatTank 人工审核框尚未勾选 |
+| mimalloc GBS / deploy / 四方实测 | NOT_RUN | fail-closed 停在来源人工审核闸门；勾选后依次运行 `scripts/build_gbs.sh`、`scripts/deploy.sh`、`SDB_TARGET=192.168.108.25 scripts/run_board.sh` |
 
 `tests/fixtures/` 仅用于报告解析器的本地回归测试，不是板端数据，也不会写入 `results/report.md`。
