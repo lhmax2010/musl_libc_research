@@ -1,0 +1,37 @@
+mimalloc_measurement_audit=2026-08-06
+target=192.168.108.25
+measurement_start_utc=2026-08-06T13:33:38Z
+measurement_finish_utc=2026-08-06T13:35:01Z
+measurement_duration_seconds=83
+measurement_session=four_variants_single_session_alternating
+governor=performance cpus=4
+frequency_hz=1500000 cpus=4
+frequency_before_invalid=0
+frequency_after_invalid=0
+startup_quad_headers=30
+startup_valid=30
+startup_invalid=0
+mem_headers=12
+threads_headers=4
+malloc_headers=40
+sample_end_expected=56
+sample_end_actual=56
+malloc_valid=40
+malloc_invalid=0
+mem_threads_invalid=0
+residual_before=NONE
+residual_after=NONE
+temperature_before_millicelsius=34563
+temperature_after_millicelsius=39433
+pre_measurement_running_user_processes=ps_only
+post_measurement_running_user_processes=ps_only
+post_measurement_loadavg=0.80_0.47_0.25
+concurrent_board_commands_during_measurement=NONE
+dns=NOT_RUN reason=allocator-independent carried_from=results/results.txt
+locale=NOT_RUN reason=allocator-independent carried_from=results/results.txt
+results_mimalloc_sha256=3ddc357e6dfe60dad842c9ec10aa9029a333bb8b3aab90fe79ec42240d4d842c
+report_mimalloc_sha256=3805a9e42e3ba831a5f643490e159218135114984cfe2559ed15b75520ad3fb4
+report_absolute_path_regeneration=BYTE_IDENTICAL
+report_relative_path_difference=PROVENANCE_PATH_ONLY
+python_unit_tests=PASS count=4
+measurement_result=PASS

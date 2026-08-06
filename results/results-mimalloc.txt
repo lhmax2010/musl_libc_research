@@ -1,0 +1,799 @@
+192.168.108.25:26101 is already connected
+### environment
+measurement.target=192.168.108.25
+measurement.start_utc=2026-08-06T13:33:38Z
+measurement.startup_reps=30
+measurement.sample_sentinel=required
+Linux localhost 6.12.80-arm-rpi4-v7l #1 SMP Mon Jul 27 09:29:29 UTC 2026 armv7l GNU/Linux
+binary.micro.glibc-dyn=present
+binary.micro.musl-static=present
+binary.micro.musl-dyn=present
+binary.micro.musl-mi=present
+binary.timer=present
+residual.before=NONE
+### governor
+governor.cpu0=performance
+governor.cpu1=performance
+governor.cpu2=performance
+governor.cpu3=performance
+temperature.before.thermal_zone0=34563
+### frequencies before
+startup_freq,0,before,cpu0,1500000,1500000
+startup_freq,0,before,cpu1,1500000,1500000
+startup_freq,0,before,cpu2,1500000,1500000
+startup_freq,0,before,cpu3,1500000,1500000
+frequency.before.invalid=0
+### sizes
+-rwxr-xr-x 1 root root   16388 Aug  6 22:22 /opt/usr/musl-demo/bin/micro.glibc-dyn
+-rwxr-xr-x 1 root root   17576 Aug  6 22:22 /opt/usr/musl-demo/bin/micro.musl-dyn
+-rwxr-xr-x 1 root root  552536 Aug  6 22:22 /opt/usr/musl-demo/bin/micro.musl-mi
+-rwxr-xr-x 1 root root  439932 Aug  6 22:22 /opt/usr/musl-demo/bin/micro.musl-static
+-rwxr-xr-x 1 root root 2414004 Aug  6 22:22 /opt/usr/musl-demo/lib/libc.so
+### startup quad
+startup_freq,1,before,cpu0,1500000,1500000
+startup_freq,1,before,cpu1,1500000,1500000
+startup_freq,1,before,cpu2,1500000,1500000
+startup_freq,1,before,cpu3,1500000,1500000
+startup_freq,1,after,cpu0,1500000,1500000
+startup_freq,1,after,cpu1,1500000,1500000
+startup_freq,1,after,cpu2,1500000,1500000
+startup_freq,1,after,cpu3,1500000,1500000
+startup_quad,1,2442296,1043075,1581537,1224370
+startup_valid,1
+startup_freq,2,before,cpu0,1500000,1500000
+startup_freq,2,before,cpu1,1500000,1500000
+startup_freq,2,before,cpu2,1500000,1500000
+startup_freq,2,before,cpu3,1500000,1500000
+startup_freq,2,after,cpu0,1500000,1500000
+startup_freq,2,after,cpu1,1500000,1500000
+startup_freq,2,after,cpu2,1500000,1500000
+startup_freq,2,after,cpu3,1500000,1500000
+startup_quad,2,2449296,1024352,1576463,1273371
+startup_valid,2
+startup_freq,3,before,cpu0,1500000,1500000
+startup_freq,3,before,cpu1,1500000,1500000
+startup_freq,3,before,cpu2,1500000,1500000
+startup_freq,3,before,cpu3,1500000,1500000
+startup_freq,3,after,cpu0,1500000,1500000
+startup_freq,3,after,cpu1,1500000,1500000
+startup_freq,3,after,cpu2,1500000,1500000
+startup_freq,3,after,cpu3,1500000,1500000
+startup_quad,3,2594871,1077963,1607834,1252278
+startup_valid,3
+startup_freq,4,before,cpu0,1500000,1500000
+startup_freq,4,before,cpu1,1500000,1500000
+startup_freq,4,before,cpu2,1500000,1500000
+startup_freq,4,before,cpu3,1500000,1500000
+startup_freq,4,after,cpu0,1500000,1500000
+startup_freq,4,after,cpu1,1500000,1500000
+startup_freq,4,after,cpu2,1500000,1500000
+startup_freq,4,after,cpu3,1500000,1500000
+startup_quad,4,2434481,1060630,1533352,1230186
+startup_valid,4
+startup_freq,5,before,cpu0,1500000,1500000
+startup_freq,5,before,cpu1,1500000,1500000
+startup_freq,5,before,cpu2,1500000,1500000
+startup_freq,5,before,cpu3,1500000,1500000
+startup_freq,5,after,cpu0,1500000,1500000
+startup_freq,5,after,cpu1,1500000,1500000
+startup_freq,5,after,cpu2,1500000,1500000
+startup_freq,5,after,cpu3,1500000,1500000
+startup_quad,5,3480852,3787574,1597815,1194556
+startup_valid,5
+startup_freq,6,before,cpu0,1500000,1500000
+startup_freq,6,before,cpu1,1500000,1500000
+startup_freq,6,before,cpu2,1500000,1500000
+startup_freq,6,before,cpu3,1500000,1500000
+startup_freq,6,after,cpu0,1500000,1500000
+startup_freq,6,after,cpu1,1500000,1500000
+startup_freq,6,after,cpu2,1500000,1500000
+startup_freq,6,after,cpu3,1500000,1500000
+startup_quad,6,2416797,1015167,1904241,1351056
+startup_valid,6
+startup_freq,7,before,cpu0,1500000,1500000
+startup_freq,7,before,cpu1,1500000,1500000
+startup_freq,7,before,cpu2,1500000,1500000
+startup_freq,7,before,cpu3,1500000,1500000
+startup_freq,7,after,cpu0,1500000,1500000
+startup_freq,7,after,cpu1,1500000,1500000
+startup_freq,7,after,cpu2,1500000,1500000
+startup_freq,7,after,cpu3,1500000,1500000
+startup_quad,7,2478722,1066203,1518092,1340314
+startup_valid,7
+startup_freq,8,before,cpu0,1500000,1500000
+startup_freq,8,before,cpu1,1500000,1500000
+startup_freq,8,before,cpu2,1500000,1500000
+startup_freq,8,before,cpu3,1500000,1500000
+startup_freq,8,after,cpu0,1500000,1500000
+startup_freq,8,after,cpu1,1500000,1500000
+startup_freq,8,after,cpu2,1500000,1500000
+startup_freq,8,after,cpu3,1500000,1500000
+startup_quad,8,2432074,1059370,1565018,1241648
+startup_valid,8
+startup_freq,9,before,cpu0,1500000,1500000
+startup_freq,9,before,cpu1,1500000,1500000
+startup_freq,9,before,cpu2,1500000,1500000
+startup_freq,9,before,cpu3,1500000,1500000
+startup_freq,9,after,cpu0,1500000,1500000
+startup_freq,9,after,cpu1,1500000,1500000
+startup_freq,9,after,cpu2,1500000,1500000
+startup_freq,9,after,cpu3,1500000,1500000
+startup_quad,9,2553815,1070556,1503481,1233333
+startup_valid,9
+startup_freq,10,before,cpu0,1500000,1500000
+startup_freq,10,before,cpu1,1500000,1500000
+startup_freq,10,before,cpu2,1500000,1500000
+startup_freq,10,before,cpu3,1500000,1500000
+startup_freq,10,after,cpu0,1500000,1500000
+startup_freq,10,after,cpu1,1500000,1500000
+startup_freq,10,after,cpu2,1500000,1500000
+startup_freq,10,after,cpu3,1500000,1500000
+startup_quad,10,2435259,966481,1604408,1276389
+startup_valid,10
+startup_freq,11,before,cpu0,1500000,1500000
+startup_freq,11,before,cpu1,1500000,1500000
+startup_freq,11,before,cpu2,1500000,1500000
+startup_freq,11,before,cpu3,1500000,1500000
+startup_freq,11,after,cpu0,1500000,1500000
+startup_freq,11,after,cpu1,1500000,1500000
+startup_freq,11,after,cpu2,1500000,1500000
+startup_freq,11,after,cpu3,1500000,1500000
+startup_quad,11,2528777,1065092,1541982,1318203
+startup_valid,11
+startup_freq,12,before,cpu0,1500000,1500000
+startup_freq,12,before,cpu1,1500000,1500000
+startup_freq,12,before,cpu2,1500000,1500000
+startup_freq,12,before,cpu3,1500000,1500000
+startup_freq,12,after,cpu0,1500000,1500000
+startup_freq,12,after,cpu1,1500000,1500000
+startup_freq,12,after,cpu2,1500000,1500000
+startup_freq,12,after,cpu3,1500000,1500000
+startup_quad,12,2549481,1072297,1513852,2015426
+startup_valid,12
+startup_freq,13,before,cpu0,1500000,1500000
+startup_freq,13,before,cpu1,1500000,1500000
+startup_freq,13,before,cpu2,1500000,1500000
+startup_freq,13,before,cpu3,1500000,1500000
+startup_freq,13,after,cpu0,1500000,1500000
+startup_freq,13,after,cpu1,1500000,1500000
+startup_freq,13,after,cpu2,1500000,1500000
+startup_freq,13,after,cpu3,1500000,1500000
+startup_quad,13,2436870,1096760,1605222,1353944
+startup_valid,13
+startup_freq,14,before,cpu0,1500000,1500000
+startup_freq,14,before,cpu1,1500000,1500000
+startup_freq,14,before,cpu2,1500000,1500000
+startup_freq,14,before,cpu3,1500000,1500000
+startup_freq,14,after,cpu0,1500000,1500000
+startup_freq,14,after,cpu1,1500000,1500000
+startup_freq,14,after,cpu2,1500000,1500000
+startup_freq,14,after,cpu3,1500000,1500000
+startup_quad,14,2505018,998593,1546870,1329777
+startup_valid,14
+startup_freq,15,before,cpu0,1500000,1500000
+startup_freq,15,before,cpu1,1500000,1500000
+startup_freq,15,before,cpu2,1500000,1500000
+startup_freq,15,before,cpu3,1500000,1500000
+startup_freq,15,after,cpu0,1500000,1500000
+startup_freq,15,after,cpu1,1500000,1500000
+startup_freq,15,after,cpu2,1500000,1500000
+startup_freq,15,after,cpu3,1500000,1500000
+startup_quad,15,2398352,1158185,1644555,1233815
+startup_valid,15
+startup_freq,16,before,cpu0,1500000,1500000
+startup_freq,16,before,cpu1,1500000,1500000
+startup_freq,16,before,cpu2,1500000,1500000
+startup_freq,16,before,cpu3,1500000,1500000
+startup_freq,16,after,cpu0,1500000,1500000
+startup_freq,16,after,cpu1,1500000,1500000
+startup_freq,16,after,cpu2,1500000,1500000
+startup_freq,16,after,cpu3,1500000,1500000
+startup_quad,16,2638111,1085926,1566833,1211889
+startup_valid,16
+startup_freq,17,before,cpu0,1500000,1500000
+startup_freq,17,before,cpu1,1500000,1500000
+startup_freq,17,before,cpu2,1500000,1500000
+startup_freq,17,before,cpu3,1500000,1500000
+startup_freq,17,after,cpu0,1500000,1500000
+startup_freq,17,after,cpu1,1500000,1500000
+startup_freq,17,after,cpu2,1500000,1500000
+startup_freq,17,after,cpu3,1500000,1500000
+startup_quad,17,3597833,1638223,2063889,1252981
+startup_valid,17
+startup_freq,18,before,cpu0,1500000,1500000
+startup_freq,18,before,cpu1,1500000,1500000
+startup_freq,18,before,cpu2,1500000,1500000
+startup_freq,18,before,cpu3,1500000,1500000
+startup_freq,18,after,cpu0,1500000,1500000
+startup_freq,18,after,cpu1,1500000,1500000
+startup_freq,18,after,cpu2,1500000,1500000
+startup_freq,18,after,cpu3,1500000,1500000
+startup_quad,18,2536962,1127148,1576685,1218703
+startup_valid,18
+startup_freq,19,before,cpu0,1500000,1500000
+startup_freq,19,before,cpu1,1500000,1500000
+startup_freq,19,before,cpu2,1500000,1500000
+startup_freq,19,before,cpu3,1500000,1500000
+startup_freq,19,after,cpu0,1500000,1500000
+startup_freq,19,after,cpu1,1500000,1500000
+startup_freq,19,after,cpu2,1500000,1500000
+startup_freq,19,after,cpu3,1500000,1500000
+startup_quad,19,2555296,1039723,1557111,1717037
+startup_valid,19
+startup_freq,20,before,cpu0,1500000,1500000
+startup_freq,20,before,cpu1,1500000,1500000
+startup_freq,20,before,cpu2,1500000,1500000
+startup_freq,20,before,cpu3,1500000,1500000
+startup_freq,20,after,cpu0,1500000,1500000
+startup_freq,20,after,cpu1,1500000,1500000
+startup_freq,20,after,cpu2,1500000,1500000
+startup_freq,20,after,cpu3,1500000,1500000
+startup_quad,20,2455389,1007963,1484703,1259593
+startup_valid,20
+startup_freq,21,before,cpu0,1500000,1500000
+startup_freq,21,before,cpu1,1500000,1500000
+startup_freq,21,before,cpu2,1500000,1500000
+startup_freq,21,before,cpu3,1500000,1500000
+startup_freq,21,after,cpu0,1500000,1500000
+startup_freq,21,after,cpu1,1500000,1500000
+startup_freq,21,after,cpu2,1500000,1500000
+startup_freq,21,after,cpu3,1500000,1500000
+startup_quad,21,2499407,1024630,1575352,1267259
+startup_valid,21
+startup_freq,22,before,cpu0,1500000,1500000
+startup_freq,22,before,cpu1,1500000,1500000
+startup_freq,22,before,cpu2,1500000,1500000
+startup_freq,22,before,cpu3,1500000,1500000
+startup_freq,22,after,cpu0,1500000,1500000
+startup_freq,22,after,cpu1,1500000,1500000
+startup_freq,22,after,cpu2,1500000,1500000
+startup_freq,22,after,cpu3,1500000,1500000
+startup_quad,22,2508129,1050537,1551555,1311259
+startup_valid,22
+startup_freq,23,before,cpu0,1500000,1500000
+startup_freq,23,before,cpu1,1500000,1500000
+startup_freq,23,before,cpu2,1500000,1500000
+startup_freq,23,before,cpu3,1500000,1500000
+startup_freq,23,after,cpu0,1500000,1500000
+startup_freq,23,after,cpu1,1500000,1500000
+startup_freq,23,after,cpu2,1500000,1500000
+startup_freq,23,after,cpu3,1500000,1500000
+startup_quad,23,2661277,1044111,1577056,1246982
+startup_valid,23
+startup_freq,24,before,cpu0,1500000,1500000
+startup_freq,24,before,cpu1,1500000,1500000
+startup_freq,24,before,cpu2,1500000,1500000
+startup_freq,24,before,cpu3,1500000,1500000
+startup_freq,24,after,cpu0,1500000,1500000
+startup_freq,24,after,cpu1,1500000,1500000
+startup_freq,24,after,cpu2,1500000,1500000
+startup_freq,24,after,cpu3,1500000,1500000
+startup_quad,24,2449445,1077407,1600296,1296241
+startup_valid,24
+startup_freq,25,before,cpu0,1500000,1500000
+startup_freq,25,before,cpu1,1500000,1500000
+startup_freq,25,before,cpu2,1500000,1500000
+startup_freq,25,before,cpu3,1500000,1500000
+startup_freq,25,after,cpu0,1500000,1500000
+startup_freq,25,after,cpu1,1500000,1500000
+startup_freq,25,after,cpu2,1500000,1500000
+startup_freq,25,after,cpu3,1500000,1500000
+startup_quad,25,2520556,1041426,1521093,1259463
+startup_valid,25
+startup_freq,26,before,cpu0,1500000,1500000
+startup_freq,26,before,cpu1,1500000,1500000
+startup_freq,26,before,cpu2,1500000,1500000
+startup_freq,26,before,cpu3,1500000,1500000
+startup_freq,26,after,cpu0,1500000,1500000
+startup_freq,26,after,cpu1,1500000,1500000
+startup_freq,26,after,cpu2,1500000,1500000
+startup_freq,26,after,cpu3,1500000,1500000
+startup_quad,26,2431204,1058259,1601667,1194889
+startup_valid,26
+startup_freq,27,before,cpu0,1500000,1500000
+startup_freq,27,before,cpu1,1500000,1500000
+startup_freq,27,before,cpu2,1500000,1500000
+startup_freq,27,before,cpu3,1500000,1500000
+startup_freq,27,after,cpu0,1500000,1500000
+startup_freq,27,after,cpu1,1500000,1500000
+startup_freq,27,after,cpu2,1500000,1500000
+startup_freq,27,after,cpu3,1500000,1500000
+startup_quad,27,2542167,1067556,1528611,1264537
+startup_valid,27
+startup_freq,28,before,cpu0,1500000,1500000
+startup_freq,28,before,cpu1,1500000,1500000
+startup_freq,28,before,cpu2,1500000,1500000
+startup_freq,28,before,cpu3,1500000,1500000
+startup_freq,28,after,cpu0,1500000,1500000
+startup_freq,28,after,cpu1,1500000,1500000
+startup_freq,28,after,cpu2,1500000,1500000
+startup_freq,28,after,cpu3,1500000,1500000
+startup_quad,28,2518519,1007963,1496223,1266945
+startup_valid,28
+startup_freq,29,before,cpu0,1500000,1500000
+startup_freq,29,before,cpu1,1500000,1500000
+startup_freq,29,before,cpu2,1500000,1500000
+startup_freq,29,before,cpu3,1500000,1500000
+startup_freq,29,after,cpu0,1500000,1500000
+startup_freq,29,after,cpu1,1500000,1500000
+startup_freq,29,after,cpu2,1500000,1500000
+startup_freq,29,after,cpu3,1500000,1500000
+startup_quad,29,2518481,2203037,1576722,1321722
+startup_valid,29
+startup_freq,30,before,cpu0,1500000,1500000
+startup_freq,30,before,cpu1,1500000,1500000
+startup_freq,30,before,cpu2,1500000,1500000
+startup_freq,30,before,cpu3,1500000,1500000
+startup_freq,30,after,cpu0,1500000,1500000
+startup_freq,30,after,cpu1,1500000,1500000
+startup_freq,30,after,cpu2,1500000,1500000
+startup_freq,30,after,cpu3,1500000,1500000
+startup_quad,30,2462037,1016074,1605963,1257093
+startup_valid,30
+### mem smaps_rollup x3
+memcfg=glibc-dyn,rep=1
+mem.pid=30141
+Rss:                 552 kB
+Pss:                  95 kB
+Private_Clean:        12 kB
+Private_Dirty:        76 kB
+
+sample_end=OK
+memcfg=musl-static,rep=1
+mem.pid=30151
+Rss:                  52 kB
+Pss:                  52 kB
+Private_Clean:        44 kB
+Private_Dirty:         8 kB
+
+sample_end=OK
+memcfg=musl-dyn,rep=1
+mem.pid=30161
+Rss:                 224 kB
+Pss:                 220 kB
+Private_Clean:       196 kB
+Private_Dirty:        24 kB
+
+sample_end=OK
+memcfg=musl-mi,rep=1
+mem.pid=30182
+Rss:                 120 kB
+Pss:                 112 kB
+Private_Clean:        88 kB
+Private_Dirty:        24 kB
+
+sample_end=OK
+memcfg=glibc-dyn,rep=2
+mem.pid=30192
+Rss:                 552 kB
+Pss:                  95 kB
+Private_Clean:        12 kB
+Private_Dirty:        76 kB
+
+sample_end=OK
+memcfg=musl-static,rep=2
+mem.pid=30214
+Rss:                  52 kB
+Pss:                  52 kB
+Private_Clean:        44 kB
+Private_Dirty:         8 kB
+
+sample_end=OK
+memcfg=musl-dyn,rep=2
+mem.pid=30224
+Rss:                 224 kB
+Pss:                 220 kB
+Private_Clean:       196 kB
+Private_Dirty:        24 kB
+
+sample_end=OK
+memcfg=musl-mi,rep=2
+mem.pid=30234
+Rss:                 120 kB
+Pss:                 112 kB
+Private_Clean:        88 kB
+Private_Dirty:        24 kB
+
+sample_end=OK
+memcfg=glibc-dyn,rep=3
+mem.pid=30254
+Rss:                 552 kB
+Pss:                  95 kB
+Private_Clean:        12 kB
+Private_Dirty:        76 kB
+
+sample_end=OK
+memcfg=musl-static,rep=3
+mem.pid=30265
+Rss:                  52 kB
+Pss:                  52 kB
+Private_Clean:        44 kB
+Private_Dirty:         8 kB
+
+sample_end=OK
+memcfg=musl-dyn,rep=3
+mem.pid=30275
+Rss:                 224 kB
+Pss:                 220 kB
+Private_Clean:       196 kB
+Private_Dirty:        24 kB
+
+sample_end=OK
+memcfg=musl-mi,rep=3
+mem.pid=30296
+Rss:                 120 kB
+Pss:                 112 kB
+Private_Clean:        88 kB
+Private_Dirty:        24 kB
+
+sample_end=OK
+### threads 200
+threadscfg=glibc-dyn
+threads.requested=200
+threads.created=200
+status.VmSize:	 1641132 kB
+status.VmRSS:	    2264 kB
+status.VmData:	 1638576 kB
+status.Threads:	201
+
+sample_end=OK
+threadscfg=musl-static
+threads.requested=200
+threads.created=200
+status.VmSize:	   28372 kB
+status.VmRSS:	     880 kB
+status.VmData:	   26416 kB
+status.Threads:	201
+
+sample_end=OK
+threadscfg=musl-dyn
+threads.requested=200
+threads.created=200
+status.VmSize:	   28712 kB
+status.VmRSS:	    1044 kB
+status.VmData:	   26424 kB
+status.Threads:	201
+
+sample_end=OK
+threadscfg=musl-mi
+threads.requested=200
+threads.created=200
+status.VmSize:	  159552 kB
+status.VmRSS:	     976 kB
+status.VmData:	  157520 kB
+status.Threads:	201
+
+sample_end=OK
+### malloc churn
+malloccfg=musl-dyn,rep=1,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=322.7
+malloc.wall_worst_thread_ns=645341981
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-mi,rep=1,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=88.2
+malloc.wall_worst_thread_ns=176472389
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=glibc-dyn,rep=1,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=174.1
+malloc.wall_worst_thread_ns=348258370
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-static,rep=1,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=315.9
+malloc.wall_worst_thread_ns=631795426
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-static,rep=1,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1016.3
+malloc.wall_worst_thread_ns=2052087517
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-dyn,rep=1,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1030.2
+malloc.wall_worst_thread_ns=2066521351
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-mi,rep=1,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=186.9
+malloc.wall_worst_thread_ns=379057352
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=glibc-dyn,rep=1,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=212.1
+malloc.wall_worst_thread_ns=436455982
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-mi,rep=2,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=90.1
+malloc.wall_worst_thread_ns=180135741
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=glibc-dyn,rep=2,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=170.6
+malloc.wall_worst_thread_ns=341106907
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-static,rep=2,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=320.4
+malloc.wall_worst_thread_ns=640818148
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-dyn,rep=2,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=329.3
+malloc.wall_worst_thread_ns=658513055
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-dyn,rep=2,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1007.1
+malloc.wall_worst_thread_ns=2023534036
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-mi,rep=2,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=200.0
+malloc.wall_worst_thread_ns=407330740
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=glibc-dyn,rep=2,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=210.3
+malloc.wall_worst_thread_ns=431669315
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-static,rep=2,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1023.0
+malloc.wall_worst_thread_ns=2064513572
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=glibc-dyn,rep=3,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=174.5
+malloc.wall_worst_thread_ns=349076185
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-static,rep=3,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=324.4
+malloc.wall_worst_thread_ns=648838741
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-dyn,rep=3,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=317.5
+malloc.wall_worst_thread_ns=635087277
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-mi,rep=3,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=87.3
+malloc.wall_worst_thread_ns=174680704
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-mi,rep=3,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=195.0
+malloc.wall_worst_thread_ns=392123703
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=glibc-dyn,rep=3,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=219.3
+malloc.wall_worst_thread_ns=448574981
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-static,rep=3,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=988.1
+malloc.wall_worst_thread_ns=1983819276
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-dyn,rep=3,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1018.0
+malloc.wall_worst_thread_ns=2044401035
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-static,rep=4,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=322.4
+malloc.wall_worst_thread_ns=644870130
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-dyn,rep=4,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=354.5
+malloc.wall_worst_thread_ns=709020648
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-mi,rep=4,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=99.6
+malloc.wall_worst_thread_ns=199231778
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=glibc-dyn,rep=4,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=170.3
+malloc.wall_worst_thread_ns=340573296
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=glibc-dyn,rep=4,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=216.7
+malloc.wall_worst_thread_ns=452269333
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-static,rep=4,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1002.2
+malloc.wall_worst_thread_ns=2008080851
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-dyn,rep=4,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=998.8
+malloc.wall_worst_thread_ns=2002762832
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-mi,rep=4,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=196.3
+malloc.wall_worst_thread_ns=397234074
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-dyn,rep=5,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=324.9
+malloc.wall_worst_thread_ns=649780111
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-mi,rep=5,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=89.7
+malloc.wall_worst_thread_ns=179466926
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=glibc-dyn,rep=5,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=171.9
+malloc.wall_worst_thread_ns=343815074
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-static,rep=5,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=315.5
+malloc.wall_worst_thread_ns=631035740
+malloc.checksum=7dc87e4
+
+sample_end=OK
+malloccfg=musl-static,rep=5,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1044.3
+malloc.wall_worst_thread_ns=2106437240
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-dyn,rep=5,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1001.1
+malloc.wall_worst_thread_ns=2010025536
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=musl-mi,rep=5,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=197.2
+malloc.wall_worst_thread_ns=397626870
+malloc.checksum=26cddf
+
+sample_end=OK
+malloccfg=glibc-dyn,rep=5,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=211.3
+malloc.wall_worst_thread_ns=436731055
+malloc.checksum=26cddf
+
+sample_end=OK
+### allocator-independent probes
+dns=NOT_RUN reason=allocator-independent carried_from=results/results.txt
+locale=NOT_RUN reason=allocator-independent carried_from=results/results.txt
+residual.after=NONE
+temperature.after.thermal_zone0=39433
+### frequencies after
+startup_freq,0,after,cpu0,1500000,1500000
+startup_freq,0,after,cpu1,1500000,1500000
+startup_freq,0,after,cpu2,1500000,1500000
+startup_freq,0,after,cpu3,1500000,1500000
+frequency.after.invalid=0
+measurement.finish_utc=2026-08-06T13:35:01Z

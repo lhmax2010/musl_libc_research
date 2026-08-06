@@ -1,0 +1,11 @@
+variant=micro.musl-static expected_banner=absent remote_rc=0
+stdout_begin
+malloc.threads=1
+malloc.iters_per_thread=1000
+malloc.ns_per_op_mean=7038.4
+malloc.wall_worst_thread_ns=7038444
+malloc.checksum=4764a0
+stdout_end
+stderr_begin
+stderr_end
+remote_probe_rc=0

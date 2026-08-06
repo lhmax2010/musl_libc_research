@@ -1,0 +1,11 @@
+variant=micro.glibc-dyn expected_banner=absent remote_rc=0
+stdout_begin
+malloc.threads=1
+malloc.iters_per_thread=1000
+malloc.ns_per_op_mean=3139.9
+malloc.wall_worst_thread_ns=3139944
+malloc.checksum=4764a0
+stdout_end
+stderr_begin
+stderr_end
+remote_probe_rc=0

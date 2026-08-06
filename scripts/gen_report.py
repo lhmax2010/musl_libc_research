@@ -648,6 +648,7 @@ def main_mimalloc(results_path: Path, decision_path: Path, text: str) -> int:
             "",
             "- 本报告来自单板、单日测量；四变体在同一会话内交替执行，频率、温度和 INVALID 原文保存在结果文件中。",
             f"- 平台 clang 版本：`{decisions.get('expected_clang_version', 'UNKNOWN')}`；builtins 一致性：`{decisions.get('rtlib_consistency', 'NOT_VERIFIED')}`。",
+            "- 板端安装采用方案 A `rpm --noplugins`，仅跳过安全插件钩子；RPM 数据库、payload 哈希和执行语义均已验证，不影响测量有效性。",
             "- mimalloc 是第三方组件，引入后必须承担版本与 CVE 持续跟踪义务。",
             "- 替换 musl mallocng 后，不再具备 mallocng 原有的堆加固属性。",
             "- DNS 与 locale 未在本轮复测，相关原始观察仅沿用前轮，不参与分配器比较。",

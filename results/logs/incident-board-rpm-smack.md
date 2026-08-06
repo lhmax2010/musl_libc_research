@@ -104,3 +104,20 @@ behavior. No forbidden security-policy or mount change was made.
 The subsequent measurement completed at script level but exposed a separate
 malloc-output integrity failure during post-run audit; see
 `incident-board-measurement-malloc-truncation.md`.
+
+## Release 2 revalidation
+
+The mimalloc release 2 deployment reused the same authorized Scheme A command,
+`rpm -Uvh --noplugins --force`, and completed successfully. The board RPM
+database reports `musl-libc-demo-1.0.0-2.armv7l`; the remote RPM file and host
+RPM both have SHA-256
+`f55957aaca2968877e8cf4dc6bd017e7875a8ed7bd1783b067574fd2f4030ead`.
+All package artifact and host/board binary hashes passed. `ls -Z` again recorded
+`User::Shell` for both payload directories and every bin/lib entry. Four smoke
+probes passed, including the new `micro.musl-mi` and `micro.musl-dyn` through
+the packaged loader.
+
+The one-positive/three-negative runtime override gate also passed. No Scheme A
+macro fallback, Scheme B extraction, Smack mutation, mount change, or security
+configuration change was used. The report Caveats records the plugin skip and
+why it does not affect the measured payload.
