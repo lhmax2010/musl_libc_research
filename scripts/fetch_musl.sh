@@ -6,7 +6,8 @@ SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 ROOT_DIR="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
 VERSION="1.2.5"
 ARCHIVE_NAME="musl-${VERSION}.tar.gz"
-ARCHIVE="$ROOT_DIR/packaging/$ARCHIVE_NAME"
+FROZEN_ARCHIVE_NAME="$ARCHIVE_NAME.frozen"
+ARCHIVE="$ROOT_DIR/packaging/$FROZEN_ARCHIVE_NAME"
 FROZEN="$SCRIPT_DIR/musl-${VERSION}.sha256"
 LOG_DIR="$ROOT_DIR/results/logs"
 EVIDENCE_DIR="$LOG_DIR/hash-sources"
@@ -304,7 +305,7 @@ if (( AVAILABLE < 2 || CONFIRMED < 2 )); then
 fi
 
 mv -f -- "$candidate" "$ARCHIVE"
-printf '%s  %s\n' "$ACTUAL_SHA256" "$ARCHIVE_NAME" > "$FROZEN"
+printf '%s  %s\n' "$ACTUAL_SHA256" "$FROZEN_ARCHIVE_NAME" > "$FROZEN"
 log "consensus=PASS"
 log "frozen_file=$FROZEN"
 log "fetch_finished=$(timestamp)"

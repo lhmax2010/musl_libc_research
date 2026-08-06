@@ -5,7 +5,9 @@ Summary:        GBS-built musl versus glibc comparison probes
 License:        MIT AND BSD-2-Clause AND BSD-3-Clause
 Group:          Development/Tools
 Source0:        micro.c
-Source1:        musl-1.2.5.tar.gz
+# The .frozen suffix avoids gbs export's gbp orig archive heuristic so a
+# git-tree-generated archive cannot clobber the official source; %prep restores the canonical name.
+Source1:        musl-1.2.5.tar.gz.frozen
 Source2:        timer.c
 Source3:        musl-1.2.5.sha256
 Source4:        build-demo.sh
