@@ -116,8 +116,8 @@ python3 scripts/gen_report.py results/results.txt > results/report.md
 |---|---|---|
 | Phase 0 取源与共识 | PASS | `fetch-musl.log` 中 S1、S3 一致，官方 GPG PASS；Alpine 端点 403，记录为 UNAVAILABLE |
 | 一字节篡改测试 | PASS | `results/logs/fetch-musl-tamper-test.log`，退出码 6，篡改 tarball 被删除后由可信备份恢复 |
-| Phase 1 GBS 构建 | NOT_RERUN | 首次执行 `scripts/build_gbs.sh` 时尚无 `.git`，GBS 报错 `No source package found`；当前 workspace 已初始化并推送为有效 Git 仓库，可以重新执行。历史输出见 `results/logs/gbs-build.log` |
-| Phase 2 板端部署/smoke | NOT_RUN | Phase 1 尚未产生 RPM；先补跑 `scripts/build_gbs.sh`，再运行 `SDB_TARGET=192.168.108.25 scripts/deploy.sh` |
+| Phase 1 GBS 构建 | BLOCKED | Git source package 已成功导出并进入 chroot，但 GBS native export 生成了同名 workspace 归档 `musl-1.2.5.tar.gz`，导致 Source1 实际 SHA-256 为 `f21136…`，冻结值门禁要求 `a9a118…` 并正确失败。见 `results/logs/gbs-build.log` 与 `results/logs/continue-execution-status.md` |
+| Phase 2 板端部署/smoke | NOT_RUN | Phase 1 未产生 RPM；等待 Source1 同名归档冲突的处置决策后补跑 `scripts/build_gbs.sh`，成功后再运行 `SDB_TARGET=192.168.108.25 scripts/deploy.sh` |
 | Phase 3 板端测量 | NOT_RUN | 依赖部署；精确补跑命令：`SDB_TARGET=192.168.108.25 scripts/run_board.sh` |
 | Phase 4 实测报告 | NOT_RUN | 依赖板端 `results/results.txt`，`run_board.sh` 成功后自动生成；单独补跑命令：`python3 scripts/gen_report.py results/results.txt > results/report.md` |
 
