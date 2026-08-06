@@ -1,0 +1,19 @@
+target=192.168.108.25
+
+command=ls -Z /opt/usr
+                _ apps                        _ home
+                _ data                        _ media
+                _ dbspace     User::App::Shared media_shared
+                _ dotnet                      _ share
+       User::Home globalapps
+
+command=mount | grep -E 'opt|rootfs'
+/dev/mmcblk0p3 on /opt type ext4 (rw,relatime)
+/dev/mmcblk0p5 on /opt/usr type f2fs (rw,relatime,lazytime,background_gc=on,nogc_merge,discard,discard_unit=block,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,barrier,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,checkpoint_merge,fsync_mode=posix,memory=normal,errors=continue)
+/dev/loop0 on /opt/usr/home/owner/subsession/__template_fixed__ type ext4 (rw,relatime,loop)
+/dev/loop1 on /opt/usr/home/owner/subsession/.profiles/__template_fixed__ type ext4 (rw,relatime,loop)
+tmpfs on /opt/media type tmpfs (rw,relatime)
+/dev/mmcblk0p5 on /opt/usr/home/owner/media type f2fs (rw,relatime,lazytime,background_gc=on,nogc_merge,discard,discard_unit=block,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,barrier,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,checkpoint_merge,fsync_mode=posix,memory=normal,errors=continue)
+
+command=rpm -q musl-libc-demo
+package musl-libc-demo is not installed

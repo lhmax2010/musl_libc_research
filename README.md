@@ -116,9 +116,9 @@ python3 scripts/gen_report.py results/results.txt > results/report.md
 |---|---|---|
 | Phase 0 取源与共识 | PASS | `fetch-musl.log` 中 S1、S3 一致，官方 GPG PASS；Alpine 端点 403，记录为 UNAVAILABLE |
 | 一字节篡改测试 | PASS | `results/logs/fetch-musl-tamper-test.log`，退出码 6，篡改 tarball 被删除后由可信备份恢复 |
-| Phase 1 GBS 构建 | BLOCKED | wrapper start-group 修复 commit `6e8ba8a` 已通过 `gate.ldwrapper_patch`，`micro.musl-static` 也通过 ELF 门禁；随后 `micro.musl-dyn` 的解释器门禁发现期望 `ld-musl-armhf.so.1`、实际 `ld-musl-arm.so.1`。GBS profile 使用 `-mfloat-abi=softfp`/`__SOFTFP__`，musl 配置判定 `__ARM_PCS_VFP=false`；见完整构建日志与 interpreter incident 归档 |
-| Phase 2 板端部署/smoke | NOT_RUN | Phase 1 在新的动态解释器门禁失败处停车、未产生 RPM；等待该 ABI/interpreter 不一致的处置授权，构建成功后再运行 `SDB_TARGET=192.168.108.25 scripts/deploy.sh` |
-| Phase 3 板端测量 | NOT_RUN | 依赖部署；精确补跑命令：`SDB_TARGET=192.168.108.25 scripts/run_board.sh` |
-| Phase 4 实测报告 | NOT_RUN | 依赖板端 `results/results.txt`，`run_board.sh` 成功后自动生成；单独补跑命令：`python3 scripts/gen_report.py results/results.txt > results/report.md` |
+| Phase 1 GBS 构建 | PASS | softfp 对齐 commit `c250c88` 与预授权 glibc loader 白名单 commit `676f0e3` 生效；三变体、wrapper、解释器和四方 ABI 一致性门禁全部 PASS，已生成 `results/rpms/musl-libc-demo-1.0.0-1.armv7l.rpm` |
+| Phase 2 板端部署/smoke | BLOCKED | host payload 哈希校验与 RPM push PASS；板端 `rpm -Uvh --force` 因无法写入 Smack/device security policy 而失败，包未安装，smoke 未运行。见 `results/logs/deploy.log` 与 `incident-board-rpm-smack.md` |
+| Phase 3 板端测量 | NOT_RUN | 依赖部署；RPM 安装问题获授权解决后运行 `SDB_TARGET=192.168.108.25 scripts/deploy.sh`，部署通过再运行 `SDB_TARGET=192.168.108.25 scripts/run_board.sh` |
+| Phase 4 实测报告 | NOT_RUN | 依赖板端 `results/results.txt`，`run_board.sh` 成功后自动生成；不得用 fixtures 伪造实测报告 |
 
 `tests/fixtures/` 仅用于报告解析器的本地回归测试，不是板端数据，也不会写入 `results/report.md`。

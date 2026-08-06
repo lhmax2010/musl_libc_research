@@ -1,0 +1,36 @@
+expected_clang_version=22.1.8
+clang_path=/bin/clang
+clang_dumpmachine=armv7l-tizen-linux-gnueabi
+clang_runtime_dir=(runtime dir is not present)
+clang_print_libgcc_file_name=/usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a
+selected_rtlib=libgcc.a
+selected_rtlib_flag=--rtlib=libgcc
+selected_rtlib_archive=/usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a
+musl_configure_CC=clang
+glibc_dyn_rtlib=libgcc.a
+musl_static_rtlib=libgcc.a
+musl_dyn_rtlib=libgcc.a
+rtlib_consistency=PASS
+musl_ldso_name=ld-musl-arm.so.1
+clang_version_begin
+clang version 22.1.8
+Target: armv7l-tizen-linux-gnueabi
+Thread model: posix
+InstalledDir: /usr/bin
+Configuration file: /usr/bin/clang.cfg
+clang_version_end
+ldwrapper_patch=start-group
+ldwrapper_style=ld
+ldwrapper_group_rtlib_archive=/usr/lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a
+ldwrapper_group_libgcc_eh=/usr/lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc_eh.a
+ldwrapper_before_line=exec $($cc -print-prog-name=ld) -nostdlib "$@" -lc -dynamic-linker "$ldso"
+ldwrapper_after_line=exec $($cc -print-prog-name=ld) -nostdlib "$@" --start-group -lc /usr/lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a /usr/lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc_eh.a --end-group -dynamic-linker "$ldso"
+ldwrapper_clang_gate=PASS
+strip_tool=/bin/llvm-strip
+platform_float_abi=softfp
+variant_vfp_args=glibc-dyn:ABSENT | musl-static:ABSENT | musl-dyn:ABSENT
+binsh_vfp_args=ABSENT
+abi_consistency=PASS
+glibc_dyn_interpreter=/lib/ld-linux.so.3
+musl_dyn_interpreter=/opt/usr/musl-demo/lib/ld-musl-arm.so.1
+mechanical_gates=PASS

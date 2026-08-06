@@ -41,5 +41,39 @@ and all other ELF gates remain unchanged.
 ## Lesson
 
 ABI assertions must be derived from measured platform artifacts and active
-toolchain flags, not from the design author's memory. The rerun result will be
-appended after the authorized fix is committed and executed.
+toolchain flags, not from the design author's memory.
+
+## Rerun result
+
+The first rerun passed the musl-static and corrected musl-dynamic interpreter
+gates, then exposed `ld-linux.so.3` in the glibc probe's complete `DT_NEEDED`
+list. That exact whitelist case was pre-authorized by
+`docs/codex-prompt-continue-execution.md`; commit `676f0e3` added only that
+observed entry and the authorized single retry succeeded.
+
+The final GBS log records:
+
+```text
+gate.micro.musl-static=PASS
+gate.micro.musl-dyn=PASS interpreter=/opt/usr/musl-demo/lib/ld-musl-arm.so.1 needed=libc.so
+gate.micro.glibc-dyn=PASS interpreter=/lib/ld-linux.so.3
+gate.arm32_softfp_abi_consistency=PASS
+BUILD_GATE_PASS: all comparison artifacts passed
+BUILD_GBS_PASS
+```
+
+The extracted compiler decision records:
+
+```text
+musl_ldso_name=ld-musl-arm.so.1
+platform_float_abi=softfp
+variant_vfp_args=glibc-dyn:ABSENT | musl-static:ABSENT | musl-dyn:ABSENT
+binsh_vfp_args=ABSENT
+abi_consistency=PASS
+musl_dyn_interpreter=/opt/usr/musl-demo/lib/ld-musl-arm.so.1
+mechanical_gates=PASS
+```
+
+GBS produced `musl-libc-demo-1.0.0-1.armv7l.rpm`. Its subsequent board
+installation was attempted and stopped at a separate Smack policy failure,
+recorded in `incident-board-rpm-smack.md`.
