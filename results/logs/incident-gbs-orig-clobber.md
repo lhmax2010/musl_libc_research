@@ -73,3 +73,19 @@ attempted.
 
 Consequently, no RPM, compiler decision, build commands, deployment, board
 measurement, or report was produced in this rerun.
+
+## Subsequent validation
+
+After the spec-comment issue received a separate authorized fix, GBS export
+completed without regenerating `musl-1.2.5.tar.gz.frozen`. The exported file
+retained SHA-256
+`a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4`,
+and the chroot emitted:
+
+```text
+gate.source1_sha256=PASS value=a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4
+```
+
+This confirms that the `.frozen` suffix resolved the original clobber and
+that the integrity chain remained intact. A later, unrelated Bash compatibility
+failure stopped that build and is recorded separately.

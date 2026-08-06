@@ -116,8 +116,8 @@ python3 scripts/gen_report.py results/results.txt > results/report.md
 |---|---|---|
 | Phase 0 取源与共识 | PASS | `fetch-musl.log` 中 S1、S3 一致，官方 GPG PASS；Alpine 端点 403，记录为 UNAVAILABLE |
 | 一字节篡改测试 | PASS | `results/logs/fetch-musl-tamper-test.log`，退出码 6，篡改 tarball 被删除后由可信备份恢复 |
-| Phase 1 GBS 构建 | BLOCKED | `.frozen` 修复已形成独立 commit `0243a8b`，但重跑在 GBS export 解析 spec 时因注释中的字面 `%prep` 报 `line 30: second %prep`；Source1 门禁尚未重新执行。见 `results/logs/gbs-build.log` 与 `results/logs/incident-gbs-orig-clobber.md` |
-| Phase 2 板端部署/smoke | NOT_RUN | Phase 1 未产生 RPM；等待 GBS spec 注释解析失败的处置授权，构建成功后再运行 `SDB_TARGET=192.168.108.25 scripts/deploy.sh` |
+| Phase 1 GBS 构建 | BLOCKED | 注释修复 commit `bc76088` 已使 export 成功，`.frozen` Source1 门禁以 `a9a118…` PASS；随后 chroot Bash 3.2.57 因不支持 `mapfile` 在 `build-demo.sh:54` 失败。见 `results/logs/gbs-build.log` 与两份 incident 归档 |
+| Phase 2 板端部署/smoke | NOT_RUN | Phase 1 未产生 RPM；等待 Bash 3.2 / `mapfile` 兼容性处置授权，构建成功后再运行 `SDB_TARGET=192.168.108.25 scripts/deploy.sh` |
 | Phase 3 板端测量 | NOT_RUN | 依赖部署；精确补跑命令：`SDB_TARGET=192.168.108.25 scripts/run_board.sh` |
 | Phase 4 实测报告 | NOT_RUN | 依赖板端 `results/results.txt`，`run_board.sh` 成功后自动生成；单独补跑命令：`python3 scripts/gen_report.py results/results.txt > results/report.md` |
 

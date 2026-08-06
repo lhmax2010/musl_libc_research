@@ -4,26 +4,218 @@ warning: No local package repository for arch armv7l
 info: build conf has been downloaded at:
       /var/tmp/linhao-gbs/tizen_unified_standard.conf
 info: start building packages from: /home/linhao/Toolchain/development/musl-libc-research (git)
-2026-08-06 14:33 +0800
+2026-08-06 15:23 +0800
 gbs 2.0.6
 info: prepare sources...
 info: start export source from: /home/linhao/Toolchain/development/musl-libc-research ...
-info: the following untracked files would be included:
-   docs/codex-prompt-fix-source1-clobber.md
-   results/logs/incident-gbs-orig-clobber.md
 info: the following uncommitted changes would be included:
    results/logs/gbs-build.log
-error: RPM error while parsing None: can't parse specfile
- (error: line 30: second %prep)
-error: <gbs>Failed to export packaging files from git tree
+info: package files have been exported to:
+     /home/linhao/Toolchain/development/musl-libc-research/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES/local/sources/tizen_unified_standard/musl-libc-demo-1.0.0-1
 info: retrieving repo metadata...
 info: parsing package data...
 info: building repo metadata ...
 info: resolving skipped packages ...
 info: package dependency resolving ...
-info: there is no circle in 0 packages
-warning: no available packages to build.
+info: there is no circle in 1 packages
+info: *** [1/1] building musl-libc-demo-1.0.0-1 armv7l tizen_unified_standard (worker: 0) ***
+logging output to /home/linhao/Toolchain/development/musl-libc-research/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES/local/BUILD-ROOTS/scratch.armv7l.0/.build.log...
+[    0s] on X86_64, no limit mem size
+[    0s] Using BUILD_ROOT=/home/linhao/Toolchain/development/musl-libc-research/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES/local/BUILD-ROOTS/scratch.armv7l.0
+[    0s] Using BUILD_ARCH=armv7l:armv7el:armv6l:armv5tejl:armv5tel:armv5l:armv4tl:armv4l:armv3l:noarch
+[    0s] 
+[    0s] 
+[    0s] linhao-linux started "build musl-libc-demo.spec" at Thu Aug  6 07:23:27 UTC 2026.
+[    0s] 
+[    0s] 
+[    0s] processing recipe /home/linhao/Toolchain/development/musl-libc-research/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES/local/sources/tizen_unified_standard/musl-libc-demo-1.0.0-1/musl-libc-demo.spec ...
+[    0s] init_buildsystem --configdir /usr/lib/build/configs --cachedir /home/linhao/Toolchain/development/musl-libc-research/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES/local/cache --repository /home/linhao/Toolchain/development/musl-libc-research/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES/local/repos/tizen_unified_standard/armv7l/RPMS --repository https://download.tizen.org/snapshots/TIZEN/Tizen/Tizen-Base-Toolchain/reference/repos/standard/packages/ --repository https://download.tizen.org/snapshots/TIZEN/Tizen/Tizen-Unified-Toolchain/reference/repos/standard/packages/ /home/linhao/Toolchain/development/musl-libc-research/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES/local/sources/tizen_unified_standard/musl-libc-demo-1.0.0-1/musl-libc-demo.spec ...
+[    0s] expanding package dependencies...
+[    0s] copying qemu
+[    0s] 
+[    0s] registering binfmt handlers for cross build
+[    0s] calculating packages to download...
+[    2s] reordering...cycle: glibc-devel -> libxcrypt-devel
+[    2s]   breaking dependency libxcrypt-devel -> glibc-devel
+[    2s] cycle: clang -> llvm
+[    2s]   breaking dependency llvm -> clang
+[    2s] cycle: clang -> llvm -> lldb
+[    2s]   breaking dependency llvm -> lldb
+[    2s] cycle: libsoftokn3 -> nss
+[    2s]   breaking dependency nss -> libsoftokn3
+[    2s] reordering done
+[    2s] [1/105] keeping libmagic-data-5.46-1.13
+[    2s] [2/105] keeping setup-0.9-1.4
+[    2s] [3/105] keeping filesystem-3.1-2.1
+[    2s] [4/105] keeping glibc-2.40-2.9
+[    2s] [5/105] keeping libatomic-14.2.0-1.15
+[    2s] [6/105] keeping libgcc-14.2.0-1.15
+[    2s] [7/105] keeping bash-3.2.57-1.2
+[    2s] [8/105] keeping cpio-2.8-1.3
+[    2s] [9/105] keeping diffutils-3.10-2.2
+[    2s] [10/105] keeping findutils-4.3.8-1.16
+[    2s] [11/105] keeping gdbm-1.8.3-1.16
+[    2s] [12/105] keeping hostname-3.23-1.3
+[    2s] [13/105] keeping libattr-2.5.1-1.16
+[    2s] [14/105] keeping libblkid-2.41.2-1.13
+[    2s] [15/105] keeping libbz2-1.0.8-1.16
+[    2s] [16/105] keeping libcap-2.73-1.14
+[    2s] [17/105] keeping libfreebl3-3.109-1.5
+[    2s] [18/105] keeping libgfortran-14.2.0-1.15
+[    2s] [19/105] keeping libgomp-14.2.0-1.15
+[    2s] [20/105] keeping libitm-14.2.0-1.15
+[    2s] [21/105] keeping libltdl-2.5.4-1.15
+[    2s] [22/105] keeping liblua-5.1.5-1.14
+[    2s] [23/105] keeping liblzma-5.8.1-1.14
+[    2s] [24/105] keeping libopenssl3-3.5.5-1.10
+[    2s] [25/105] keeping libpcre-8.45-1.14
+[    2s] [26/105] keeping libpopt-1.16-1.13
+[    2s] [27/105] keeping libsmack-1.3.1-1.13
+[    2s] [28/105] keeping libsmartcols-2.41.2-1.13
+[    2s] [29/105] keeping libsqlite-3.51.0-1.16
+[    2s] [30/105] keeping libstdc++-14.2.0-1.15
+[    2s] [31/105] keeping libuuid-2.41.2-1.13
+[    2s] [32/105] keeping libxcrypt-4.4.36-1.15
+[    2s] [33/105] keeping libxml2-2.15.1-1.15
+[    2s] [34/105] keeping libzstd1-1.5.7-1.14
+[    2s] [35/105] keeping m4-1.4.20-1.2
+[    2s] [36/105] keeping net-tools-2.0_20121208git-1.14
+[    2s] [37/105] keeping nspr-4.36-1.4
+[    2s] [38/105] keeping patch-2.8-1.13
+[    2s] [39/105] keeping pkg-config-0.29.2-1.16
+[    2s] [40/105] keeping sed-4.1c-1.12
+[    2s] [41/105] keeping update-alternatives-1.22.21-2.2
+[    2s] [42/105] keeping which-2.17-2.2
+[    2s] [43/105] keeping zlib-1.3.1-1.16
+[    2s] [44/105] keeping app-rootstrap-checker-1.0.0-2.1
+[    2s] [45/105] keeping build-compare-2023.06.18-1.5
+[    2s] [46/105] keeping clang-accel-x86_64-armv7l-0.4-1.4
+[    2s] [47/105] keeping hal-rootstrap-checker-1.0.0-4.1
+[    2s] [48/105] keeping libstdc++-devel-14.2.0-1.15
+[    2s] [49/105] keeping qemu-linux-user-x86_64-cross-9.2.3.1-3.4
+[    2s] [50/105] keeping cpp-14.2.0-1.15
+[    2s] [51/105] keeping gcc-c++-14.2.0-1.15
+[    2s] [52/105] keeping binutils-libs-2.43-2.10
+[    2s] [53/105] keeping coreutils-6.9-15.3
+[    2s] [54/105] keeping gawk-3.1.5-2.2
+[    2s] [55/105] keeping grep-2.5.2-1.14
+[    2s] [56/105] keeping libacl-2.3.2-1.15
+[    2s] [57/105] keeping libcc1-14.2.0-1.15
+[    2s] [58/105] keeping libelf-0.189-1.16
+[    2s] [59/105] keeping liblastlog2-2.41.2-1.13
+[    2s] [60/105] keeping libmount-2.41.2-1.13
+[    2s] [61/105] keeping make-4.4.1-1.15
+[    2s] [62/105] keeping nss-certs-3.109-1.5
+[    2s] [63/105] keeping smack-1.3.1-1.13
+[    2s] [64/105] keeping bzip2-1.0.8-1.16
+[    2s] [65/105] keeping libfdisk-2.41.2-1.13
+[    2s] [66/105] keeping libmagic-5.46-1.13
+[    2s] [67/105] keeping xz-5.8.1-1.14
+[    2s] [68/105] keeping libllvm-22.1.8-19.1
+[    2s] [69/105] keeping perl-5.42.0-2.10
+[    2s] [70/105] keeping build-mkbaselibs-20120927-1.1
+[    2s] [71/105] keeping linux-glibc-devel-6.6-1.16
+[    2s] [72/105] keeping terminfo-base-full-6.6-1.15
+[    2s] [73/105] keeping autoconf-2.71-2.10
+[    2s] [74/105] keeping glibc-locale-2.40-2.9
+[    2s] [75/105] keeping tar-1.17-2.2
+[    2s] [76/105] keeping binutils-2.43-2.10
+[    2s] [77/105] keeping file-5.46-1.13
+[    2s] [78/105] keeping gzip-1.3.12-1.14
+[    2s] [79/105] keeping pam-1.1.6-1.14
+[    2s] [80/105] keeping tzdata-2025b-2.2
+[    2s] [81/105] keeping libdw-0.189-1.16
+[    2s] [82/105] keeping gcc-14.2.0-1.15
+[    2s] [83/105] keeping libarchive-3.8.1-1.14
+[    2s] [84/105] keeping qemu-accel-x86_64-armv7l-0.4-1.4
+[    2s] [85/105] keeping automake-1.16.5-2.10
+[    2s] [86/105] keeping libasm-0.189-1.16
+[    2s] [87/105] keeping libncurses6-6.6-1.15
+[    2s] [88/105] keeping build-20120927-1.1
+[    2s] [89/105] keeping rpm-4.14.1.1-2.9
+[    2s] [90/105] keeping libncurses-6.6-1.15
+[    2s] [91/105] keeping less-685-2.2
+[    2s] [92/105] keeping libreadline-5.2-1.16
+[    2s] [93/105] keeping libtool-2.5.4-1.15
+[    2s] [94/105] keeping elfutils-0.189-1.16
+[    2s] [95/105] keeping util-linux-2.41.2-1.13
+[    2s] [96/105] keeping util-linux-su-2.41.2-1.13
+[    2s] [97/105] keeping libxcrypt-devel-4.4.36-1.15
+[    2s] [98/105] keeping nss-3.109-1.5
+[    2s] [99/105] keeping llvm-22.1.8-19.1
+[    2s] [100/105] keeping glibc-devel-2.40-2.9
+[    2s] [101/105] keeping clang-22.1.8-19.1
+[    2s] [102/105] keeping libsoftokn3-3.109-1.5
+[    2s] [103/105] keeping llvm-devel-22.1.8-19.1
+[    2s] [104/105] keeping lldb-22.1.8-19.1
+[    2s] [105/105] keeping rpm-build-4.14.1.1-2.9
+[    2s] removing nis flags from /home/linhao/Toolchain/development/musl-libc-research/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES/local/BUILD-ROOTS/scratch.armv7l.0/etc/nsswitch.conf...
+[    2s] now finalizing build dir...
+[    3s] -----------------------------------------------------------------
+[    3s] ----- building musl-libc-demo.spec (user abuild)
+[    3s] -----------------------------------------------------------------
+[    3s] -----------------------------------------------------------------
+[    3s] + exec rpmbuild --define '_srcdefattr (-,root,root)' --nosignature --target=armv7l-tizen-linux --define '_build_create_debug 1' -ba /home/abuild/rpmbuild/SOURCES/musl-libc-demo.spec
+[    3s] Building target platforms: armv7l-tizen-linux
+[    3s] Building for target armv7l-tizen-linux
+[    3s] Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.hXfcW8
+[    3s] + umask 022
+[    3s] + cd /home/abuild/rpmbuild/BUILD
+[    3s] + cd /home/abuild/rpmbuild/BUILD
+[    3s] + rm -rf musl-libc-demo-1.0.0
+[    3s] + /bin/mkdir -p musl-libc-demo-1.0.0
+[    3s] + cd musl-libc-demo-1.0.0
+[    3s] + /bin/chmod -Rf a+rX,u+w,g-w,o-w .
+[    3s] + cp -p /home/abuild/rpmbuild/SOURCES/micro.c micro.c
+[    3s] + cp -p /home/abuild/rpmbuild/SOURCES/musl-1.2.5.tar.gz.frozen musl-1.2.5.tar.gz
+[    3s] + cp -p /home/abuild/rpmbuild/SOURCES/timer.c timer.c
+[    3s] + cp -p /home/abuild/rpmbuild/SOURCES/musl-1.2.5.sha256 musl-1.2.5.sha256
+[    3s] + cp -p /home/abuild/rpmbuild/SOURCES/build-demo.sh build-demo.sh
+[    3s] + exit 0
+[    3s] Executing(%build): /bin/sh -e /var/tmp/rpm-tmp.1UvWQs
+[    3s] + umask 022
+[    3s] + cd /home/abuild/rpmbuild/BUILD
+[    3s] + CFLAGS='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument  -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g'
+[    3s] + export CFLAGS
+[    3s] + CXXFLAGS='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument  -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g'
+[    3s] + export CXXFLAGS
+[    3s] + LDFLAGS=-Wl,-z,relro,--as-needed,-O1,--hash-style=gnu
+[    3s] + export LDFLAGS
+[    3s] + cd musl-libc-demo-1.0.0
+[    3s] + ref=/usr/lib/rpm
+[    3s] + mints=0
+[    3s] + case $(uname -m) in
+[    3s] ++ uname -m
+[    3s] + for s in guess sub
+[    3s] ++ find -maxdepth 8 -name config.guess
+[    3s] + for s in guess sub
+[    3s] ++ find -maxdepth 8 -name config.sub
+[    3s] + export AR=llvm-ar RANLIB=llvm-ranlib
+[    3s] + AR=llvm-ar
+[    3s] + RANLIB=llvm-ranlib
+[    3s] + export CC=armv7l-tizen-linux-gnueabi-clang CXX=armv7l-tizen-linux-gnueabi-clang++
+[    3s] + CC=armv7l-tizen-linux-gnueabi-clang
+[    3s] + CXX=armv7l-tizen-linux-gnueabi-clang++
+[    3s] + export 'MAKEFLAGS+= -k'
+[    3s] + MAKEFLAGS+=' -k'
+[    3s] + chmod +x build-demo.sh
+[    3s] + OPTFLAGS='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument  -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g'
+[    3s] + ./build-demo.sh /home/abuild/rpmbuild/BUILD/musl-libc-demo-1.0.0/musl-1.2.5.tar.gz /home/abuild/rpmbuild/BUILD/musl-libc-demo-1.0.0/musl-1.2.5.sha256 /home/abuild/rpmbuild/BUILD/musl-libc-demo-1.0.0/micro.c /home/abuild/rpmbuild/BUILD/musl-libc-demo-1.0.0/timer.c
+[    3s] gate.source1_sha256=PASS value=a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4
+[    3s] ./build-demo.sh: line 54: mapfile: command not found
+[    3s] error: Bad exit status from /var/tmp/rpm-tmp.1UvWQs (%build)
+[    3s] 
+[    3s] 
+[    3s] RPM build errors:
+[    3s]     Bad exit status from /var/tmp/rpm-tmp.1UvWQs (%build)
+[    3s] find: `(runtime dir is not present)': No such file or directory
+[    3s] 
+[    3s] linhao-linux failed "build musl-libc-demo.spec" at Thu Aug  6 07:23:30 UTC 2026.
+[    3s] 
+warning: build failed, Leaving the logs in /home/linhao/Toolchain/development/musl-libc-research/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES/local/repos/tizen_unified_standard/armv7l/logs/fail/musl-libc-demo-1.0.0-1/log.txt
 info: *** Build Status Summary ***
+=== the following packages failed to build due to rpmbuild issue (1) ===
+musl-libc-demo: /home/linhao/Toolchain/development/musl-libc-research/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES/local/repos/tizen_unified_standard/armv7l/logs/fail/musl-libc-demo-1.0.0-1/log.txt
 === Total succeeded built packages: (0) ===
 info: generated html format report:
      /home/linhao/Toolchain/development/musl-libc-research/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES/local/repos/tizen_unified_standard/armv7l/index.html
