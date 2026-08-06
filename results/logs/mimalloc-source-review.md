@@ -1,6 +1,6 @@
 # mimalloc 2.1.7 source review gate
 
-- [ ] FatTank verified the frozen mimalloc digest and archived corroborating records.
+- [x] FatTank verified the frozen mimalloc digest and archived corroborating records.
 
 Formal GBS build is fail-closed until FatTank changes the checkbox above to
 `[x]`. Automation must not check it on FatTank's behalf.
