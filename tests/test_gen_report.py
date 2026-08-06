@@ -1,7 +1,9 @@
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 
-from scripts.gen_report import parse_malloc_samples
+from scripts.gen_report import main_mimalloc, parse_malloc_samples, parse_metric_samples
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,6 +53,118 @@ class MallocParserTests(unittest.TestCase):
             },
             counts,
         )
+
+    def test_mimalloc_report_parses_four_variant_session(self) -> None:
+        text = """measurement.sample_sentinel=required
+### sizes
+-rwxr-xr-x 1 root root 400 Aug 6 00:00 /opt/usr/musl-demo/bin/micro.musl-static
+-rwxr-xr-x 1 root root 600 Aug 6 00:00 /opt/usr/musl-demo/bin/micro.musl-mi
+### startup quad
+startup_quad,1,1000000,800000,900000,700000
+startup_valid,1
+### mem smaps_rollup x3
+memcfg=musl-static,rep=1
+mem.pid=10
+Rss: 52 kB
+Pss: 50 kB
+Private_Clean: 42 kB
+Private_Dirty: 8 kB
+sample_end=OK
+memcfg=musl-mi,rep=1
+mem.pid=11
+Rss: 100 kB
+Pss: 90 kB
+Private_Clean: 60 kB
+Private_Dirty: 30 kB
+sample_end=OK
+### threads 200
+threadscfg=musl-static
+threads.requested=200
+threads.created=200
+status.VmSize: 28000 kB
+status.VmRSS: 800 kB
+status.VmData: 26000 kB
+status.Threads: 201
+sample_end=OK
+threadscfg=musl-mi
+threads.requested=200
+threads.created=200
+status.VmSize: 30000 kB
+status.VmRSS: 900 kB
+status.VmData: 28000 kB
+status.Threads: 201
+sample_end=OK
+### malloc churn
+malloccfg=glibc-dyn,rep=1,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=100.0
+malloc.checksum=a
+sample_end=OK
+malloccfg=musl-static,rep=1,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=200.0
+malloc.checksum=a
+sample_end=OK
+malloccfg=musl-dyn,rep=1,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=210.0
+malloc.checksum=a
+sample_end=OK
+malloccfg=musl-mi,rep=1,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=80.0
+malloc.checksum=a
+sample_end=OK
+malloccfg=glibc-dyn,rep=1,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=150.0
+malloc.checksum=a
+sample_end=OK
+malloccfg=musl-static,rep=1,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=900.0
+malloc.checksum=a
+sample_end=OK
+malloccfg=musl-dyn,rep=1,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=910.0
+malloc.checksum=a
+sample_end=OK
+malloccfg=musl-mi,rep=1,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=120.0
+malloc.checksum=a
+sample_end=OK
+"""
+        mem = parse_metric_samples(text, "mem")
+        threads = parse_metric_samples(text, "threads")
+        self.assertEqual(2, len(mem))
+        self.assertTrue(all(sample.valid for sample in mem))
+        self.assertEqual(2, len(threads))
+        self.assertTrue(all(sample.valid for sample in threads))
+
+        output = StringIO()
+        with redirect_stdout(output):
+            rc = main_mimalloc(
+                Path("results/results-mimalloc.txt"),
+                Path("results/logs/compiler-decision-mimalloc.txt"),
+                text,
+            )
+        report = output.getvalue()
+        self.assertEqual(0, rc)
+        self.assertIn("musl-mi median：**0.700 ms**", report)
+        self.assertIn("120.0 (n=1)", report)
+        self.assertIn("| Private_Dirty | 8 kB | 30 kB | 22 kB | 3.75x |", report)
+        self.assertIn("VmSize +2000 KB", report)
+        self.assertIn("二进制 +0.2 KB", report)
 
     def test_sentinel_required_dataset_rejects_missing_sentinel(self) -> None:
         text = """measurement.sample_sentinel=required
