@@ -2,8 +2,8 @@
 # Runs inside the GBS chroot from the spec's %build section.
 set -euo pipefail
 
-if [[ "$#" -ne 4 ]]; then
-    echo "usage: build-demo.sh MUSL_TARBALL FROZEN_SHA256 MICRO_C TIMER_C" >&2
+if [[ "$#" -ne 6 ]]; then
+    echo "usage: build-demo.sh MUSL_TARBALL MUSL_SHA256 MICRO_C TIMER_C MIMALLOC_TARBALL MIMALLOC_SHA256" >&2
     exit 2
 fi
 
@@ -11,11 +11,14 @@ MUSL_TARBALL="$1"
 FROZEN_SHA256_FILE="$2"
 MICRO_SOURCE="$3"
 TIMER_SOURCE="$4"
+MIMALLOC_TARBALL="$5"
+MIMALLOC_SHA256_FILE="$6"
 EXPECTED_CLANG_VERSION="22.1.8"
 PRIVATE_ROOT="/opt/usr/musl-demo"
 PRIVATE_LOADER="$PRIVATE_ROOT/lib/ld-musl-arm.so.1"
 BUILD_ROOT="$PWD"
 MUSL_SOURCE_DIR="$BUILD_ROOT/musl-1.2.5"
+MIMALLOC_SOURCE_DIR="$BUILD_ROOT/mimalloc-2.1.7"
 MUSL_PREFIX="$BUILD_ROOT/musl-inst"
 PAYLOAD="$BUILD_ROOT/payload"
 COMMANDS="$PAYLOAD/share/build-commands.txt"
@@ -27,7 +30,7 @@ fail() {
     exit 1
 }
 
-for tool in bash clang file find getconf make readelf sha256sum strings tar; do
+for tool in bash clang file find getconf make nm readelf sha256sum strings tar; do
     command -v "$tool" >/dev/null 2>&1 || fail "required chroot tool missing: $tool"
 done
 
@@ -41,6 +44,14 @@ actual_sha256="$(sha256sum "$MUSL_TARBALL" | awk '{print tolower($1)}')"
 [[ "$actual_sha256" == "$expected_sha256" ]] || \
     fail "Source1 sha256 mismatch expected=$expected_sha256 actual=$actual_sha256"
 echo "gate.source1_sha256=PASS value=$actual_sha256"
+
+mimalloc_expected_sha256="$(awk 'NF { print tolower($1); exit }' "$MIMALLOC_SHA256_FILE")"
+mimalloc_actual_sha256="$(sha256sum "$MIMALLOC_TARBALL" | awk '{print tolower($1)}')"
+[[ "$mimalloc_expected_sha256" =~ ^[0-9a-f]{64}$ ]] || \
+    fail "invalid frozen Source5 sha256"
+[[ "$mimalloc_actual_sha256" == "$mimalloc_expected_sha256" ]] || \
+    fail "Source5 sha256 mismatch expected=$mimalloc_expected_sha256 actual=$mimalloc_actual_sha256"
+echo "gate.source5_sha256=PASS value=$mimalloc_actual_sha256"
 
 clang_path="$(command -v clang)"
 clang_version_text="$(clang --version)"
@@ -84,16 +95,21 @@ fi
     echo "glibc_dyn_rtlib=$RTLIB_NAME"
     echo "musl_static_rtlib=$RTLIB_NAME"
     echo "musl_dyn_rtlib=$RTLIB_NAME"
+    echo "musl_mi_rtlib=$RTLIB_NAME"
     echo "rtlib_consistency=PASS"
+    echo "mimalloc_version=2.1.7"
+    echo "mimalloc_source_sha256=$mimalloc_actual_sha256"
     echo "musl_ldso_name=ld-musl-arm.so.1"
     echo "clang_version_begin"
     printf '%s\n' "$clang_version_text"
     echo "clang_version_end"
 } | tee "$DECISION"
 
-rm -rf -- "$MUSL_SOURCE_DIR" "$MUSL_PREFIX"
+rm -rf -- "$MUSL_SOURCE_DIR" "$MIMALLOC_SOURCE_DIR" "$MUSL_PREFIX"
 tar -xf "$MUSL_TARBALL"
 [[ -d "$MUSL_SOURCE_DIR" ]] || fail "Source1 did not unpack as musl-1.2.5"
+tar -xf "$MIMALLOC_TARBALL"
+[[ -d "$MIMALLOC_SOURCE_DIR" ]] || fail "Source5 did not unpack as mimalloc-2.1.7"
 
 OPTFLAGS_TEXT="${OPTFLAGS:?OPTFLAGS must contain the expanded rpm optflags}"
 read -r -a OPTFLAGS_ARRAY <<< "$OPTFLAGS_TEXT"
@@ -211,6 +227,10 @@ record_and_run() {
 }
 
 COMMON_FLAGS=("${OPTFLAGS_ARRAY[@]}" "$RTLIB_FLAG" -static-libgcc -pthread)
+MIMALLOC_OBJECT="$BUILD_ROOT/mimalloc.o"
+record_and_run clang "${OPTFLAGS_ARRAY[@]}" -O2 -DNDEBUG -DMI_MALLOC_OVERRIDE \
+    -I "$MIMALLOC_SOURCE_DIR/include" \
+    -c "$MIMALLOC_SOURCE_DIR/src/static.c" -o "$MIMALLOC_OBJECT"
 record_and_run clang "${COMMON_FLAGS[@]}" "$MICRO_SOURCE" \
     -Wl,-Map,"$BUILD_ROOT/micro.glibc-dyn.map" \
     -o "$PAYLOAD/bin/micro.glibc-dyn"
@@ -221,8 +241,61 @@ record_and_run "$MUSL_CC" "${COMMON_FLAGS[@]}" "$MICRO_SOURCE" \
     -Wl,--dynamic-linker="$PRIVATE_LOADER" \
     -Wl,-Map,"$BUILD_ROOT/micro.musl-dyn.map" \
     -o "$PAYLOAD/bin/micro.musl-dyn"
+record_and_run "$MUSL_CC" "${COMMON_FLAGS[@]}" -static "$MICRO_SOURCE" \
+    "$MIMALLOC_OBJECT" \
+    -Wl,-Map,"$BUILD_ROOT/micro.musl-mi.map" \
+    -o "$PAYLOAD/bin/micro.musl-mi"
 record_and_run clang "${COMMON_FLAGS[@]}" "$TIMER_SOURCE" \
     -o "$PAYLOAD/bin/timer"
+
+static_link_core=("$MUSL_CC" "${COMMON_FLAGS[@]}" -static "$MICRO_SOURCE")
+mi_link_core=("$MUSL_CC" "${COMMON_FLAGS[@]}" -static "$MICRO_SOURCE" "$MIMALLOC_OBJECT")
+[[ "${#mi_link_core[@]}" -eq $(( ${#static_link_core[@]} + 1 )) ]] || \
+    fail "musl-mi link core differs by more than one argument"
+for (( argument_index = 0; argument_index < ${#static_link_core[@]}; argument_index++ )); do
+    [[ "${static_link_core[$argument_index]}" == "${mi_link_core[$argument_index]}" ]] || \
+        fail "musl-mi link argument differs at index $argument_index"
+done
+[[ "${mi_link_core[${#static_link_core[@]}]}" == "$MIMALLOC_OBJECT" ]] || \
+    fail "musl-mi only additional link input is not mimalloc.o"
+printf 'fairness.musl_static='; printf '%q ' "${static_link_core[@]}"; printf '\n'
+printf 'fairness.musl_mi='; printf '%q ' "${mi_link_core[@]}"; printf '\n'
+echo "gate.musl_mi_command_delta=PASS only_extra_link_input=$MIMALLOC_OBJECT"
+
+MI_MAP="$BUILD_ROOT/micro.musl-mi.map"
+MI_BIN="$PAYLOAD/bin/micro.musl-mi"
+[[ -s "$MI_MAP" ]] || fail "micro.musl-mi map file is missing"
+[[ -s "$MIMALLOC_OBJECT" ]] || fail "mimalloc.o is missing"
+
+map_symbol_owner() {
+    local symbol="$1"
+    awk -v symbol="$symbol" '
+        /mimalloc[.]o/ { owner="mimalloc.o"; owner_line=$0 }
+        /libc[.]a[(]/ { owner="libc.a"; owner_line=$0 }
+        $1 ~ /^0x[0-9a-fA-F]+$/ && $NF == symbol {
+            printf "%s\t%s\t%s\n", owner, owner_line, $0
+            exit
+        }
+    ' "$MI_MAP"
+}
+
+for symbol in malloc free calloc realloc posix_memalign aligned_alloc malloc_usable_size; do
+    map_evidence="$(map_symbol_owner "$symbol")"
+    map_owner="${map_evidence%%$'\t'*}"
+    [[ "$map_owner" == "mimalloc.o" ]] || \
+        fail "$symbol is not defined by mimalloc.o map_evidence=${map_evidence:-MISSING}"
+    printf 'gate.mimalloc_symbol.%s=PASS\t%s\n' "$symbol" "$map_evidence"
+done
+mi_symbol_line="$(nm "$MI_BIN" | grep -m 1 -E '[[:space:]][Tt][[:space:]]+mi_[A-Za-z0-9_]+$' || true)"
+[[ -n "$mi_symbol_line" ]] || fail "micro.musl-mi has no mi_ prefixed text symbol"
+printf 'gate.mimalloc_mi_prefix=PASS nm_line=%s\n' "$mi_symbol_line"
+{
+    echo "mimalloc_command_delta=PASS"
+    echo "mimalloc_symbol_owner=mimalloc.o"
+    echo "mimalloc_symbol_gate=PASS"
+    printf 'mimalloc_nm_evidence=%s\n' "$mi_symbol_line"
+} >> "$DECISION"
+cp -- "$MI_MAP" "$PAYLOAD/share/micro.musl-mi.map"
 
 cp -- "$MUSL_PREFIX/lib/libc.so" "$PAYLOAD/lib/libc.so"
 
@@ -231,6 +304,7 @@ cp -- "$MUSL_PREFIX/lib/libc.so" "$PAYLOAD/lib/libc.so"
         bin/micro.glibc-dyn \
         bin/micro.musl-static \
         bin/micro.musl-dyn \
+        bin/micro.musl-mi \
         bin/timer \
         lib/libc.so; do
         printf '%s %s\n' "$path" "$(stat -c '%s' "$PAYLOAD/$path")"
@@ -249,6 +323,7 @@ for path in \
     "$PAYLOAD/bin/micro.glibc-dyn" \
     "$PAYLOAD/bin/micro.musl-static" \
     "$PAYLOAD/bin/micro.musl-dyn" \
+    "$PAYLOAD/bin/micro.musl-mi" \
     "$PAYLOAD/bin/timer" \
     "$PAYLOAD/lib/libc.so"; do
     "$STRIP_TOOL" --strip-unneeded "$path"
@@ -272,6 +347,21 @@ if grep -q 'GLIBC_' < <(strings -a "$STATIC_BIN"); then
     fail "musl-static contains a GLIBC_ string"
 fi
 echo "gate.micro.musl-static=PASS"
+
+grep -q 'statically linked' < <(file "$MI_BIN") || fail "musl-mi is not statically linked"
+if grep -q 'INTERP' < <(readelf -lW "$MI_BIN"); then
+    fail "musl-mi unexpectedly contains PT_INTERP"
+fi
+if grep -q '(NEEDED)' < <(readelf -dW "$MI_BIN" 2>/dev/null); then
+    fail "musl-mi unexpectedly contains DT_NEEDED"
+fi
+if grep -q 'GLIBC_' < <(readelf --all --wide "$MI_BIN"); then
+    fail "musl-mi contains a GLIBC_ symbol"
+fi
+if grep -q 'GLIBC_' < <(strings -a "$MI_BIN"); then
+    fail "musl-mi contains a GLIBC_ string"
+fi
+echo "gate.micro.musl-mi.structure=PASS"
 
 interpreter_of() {
     readelf -lW "$1" | sed -n 's/.*interpreter: \([^]]*\).*/\1/p'
@@ -366,6 +456,21 @@ check_arm_abi_consistency() {
 check_arm_abi_consistency
 echo "gate.arm32_softfp_abi_consistency=PASS"
 
+grep -Eq 'Class:[[:space:]]+ELF32' < <(readelf -hW "$MI_BIN") || \
+    fail "$MI_BIN is not ELF32"
+grep -Eq 'Machine:[[:space:]]+ARM' < <(readelf -hW "$MI_BIN") || \
+    fail "$MI_BIN is not ARM"
+mi_vfp_args="$(vfp_args_of "$MI_BIN")"
+static_vfp_args="$(vfp_args_of "$STATIC_BIN")"
+binsh_vfp_args="$(vfp_args_of /bin/sh)"
+[[ "$mi_vfp_args" != *"VFP registers"* ]] || \
+    fail "softfp musl-mi is tagged VFP registers"
+[[ "$mi_vfp_args" == "$static_vfp_args" && "$mi_vfp_args" == "$binsh_vfp_args" ]] || \
+    fail "musl-mi float ABI differs from musl-static or chroot /bin/sh"
+printf 'mimalloc_vfp_args=%s\n' "$mi_vfp_args" >> "$DECISION"
+echo "mimalloc_abi_consistency=PASS" >> "$DECISION"
+echo "gate.micro.musl-mi.arm32_softfp=PASS vfp_args=$mi_vfp_args"
+
 {
     echo "glibc_dyn_interpreter=$glibc_interp"
     echo "musl_dyn_interpreter=$musl_interp"
@@ -378,6 +483,7 @@ echo "gate.arm32_softfp_abi_consistency=PASS"
         bin/micro.glibc-dyn \
         bin/micro.musl-static \
         bin/micro.musl-dyn \
+        bin/micro.musl-mi \
         bin/timer \
         lib/libc.so > share/artifacts.sha256
 )
