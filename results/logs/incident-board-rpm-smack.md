@@ -66,3 +66,41 @@ does not change the root failure: RPM installation did not complete.
 Per the pre-authorized parking rule, no manual file copy, RPM workaround,
 Smack-policy mutation, deploy-script fix, smoke test, `run_board`, or report
 generation was attempted. Further work awaits explicit authorization.
+
+## Authorized resolution
+
+The tiered-remediation authorization classified the security-plugin failure as
+an installation-hook environment restriction unrelated to package contents.
+Scheme A was attempted first:
+
+```text
+command=rpm -Uvh --noplugins /tmp/musl-libc-demo-1.0.0-1.armv7l.rpm
+Preparing... [100%]
+Updating / installing...
+1:musl-libc-demo-1.0.0-1 [100%]
+REMOTE_RC=0
+```
+
+Because the primary Scheme A command succeeded, the equivalent macro and
+Scheme B cpio extraction were correctly left `NOT_RUN`. RPM database semantics
+were preserved:
+
+```text
+musl-libc-demo-1.0.0-1.armv7l
+REMOTE_RC=0
+```
+
+All four board bin hashes matched the host `artifacts.sha256` entries. `ls -Z`
+recorded `User::Shell` on every bin and both lib entries. All three no-argument
+smokes returned `smoke=ok` and remote status 0, including `micro.musl-dyn`
+through package loader `ld-musl-arm.so.1`.
+
+Final installation level: **Scheme A (`rpm --noplugins`)**. It skips the
+security plugin hook while retaining RPM layout and database records. The demo
+is executed directly through root sdb and does not rely on Smack manifest
+registration, so this installation deviation does not alter measured binary
+behavior. No forbidden security-policy or mount change was made.
+
+The subsequent measurement completed at script level but exposed a separate
+malloc-output integrity failure during post-run audit; see
+`incident-board-measurement-malloc-truncation.md`.

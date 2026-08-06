@@ -1,70 +1,51 @@
 # Continue execution status — 2026-08-06
 
-## Build
+## Scheme A installation: PASS
 
-The softfp alignment commit `c250c88` changed the active loader name and the
-two explicitly authorized ABI gates. Its first GBS run passed both musl gates
-and exposed this complete glibc-dynamic NEEDED list:
+The board RPM was pushed again and its SHA-256 matched the host artifact:
 
 ```text
-libpthread.so.0
-libc.so.6
-ld-linux.so.3
+ed42d8978ffd838fc59e4b02a6ab7b36c2825475cd3be434ed952c5341f2fcfa
 ```
 
-The earlier continue-execution prompt pre-authorized this exact platform-loader
-whitelist case. Commit `676f0e3` added only `ld-linux.so.3`; the authorized
-single retry then completed successfully:
+The first authorized remediation level succeeded:
 
 ```text
-gate.source1_sha256=PASS value=a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4
-rtlib_consistency=PASS
-gate.ldwrapper_patch=PASS style=ld
-gate.micro.musl-static=PASS
-gate.micro.musl-dyn=PASS interpreter=/opt/usr/musl-demo/lib/ld-musl-arm.so.1 needed=libc.so
-gate.micro.glibc-dyn=PASS interpreter=/lib/ld-linux.so.3
-gate.arm32_softfp_abi_consistency=PASS
-BUILD_GATE_PASS: all comparison artifacts passed
-BUILD_GBS_PASS
+rpm -Uvh --noplugins /tmp/musl-libc-demo-1.0.0-1.armv7l.rpm
+REMOTE_RC=0
 ```
 
-Produced artifact:
+The equivalent Scheme A macro and Scheme B cpio extraction were not attempted.
+`rpm -q` confirms `musl-libc-demo-1.0.0-1.armv7l`; RPM database semantics are
+therefore intact. Board bin hashes exactly match the host artifact manifest,
+all bin/lib entries have `User::Shell` labels, and all three no-argument smokes
+returned status 0. `micro.musl-dyn` successfully used package loader
+`ld-musl-arm.so.1`.
+
+## Measurement: parked after integrity audit
+
+`SDB_TARGET=192.168.108.25 scripts/run_board.sh` completed and generated raw
+results plus a report. It captured 30/30 frequency-valid startup triples, nine
+memory configs, three thread configs, DNS and locale matrices, and stable
+1.5 GHz pre/post frequencies.
+
+Post-run audit then found a new unpreauthorized failure: the malloc matrix has
+29 rather than 30 independently parseable configurations and values. The raw
+stream contains:
 
 ```text
-results/rpms/musl-libc-demo-1.0.0-1.armv7l.rpm
-sha256=ed42d8978ffd838fc59e4b02a6ab7b36c2825475cd3be434ed952c5341f2fcfa
+malloccfg=musl-dyn,rep=2,threads=4
+malloc.threads=4malloccfg=musl-static,rep=3,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=310.7
 ```
 
-## Deployment parking point
+The generated report misattributes `310.7` to the preceding musl-dynamic
+four-thread configuration, so its malloc table is explicitly marked invalid.
+No OOM kill, segfault, micro-process, or matching journal event was found; root
+cause remains unconfirmed.
 
-`scripts/deploy.sh` passed host-side RPM payload hashes, connected to
-`192.168.108.25`, enabled root mode, and pushed the RPM. Board installation
-then failed:
-
-```text
-error: Can't write smack rules
-error: Setting up smack rules for musl-libc-demo failed
-error: Plugin msm: hook psm_pre failed
-warning: Plugin msm: hook psm_post failed
-error: musl-libc-demo-1.0.0-1.armv7l: install failed
-error: Unable to write device security policy to /etc/device-sec-policy
-```
-
-`/opt` and `/opt/usr` are mounted read-write, but `rpm -q musl-libc-demo`
-reports that the package is not installed. The complete deploy output and
-required `ls -Z`/mount evidence are archived under `results/logs/`.
-
-The authorized parking rule was followed: no manual-copy fallback or policy
-change was attempted. Smoke, `run_board`, `results/results.txt`, and the measured
-report are `NOT_RUN`.
-
-## Continuation
-
-After explicit authorization resolves board RPM/Smack installation:
-
-```bash
-SDB_TARGET=192.168.108.25 scripts/deploy.sh
-SDB_TARGET=192.168.108.25 scripts/run_board.sh
-```
-
-`run_board.sh` generates the measured report only after deployment succeeds.
+No raw sample or parser was changed, and no corrective rerun was attempted.
+`results/results.txt`, `results/report.md`, and the integrity audit are retained
+for review. Further measurement work awaits explicit authorization.

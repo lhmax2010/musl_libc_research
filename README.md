@@ -117,8 +117,8 @@ python3 scripts/gen_report.py results/results.txt > results/report.md
 | Phase 0 取源与共识 | PASS | `fetch-musl.log` 中 S1、S3 一致，官方 GPG PASS；Alpine 端点 403，记录为 UNAVAILABLE |
 | 一字节篡改测试 | PASS | `results/logs/fetch-musl-tamper-test.log`，退出码 6，篡改 tarball 被删除后由可信备份恢复 |
 | Phase 1 GBS 构建 | PASS | softfp 对齐 commit `c250c88` 与预授权 glibc loader 白名单 commit `676f0e3` 生效；三变体、wrapper、解释器和四方 ABI 一致性门禁全部 PASS，已生成 `results/rpms/musl-libc-demo-1.0.0-1.armv7l.rpm` |
-| Phase 2 板端部署/smoke | BLOCKED | host payload 哈希校验与 RPM push PASS；板端 `rpm -Uvh --force` 因无法写入 Smack/device security policy 而失败，包未安装，smoke 未运行。见 `results/logs/deploy.log` 与 `incident-board-rpm-smack.md` |
-| Phase 3 板端测量 | NOT_RUN | 依赖部署；RPM 安装问题获授权解决后运行 `SDB_TARGET=192.168.108.25 scripts/deploy.sh`，部署通过再运行 `SDB_TARGET=192.168.108.25 scripts/run_board.sh` |
-| Phase 4 实测报告 | NOT_RUN | 依赖板端 `results/results.txt`，`run_board.sh` 成功后自动生成；不得用 fixtures 伪造实测报告 |
+| Phase 2 板端部署/smoke | PASS | 采用方案 A `rpm -Uvh --noplugins`，RPM 数据库记录、四个 bin 的 host/board 哈希、`User::Shell` 标签和三变体 smoke 全部 PASS；宏与 cpio 降级均未执行 |
+| Phase 3 板端测量 | BLOCKED | `run_board.sh` 完成且 30 个 startup 三元组全部频率有效，但 malloc 矩阵只有 29/30 个完整配置；一条输出截断并与下一配置行拼接。原始 `results/results.txt` 保留，未授权补测 |
+| Phase 4 实测报告 | BLOCKED | `results/report.md` 已生成并加入方案 A Caveat，但 malloc 表因错归明确标为无效，完整报告不能判定 PASS |
 
 `tests/fixtures/` 仅用于报告解析器的本地回归测试，不是板端数据，也不会写入 `results/report.md`。
