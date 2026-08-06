@@ -33,12 +33,22 @@ run_remote() {
     remote_capture "$1" | tee -a "$RESULT_FILE"
 }
 
+remote_probe_capture() {
+    local command="$1"
+    remote_capture "$command; probe_rc=\$?; if [ \"\$probe_rc\" -eq 0 ]; then printf '\\nsample_end=OK\\n'; fi; exit \"\$probe_rc\""
+}
+
+run_probe() {
+    remote_probe_capture "$1" | tee -a "$RESULT_FILE"
+}
+
 sdb connect "$TARGET" 2>&1 | tr -d '\r' | tee -a "$RESULT_FILE"
 sdb root on 2>&1 | tr -d '\r' | tee -a "$RESULT_FILE"
 say "### environment"
 say "measurement.target=$TARGET"
 say "measurement.start_utc=$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
 say "measurement.startup_reps=$REPS"
+say "measurement.sample_sentinel=required"
 run_remote "uname -a"
 
 for variant in micro.glibc-dyn micro.musl-static micro.musl-dyn timer; do
@@ -88,9 +98,14 @@ run_remote "ls -l '$BIN_DIR/micro.glibc-dyn' '$BIN_DIR/micro.musl-static' '$BIN_
 
 timer_one() {
     local variant="$1"
-    local value
-    value="$(remote_capture "$BIN_DIR/timer '$BIN_DIR/$variant' startup")"
-    [[ "$value" =~ ^[0-9]+$ ]] || { say "startup.timer_error.$variant=$value"; return 1; }
+    local output value sentinel_count
+    output="$(remote_probe_capture "$BIN_DIR/timer '$BIN_DIR/$variant' startup")"
+    value="$(sed -n '1p' <<< "$output")"
+    sentinel_count="$(grep -c '^sample_end=OK$' <<< "$output" || true)"
+    [[ "$value" =~ ^[0-9]+$ && "$sentinel_count" -eq 1 ]] || {
+        say "startup.timer_error.$variant=$output"
+        return 1
+    }
     printf '%s' "$value"
 }
 
@@ -128,14 +143,14 @@ say "### mem smaps_rollup x3"
 for rep in 1 2 3; do
     for variant in glibc-dyn musl-static musl-dyn; do
         say "memcfg=$variant,rep=$rep"
-        run_remote "set -e; out=/tmp/musl-demo-mem-$variant-\$\$.out; '$BIN_DIR/micro.$variant' mem > \"\$out\" & pid=\$!; cleanup() { kill \"\$pid\" 2>/dev/null || true; wait \"\$pid\" 2>/dev/null || true; rm -f \"\$out\"; }; trap cleanup EXIT HUP INT TERM; sleep 1; cat \"\$out\"; grep -E '^(Rss|Pss|Private_Clean|Private_Dirty):' \"/proc/\$pid/smaps_rollup\""
+        run_probe "set -e; out=/tmp/musl-demo-mem-$variant-\$\$.out; '$BIN_DIR/micro.$variant' mem > \"\$out\" & pid=\$!; cleanup() { kill \"\$pid\" 2>/dev/null || true; wait \"\$pid\" 2>/dev/null || true; rm -f \"\$out\"; }; trap cleanup EXIT HUP INT TERM; sleep 1; cat \"\$out\"; grep -E '^(Rss|Pss|Private_Clean|Private_Dirty):' \"/proc/\$pid/smaps_rollup\""
     done
 done
 
 say "### threads 200"
 for variant in glibc-dyn musl-static musl-dyn; do
     say "threadscfg=$variant"
-    run_remote "'$BIN_DIR/micro.$variant' threads 200"
+    run_probe "'$BIN_DIR/micro.$variant' threads 200"
 done
 
 say "### malloc churn"
@@ -149,7 +164,7 @@ for rep in 1 2 3 4 5; do
         esac
         for variant in "${order[@]}"; do
             say "malloccfg=$variant,rep=$rep,threads=$threads"
-            run_remote "'$BIN_DIR/micro.$variant' malloc '$threads' 2000000"
+            run_probe "'$BIN_DIR/micro.$variant' malloc '$threads' 2000000"
         done
     done
 done
@@ -162,7 +177,7 @@ for variant in glibc-dyn musl-static musl-dyn; do
     for name in localhost www.tizen.org; do
         say "dnscfg=$variant,name=$name"
         set +e
-        remote_capture "'$BIN_DIR/micro.$variant' dns '$name'" | tee -a "$RESULT_FILE"
+        remote_probe_capture "'$BIN_DIR/micro.$variant' dns '$name'" | tee -a "$RESULT_FILE"
         probe_rc=${PIPESTATUS[0]}
         set -e
         say "dns.exit_status.$variant.$name=$probe_rc"
@@ -172,9 +187,9 @@ done
 say "### locale"
 for variant in glibc-dyn musl-static musl-dyn; do
     say "localecfg=$variant,mode=default"
-    run_remote "'$BIN_DIR/micro.$variant' locale"
+    run_probe "'$BIN_DIR/micro.$variant' locale"
     say "localecfg=$variant,mode=ko_KR.UTF-8"
-    run_remote "LC_ALL=ko_KR.UTF-8 '$BIN_DIR/micro.$variant' locale"
+    run_probe "LC_ALL=ko_KR.UTF-8 '$BIN_DIR/micro.$variant' locale"
 done
 
 temperature_snapshot after
