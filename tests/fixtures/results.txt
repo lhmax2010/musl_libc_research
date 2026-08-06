@@ -1,0 +1,44 @@
+### startup triple
+startup_freq,1,before,cpu0,1800000,1800000
+startup_triple,1,1000000,800000,900000
+startup_valid,1
+startup_freq,2,before,cpu0,1200000,1800000
+startup_triple,2,1100000,700000,850000
+startup_invalid,2,reason=cur_freq_below_max
+startup_triple,3,1200000,1000000,1100000
+startup_valid,3
+### sizes
+-rwxr-xr-x 1 root root 100 bin/micro.glibc-dyn
+### mem smaps_rollup x3
+memcfg=glibc-dyn,rep=1
+Rss: 100 kB
+### threads 200
+threadscfg=glibc-dyn
+status.Threads: 201
+### malloc churn
+malloccfg=glibc-dyn,rep=1,threads=1
+malloc.threads=1
+malloc.ns_per_op_mean=10.0
+malloccfg=musl-static,rep=1,threads=1
+malloc.threads=1
+malloc.ns_per_op_mean=8.0
+malloccfg=musl-dyn,rep=1,threads=1
+malloc.threads=1
+malloc.ns_per_op_mean=9.0
+malloccfg=glibc-dyn,rep=1,threads=4
+malloc.threads=4
+malloc.ns_per_op_mean=20.0
+malloccfg=musl-static,rep=1,threads=4
+malloc.threads=4
+malloc.ns_per_op_mean=16.0
+malloccfg=musl-dyn,rep=1,threads=4
+malloc.threads=4
+malloc.ns_per_op_mean=18.0
+### dns
+dnscfg=glibc-dyn,name=localhost
+dns.rc=0
+### locale
+localecfg=musl-static,mode=ko_KR.UTF-8
+locale.setlocale=ko_KR.UTF-8
+### frequencies after
+startup_freq,0,after,cpu0,1800000,1800000

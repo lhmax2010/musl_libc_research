@@ -1,0 +1,40 @@
+fetch_started=2026-08-06T05:13:25Z
+archive=/home/linhao/Toolchain/development/musl-libc-research/packaging/musl-1.2.5.tar.gz
+trust_root=official download corroborated by at least two independent published digests
+short_circuit=PASS
+frozen_sha256=a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4
+archive_sha256=a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4
+fetch_finished=2026-08-06T05:13:25Z
+
+fetch_started=2026-08-06T05:14:10Z
+archive=/home/linhao/Toolchain/development/musl-libc-research/packaging/musl-1.2.5.tar.gz
+trust_root=official download corroborated by at least two independent published digests
+official_url=https://musl.libc.org/releases/musl-1.2.5.tar.gz
+official_sha1=36210d3423172a40ddcf83c762207c5f760b60a6
+official_sha256=a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4
+official_sha512=7bb7f7833923cd69c7a1a9b8a5f1784bfd5289663eb6061dcd43d583e45987df8a68a1be05d75cc1c88a3f5b610653d1a70f4a9cff4d8f7fd41ae73ee058c17c
+source=S1-richfelker url=https://raw.githubusercontent.com/richfelker/musl-cross-make/master/hashes/musl-1.2.5.tar.gz.sha1 algorithm=sha1 expected=36210d3423172a40ddcf83c762207c5f760b60a6 actual=36210d3423172a40ddcf83c762207c5f760b60a6
+source_verdict.S1-richfelker=PASS
+source=S2-alpine verdict=UNAVAILABLE reason=version_not_found_or_history_fetch_failed
+source=S3-buildroot url=https://raw.githubusercontent.com/buildroot/buildroot/f7f03445cf320adbbc41270a806b38c911d3454a/package/musl/musl.hash algorithm=sha256 expected=a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4 actual=a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4
+source_verdict.S3-buildroot=PASS
+source_archive.S3=/home/linhao/Toolchain/development/musl-libc-research/results/logs/hash-sources/S3-buildroot-musl.hash.f7f03445cf320adbbc41270a806b38c911d3454a
+gpg: keybox '/tmp/fetch-musl.5QuN2Jys/gnupg/pubring.kbx' created
+gpg: /tmp/fetch-musl.5QuN2Jys/gnupg/trustdb.gpg: trustdb created
+gpg: key 56BCDB593020450F: public key "musl libc <musl@libc.org>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+source=S4-gpg signature_url=https://musl.libc.org/releases/musl-1.2.5.tar.gz.asc key_url=https://musl.libc.org/musl.pub fingerprint=836489290BB6B70F99FFDA0556BCDB593020450F
+gpg: Signature made Fri Mar  1 10:08:50 2024 CST
+gpg:                using RSA key 56BCDB593020450F
+gpg: Good signature from "musl libc <musl@libc.org>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 8364 8929 0BB6 B70F 99FF  DA05 56BC DB59 3020 450F
+source_verdict.S4-gpg=PASS
+reference_verdict=PASS expected=a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4 actual=a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4
+independent_sources_available=2
+independent_sources_confirmed=2
+consensus=PASS
+frozen_file=/home/linhao/Toolchain/development/musl-libc-research/scripts/musl-1.2.5.sha256
+fetch_finished=2026-08-06T05:16:48Z

@@ -1,0 +1,3 @@
+expected_clang_version=22.1.8
+selected_rtlib=compiler-rt
+rtlib_consistency=PASS

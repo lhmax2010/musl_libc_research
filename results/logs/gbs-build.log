@@ -1,0 +1,10 @@
+command=gbs -c /home/linhao/Toolchain/development/musl-libc-research/config/gbs_llvm.conf build -A armv7l --include-all -B /home/linhao/Toolchain/development/musl-libc-research/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES
+info: generate repositories ...
+warning: No local package repository for arch armv7l
+info: build conf has been downloaded at:
+      /var/tmp/linhao-gbs/tizen_unified_standard.conf
+info: start building packages from: /home/linhao/Toolchain/development/musl-libc-research (git)
+2026-08-06 13:28 +0800
+gbs 2.0.6
+error: No source package found at /home/linhao/Toolchain/development/musl-libc-research
+error: <gbs>some packages failed to be built

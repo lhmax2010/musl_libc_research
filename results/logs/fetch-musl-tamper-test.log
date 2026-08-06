@@ -1,0 +1,5 @@
+fetch_started=2026-08-06T05:13:24Z
+archive=/home/linhao/Toolchain/development/musl-libc-research/packaging/musl-1.2.5.tar.gz
+trust_root=official download corroborated by at least two independent published digests
+short_circuit=FAIL reason=frozen_archive_mismatch frozen_sha256=a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4 archive_sha256=5e05a90263edb4562acd98ba5a4a2d647827f8bbe31df22d70e496c4c459e45f
+consensus=FAIL reason=local_tamper_or_corruption
