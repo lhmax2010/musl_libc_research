@@ -10,14 +10,15 @@ PRIVATE_ROOT="/opt/usr/musl-demo"
 BIN_DIR="$PRIVATE_ROOT/bin"
 RESULTS_DIR="$ROOT_DIR/results"
 LOG_DIR="$RESULTS_DIR/logs"
-RESULT_FILE="$RESULTS_DIR/results-mimalloc.txt"
+RESULT_FILE="${RESULT_FILE:-$RESULTS_DIR/results-mimalloc.txt}"
+REPORT_FILE="${REPORT_FILE:-$RESULTS_DIR/report-mimalloc.md}"
 
 [[ "$REPS" =~ ^[1-9][0-9]*$ ]] || { echo "ERROR REPS must be a positive integer" >&2; exit 2; }
 for tool in python3 sdb tee; do
     command -v "$tool" >/dev/null 2>&1 || { echo "ERROR required host tool missing: $tool" >&2; exit 2; }
 done
 
-mkdir -p "$LOG_DIR"
+mkdir -p "$LOG_DIR" "$(dirname -- "$RESULT_FILE")" "$(dirname -- "$REPORT_FILE")"
 : > "$RESULT_FILE"
 
 say() {
@@ -190,5 +191,5 @@ frequency_snapshot 0 after
 say "frequency.after.invalid=$FREQ_INVALID"
 say "measurement.finish_utc=$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
 
-python3 "$SCRIPT_DIR/gen_report.py" "$RESULT_FILE" "$LOG_DIR/compiler-decision-mimalloc.txt" > "$RESULTS_DIR/report-mimalloc.md"
-echo "MEASUREMENT_PASS results=$RESULT_FILE report=$RESULTS_DIR/report-mimalloc.md"
+python3 "$SCRIPT_DIR/gen_report.py" "$RESULT_FILE" "$LOG_DIR/compiler-decision-mimalloc.txt" > "$REPORT_FILE"
+echo "MEASUREMENT_PASS results=$RESULT_FILE report=$REPORT_FILE"
