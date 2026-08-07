@@ -2,7 +2,9 @@
 
 ## Status
 
-`PARKED` during Phase 1. No release preparation was attempted after the gate failed.
+`RESOLVED-BY-RULING`. Phase 1 originally parked before release preparation; the
+FatTank ruling below authorizes Phase 2–6 to continue without sanitizing existing
+history or evidence.
 
 ## Scope and method
 
@@ -39,18 +41,40 @@ rescan are preserved in `results/logs/repro-confidentiality-scan.log`.
 
 ## Disposition
 
-The confidentiality result is `FAIL`. Git history was not rewritten and no
-existing evidence was edited or removed. The following work is `NOT_RUN`:
+The original scan artifact has SHA-256
+`1aeb1b372b44834ab29e679792a10cc632c38562f5ce6be68c3b5bc411d90165`.
+It confirmed zero findings in the sensitive categories that the gate was meant
+to prevent: credentials, private keys, tokens, and private URLs. The remaining
+personal-path and host-name findings are accepted by the following ruling.
 
-- merge of `execution/continue-20260806` into `main`;
-- annotated tag `demo-v1.0-repro`;
-- licenses, notices, example configuration, package-entry README, test plan,
-  reproduction guide, acceptance document, and reference JSON;
-- reproduction verifier, host dry run, board-command validation, and self-test;
-- offline `git archive`, archive checksum, and release-tag push.
+### FatTank ruling (verbatim)
 
-These phases can resume only after an explicit policy decision resolves whether
-the historical personal paths and host name may remain in the HQ deliverable or
-authorizes a specific sanitization strategy. After that decision, rerun the
-complete Phase 1 scan using the rules and command forms recorded in
-`repro-confidentiality-scan.log`; proceed to Phase 2 only if the result passes.
+> 保密门禁裁决——保留个人路径与主机名，继续 Phase 2–6
+>
+> 个人路径 `/home/linhao` 与主机名 `linhao-linux` 保留，不做任何历史或
+> 工作树脱敏。依据三条：
+>
+> 1. 仓库本就挂在公开个人账号下，路径/主机名零新增暴露；真正敏感类别
+>    （凭据/私钥/Token/私有 URL）扫描零命中，门禁拦截目标已确认干净。
+> 2. 历史重写将使全部 commit SHA 失效，摧毁 incident 归档、审计日志与
+>    报告 evidence 指针构成的证据链——该证据链是复现包核心资产。
+> 3. 仓库已公开，重写不构成事实撤回。
+>
+> 面向未来的 `TEST_PLAN_EN.md`、`REPRODUCTION_EN.md`、
+> `ACCEPTANCE_EN.md` 与一切配置模板中，路径一律参数化为 `$HOME`、
+> `$REPO_ROOT`、`$SDB_TARGET`，不出现具体个人路径。参数化只约束新文档，
+> 不回改任何既有日志与证据。
+>
+> `REPRODUCTION_EN.md` 必须说明：Historical logs and evidence intentionally
+> retain the original operator environment paths; sanitizing them would rewrite
+> commit history and invalidate the SHA-anchored evidence chain.
+>
+> 禁止任何形式的历史改写（包括 filter-repo、BFG 与 force-push）。按原
+> prompt 顺序继续执行 Phase 2–6；新的未预授权失败照旧停车。
+
+### Resolution
+
+Status is `RESOLVED-BY-RULING`. Existing logs, evidence, and Git history remain
+byte-for-byte unchanged. Future-facing reproduction documents and configuration
+templates must parameterize operator paths and the board target. History rewrite
+and force-push are prohibited. Phase 2–6 may proceed under this ruling.
