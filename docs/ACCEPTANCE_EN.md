@@ -49,6 +49,23 @@ uses the median of VALID samples. L2 validates reproducible conclusion direction
 and a deliberately broad minimum magnitude; it does not validate identical
 timings or byte-for-byte performance results.
 
+## Artifact hashes
+
+RPM and binary artifact hashes are NOT expected to match across rebuilds (RPM
+embeds build time, host, and file mtimes); bit-reproducible builds are not
+claimed. Reproduction is defined at the gate + conclusion-direction level
+(L1/L2). Hash equality applies only within one build: the deploy step verifies
+host/board equality of the same artifacts.
+
+The isolated host dry-run is the observed example: its valid release-2 RPM had
+SHA-256
+`b4d952dce5c4c673ea0dd027051e9f97121b8f830c36a8d7ac7c96cc5ccf49f4`,
+while the reviewed reference RPM has SHA-256
+`f55957aaca2968877e8cf4dc6bd017e7875a8ed7bd1783b067574fd2f4030ead`.
+Both builds passed the construction gates; the dry-run compiler-decision record
+was identical to the reference. The differing digest therefore identifies a
+different build instance and must not be treated as an L1 or L2 failure.
+
 ## Verifier command and statuses
 
 Run the package baseline:
