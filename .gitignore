@@ -1,2 +1,4 @@
 tmp/
 musl-quick-demo.zip
+__pycache__/
+*.py[cod]

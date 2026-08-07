@@ -1,0 +1,21 @@
+command=python3 scripts/verify_reproduction.py
+L1 build_source_and_hash_gates: PASS — path=/home/linhao/Toolchain/development/musl-libc-research/results/logs/gbs-build-mimalloc.log; missing=NONE
+L1 build_mimalloc_gates: PASS — path=/home/linhao/Toolchain/development/musl-libc-research/results/logs/gbs-build-mimalloc.log; missing=NONE
+L1 build_elf_abi_and_final_gates: PASS — path=/home/linhao/Toolchain/development/musl-libc-research/results/logs/gbs-build-mimalloc.log; missing=NONE
+L1 compiler_runtime_decision: PASS — path=/home/linhao/Toolchain/development/musl-libc-research/results/logs/compiler-decision-mimalloc.txt; missing=NONE
+L1 deployment_and_runtime_controls: PASS — path=/home/linhao/Toolchain/development/musl-libc-research/results/logs/deploy-mimalloc.log; missing=NONE
+L1 baseline_startup_samples: PASS — valid=30; required>=30
+L1 baseline_dns_locale_coverage: PASS — dns_headers=6; locale_headers=6; required>=6 each
+L1 baseline_malloc_integrity: PASS — valid_cells={'glibc-dyn/t1': 5, 'glibc-dyn/t4': 6, 'musl-static/t1': 5, 'musl-static/t4': 6, 'musl-dyn/t1': 5, 'musl-dyn/t4': 5}; invalid_base=1; invalid_supplement=0; malformed=NONE
+L1 mimalloc_startup_samples: PASS — valid_quads=30; declared_valid=30; invalid=0
+L1 board_measurement_controls: PASS — governors=['performance', 'performance', 'performance', 'performance']; residual/frequency/finish markers required
+L1 mimalloc_malloc_integrity: PASS — valid_cells={'glibc-dyn/t1': 5, 'glibc-dyn/t4': 5, 'musl-static/t1': 5, 'musl-static/t4': 5, 'musl-dyn/t1': 5, 'musl-dyn/t4': 5, 'musl-mi/t1': 5, 'musl-mi/t4': 5}; invalid=NONE
+L1 mimalloc_mem_threads_integrity: PASS — mem={'glibc-dyn': 3, 'musl-static': 3, 'musl-dyn': 3, 'musl-mi': 3}; threads={'glibc-dyn': 1, 'musl-static': 1, 'musl-dyn': 1, 'musl-mi': 1}; invalid=NONE
+L2 reference_json: PASS — path=/home/linhao/Toolchain/development/musl-libc-research/docs/reference-results.json; schema_version=1
+L2 startup_static_vs_glibc: PASS — reproduced=-58.0007%; reference=-58.0894%; criterion=<=-30%; source=results/results.txt startup_triple VALID rounds; summarized in results/report.md section 1
+L2 threads_vmsize_glibc_over_musl_static: PASS — reproduced=57.8434x; reference=57.8434x; criterion=>=20x; source=results/results.txt threads 200; summarized in results/report.md section 3
+L2 malloc_t4_mallocng_over_glibc: PASS — reproduced=4.79161x; reference=4.79161x; criterion=>=2x; source=results/results-mimalloc.txt malloc t4 VALID medians; summarized in results/report-mimalloc.md section 2
+L2 malloc_t4_mimalloc_over_mallocng: PASS — reproduced=0.193152x; reference=0.193152x; criterion=<=0.5x; source=results/results-mimalloc.txt malloc t4 VALID medians; summarized in results/report-mimalloc.md section 2
+L2 private_dirty_musl_static_less_than_glibc: PASS — reproduced=8kB<76kB; reference=8.0kB<76.0kB; source=results/results-mimalloc.txt mem VALID medians; baseline values also appear in results/report.md section 3
+SUMMARY overall=PASS pass=18 fail=0 inconclusive=0 exit_code=0
+exit_code=0

@@ -1,0 +1,16 @@
+[general]
+profile = profile.tizen_unified_standard
+buildroot = $REPO_ROOT/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES
+
+[profile.tizen_unified_standard]
+repos = repo.base-standard, repo.unified-standard
+
+[repo.base-standard]
+# PINNED — do not change for byte-comparable chroot.
+# Snapshot timestamp 20260722.045200 is part of the reproduction environment.
+url=http://download.tizen.org/snapshots/TIZEN/Tizen/Tizen-Base-Toolchain/tizen-base-toolchain_20260722.045200/repos/standard/packages/
+
+[repo.unified-standard]
+# PINNED — do not change for byte-comparable chroot.
+# Snapshot timestamp 20260725.003315 is part of the reproduction environment.
+url=http://download.tizen.org/snapshots/TIZEN/Tizen/Tizen-Unified-Toolchain/tizen-unified-toolchain_20260725.003315/repos/standard/packages/

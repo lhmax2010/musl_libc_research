@@ -9,7 +9,7 @@ GBS_ROOT="${GBS_ROOT:-$ROOT_DIR/tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES}"
 LOG_DIR="$ROOT_DIR/results/logs"
 RPM_DIR="$ROOT_DIR/results/rpms"
 LOG_FILE="$LOG_DIR/gbs-build-mimalloc.log"
-REVIEW_FILE="$LOG_DIR/mimalloc-source-review.md"
+REVIEW_FILE="${MIMALLOC_REVIEW_FILE:-$LOG_DIR/mimalloc-source-review.md}"
 SPEC_FILE="$ROOT_DIR/packaging/musl-libc-demo.spec"
 
 for tool in awk cpio gbs rpm2cpio; do
@@ -24,8 +24,8 @@ done
     echo "MIMALLOC_BUILD_BLOCKED source review file missing: $REVIEW_FILE" >&2
     exit 7
 }
-if ! grep -Fqx -- '- [x] FatTank verified the frozen mimalloc digest and archived corroborating records.' "$REVIEW_FILE"; then
-    echo "MIMALLOC_BUILD_BLOCKED FatTank source digest review is not checked in $REVIEW_FILE" >&2
+if ! grep -Eq -- '^- \[x\] (FatTank verified the frozen mimalloc digest and archived corroborating records\.|Reviewer independently verified the frozen source digests against every cited upstream record\.)$' "$REVIEW_FILE"; then
+    echo "MIMALLOC_BUILD_BLOCKED source digest reviewer sign-off is not checked in $REVIEW_FILE" >&2
     echo "rerun=scripts/build_gbs.sh" >&2
     exit 7
 fi

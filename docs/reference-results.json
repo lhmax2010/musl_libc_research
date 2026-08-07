@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "reference_platform": "RPI4, Tizen armv7l softfp, single board session",
+  "artifacts": {
+    "rpm_release_2": {
+      "path": "results/rpms/musl-libc-demo-1.0.0-2.armv7l.rpm",
+      "sha256": "f55957aaca2968877e8cf4dc6bd017e7875a8ed7bd1783b067574fd2f4030ead"
+    },
+    "baseline_results": {
+      "path": "results/results.txt",
+      "sha256": "78a1b548df00c7742e3fa5d3cca598faa1da5bdfccdf28c365e019bf5ee596f1"
+    },
+    "baseline_supplement": {
+      "path": "results/results-supplement.txt",
+      "sha256": "49f3210d507d7e96a855e087e5127ff2a89ac60990e79a9a020a9b7092c67ab6"
+    },
+    "mimalloc_results": {
+      "path": "results/results-mimalloc.txt",
+      "sha256": "3ddc357e6dfe60dad842c9ec10aa9029a333bb8b3aab90fe79ec42240d4d842c"
+    }
+  },
+  "sample_integrity": {
+    "baseline_startup_valid": 30,
+    "baseline_malloc_valid": 32,
+    "baseline_malloc_invalid": 1,
+    "supplement_malloc_valid": 3,
+    "supplement_malloc_invalid": 0,
+    "mimalloc_startup_valid": 30,
+    "mimalloc_malloc_valid": 40,
+    "mimalloc_malloc_invalid": 0,
+    "mimalloc_mem_valid": 12,
+    "mimalloc_threads_valid": 4
+  },
+  "metrics": {
+    "startup_static_vs_glibc_delta_pct": {
+      "value": -58.089381895132,
+      "display_value": -58.1,
+      "acceptance_operator": "<=",
+      "acceptance_threshold": -30.0,
+      "source": "results/results.txt startup_triple VALID rounds; summarized in results/report.md section 1"
+    },
+    "threads_vmsize_glibc_over_musl_static": {
+      "value": 57.843366699563,
+      "glibc_kb": 1641132,
+      "musl_static_kb": 28372,
+      "acceptance_operator": ">=",
+      "acceptance_threshold": 20.0,
+      "source": "results/results.txt threads 200; summarized in results/report.md section 3"
+    },
+    "malloc_t4_mallocng_over_glibc": {
+      "value": 4.791607732202,
+      "glibc_ns_per_op": 212.1,
+      "mallocng_ns_per_op": 1016.3,
+      "acceptance_operator": ">=",
+      "acceptance_threshold": 2.0,
+      "source": "results/results-mimalloc.txt malloc t4 VALID medians; summarized in results/report-mimalloc.md section 2"
+    },
+    "malloc_t4_mimalloc_over_mallocng": {
+      "value": 0.193151628456,
+      "mimalloc_ns_per_op": 196.3,
+      "mallocng_ns_per_op": 1016.3,
+      "acceptance_operator": "<=",
+      "acceptance_threshold": 0.5,
+      "source": "results/results-mimalloc.txt malloc t4 VALID medians; summarized in results/report-mimalloc.md section 2"
+    },
+    "private_dirty_musl_static_less_than_glibc": {
+      "glibc_kb": 76.0,
+      "musl_static_kb": 8.0,
+      "acceptance_operator": "<",
+      "source": "results/results-mimalloc.txt mem VALID medians; baseline values also appear in results/report.md section 3"
+    }
+  }
+}

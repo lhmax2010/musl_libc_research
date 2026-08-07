@@ -1,0 +1,33 @@
+command=python3 -m py_compile scripts/verify_reproduction.py scripts/gen_report.py
+python_compile=PASS
+command=python3 -m json.tool docs/reference-results.json
+reference_json=PASS
+command=bash -n scripts/build_gbs.sh scripts/deploy.sh scripts/run_board.sh
+shell_syntax=PASS
+command=parameterization scan of future-facing docs/templates
+parameterization=PASS
+command=license texts compared byte-for-byte with frozen upstream archives
+license_texts=PASS
+command=render config/gbs_llvm.conf.example with parameterized REPO_ROOT
+9:# PINNED — do not change for byte-comparable chroot.
+10:# Snapshot timestamp 20260722.045200 is part of the reproduction environment.
+11:url=http://download.tizen.org/snapshots/TIZEN/Tizen/Tizen-Base-Toolchain/tizen-base-toolchain_20260722.045200/repos/standard/packages/
+14:# PINNED — do not change for byte-comparable chroot.
+15:# Snapshot timestamp 20260725.003315 is part of the reproduction environment.
+16:url=http://download.tizen.org/snapshots/TIZEN/Tizen/Tizen-Unified-Toolchain/tizen-unified-toolchain_20260725.003315/repos/standard/packages/
+config_render=PASS
+command=external Reviewer sign-off pattern check
+reviewer_signoff_pattern=PASS
+command=python3 -m unittest discover -s tests -v
+test_current_results_resynchronizes_one_invalid_sample (test_gen_report.MallocParserTests.test_current_results_resynchronizes_one_invalid_sample) ... ok
+test_mimalloc_report_parses_four_variant_session (test_gen_report.MallocParserTests.test_mimalloc_report_parses_four_variant_session) ... ok
+test_primary_plus_supplement_have_expected_cell_counts (test_gen_report.MallocParserTests.test_primary_plus_supplement_have_expected_cell_counts) ... ok
+test_sentinel_required_dataset_rejects_missing_sentinel (test_gen_report.MallocParserTests.test_sentinel_required_dataset_rejects_missing_sentinel) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+OK
+command=regenerate both reports and compare with checked-in reference reports
+report_regeneration=PASS
+STATIC_VALIDATION_PASS

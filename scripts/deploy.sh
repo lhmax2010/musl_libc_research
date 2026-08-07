@@ -7,7 +7,7 @@ ROOT_DIR="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
 TARGET="${SDB_TARGET:-192.168.108.25}"
 RESULTS_DIR="$ROOT_DIR/results"
 LOG_DIR="$RESULTS_DIR/logs"
-LOG_FILE="$LOG_DIR/deploy-mimalloc.log"
+LOG_FILE="${DEPLOY_LOG_FILE:-$LOG_DIR/deploy-mimalloc.log}"
 PRIVATE_ROOT="/opt/usr/musl-demo"
 EXTRACT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/musl-demo-rpm.XXXXXXXX")"
 trap 'rm -rf -- "$EXTRACT_DIR"' EXIT HUP INT TERM
@@ -19,7 +19,7 @@ for tool in awk cpio diff grep rpm2cpio sdb sed sha256sum tail; do
     fi
 done
 
-mkdir -p "$LOG_DIR"
+mkdir -p "$LOG_DIR" "$(dirname -- "$LOG_FILE")"
 : > "$LOG_FILE"
 
 if [[ -n "${RPM_PATH:-}" ]]; then
