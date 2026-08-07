@@ -1,0 +1,78 @@
+target=192.168.108.25
+rpm=results/rpms/musl-libc-demo-1.0.0-1.armv7l.rpm
+rpm_sha256=ed42d8978ffd838fc59e4b02a6ab7b36c2825475cd3be434ed952c5341f2fcfa
+
+### preceding default-plugin failure
+command=rpm -Uvh --force /tmp/musl-libc-demo-1.0.0-1.armv7l.rpm
+No manifest in this package. Creating default one
+error: Can't write smack rules
+error: Setting up smack rules for musl-libc-demo failed
+error: Plugin msm: hook psm_pre failed
+warning: Plugin msm: hook psm_post failed
+error: musl-libc-demo-1.0.0-1.armv7l: install failed
+error: Unable to write device security policy to /etc/device-sec-policy
+
+### tiered retry preflight
+command=sdb connect 192.168.108.25
+connecting to 192.168.108.25:26101 ...
+connected to 192.168.108.25:26101
+command=sdb root on
+Switched to 'root' account mode
+command=sdb push results/rpms/musl-libc-demo-1.0.0-1.armv7l.rpm /tmp/musl-libc-demo-1.0.0-1.armv7l.rpm
+WARNING: Your data are to be sent over an unencrypted connection and could be read by others.
+1 file(s) pushed. 0 file(s) skipped.
+results/rpms/musl-libc-demo-1.0.0-1.armv7l.rpm (370578 bytes)
+command=sha256sum /tmp/musl-libc-demo-1.0.0-1.armv7l.rpm
+ed42d8978ffd838fc59e4b02a6ab7b36c2825475cd3be434ed952c5341f2fcfa  /tmp/musl-libc-demo-1.0.0-1.armv7l.rpm
+
+### scheme A: skip RPM plugins
+command=rpm -Uvh --noplugins /tmp/musl-libc-demo-1.0.0-1.armv7l.rpm
+Preparing... [100%]
+Updating / installing...
+1:musl-libc-demo-1.0.0-1 [100%]
+REMOTE_RC=0
+rpm_progress_note=terminal control-character progress bars normalized above; no output lines omitted
+scheme=A(--noplugins)
+scheme_A_macro=NOT_RUN (primary A command succeeded)
+scheme_B_cpio=NOT_RUN (scheme A succeeded)
+
+### RPM database verification
+command=rpm -q musl-libc-demo
+musl-libc-demo-1.0.0-1.armv7l
+REMOTE_RC=0
+
+### board payload hashes
+command=cd /opt/usr/musl-demo && sha256sum bin/*
+0f448c0df602d5f36a904fa3ea7dfbeade6240ff91061ae36f3e9ab28e504d4f  bin/micro.glibc-dyn
+9b2c6917f4813231a65e070ccc58d1fc54a828fe0da1e7310b22bd1508c8e5b7  bin/micro.musl-dyn
+843c2e3522c0a0617ed377d87613d2aeade9539663e66726b5d3e682c024399e  bin/micro.musl-static
+93347a3e094712fc02a612d6226554aa92800d2c99e88ef6d6b4cf1e68b039be  bin/timer
+
+host_reference=results/artifacts.sha256 (bin entries)
+0f448c0df602d5f36a904fa3ea7dfbeade6240ff91061ae36f3e9ab28e504d4f  bin/micro.glibc-dyn
+9b2c6917f4813231a65e070ccc58d1fc54a828fe0da1e7310b22bd1508c8e5b7  bin/micro.musl-dyn
+843c2e3522c0a0617ed377d87613d2aeade9539663e66726b5d3e682c024399e  bin/micro.musl-static
+93347a3e094712fc02a612d6226554aa92800d2c99e88ef6d6b4cf1e68b039be  bin/timer
+HASH_COMPARISON=PASS
+
+### Smack labels
+command=ls -Z /opt/usr/musl-demo/bin /opt/usr/musl-demo/lib
+/opt/usr/musl-demo/bin:
+User::Shell micro.glibc-dyn  User::Shell micro.musl-static
+User::Shell micro.musl-dyn  User::Shell timer
+
+/opt/usr/musl-demo/lib:
+User::Shell ld-musl-arm.so.1  User::Shell libc.so
+
+### smoke
+command=/opt/usr/musl-demo/bin/micro.glibc-dyn
+smoke=ok
+REMOTE_RC=0
+command=/opt/usr/musl-demo/bin/micro.musl-static
+smoke=ok
+REMOTE_RC=0
+command=/opt/usr/musl-demo/bin/micro.musl-dyn
+smoke=ok
+REMOTE_RC=0
+
+DEPLOY_PASS scheme=A(--noplugins) rpm_database=present hashes=PASS labels=archived smoke=PASS musl_loader=ld-musl-arm.so.1

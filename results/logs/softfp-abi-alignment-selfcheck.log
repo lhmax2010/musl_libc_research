@@ -1,0 +1,24 @@
+check=active armhf code references
+command=grep -rn 'armhf' scripts/ packaging/
+stdout_begin
+stdout_end
+exit_code=1
+result=PASS (no active code matches)
+
+check=Bash 3.2 forbidden syntax in chroot script
+command=grep -nE 'mapfile|readarray|declare -A|coproc|&>>|\$\{[A-Za-z_]+(\^\^?|,,?)[}]?' packaging/build-demo.sh
+stdout_begin
+stdout_end
+exit_code=1
+result=PASS (no matches)
+
+check=read-only four-way ABI probe against preceding failed buildroot
+platform_float_abi=softfp
+variant_vfp_args=glibc-dyn:ABSENT | musl-static:ABSENT | musl-dyn:ABSENT
+binsh_vfp_args=ABSENT
+abi_consistency=PASS
+
+Repository-wide references to `armhf` after the active-code change are confined
+to the original prompt corpus, prior/current incident evidence, the preceding
+execution-status evidence, the preceding GBS failure log, and README's
+historical Phase 1 failure row. Those records are intentionally preserved.

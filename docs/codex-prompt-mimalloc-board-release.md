@@ -1,0 +1,1 @@
+板端放行。执行:SDB_TARGET=192.168.108.25 scripts/deploy.sh(release 2 RPM,板端 sha256 比对 f55957aa…30ead)→ 一正三负横幅门禁 → scripts/run_board.sh 四变体同会话测量(startup_quad ×30、malloc {1,4}×5 轮四方交替、mem/threads 补 musl-mi)→ 数据填充版 report-mimalloc.md。测量期间板上不得有其他负载;前序 prompt 全部条款继续有效,新的未预授权失败照旧停车。

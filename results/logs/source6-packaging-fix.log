@@ -1,0 +1,18 @@
+source6_packaging_fix=2026-08-06
+scripts_file=scripts/mimalloc-2.1.7.sha256
+packaging_file=packaging/mimalloc-2.1.7.sha256
+diff_output=EMPTY
+diff_status=PASS
+scripts_digest_value=0eed39319f139afde8515010ff59baf24de9e47ea316a315398e8027d198202d
+packaging_digest_value=0eed39319f139afde8515010ff59baf24de9e47ea316a315398e8027d198202d
+FatTank_reviewed_value=0eed39319f139afde8515010ff59baf24de9e47ea316a315398e8027d198202d
+reviewed_value_character_match=PASS
+source_preflight.Source0=PASS name=micro.c
+source_preflight.Source1=PASS name=musl-1.2.5.tar.gz.frozen
+source_preflight.Source2=PASS name=timer.c
+source_preflight.Source3=PASS name=musl-1.2.5.sha256
+source_preflight.Source4=PASS name=build-demo.sh
+source_preflight.Source5=PASS name=mimalloc-2.1.7.tar.gz.frozen
+source_preflight.Source6=PASS name=mimalloc-2.1.7.sha256
+SOURCE_PREFLIGHT_PASS count=7
+gbs_invoked_during_selfcheck=NO

@@ -1,0 +1,17 @@
+command=bash -n scripts/run_board.sh
+result=PASS
+
+command=shellcheck scripts/run_board.sh
+result=UNAVAILABLE (host tool not installed)
+
+dataset_marker=measurement.sample_sentinel=required
+success_marker=sample_end=OK
+remote_rule=emit success marker only when probe remote_rc is zero
+newline_rule=prefix marker with newline so it remains an independent line after unterminated probe output
+timer_rule=validate exactly one marker before accepting numeric startup output
+instrumented_probes=timer,mem,threads,malloc,dns,locale
+
+command=python3 -m unittest tests.test_gen_report.MallocParserTests.test_sentinel_required_dataset_rejects_missing_sentinel -v
+result=PASS
+
+immutable_results_sha256=78a1b548df00c7742e3fa5d3cca598faa1da5bdfccdf28c365e019bf5ee596f1

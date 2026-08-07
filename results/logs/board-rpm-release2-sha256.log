@@ -1,0 +1,29 @@
+board_release2_deploy=2026-08-06
+target=192.168.108.25
+rpm=results/rpms/musl-libc-demo-1.0.0-2.armv7l.rpm
+host_rpm_sha256=f55957aaca2968877e8cf4dc6bd017e7875a8ed7bd1783b067574fd2f4030ead
+board_rpm_sha256=f55957aaca2968877e8cf4dc6bd017e7875a8ed7bd1783b067574fd2f4030ead
+board_rpm_path=/tmp/musl-libc-demo-1.0.0-2.armv7l.rpm
+board_rpm_sha256_match=PASS
+board_rpm_database=musl-libc-demo-1.0.0-2.armv7l
+board_rpm_database_release2=PASS
+install_method=rpm_-Uvh_--noplugins_--force
+install_method_class=A_plugin_skip_rpm_database_preserved
+payload_artifact_hashes=PASS count=6
+host_board_binary_hashes=PASS count=5
+smoke_variants=PASS count=4
+musl_dyn_private_loader=PASS path=/opt/usr/musl-demo/lib/ld-musl-arm.so.1
+smack.bin_dir=User::Shell
+smack.lib_dir=User::Shell
+smack.payload_files=User::Shell
+runtime_banner_positive.micro.musl-mi=PASS
+runtime_banner_negative.micro.glibc-dyn=PASS
+runtime_banner_negative.micro.musl-static=PASS
+runtime_banner_negative.micro.musl-dyn=PASS
+runtime_banner_gate=PASS positive=1 negative_controls=3
+pre_measurement_loadavg=0.40_0.21_0.14
+pre_measurement_running_user_processes=ps_only
+pre_measurement_demo_residual=NONE
+initial_relative_rpm_path_attempt=HOST_ONLY_FAIL rpm2cpio_no_board_install
+corrected_absolute_rpm_path_attempt=PASS
+deploy_result=PASS

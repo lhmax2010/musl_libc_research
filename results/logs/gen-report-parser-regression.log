@@ -1,0 +1,24 @@
+command=python3 -m unittest discover -s tests -v
+test_current_results_resynchronizes_one_invalid_sample=PASS
+test_sentinel_required_dataset_rejects_missing_sentinel=PASS
+tests_run=2
+result=OK
+
+command=python3 scripts/gen_report.py results/results.txt results/logs/compiler-decision.txt
+startup_valid=30
+startup_invalid=0
+malloc_total=30
+malloc_valid=29
+malloc_invalid=1
+invalid_sample=results.txt:malloccfg=musl-dyn,rep=2,threads=4
+invalid_reasons=midline_header_after_partial_output;missing=iters_per_thread,ns_per_op_mean,checksum
+recovered_musl_static_rep3_t1_ns=310.7
+valid_cell=glibc-dyn,threads=1,n=5
+valid_cell=glibc-dyn,threads=4,n=5
+valid_cell=musl-static,threads=1,n=5
+valid_cell=musl-static,threads=4,n=5
+valid_cell=musl-dyn,threads=1,n=5
+valid_cell=musl-dyn,threads=4,n=4
+result=PASS (exactly 1 INVALID and 29 correctly attributed VALID samples)
+
+immutable_results_sha256=78a1b548df00c7742e3fa5d3cca598faa1da5bdfccdf28c365e019bf5ee596f1

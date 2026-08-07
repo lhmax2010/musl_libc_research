@@ -1,0 +1,144 @@
+bin/micro.glibc-dyn: OK
+bin/micro.musl-static: OK
+bin/micro.musl-dyn: OK
+bin/micro.musl-mi: OK
+bin/timer: OK
+lib/libc.so: OK
+target=192.168.108.25
+rpm=/home/linhao/Toolchain/development/musl-libc-research/results/rpms/musl-libc-demo-1.0.0-2.armv7l.rpm
+192.168.108.25:26101 is already connected
+WARNING: Your data are to be sent over an unencrypted connection and could be read by others.
+pushed musl-libc-demo-1.0.0-2.armv7l.rpm	  0%	      0KB	    0KB/spushed musl-libc-demo-1.0.0-2.armv7l.rpm	100%	    446KB	    0KB/s
+1 file(s) pushed. 0 file(s) skipped.
+/home/linhao/Toolchain/development/musl-libc-research/results/rpms/musl-libc-demo-1.0.0-2.armv7l.rpm   2275KB/s (457674 bytes in 0.196s)
+Preparing...                                                            ( 50%)#                                 ( 50%)##                                ( 50%)###                               ( 50%)####                              ( 50%)#####                             ( 50%)######                            ( 50%)#######                           ( 50%)########                          ( 50%)#########                         ( 50%)##########                        ( 50%)###########                       ( 50%)############                      ( 50%)#############                     ( 50%)##############                    ( 50%)###############                   ( 50%)################                  ( 50%)#################                 (100%)##################                (100%)###################               (100%)####################              (100%)#####################             (100%)######################            (100%)#######################           (100%)########################          (100%)#########################         (100%)##########################        (100%)###########################       (100%)############################      (100%)#############################     (100%)##############################    (100%)###############################   (100%)################################  (100%)################################# (100%)################################# [100%]
+Updating / installing...
+   1:musl-libc-demo-1.0.0-2                                             (  2%)#                                 (  5%)##                                (  7%)###                               ( 11%)####                              ( 13%)#####                             ( 16%)######                            ( 20%)#######                           ( 22%)########                          ( 26%)#########                         ( 29%)##########                        ( 31%)###########                       ( 34%)############                      ( 37%)#############                     ( 40%)##############                    ( 43%)###############                   ( 46%)################                  ( 49%)#################                 ( 52%)##################                ( 55%)###################               ( 58%)####################              ( 61%)#####################             ( 63%)######################            ( 67%)#######################           ( 69%)########################          ( 73%)#########################         ( 75%)##########################        ( 78%)###########################       ( 82%)############################      ( 84%)#############################     ( 87%)##############################    ( 90%)###############################   ( 93%)################################  ( 96%)################################# ( 99%)################################# [ 50%]
+Cleaning up / removing...
+   2:musl-libc-demo-1.0.0-1                                             ( 10%)#                                 ( 10%)##                                ( 10%)###                               ( 20%)####                              ( 20%)#####                             ( 20%)######                            ( 20%)#######                           ( 30%)########                          ( 30%)#########                         ( 30%)##########                        ( 40%)###########                       ( 40%)############                      ( 40%)#############                     ( 40%)##############                    ( 50%)###############                   ( 50%)################                  ( 50%)#################                 ( 60%)##################                ( 60%)###################               ( 60%)####################              ( 70%)#####################             ( 70%)######################            ( 70%)#######################           ( 70%)########################          ( 80%)#########################         ( 80%)##########################        ( 80%)###########################       ( 90%)############################      ( 90%)#############################     ( 90%)##############################    ( 90%)###############################   (100%)################################  (100%)################################# (100%)################################# [100%]
+bin/micro.glibc-dyn: OK
+bin/micro.musl-static: OK
+bin/micro.musl-dyn: OK
+bin/micro.musl-mi: OK
+bin/timer: OK
+lib/libc.so: OK
+binary_hash_comparison=PASS
+smoke.variant=micro.glibc-dyn
+smoke=ok
+smoke.variant=micro.musl-static
+smoke=ok
+smoke.variant=micro.musl-dyn
+smoke=ok
+smoke.variant=micro.musl-mi
+smoke=ok
+variant=micro.musl-mi expected_banner=present remote_rc=0
+stdout_begin
+malloc.threads=1
+malloc.iters_per_thread=1000
+malloc.ns_per_op_mean=4673.4
+malloc.wall_worst_thread_ns=4673445
+malloc.checksum=4764a0
+stdout_end
+stderr_begin
+mimalloc: option 'show_errors': 0 
+mimalloc: option 'show_stats': 0 
+mimalloc: option 'verbose': 1 
+mimalloc: option 'eager_commit': 1 
+mimalloc: option 'arena_eager_commit': 2 
+mimalloc: option 'purge_decommits': 1 
+mimalloc: option 'allow_large_os_pages': 0 
+mimalloc: option 'reserve_huge_os_pages': 0 
+mimalloc: option 'reserve_huge_os_pages_at': -1 
+mimalloc: option 'reserve_os_memory': 0 KiB
+mimalloc: option 'deprecated_segment_cache': 0 
+mimalloc: option 'deprecated_page_reset': 0 
+mimalloc: option 'abandoned_page_purge': 0 
+mimalloc: option 'deprecated_segment_reset': 0 
+mimalloc: option 'eager_commit_delay': 1 
+mimalloc: option 'purge_delay': 10 
+mimalloc: option 'use_numa_nodes': 0 
+mimalloc: option 'disallow_os_alloc': 0 
+mimalloc: option 'os_tag': 100 
+mimalloc: option 'max_errors': 32 
+mimalloc: option 'max_warnings': 32 
+mimalloc: option 'max_segment_reclaim': 10 
+mimalloc: option 'destroy_on_exit': 0 
+mimalloc: option 'arena_reserve': 131072 KiB
+mimalloc: option 'arena_purge_mult': 10 
+mimalloc: option 'purge_extend_delay': 1 
+mimalloc: option 'abandoned_reclaim_on_free': 1 
+mimalloc: option 'disallow_arena_alloc': 0 
+mimalloc: option 'retry_on_oom': 400 
+mimalloc: process init: 0x63C24
+mimalloc: secure level: 0
+mimalloc: mem tracking: none
+mimalloc: using 1 numa regions
+mimalloc: warning: thread 0xB6FE1DEC: unable to allocate aligned OS memory directly, fall back to over-allocation (size: 0x8000000 bytes, address: 0xAEFBE000, alignment: 0x400000, commit: 1)
+mimalloc: reserved 131072 KiB memory
+heap stats:     peak       total       freed     current        unit       count   
+  reserved:   132.0 MiB   260.0 MiB   132.0 MiB   128.0 MiB                          
+ committed:   132.0 MiB   260.0 MiB   140.0 MiB   120.0 MiB                          
+     reset:     0      
+    purged:     8.0 MiB
+   touched:    64.2 KiB    64.2 KiB     5.2 MiB    -5.2 MiB                          ok
+  segments:     2           2           2           0                                ok
+-abandoned:     0           0           0           0                                ok
+   -cached:     0           0           0           0                                ok
+     pages:     0           0          45         -45                                ok
+-abandoned:     0           0           0           0                                ok
+ -extended:     0      
+ -noretire:     0      
+    arenas:     1      
+-crossover:     0      
+ -rollback:     0      
+     mmaps:     0      
+   commits:     0      
+    resets:     0      
+    purges:     1      
+   threads:     1           1           1           0                                ok
+  searches:     0.0 avg
+numa nodes:     1
+   elapsed:     0.005 s
+   process: user: 0.000 s, system: 0.007 s, faults: 0, rss: 1.5 MiB, commit: 132.0 MiB
+mimalloc: process done: 0x63C24
+stderr_end
+remote_probe_rc=0
+gate.runtime_mimalloc_banner.micro.musl-mi=PASS expected=present
+variant=micro.glibc-dyn expected_banner=absent remote_rc=0
+stdout_begin
+malloc.threads=1
+malloc.iters_per_thread=1000
+malloc.ns_per_op_mean=3139.9
+malloc.wall_worst_thread_ns=3139944
+malloc.checksum=4764a0
+stdout_end
+stderr_begin
+stderr_end
+remote_probe_rc=0
+gate.runtime_mimalloc_banner.micro.glibc-dyn=PASS expected=absent
+variant=micro.musl-static expected_banner=absent remote_rc=0
+stdout_begin
+malloc.threads=1
+malloc.iters_per_thread=1000
+malloc.ns_per_op_mean=7038.4
+malloc.wall_worst_thread_ns=7038444
+malloc.checksum=4764a0
+stdout_end
+stderr_begin
+stderr_end
+remote_probe_rc=0
+gate.runtime_mimalloc_banner.micro.musl-static=PASS expected=absent
+variant=micro.musl-dyn expected_banner=absent remote_rc=0
+stdout_begin
+malloc.threads=1
+malloc.iters_per_thread=1000
+malloc.ns_per_op_mean=6789.9
+malloc.wall_worst_thread_ns=6789852
+malloc.checksum=4764a0
+stdout_end
+stderr_begin
+stderr_end
+remote_probe_rc=0
+gate.runtime_mimalloc_banner.micro.musl-dyn=PASS expected=absent
+gate.runtime_mimalloc_override=PASS positive=1 negative_controls=3
+DEPLOY_PASS musl-dyn used package interpreter /opt/usr/musl-demo/lib/ld-musl-arm.so.1 and mimalloc override passed

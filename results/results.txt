@@ -1,0 +1,681 @@
+192.168.108.25:26101 is already connected
+### environment
+measurement.target=192.168.108.25
+measurement.start_utc=2026-08-06T08:27:02Z
+measurement.startup_reps=30
+Linux localhost 6.12.80-arm-rpi4-v7l #1 SMP Mon Jul 27 09:29:29 UTC 2026 armv7l GNU/Linux
+binary.micro.glibc-dyn=present
+binary.micro.musl-static=present
+binary.micro.musl-dyn=present
+binary.timer=present
+### governor
+governor.cpu0=performance
+governor.cpu1=performance
+governor.cpu2=performance
+governor.cpu3=performance
+temperature.before.thermal_zone0=32128
+### frequencies before
+startup_freq,0,before,cpu0,1500000,1500000
+startup_freq,0,before,cpu1,1500000,1500000
+startup_freq,0,before,cpu2,1500000,1500000
+startup_freq,0,before,cpu3,1500000,1500000
+frequency.before.invalid=0
+### sizes
+-rwxr-xr-x 1 root root   16388 Aug  6 17:13 /opt/usr/musl-demo/bin/micro.glibc-dyn
+-rwxr-xr-x 1 root root   17576 Aug  6 17:13 /opt/usr/musl-demo/bin/micro.musl-dyn
+-rwxr-xr-x 1 root root  439932 Aug  6 17:13 /opt/usr/musl-demo/bin/micro.musl-static
+-rwxr-xr-x 1 root root 2414004 Aug  6 17:13 /opt/usr/musl-demo/lib/libc.so
+### startup triple
+startup_freq,1,before,cpu0,1500000,1500000
+startup_freq,1,before,cpu1,1500000,1500000
+startup_freq,1,before,cpu2,1500000,1500000
+startup_freq,1,before,cpu3,1500000,1500000
+startup_freq,1,after,cpu0,1500000,1500000
+startup_freq,1,after,cpu1,1500000,1500000
+startup_freq,1,after,cpu2,1500000,1500000
+startup_freq,1,after,cpu3,1500000,1500000
+startup_triple,1,2361537,971315,1479518
+startup_valid,1
+startup_freq,2,before,cpu0,1500000,1500000
+startup_freq,2,before,cpu1,1500000,1500000
+startup_freq,2,before,cpu2,1500000,1500000
+startup_freq,2,before,cpu3,1500000,1500000
+startup_freq,2,after,cpu0,1500000,1500000
+startup_freq,2,after,cpu1,1500000,1500000
+startup_freq,2,after,cpu2,1500000,1500000
+startup_freq,2,after,cpu3,1500000,1500000
+startup_triple,2,2410963,980130,1465796
+startup_valid,2
+startup_freq,3,before,cpu0,1500000,1500000
+startup_freq,3,before,cpu1,1500000,1500000
+startup_freq,3,before,cpu2,1500000,1500000
+startup_freq,3,before,cpu3,1500000,1500000
+startup_freq,3,after,cpu0,1500000,1500000
+startup_freq,3,after,cpu1,1500000,1500000
+startup_freq,3,after,cpu2,1500000,1500000
+startup_freq,3,after,cpu3,1500000,1500000
+startup_triple,3,2437259,1021185,1480741
+startup_valid,3
+startup_freq,4,before,cpu0,1500000,1500000
+startup_freq,4,before,cpu1,1500000,1500000
+startup_freq,4,before,cpu2,1500000,1500000
+startup_freq,4,before,cpu3,1500000,1500000
+startup_freq,4,after,cpu0,1500000,1500000
+startup_freq,4,after,cpu1,1500000,1500000
+startup_freq,4,after,cpu2,1500000,1500000
+startup_freq,4,after,cpu3,1500000,1500000
+startup_triple,4,2345370,987056,1488260
+startup_valid,4
+startup_freq,5,before,cpu0,1500000,1500000
+startup_freq,5,before,cpu1,1500000,1500000
+startup_freq,5,before,cpu2,1500000,1500000
+startup_freq,5,before,cpu3,1500000,1500000
+startup_freq,5,after,cpu0,1500000,1500000
+startup_freq,5,after,cpu1,1500000,1500000
+startup_freq,5,after,cpu2,1500000,1500000
+startup_freq,5,after,cpu3,1500000,1500000
+startup_triple,5,2408463,993389,1495611
+startup_valid,5
+startup_freq,6,before,cpu0,1500000,1500000
+startup_freq,6,before,cpu1,1500000,1500000
+startup_freq,6,before,cpu2,1500000,1500000
+startup_freq,6,before,cpu3,1500000,1500000
+startup_freq,6,after,cpu0,1500000,1500000
+startup_freq,6,after,cpu1,1500000,1500000
+startup_freq,6,after,cpu2,1500000,1500000
+startup_freq,6,after,cpu3,1500000,1500000
+startup_triple,6,2352907,984482,1542796
+startup_valid,6
+startup_freq,7,before,cpu0,1500000,1500000
+startup_freq,7,before,cpu1,1500000,1500000
+startup_freq,7,before,cpu2,1500000,1500000
+startup_freq,7,before,cpu3,1500000,1500000
+startup_freq,7,after,cpu0,1500000,1500000
+startup_freq,7,after,cpu1,1500000,1500000
+startup_freq,7,after,cpu2,1500000,1500000
+startup_freq,7,after,cpu3,1500000,1500000
+startup_triple,7,2394259,1016388,1478537
+startup_valid,7
+startup_freq,8,before,cpu0,1500000,1500000
+startup_freq,8,before,cpu1,1500000,1500000
+startup_freq,8,before,cpu2,1500000,1500000
+startup_freq,8,before,cpu3,1500000,1500000
+startup_freq,8,after,cpu0,1500000,1500000
+startup_freq,8,after,cpu1,1500000,1500000
+startup_freq,8,after,cpu2,1500000,1500000
+startup_freq,8,after,cpu3,1500000,1500000
+startup_triple,8,2459370,982537,1444000
+startup_valid,8
+startup_freq,9,before,cpu0,1500000,1500000
+startup_freq,9,before,cpu1,1500000,1500000
+startup_freq,9,before,cpu2,1500000,1500000
+startup_freq,9,before,cpu3,1500000,1500000
+startup_freq,9,after,cpu0,1500000,1500000
+startup_freq,9,after,cpu1,1500000,1500000
+startup_freq,9,after,cpu2,1500000,1500000
+startup_freq,9,after,cpu3,1500000,1500000
+startup_triple,9,2420056,1016315,1495334
+startup_valid,9
+startup_freq,10,before,cpu0,1500000,1500000
+startup_freq,10,before,cpu1,1500000,1500000
+startup_freq,10,before,cpu2,1500000,1500000
+startup_freq,10,before,cpu3,1500000,1500000
+startup_freq,10,after,cpu0,1500000,1500000
+startup_freq,10,after,cpu1,1500000,1500000
+startup_freq,10,after,cpu2,1500000,1500000
+startup_freq,10,after,cpu3,1500000,1500000
+startup_triple,10,2372278,1009759,1465649
+startup_valid,10
+startup_freq,11,before,cpu0,1500000,1500000
+startup_freq,11,before,cpu1,1500000,1500000
+startup_freq,11,before,cpu2,1500000,1500000
+startup_freq,11,before,cpu3,1500000,1500000
+startup_freq,11,after,cpu0,1500000,1500000
+startup_freq,11,after,cpu1,1500000,1500000
+startup_freq,11,after,cpu2,1500000,1500000
+startup_freq,11,after,cpu3,1500000,1500000
+startup_triple,11,2365407,973371,1597426
+startup_valid,11
+startup_freq,12,before,cpu0,1500000,1500000
+startup_freq,12,before,cpu1,1500000,1500000
+startup_freq,12,before,cpu2,1500000,1500000
+startup_freq,12,before,cpu3,1500000,1500000
+startup_freq,12,after,cpu0,1500000,1500000
+startup_freq,12,after,cpu1,1500000,1500000
+startup_freq,12,after,cpu2,1500000,1500000
+startup_freq,12,after,cpu3,1500000,1500000
+startup_triple,12,2361352,1006463,1480630
+startup_valid,12
+startup_freq,13,before,cpu0,1500000,1500000
+startup_freq,13,before,cpu1,1500000,1500000
+startup_freq,13,before,cpu2,1500000,1500000
+startup_freq,13,before,cpu3,1500000,1500000
+startup_freq,13,after,cpu0,1500000,1500000
+startup_freq,13,after,cpu1,1500000,1500000
+startup_freq,13,after,cpu2,1500000,1500000
+startup_freq,13,after,cpu3,1500000,1500000
+startup_triple,13,2337037,986814,1460796
+startup_valid,13
+startup_freq,14,before,cpu0,1500000,1500000
+startup_freq,14,before,cpu1,1500000,1500000
+startup_freq,14,before,cpu2,1500000,1500000
+startup_freq,14,before,cpu3,1500000,1500000
+startup_freq,14,after,cpu0,1500000,1500000
+startup_freq,14,after,cpu1,1500000,1500000
+startup_freq,14,after,cpu2,1500000,1500000
+startup_freq,14,after,cpu3,1500000,1500000
+startup_triple,14,2355148,974074,1464574
+startup_valid,14
+startup_freq,15,before,cpu0,1500000,1500000
+startup_freq,15,before,cpu1,1500000,1500000
+startup_freq,15,before,cpu2,1500000,1500000
+startup_freq,15,before,cpu3,1500000,1500000
+startup_freq,15,after,cpu0,1500000,1500000
+startup_freq,15,after,cpu1,1500000,1500000
+startup_freq,15,after,cpu2,1500000,1500000
+startup_freq,15,after,cpu3,1500000,1500000
+startup_triple,15,2366833,998555,1524778
+startup_valid,15
+startup_freq,16,before,cpu0,1500000,1500000
+startup_freq,16,before,cpu1,1500000,1500000
+startup_freq,16,before,cpu2,1500000,1500000
+startup_freq,16,before,cpu3,1500000,1500000
+startup_freq,16,after,cpu0,1500000,1500000
+startup_freq,16,after,cpu1,1500000,1500000
+startup_freq,16,after,cpu2,1500000,1500000
+startup_freq,16,after,cpu3,1500000,1500000
+startup_triple,16,2359371,1002204,1452963
+startup_valid,16
+startup_freq,17,before,cpu0,1500000,1500000
+startup_freq,17,before,cpu1,1500000,1500000
+startup_freq,17,before,cpu2,1500000,1500000
+startup_freq,17,before,cpu3,1500000,1500000
+startup_freq,17,after,cpu0,1500000,1500000
+startup_freq,17,after,cpu1,1500000,1500000
+startup_freq,17,after,cpu2,1500000,1500000
+startup_freq,17,after,cpu3,1500000,1500000
+startup_triple,17,2371889,994351,1481111
+startup_valid,17
+startup_freq,18,before,cpu0,1500000,1500000
+startup_freq,18,before,cpu1,1500000,1500000
+startup_freq,18,before,cpu2,1500000,1500000
+startup_freq,18,before,cpu3,1500000,1500000
+startup_freq,18,after,cpu0,1500000,1500000
+startup_freq,18,after,cpu1,1500000,1500000
+startup_freq,18,after,cpu2,1500000,1500000
+startup_freq,18,after,cpu3,1500000,1500000
+startup_triple,18,3101315,984834,1491074
+startup_valid,18
+startup_freq,19,before,cpu0,1500000,1500000
+startup_freq,19,before,cpu1,1500000,1500000
+startup_freq,19,before,cpu2,1500000,1500000
+startup_freq,19,before,cpu3,1500000,1500000
+startup_freq,19,after,cpu0,1500000,1500000
+startup_freq,19,after,cpu1,1500000,1500000
+startup_freq,19,after,cpu2,1500000,1500000
+startup_freq,19,after,cpu3,1500000,1500000
+startup_triple,19,2403852,976648,1480204
+startup_valid,19
+startup_freq,20,before,cpu0,1500000,1500000
+startup_freq,20,before,cpu1,1500000,1500000
+startup_freq,20,before,cpu2,1500000,1500000
+startup_freq,20,before,cpu3,1500000,1500000
+startup_freq,20,after,cpu0,1500000,1500000
+startup_freq,20,after,cpu1,1500000,1500000
+startup_freq,20,after,cpu2,1500000,1500000
+startup_freq,20,after,cpu3,1500000,1500000
+startup_triple,20,2331092,1183870,1488500
+startup_valid,20
+startup_freq,21,before,cpu0,1500000,1500000
+startup_freq,21,before,cpu1,1500000,1500000
+startup_freq,21,before,cpu2,1500000,1500000
+startup_freq,21,before,cpu3,1500000,1500000
+startup_freq,21,after,cpu0,1500000,1500000
+startup_freq,21,after,cpu1,1500000,1500000
+startup_freq,21,after,cpu2,1500000,1500000
+startup_freq,21,after,cpu3,1500000,1500000
+startup_triple,21,2396926,1047889,1529426
+startup_valid,21
+startup_freq,22,before,cpu0,1500000,1500000
+startup_freq,22,before,cpu1,1500000,1500000
+startup_freq,22,before,cpu2,1500000,1500000
+startup_freq,22,before,cpu3,1500000,1500000
+startup_freq,22,after,cpu0,1500000,1500000
+startup_freq,22,after,cpu1,1500000,1500000
+startup_freq,22,after,cpu2,1500000,1500000
+startup_freq,22,after,cpu3,1500000,1500000
+startup_triple,22,2363055,978093,1499889
+startup_valid,22
+startup_freq,23,before,cpu0,1500000,1500000
+startup_freq,23,before,cpu1,1500000,1500000
+startup_freq,23,before,cpu2,1500000,1500000
+startup_freq,23,before,cpu3,1500000,1500000
+startup_freq,23,after,cpu0,1500000,1500000
+startup_freq,23,after,cpu1,1500000,1500000
+startup_freq,23,after,cpu2,1500000,1500000
+startup_freq,23,after,cpu3,1500000,1500000
+startup_triple,23,2353537,1013000,1478667
+startup_valid,23
+startup_freq,24,before,cpu0,1500000,1500000
+startup_freq,24,before,cpu1,1500000,1500000
+startup_freq,24,before,cpu2,1500000,1500000
+startup_freq,24,before,cpu3,1500000,1500000
+startup_freq,24,after,cpu0,1500000,1500000
+startup_freq,24,after,cpu1,1500000,1500000
+startup_freq,24,after,cpu2,1500000,1500000
+startup_freq,24,after,cpu3,1500000,1500000
+startup_triple,24,2368222,1021667,1521778
+startup_valid,24
+startup_freq,25,before,cpu0,1500000,1500000
+startup_freq,25,before,cpu1,1500000,1500000
+startup_freq,25,before,cpu2,1500000,1500000
+startup_freq,25,before,cpu3,1500000,1500000
+startup_freq,25,after,cpu0,1500000,1500000
+startup_freq,25,after,cpu1,1500000,1500000
+startup_freq,25,after,cpu2,1500000,1500000
+startup_freq,25,after,cpu3,1500000,1500000
+startup_triple,25,2424667,968185,1457704
+startup_valid,25
+startup_freq,26,before,cpu0,1500000,1500000
+startup_freq,26,before,cpu1,1500000,1500000
+startup_freq,26,before,cpu2,1500000,1500000
+startup_freq,26,before,cpu3,1500000,1500000
+startup_freq,26,after,cpu0,1500000,1500000
+startup_freq,26,after,cpu1,1500000,1500000
+startup_freq,26,after,cpu2,1500000,1500000
+startup_freq,26,after,cpu3,1500000,1500000
+startup_triple,26,2411518,995352,1486297
+startup_valid,26
+startup_freq,27,before,cpu0,1500000,1500000
+startup_freq,27,before,cpu1,1500000,1500000
+startup_freq,27,before,cpu2,1500000,1500000
+startup_freq,27,before,cpu3,1500000,1500000
+startup_freq,27,after,cpu0,1500000,1500000
+startup_freq,27,after,cpu1,1500000,1500000
+startup_freq,27,after,cpu2,1500000,1500000
+startup_freq,27,after,cpu3,1500000,1500000
+startup_triple,27,2348204,1495056,1496334
+startup_valid,27
+startup_freq,28,before,cpu0,1500000,1500000
+startup_freq,28,before,cpu1,1500000,1500000
+startup_freq,28,before,cpu2,1500000,1500000
+startup_freq,28,before,cpu3,1500000,1500000
+startup_freq,28,after,cpu0,1500000,1500000
+startup_freq,28,after,cpu1,1500000,1500000
+startup_freq,28,after,cpu2,1500000,1500000
+startup_freq,28,after,cpu3,1500000,1500000
+startup_triple,28,2414130,1013704,1506926
+startup_valid,28
+startup_freq,29,before,cpu0,1500000,1500000
+startup_freq,29,before,cpu1,1500000,1500000
+startup_freq,29,before,cpu2,1500000,1500000
+startup_freq,29,before,cpu3,1500000,1500000
+startup_freq,29,after,cpu0,1500000,1500000
+startup_freq,29,after,cpu1,1500000,1500000
+startup_freq,29,after,cpu2,1500000,1500000
+startup_freq,29,after,cpu3,1500000,1500000
+startup_triple,29,2372667,990519,1484481
+startup_valid,29
+startup_freq,30,before,cpu0,1500000,1500000
+startup_freq,30,before,cpu1,1500000,1500000
+startup_freq,30,before,cpu2,1500000,1500000
+startup_freq,30,before,cpu3,1500000,1500000
+startup_freq,30,after,cpu0,1500000,1500000
+startup_freq,30,after,cpu1,1500000,1500000
+startup_freq,30,after,cpu2,1500000,1500000
+startup_freq,30,after,cpu3,1500000,1500000
+startup_triple,30,2392222,992723,1468296
+startup_valid,30
+### mem smaps_rollup x3
+memcfg=glibc-dyn,rep=1
+mem.pid=3578
+Rss:                 552 kB
+Pss:                  95 kB
+Private_Clean:        12 kB
+Private_Dirty:        76 kB
+memcfg=musl-static,rep=1
+mem.pid=3588
+Rss:                  52 kB
+Pss:                  52 kB
+Private_Clean:        44 kB
+Private_Dirty:         8 kB
+memcfg=musl-dyn,rep=1
+mem.pid=3609
+Rss:                 224 kB
+Pss:                 220 kB
+Private_Clean:       196 kB
+Private_Dirty:        24 kB
+memcfg=glibc-dyn,rep=2
+mem.pid=3619
+Rss:                 552 kB
+Pss:                  95 kB
+Private_Clean:        12 kB
+Private_Dirty:        76 kB
+memcfg=musl-static,rep=2
+mem.pid=3629
+Rss:                  52 kB
+Pss:                  52 kB
+Private_Clean:        44 kB
+Private_Dirty:         8 kB
+memcfg=musl-dyn,rep=2
+mem.pid=3650
+Rss:                 224 kB
+Pss:                 220 kB
+Private_Clean:       196 kB
+Private_Dirty:        24 kB
+memcfg=glibc-dyn,rep=3
+mem.pid=3661
+Rss:                 552 kB
+Pss:                  95 kB
+Private_Clean:        12 kB
+Private_Dirty:        76 kB
+memcfg=musl-static,rep=3
+mem.pid=3682
+Rss:                  52 kB
+Pss:                  52 kB
+Private_Clean:        44 kB
+Private_Dirty:         8 kB
+memcfg=musl-dyn,rep=3
+mem.pid=3692
+Rss:                 224 kB
+Pss:                 220 kB
+Private_Clean:       196 kB
+Private_Dirty:        24 kB
+### threads 200
+threadscfg=glibc-dyn
+threads.requested=200
+threads.created=200
+status.VmSize:	 1641132 kB
+status.VmRSS:	    2264 kB
+status.VmData:	 1638576 kB
+status.Threads:	201
+threadscfg=musl-static
+threads.requested=200
+threads.created=200
+status.VmSize:	   28372 kB
+status.VmRSS:	     880 kB
+status.VmData:	   26416 kB
+status.Threads:	201
+threadscfg=musl-dyn
+threads.requested=200
+threads.created=200
+status.VmSize:	   28712 kB
+status.VmRSS:	    1044 kB
+status.VmData:	   26424 kB
+status.Threads:	201
+### malloc churn
+malloccfg=musl-dyn,rep=1,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=317.0
+malloc.wall_worst_thread_ns=634059462
+malloc.checksum=7dc87e4
+malloccfg=glibc-dyn,rep=1,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=175.3
+malloc.wall_worst_thread_ns=350697574
+malloc.checksum=7dc87e4
+malloccfg=musl-static,rep=1,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=310.9
+malloc.wall_worst_thread_ns=621783184
+malloc.checksum=7dc87e4
+malloccfg=musl-dyn,rep=1,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=984.1
+malloc.wall_worst_thread_ns=1978856592
+malloc.checksum=26cddf
+malloccfg=glibc-dyn,rep=1,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=191.6
+malloc.wall_worst_thread_ns=389564796
+malloc.checksum=26cddf
+malloccfg=musl-static,rep=1,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=974.6
+malloc.wall_worst_thread_ns=1959830221
+malloc.checksum=26cddf
+malloccfg=glibc-dyn,rep=2,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=171.3
+malloc.wall_worst_thread_ns=342678222
+malloc.checksum=7dc87e4
+malloccfg=musl-static,rep=2,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=309.8
+malloc.wall_worst_thread_ns=619641907
+malloc.checksum=7dc87e4
+malloccfg=musl-dyn,rep=2,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=312.1
+malloc.wall_worst_thread_ns=624163425
+malloc.checksum=7dc87e4
+malloccfg=glibc-dyn,rep=2,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=193.5
+malloc.wall_worst_thread_ns=397369148
+malloc.checksum=26cddf
+malloccfg=musl-static,rep=2,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=996.7
+malloc.wall_worst_thread_ns=2002596888
+malloc.checksum=26cddf
+malloccfg=musl-dyn,rep=2,threads=4
+malloc.threads=4malloccfg=musl-static,rep=3,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=310.7
+malloc.wall_worst_thread_ns=621337092
+malloc.checksum=7dc87e4
+malloccfg=musl-dyn,rep=3,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=308.5
+malloc.wall_worst_thread_ns=616909833
+malloc.checksum=7dc87e4
+malloccfg=glibc-dyn,rep=3,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=168.3
+malloc.wall_worst_thread_ns=336696833
+malloc.checksum=7dc87e4
+malloccfg=musl-static,rep=3,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=971.1
+malloc.wall_worst_thread_ns=1956856110
+malloc.checksum=26cddf
+malloccfg=musl-dyn,rep=3,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1009.6
+malloc.wall_worst_thread_ns=2022841017
+malloc.checksum=26cddf
+malloccfg=glibc-dyn,rep=3,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=191.9
+malloc.wall_worst_thread_ns=393582833
+malloc.checksum=26cddf
+malloccfg=musl-dyn,rep=4,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=312.5
+malloc.wall_worst_thread_ns=625099333
+malloc.checksum=7dc87e4
+malloccfg=glibc-dyn,rep=4,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=173.9
+malloc.wall_worst_thread_ns=347755815
+malloc.checksum=7dc87e4
+malloccfg=musl-static,rep=4,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=312.4
+malloc.wall_worst_thread_ns=624872814
+malloc.checksum=7dc87e4
+malloccfg=musl-dyn,rep=4,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=983.2
+malloc.wall_worst_thread_ns=1973892703
+malloc.checksum=26cddf
+malloccfg=glibc-dyn,rep=4,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=194.8
+malloc.wall_worst_thread_ns=397871981
+malloc.checksum=26cddf
+malloccfg=musl-static,rep=4,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=969.2
+malloc.wall_worst_thread_ns=1945020832
+malloc.checksum=26cddf
+malloccfg=glibc-dyn,rep=5,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=166.4
+malloc.wall_worst_thread_ns=332864889
+malloc.checksum=7dc87e4
+malloccfg=musl-static,rep=5,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=307.6
+malloc.wall_worst_thread_ns=615213555
+malloc.checksum=7dc87e4
+malloccfg=musl-dyn,rep=5,threads=1
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=310.7
+malloc.wall_worst_thread_ns=621388204
+malloc.checksum=7dc87e4
+malloccfg=glibc-dyn,rep=5,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=194.3
+malloc.wall_worst_thread_ns=398314167
+malloc.checksum=26cddf
+malloccfg=musl-static,rep=5,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=994.7
+malloc.wall_worst_thread_ns=2004210628
+malloc.checksum=26cddf
+malloccfg=musl-dyn,rep=5,threads=4
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=969.4
+malloc.wall_worst_thread_ns=1947740610
+malloc.checksum=26cddf
+### dns
+pulled                    resolv.conf	  0%	      0 B	    0KB/spulled                    resolv.conf	100%	     55 B	    0KB/s
+1 file(s) pulled. 0 file(s) skipped.
+/etc/resolv.conf                 0KB/s (55 bytes in 0.142s)
+dns.resolv_conf_archive=/home/linhao/Toolchain/development/musl-libc-research/results/logs/resolv.conf.board
+resolv.conf=# Generated by Connection Manager
+resolv.conf=nameserver 127.0.0.1
+dnscfg=glibc-dyn,name=localhost
+dns.name=localhost
+dns.rc=0
+dns.gai=OK
+dns.ns=1443278
+dns.addr0=::1 fam=10
+dns.addr1=127.0.0.1 fam=2
+dns.exit_status.glibc-dyn.localhost=0
+dnscfg=glibc-dyn,name=www.tizen.org
+dns.name=www.tizen.org
+dns.rc=-3
+dns.gai=Temporary failure in name resolution
+dns.ns=30751148
+dns.exit_status.glibc-dyn.www.tizen.org=0
+dnscfg=musl-static,name=localhost
+dns.name=localhost
+dns.rc=0
+dns.gai=OK
+dns.ns=279611
+dns.addr0=::1 fam=10
+dns.addr1=127.0.0.1 fam=2
+dns.exit_status.musl-static.localhost=0
+dnscfg=musl-static,name=www.tizen.org
+dns.name=www.tizen.org
+dns.rc=-3
+dns.gai=Try again
+dns.ns=5005518108
+dns.exit_status.musl-static.www.tizen.org=0
+dnscfg=musl-dyn,name=localhost
+dns.name=localhost
+dns.rc=0
+dns.gai=OK
+dns.ns=259593
+dns.addr0=::1 fam=10
+dns.addr1=127.0.0.1 fam=2
+dns.exit_status.musl-dyn.localhost=0
+dnscfg=musl-dyn,name=www.tizen.org
+dns.name=www.tizen.org
+dns.rc=-3
+dns.gai=Try again
+dns.ns=5004619571
+dns.exit_status.musl-dyn.www.tizen.org=0
+### locale
+localecfg=glibc-dyn,mode=default
+locale.setlocale=C
+locale.codeset=ANSI_X3.4-1968
+locale.strftime=Wednesday 01 January
+locale.strcoll_zh_sign=-1
+locale.iconv_utf8_to_euckr=OK
+locale.iconv_euckr_to_utf8=OK
+localecfg=glibc-dyn,mode=ko_KR.UTF-8
+locale.setlocale=ko_KR.UTF-8
+locale.codeset=UTF-8
+locale.strftime=수요일 01 1월
+locale.strcoll_zh_sign=-1
+locale.iconv_utf8_to_euckr=OK
+locale.iconv_euckr_to_utf8=OK
+localecfg=musl-static,mode=default
+locale.setlocale=C.UTF-8;C;C;C;C;C
+locale.codeset=UTF-8
+locale.strftime=Wednesday 01 January
+locale.strcoll_zh_sign=-1
+locale.iconv_utf8_to_euckr=UNAVAILABLE
+locale.iconv_euckr_to_utf8=OK
+localecfg=musl-static,mode=ko_KR.UTF-8
+locale.setlocale=ko_KR.UTF-8
+locale.codeset=UTF-8
+locale.strftime=Wednesday 01 January
+locale.strcoll_zh_sign=-1
+locale.iconv_utf8_to_euckr=UNAVAILABLE
+locale.iconv_euckr_to_utf8=OK
+localecfg=musl-dyn,mode=default
+locale.setlocale=C.UTF-8;C;C;C;C;C
+locale.codeset=UTF-8
+locale.strftime=Wednesday 01 January
+locale.strcoll_zh_sign=-1
+locale.iconv_utf8_to_euckr=UNAVAILABLE
+locale.iconv_euckr_to_utf8=OK
+localecfg=musl-dyn,mode=ko_KR.UTF-8
+locale.setlocale=ko_KR.UTF-8
+locale.codeset=UTF-8
+locale.strftime=Wednesday 01 January
+locale.strcoll_zh_sign=-1
+locale.iconv_utf8_to_euckr=UNAVAILABLE
+locale.iconv_euckr_to_utf8=OK
+temperature.after.thermal_zone0=33102
+### frequencies after
+startup_freq,0,after,cpu0,1500000,1500000
+startup_freq,0,after,cpu1,1500000,1500000
+startup_freq,0,after,cpu2,1500000,1500000
+startup_freq,0,after,cpu3,1500000,1500000
+frequency.after.invalid=0
+measurement.finish_utc=2026-08-06T08:28:20Z
