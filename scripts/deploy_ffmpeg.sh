@@ -70,14 +70,31 @@ run_logged() {
 }
 
 remote_capture() {
-    sdb shell "$1" 2>&1 | tr -d '\r'
+    sdb -s "$sdb_serial" shell "$1" 2>&1 | tr -d '\r'
 }
 
 echo "target=$TARGET" | tee -a "$LOG_FILE"
 echo "rpm=$rpm_path" | tee -a "$LOG_FILE"
 echo "rpm_sha256=$(sha256sum "$rpm_path" | awk '{print $1}')" | tee -a "$LOG_FILE"
 run_logged sdb connect "$TARGET"
-run_logged sdb root on
+if [[ -n "${SDB_SERIAL:-}" ]]; then
+    sdb_serial="$SDB_SERIAL"
+else
+    sdb_serial="$(
+        sdb devices | awk -v target="$TARGET" '
+            $2 == "device" && ($1 == target || index($1, target ":") == 1) {
+                print $1
+            }
+        '
+    )"
+fi
+[[ -n "$sdb_serial" && "$sdb_serial" != *$'\n'* ]] || {
+    echo "ERROR expected exactly one SDB serial for target=$TARGET" \
+        | tee -a "$LOG_FILE" >&2
+    exit 2
+}
+echo "sdb_serial=$sdb_serial" | tee -a "$LOG_FILE"
+run_logged sdb -s "$sdb_serial" root on
 
 media_listing="$(remote_capture 'find /root -maxdepth 1 -type f 2>/dev/null')"
 printf 'root_file_listing_begin\n%s\nroot_file_listing_end\n' "$media_listing" \
@@ -99,8 +116,8 @@ source_clip="${media_candidates[0]}"
     echo "DEPLOY_FAIL unsafe media path: $source_clip" | tee -a "$LOG_FILE" >&2
     exit 7
 }
-expected_clip_hash="$(awk 'NF {print tolower($1); exit}' "$CLIP_HASH_FILE")"
-expected_clip_name="$(awk 'NF {print $2; exit}' "$CLIP_HASH_FILE")"
+expected_clip_hash="$(awk 'NF && $1 !~ /^#/ {print tolower($1); exit}' "$CLIP_HASH_FILE")"
+expected_clip_name="$(awk 'NF && $1 !~ /^#/ {print $2; exit}' "$CLIP_HASH_FILE")"
 [[ "$expected_clip_hash" =~ ^[0-9a-f]{64}$ ]] || {
     echo "DEPLOY_FAIL invalid frozen clip digest" | tee -a "$LOG_FILE" >&2
     exit 7
@@ -118,9 +135,9 @@ actual_clip_hash="$(remote_capture "sha256sum '$source_clip'" | awk '{print tolo
 echo "clip.source=$source_clip" | tee -a "$LOG_FILE"
 echo "clip.sha256=$actual_clip_hash" | tee -a "$LOG_FILE"
 
-run_logged sdb push "$rpm_path" "$remote_rpm"
+run_logged sdb -s "$sdb_serial" push "$rpm_path" "$remote_rpm"
 set +e
-sdb shell "rpm -Uvh --noplugins --force '$remote_rpm'" 2>&1 \
+sdb -s "$sdb_serial" shell "rpm -Uvh --noplugins --force '$remote_rpm'" 2>&1 \
     | tr -d '\r' | tee -a "$LOG_FILE"
 install_rc=${PIPESTATUS[0]}
 set -e
@@ -170,17 +187,19 @@ for variant in F1 F2 F3; do
     smoke_output="$(remote_capture "'$PRIVATE_ROOT/bin/ffmpeg.$variant' -nostdin -hide_banner -v info -xerror -c:v h264 -i '$remote_clip' -map 0:v:0 -an -frames:v 1 -f null -; rc=\$?; printf 'smoke_remote_rc=%s\\n' \"\$rc\"")"
     printf '%s\n' "$smoke_output" | tee -a "$LOG_FILE"
     smoke_rc="$(sed -n 's/^smoke_remote_rc=//p' <<< "$smoke_output" | tail -n 1)"
+    smoke_frames="$(sed -n 's/.*frame=[[:space:]]*\([0-9][0-9]*\).*/\1/p' \
+        <<< "$smoke_output" | tail -n 1)"
     [[ "$smoke_rc" =~ ^[0-9]+$ && "$smoke_rc" -eq 0 ]] || {
         echo "DEPLOY_FAIL $variant h264 smoke remote_rc=${smoke_rc:-MISSING}" \
             | tee -a "$LOG_FILE" >&2
         exit 6
     }
-    grep -Eq 'frame=[[:space:]]*1([[:space:]]|$)' <<< "$smoke_output" || {
-        echo "DEPLOY_FAIL $variant h264 smoke produced no frame" \
+    [[ "$smoke_frames" =~ ^[0-9]+$ && "$smoke_frames" -ge 1 ]] || {
+        echo "DEPLOY_FAIL $variant h264 smoke produced no frame count=${smoke_frames:-MISSING}" \
             | tee -a "$LOG_FILE" >&2
         exit 6
     }
-    echo "gate.smoke.$variant=PASS decoder=h264" | tee -a "$LOG_FILE"
+    echo "gate.smoke.$variant=PASS decoder=h264 frames=$smoke_frames" | tee -a "$LOG_FILE"
 done
 
 runtime_banner_gate() {

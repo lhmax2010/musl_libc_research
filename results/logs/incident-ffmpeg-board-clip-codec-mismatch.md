@@ -1,6 +1,6 @@
 # Incident: board test clip is not decodable by the frozen H.264 island
 
-Status: **PARKED — replacement H.264 material or an explicit scope ruling is required**
+Status: **RESOLVED — replacement H.264 material frozen for resumed execution**
 
 ## Stopping point
 
@@ -90,3 +90,27 @@ Resume command after the material and frozen hash are explicitly updated:
 ```text
 SDB_TARGET=192.168.108.26 scripts/deploy_ffmpeg.sh
 ```
+
+## Resolution and replacement freeze
+
+FatTank replaced the sole board media candidate with the
+PerfHotSpotAnalyzer-source H.264 sample `/root/cabi.mp4`. The replacement
+reason is recorded verbatim in the freeze file:
+
+```text
+首次上板文件为 HEVC 误置,已更换为同源 H.264 样本 cabi.mp4
+```
+
+The first-use board observation was:
+
+```text
+path=/root/cabi.mp4
+size=88765233
+sha256=f58743eaba12f47320c4d8ea0ea7f9418b91728335c74df0c352d9730f63dd48
+media_candidate_count=1
+```
+
+`packaging/ffmpeg-testclip.sha256` retains the former HEVC digest as an
+explicit `REVOKED` comment and marks this digest as the active record. The
+old value was not silently overwritten. Execution resumes with the hardened
+remote-status and positive-frame smoke gate.
