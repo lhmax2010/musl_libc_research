@@ -25,6 +25,7 @@ BuildRequires:  make
 AutoReqProv:    no
 
 %global debug_package %{nil}
+%global __debug_install_post %{nil}
 %global __strip /bin/true
 
 %description

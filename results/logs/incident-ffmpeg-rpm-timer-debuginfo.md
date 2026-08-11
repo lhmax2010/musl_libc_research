@@ -1,6 +1,6 @@
 # Incident: RPM auto-debuginfo leaves timer files unpackaged
 
-Status: **PARKED — new packaging failure requires authorization**
+Status: **AUTHORIZED FIX COMMITTED — RPM rerun pending**
 
 ## Scope and stopping point
 
@@ -82,3 +82,27 @@ Possible dispositions include making the Tizen debuginfo suppression effective,
 explicitly accounting for the generated debug files, or changing the timer's
 debug/strip treatment. These choices alter packaging policy or artifact
 treatment and require a separate ruling; none was attempted.
+
+## Authorized disposition
+
+FatTank authorized explicit suppression of both debuginfo package generation
+and the debug extraction post-processing step. The spec header therefore keeps
+`%global debug_package %{nil}` and adds
+`%global __debug_install_post %{nil}`. The existing `%global __strip /bin/true`
+remains unchanged. This policy does not alter compilation, linking, or the six
+FFmpeg binaries; their hashes are frozen before the packaging-only rerun in
+`results/logs/ffmpeg-rpm-prechange-artifacts.sha256`.
+
+The companion `musl-libc-demo.spec` did not expose this failure because
+`packaging/build-demo.sh` explicitly strips every payload executable,
+including `timer`, before `%install`; no timer DWARF remained for the RPM debug
+extractor. That spec also already disabled the debug subpackage. With the added
+post-processing macro, both demo specs now make the no-debuginfo packaging
+policy explicit; the FFmpeg spec needs the extra safeguard because its timer is
+intentionally left unstripped while independent pre/post-strip size evidence is
+preserved under `share/`.
+
+The post-rerun checks must prove that the RPM file list is exactly the two
+authorized `/opt/usr/ffmpeg-demo/{bin,share}` payload trees, contains no
+`/usr/lib/debug` or `/usr/src/debug`, and that all six FFmpeg binary hashes are
+byte-for-byte identical to the frozen values.
