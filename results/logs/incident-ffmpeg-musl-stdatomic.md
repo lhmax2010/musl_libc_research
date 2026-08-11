@@ -1,6 +1,6 @@
 # Incident: ffmpeg F2 configure cannot see clang `stdatomic.h`
 
-Status: **PARKED — authorization required before remediation**
+Status: **AUTHORIZED — precedent reuse applied; rerun pending**
 
 ## Scope and stopping point
 
@@ -66,8 +66,21 @@ disablement, or include-path change was attempted.
 Add clang's measured resource include directory to the ffmpeg F2/F3 compiler
 arguments after the musl wrapper's own include directory, with a precondition
 that `stdatomic.h` exists. This would mirror the already approved mimalloc
-header-fill ordering while keeping the musl headers first. This incident does
-not apply that change.
+header-fill ordering while keeping the musl headers first. The initial parked
+run did not apply that change.
+
+## Authorized disposition
+
+FatTank classified this as a direct reuse of the already adjudicated
+`incident-mimalloc-stdatomic-include` precedent. The F2/F3 ffmpeg configure
+compiler flags now append the measured clang resource include directory after
+the musl wrapper arguments. A mechanical precondition requires
+`$RESDIR/include/stdatomic.h` to exist and records both the actual path and the
+include ordering in `compiler-decision-ffmpeg.txt`.
+
+F1 remains unchanged. The wrapper, `-nostdinc`, pthread configuration, linker
+flags, and all configure/ELF/F3 gates remain unchanged. No `libatomic` was
+introduced.
 
 Rerun after authorization:
 

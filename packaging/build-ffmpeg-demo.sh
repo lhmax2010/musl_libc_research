@@ -240,6 +240,7 @@ echo "gate.ldwrapper_patch=PASS style=$ldwrapper_style"
 MIMALLOC_OBJECT="$BUILD_ROOT/mimalloc.o"
 RESDIR="$(clang -print-resource-dir)"
 [[ -f "$RESDIR/include/stdatomic.h" ]] || fail "stdatomic.h missing from $RESDIR/include"
+echo "gate.clang_resource_stdatomic=PASS path=$RESDIR/include/stdatomic.h"
 "$MUSL_CC" "${OPTFLAGS_ARRAY[@]}" -O2 -DNDEBUG -DMI_MALLOC_OVERRIDE \
     -I "$MIMALLOC_SOURCE_DIR/include" -isystem "$RESDIR/include" \
     -c "$MIMALLOC_SOURCE_DIR/src/static.c" -o "$MIMALLOC_OBJECT"
@@ -256,6 +257,8 @@ mimalloc_lfs64_symbols="$(
     echo "mimalloc_isystem_resource=$RESDIR/include"
     echo "mimalloc_include_order=musl_first_resource_fill"
     echo "mimalloc_lfs64_gate=PASS"
+    echo "ffmpeg_f2f3_isystem_resource=$RESDIR/include"
+    echo "ffmpeg_include_order=musl_first_resource_fill"
 } >> "$DECISION"
 echo "gate.mimalloc_lfs64_symbols=PASS"
 
@@ -334,6 +337,8 @@ build_one() {
         output_name="$output_name.gc"
     }
     [[ "$link_mode" == "static" ]] && extra_ldflags="$extra_ldflags -static"
+    [[ "$cc_path" == "$MUSL_CC" ]] && \
+        extra_cflags="$extra_cflags -isystem $RESDIR/include"
     if [[ "$allocator" == "mimalloc" ]]; then
         map_path="$BUILD_ROOT/ffmpeg.$variant.$size_mode.map"
         extra_ldflags="$extra_ldflags -Wl,-Map,$map_path"
