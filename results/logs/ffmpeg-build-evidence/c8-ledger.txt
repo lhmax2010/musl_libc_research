@@ -1,0 +1,8 @@
+C8a.ffmpeg_source_diff_outside_frozen_tree=0
+C8a.baseline=frozen_Tizen_tree
+C8b.1=new_isolated_rpm_spec_and_private_prefix
+C8b.2=frozen_archive_normalized_in_prep
+C8b.3=minimal_software_decode_configure_capability_set
+C8b.4=musl_wrapper_start_group_reused
+C8b.5=mimalloc_object_added_via_extra_libs
+C8b.semantic_workaround=NONE

@@ -1,0 +1,44 @@
+expected_clang_version=22.1.8
+clang_path=/bin/clang
+clang_dumpmachine=armv7l-tizen-linux-gnueabi
+clang_runtime_dir=(runtime dir is not present)
+clang_print_libgcc_file_name=/usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a
+selected_rtlib=libgcc.a
+selected_rtlib_flag=--rtlib=libgcc
+selected_rtlib_archive=/usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a
+ffmpeg_frozen_commit=c15459c9fc8976827db7eaac643e84db2d1ea534
+platform_float_abi=softfp
+clang_version_begin
+clang version 22.1.8
+Target: armv7l-tizen-linux-gnueabi
+Thread model: posix
+InstalledDir: /usr/bin
+Configuration file: /usr/bin/clang.cfg
+clang_version_end
+ldwrapper_patch=start-group
+ldwrapper_style=ld
+ldwrapper_group_rtlib_archive=/usr/lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a
+ldwrapper_group_libgcc_eh=/usr/lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc_eh.a
+ldwrapper_before_line=exec $($cc -print-prog-name=ld) -nostdlib "$@" -lc -dynamic-linker "$ldso"
+ldwrapper_after_line=exec $($cc -print-prog-name=ld) -nostdlib "$@" --start-group -lc /usr/lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a /usr/lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc_eh.a --end-group -dynamic-linker "$ldso"
+ldwrapper_clang_gate=PASS
+mimalloc_compile_env=musl-clang(headers=musl, backend=clang 22.1.8)
+mimalloc_isystem_resource=/usr/lib/clang/22/include
+mimalloc_include_order=musl_first_resource_fill
+mimalloc_lfs64_gate=PASS
+ffmpeg_f2f3_isystem_resource=/usr/lib/clang/22/include
+ffmpeg_include_order=musl_first_resource_fill
+ffmpeg_host_tools=static-musl
+ffmpeg_host_tools_basis=host_cc_musl-clang,host_ldflags_static,no_pt_interp
+strip_tool=/bin/llvm-strip
+f1_interpreter=/lib/ld-linux.so.3
+f1_needed=libm.so.6,libc.so.6,ld-linux.so.3
+variant_vfp_args=F1:ABSENT | F2:ABSENT | F3:ABSENT
+binsh_vfp_args=ABSENT
+abi_consistency=PASS
+mimalloc_symbol_owner=mimalloc.o
+mimalloc_mallocng_members_extracted=0
+mimalloc_symbol_gate=PASS
+mimalloc_nm_evidence=00182be4 T mi__expand
+ffmpeg_license=LGPL version 2.1 or later
+mechanical_gates=PASS

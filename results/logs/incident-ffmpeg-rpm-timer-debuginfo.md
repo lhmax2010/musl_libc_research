@@ -1,6 +1,6 @@
 # Incident: RPM auto-debuginfo leaves timer files unpackaged
 
-Status: **AUTHORIZED FIX COMMITTED — RPM rerun pending**
+Status: **RESOLVED — formal RPM and identity gates passed**
 
 ## Scope and stopping point
 
@@ -106,3 +106,19 @@ The post-rerun checks must prove that the RPM file list is exactly the two
 authorized `/opt/usr/ffmpeg-demo/{bin,share}` payload trees, contains no
 `/usr/lib/debug` or `/usr/src/debug`, and that all six FFmpeg binary hashes are
 byte-for-byte identical to the frozen values.
+
+## Rerun result
+
+The formal `scripts/build_gbs_ffmpeg.sh` rerun completed with
+`BUILD_GATE_PASS`, wrote `ffmpeg-musl-demo-8.0.1-1.armv7l.rpm`, verified the
+embedded artifact manifest, and terminated with `BUILD_GBS_FFMPEG_PASS`. Its
+SHA-256 is
+`daef87f36bdb6579db96eba4c570a893c9e3a6781508f7233e736274e3ef97da`.
+No `find-debuginfo.sh` invocation or unpackaged debug path appears in the
+successful log.
+
+A package-only resume was deliberately not performed with RPM's
+`-bb --short-circuit` path because RPM 4.14 labels such output with the
+unsatisfiable `rpmlib(ShortCircuited)` dependency. The clean formal rerun
+produced no such dependency. The RPM file-list and binary-identity checks are
+archived verbatim in `results/logs/ffmpeg-rpm-debuginfo-rerun.md`; all passed.

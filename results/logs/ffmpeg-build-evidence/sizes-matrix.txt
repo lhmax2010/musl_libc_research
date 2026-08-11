@@ -1,0 +1,12 @@
+F1,baseline,unstripped,10874676
+F1,baseline,stripped,2353184
+F2,baseline,unstripped,11881532
+F2,baseline,stripped,2967556
+F3,baseline,unstripped,12493148
+F3,baseline,stripped,3071876
+F1,gc,unstripped,10969056
+F1,gc,stripped,2177984
+F2,gc,unstripped,11953964
+F2,gc,stripped,2782396
+F3,gc,unstripped,12565496
+F3,gc,stripped,2886716
