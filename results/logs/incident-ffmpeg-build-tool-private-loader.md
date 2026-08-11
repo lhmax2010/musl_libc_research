@@ -1,6 +1,6 @@
 # Incident: ffmpeg F2 build tool requires undeployed private musl loader
 
-Status: **AUTHORIZED — static-musl host-tool fix applied; rerun pending**
+Status: **RESOLVED — all four musl host-tool gates passed**
 
 ## Scope and stopping point
 
@@ -64,12 +64,15 @@ tool role separation failure, not the previously fixed header lookup failure.
 
 ## Evidence
 
-- `results/logs/gbs-build-ffmpeg.log`, SHA-256
+- The parked-run `results/logs/gbs-build-ffmpeg.log` had SHA-256
   `f8ee2ff614d05dd5b200f3505f5ccdfbdd5b5d206288f3a9337ef418840cf38e`
   - resource header assertion: line 2169
   - F2 configure summary: lines 2674--2747
   - QEMU loader errors: lines 3135 and 3137
   - terminal build gate: line 3144
+  The authorized rerun subsequently replaced this rolling build-log path; the
+  failed-build chroot hashes below retain the configuration anchors, and the
+  rerun result is preserved in the next incident's current formal log.
 - Failed-build chroot probes (not delivery artifacts):
   - F2 `ffbuild/config.log` SHA-256
     `8c063b3df6fbccc438f1030a0faefb3e37570e5367499a672e7d1f1729ca4e50`
@@ -111,3 +114,17 @@ The compiler decision ledger records `ffmpeg_host_tools=static-musl`. No loader
 was planted under the deployment path, the wrapper was not changed, no second
 toolchain was introduced, and no target parameter or existing gate was
 relaxed.
+
+## Rerun result
+
+The formal rerun verified `ffbuild/bin2c` for F2/F3 in both baseline and
+gc-sections builds. Each was reported by `file` as a statically linked ARM ELF;
+each full `readelf -lW` listing contained `ARM_EXIDX`, two `LOAD` segments, and
+`GNU_STACK`, with no `INTERP`. All four host-argument isolation diffs were empty
+and all four static host-tool gates passed with one discovered helper each.
+
+F2/F3 make and link completed. The six-way configure-equivalence gate, ELF
+softfp gate, F3 symbol-owner checks, source-tree immutability check, and final
+`BUILD_GATE_PASS` also completed. RPM generation later stopped on a separate
+automatic debuginfo packaging issue; see
+`incident-ffmpeg-rpm-timer-debuginfo.md`.
