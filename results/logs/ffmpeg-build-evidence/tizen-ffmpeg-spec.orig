@@ -1,0 +1,355 @@
+Name:       ffmpeg
+Summary:    AV codec lib
+Version:    8.0.1
+Release:    1
+Group:      Multimedia/Libraries
+URL:        https://ffmpeg.org/
+License:    LGPL-2.1+
+Source0:    %{name}-%{version}.tar.gz
+Source1001:	libavcodec.manifest
+Source1002:	libavformat.manifest
+Source1003:	libavutil.manifest
+Source1004:	libavfilter.manifest
+Source1005:	libswscale.manifest
+Source1006:	libswresample.manifest
+Source1007:	ffmpeg-tool.manifest
+%if "%{tizen_profile_name}" == "tv"
+%define product_tv 1
+%else
+%define product_tv 0
+%endif
+%if ("%{sec_buildconf_multimedia_real_audio_video_supported}" == "1")
+%define support_rm 1
+%else
+%define support_rm 0
+%endif
+%description
+AV codec library
+
+
+%package -n libavcodec
+Summary:    AV codec lib
+Group:      Multimedia/Libraries
+
+%description -n libavcodec
+AV codec library
+
+%package -n libavcodec-devel
+Summary:    AV codec lib (devel)
+Group:      Development/Libraries
+Requires:   libavcodec = %{version}-%{release}
+
+%description -n libavcodec-devel
+AV codec library (devel)
+
+%package -n libavformat
+Summary:    AV format lib
+Group:      Multimedia/Libraries
+
+%description -n libavformat
+AV format library
+
+%package -n libavformat-devel
+Summary:    AV format lib (devel)
+Group:      Development/Libraries
+Requires:   libavformat = %{version}-%{release}
+
+%description -n libavformat-devel
+AV format library (devel)
+
+%package -n libavutil
+Summary:    AV util lib
+Group:      Multimedia/Libraries
+
+%description -n libavutil
+AV util library
+
+%package -n libavutil-devel
+Summary:    AV util lib (devel)
+Group:      Development/Libraries
+Requires:   libavutil = %{version}-%{release}
+
+%description -n libavutil-devel
+AV util library (devel)
+
+%package -n libavfilter
+Summary:    AV util lib
+Group:      Multimedia/Libraries
+
+%description -n libavfilter
+AV filter library
+
+%package -n libavfilter-devel
+Summary:    AV util lib (devel)
+Group:      Development/Libraries
+Requires:   libavfilter = %{version}-%{release}
+
+%description -n libavfilter-devel
+AV filter library (devel)
+
+%package -n libswscale
+Summary:    SW scale lib
+Group:      Multimedia/Libraries
+
+%description -n libswscale
+development files for libswsacle
+
+%package -n libswscale-devel
+Summary:    SW scale lib (devel)
+Group:      Development/Libraries
+Requires:   libswscale = %{version}-%{release}
+
+%description -n libswscale-devel
+development files for libswsacle
+
+%package -n libswresample
+Summary:    SW resample lib
+Group:      Multimedia/Libraries
+
+%description -n libswresample
+SW resample library
+
+%package -n libswresample-devel
+Summary:    SW resample lib (devel)
+Group:      Multimedia/Libraries
+Requires:   libswresample = %{version}-%{release}
+
+%description -n libswresample-devel
+SW resample library (devel)
+
+%package -n doc
+Summary:    Document
+Group:      Multimedia/Documentation
+
+%description -n doc
+Example files
+
+%package -n ffmpeg-tool
+Summary:    FFmpeg Tools
+Group:      Development/Tools
+Requires:   ffmpeg-tool = %{version}-%{release}
+
+%description -n ffmpeg-tool
+FFmpeg Tools
+
+%prep
+%setup -q
+cp %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{SOURCE1007} .
+
+# basic functions
+export CONFIGURE_OPTIONS="--enable-shared \
+--disable-static --disable-devices \
+--disable-version3 --disable-nonfree --disable-gpl \
+--disable-doc --disable-zlib --disable-network \
+--disable-programs --enable-ffmpeg \
+--disable-avdevice \
+--enable-swscale --disable-x86asm --enable-swresample \
+--enable-neon --disable-stripping \
+%{?asan:--disable-asm} \
+"
+# parsers
+export CONFIGURE_OPTIONS+="--disable-parsers \
+--enable-parser=aac --enable-parser=h264 --enable-parser=mpegaudio \
+--enable-parser=h263 --enable-parser=mpeg4video --enable-parser=mpegvideo \
+--enable-parser=hevc \
+"
+# muxers
+export CONFIGURE_OPTIONS+="--disable-muxers \
+--enable-muxer=mpeg1video --enable-muxer=mpeg2video --enable-muxer=wav \
+--enable-muxer=null --enable-muxer=mp4 \
+"
+# demuxers
+export CONFIGURE_OPTIONS+="--disable-demuxers \
+--enable-demuxer=aac --enable-demuxer=h264 --enable-demuxer=mpegts \
+--enable-demuxer=amr --enable-demuxer=m4v --enable-demuxer=mpegtsraw \
+--enable-demuxer=asf --enable-demuxer=mmf --enable-demuxer=mpegvideo \
+--enable-demuxer=avi --enable-demuxer=mov --enable-demuxer=ogg \
+--enable-demuxer=flac --enable-demuxer=mp3 --enable-demuxer=wav \
+--enable-demuxer=h263 --enable-demuxer=mpegps --enable-demuxer=matroska \
+--enable-demuxer=dv --enable-demuxer=flv \
+--enable-demuxer=aiff --enable-demuxer=ape --enable-demuxer=hevc \
+--enable-demuxer=concat \
+"
+%if !0%{?product_tv}
+export CONFIGURE_OPTIONS+="--enable-demuxer=rm \
+"
+%else
+%if 0%{?support_rm}
+export CONFIGURE_OPTIONS+="--enable-demuxer=rm \
+"
+%endif
+%endif
+# decoders
+export CONFIGURE_OPTIONS+="--disable-decoders \
+--enable-decoder=alac --enable-decoder=h264 --enable-decoder=wmv1 \
+--enable-decoder=flac --enable-decoder=mpeg4 --enable-decoder=wmv2 \
+--enable-decoder=h263 --enable-decoder=mpegvideo --enable-decoder=wmv3 \
+--enable-decoder=vc1 --enable-decoder=flv \
+--enable-decoder=h263i --enable-decoder=theora --enable-decoder=mpeg1video \
+--enable-decoder=mpeg2video --enable-decoder=pcm_alaw --enable-decoder=pcm_mulaw \
+--enable-decoder=msmpeg4v3 --enable-decoder=hevc --enable-decoder=mjpeg \
+--enable-decoder=bmp --enable-decoder=tiff --enable-decoder=mp3 \
+--enable-decoder=amrnb --enable-decoder=ac3 --enable-decoder=aac \
+--enable-decoder=ape --enable-decoder=pcm_s16le \
+"
+%if !0%{?product_tv}
+export CONFIGURE_OPTIONS+="--enable-decoder=rv40 \
+"
+%else
+%if 0%{?support_rm}
+export CONFIGURE_OPTIONS+="--enable-decoder=rv40 \
+"
+%endif
+%endif
+# encoders
+export CONFIGURE_OPTIONS+="--disable-encoders \
+--enable-encoder=h263 --enable-encoder=h263p --enable-encoder=mpeg4 \
+--enable-encoder=bmp --enable-encoder=mpeg1video --enable-encoder=mpeg2video \
+--enable-encoder=aac --enable-encoder=wrapped_avframe --enable-encoder=pcm_s16le \
+"
+# protocols
+export CONFIGURE_OPTIONS+="--disable-protocols --enable-protocol=file "
+
+# filters
+export CONFIGURE_OPTIONS+="--disable-filters \
+--enable-filter=crop --enable-filter=hflip --enable-filter=lut \
+--enable-filter=lutyuv --enable-filter=lutrgb --enable-filter=overlay \
+--enable-filter=scale --enable-filter=transpose --enable-filter=unsharp \
+--enable-filter=vflip --enable-filter=zoompan --enable-filter=scdet \
+--enable-filter=blackdetect --enable-filter=silencedetect --enable-filter=aresample \
+"
+
+# bitstream filters
+export CONFIGURE_OPTIONS+="--disable-bsfs --enable-bsf=h264_mp4toannexb "
+
+export CONFIGURE_OPTIONS+="--toolchain=hardened --enable-parser=vp8 --enable-decoder=vp8 --enable-decoder=vp9 "
+
+%ifarch %{arm} aarch64
+export CONFIGURE_OPTIONS+="--disable-mmx "
+%else
+%endif
+
+CFLAGS="%{optflags} -fPIC -DEXPORT_API=\"__attribute__((visibility(\\\"default\\\")))\" "; export CFLAGS
+export CFLAGS+=" -D__TIZEN__ -DTIZEN_FEATURE_LIBAV"
+
+%ifarch %{arm}
+export CONFIGURE_OPTIONS+="--extra-cflags=-mfpu=neon"
+%endif
+
+export AR=%{__ar} RANLIB=%{__ranlib}
+export CC=%{__cc} CXX=%{__cxx}
+
+./configure \
+    --prefix=%{_prefix} \
+    --libdir=%{_libdir} \
+    --shlibdir=%{_libdir} \
+    --datadir=%{_datadir}/%{name} \
+    $CONFIGURE_OPTIONS
+
+%build
+
+
+%__make %{?_smp_mflags}
+
+%install
+rm -rf %{buildroot}
+%make_install
+
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
+%files -n libavcodec
+%manifest libavcodec.manifest
+%defattr(-,root,root,-)
+%{_libdir}/libavcodec.so.*
+%license COPYING.LGPLv2.1
+%post -n libavcodec -p /sbin/ldconfig
+%postun -n libavcodec -p /sbin/ldconfig
+
+%files -n libavformat
+%manifest libavformat.manifest
+%defattr(-,root,root,-)
+%{_libdir}/libavformat.so.*
+%license COPYING.LGPLv2.1
+%post -n libavformat -p /sbin/ldconfig
+%postun -n libavformat -p /sbin/ldconfig
+
+%files -n libavutil
+%manifest libavutil.manifest
+%defattr(-,root,root,-)
+%{_libdir}/libavutil.so.*
+%license COPYING.LGPLv2.1
+%post -n libavutil -p /sbin/ldconfig
+%postun -n libavutil -p /sbin/ldconfig
+
+%files -n libavfilter
+%manifest libavfilter.manifest
+%defattr(-,root,root,-)
+%{_libdir}/libavfilter.so.*
+%license COPYING.LGPLv2.1
+%post -n libavfilter -p /sbin/ldconfig
+%postun -n libavfilter -p /sbin/ldconfig
+
+%files -n libswscale
+%manifest libswscale.manifest
+%defattr(-,root,root,-)
+%{_libdir}/libswscale.so.*
+%license COPYING.LGPLv2.1
+%post -n libswscale -p /sbin/ldconfig
+%postun -n libswscale -p /sbin/ldconfig
+
+%files -n libswresample
+%manifest libswresample.manifest
+%defattr(-,root,root,-)
+%{_libdir}/libswresample.so.*
+%license COPYING.LGPLv2.1
+%post -n libswresample -p /sbin/ldconfig
+%postun -n libswresample -p /sbin/ldconfig
+
+%files -n doc
+%defattr(-,root,root,-)
+%{_datadir}/%{name}/examples/*
+
+%files -n ffmpeg-tool
+%defattr(-,root,root,-)
+%manifest ffmpeg-tool.manifest
+%{_bindir}/ffmpeg
+%{_datadir}/%{name}/*.ffpreset
+%{_datadir}/%{name}/*.xsd
+%license COPYING.LGPLv2.1
+
+%files -n libavcodec-devel
+%defattr(-,root,root,-)
+%{_includedir}/libavcodec/*
+%{_libdir}/libavcodec.so
+%{_libdir}/pkgconfig/libavcodec.pc
+
+%files -n libavformat-devel
+%defattr(-,root,root,-)
+%{_includedir}/libavformat/*
+%{_libdir}/libavformat.so
+%{_libdir}/pkgconfig/libavformat.pc
+
+%files -n libavutil-devel
+%defattr(-,root,root,-)
+%{_includedir}/libavutil/*
+%{_libdir}/libavutil.so
+%{_libdir}/pkgconfig/libavutil.pc
+
+%files -n libavfilter-devel
+%defattr(-,root,root,-)
+%{_includedir}/libavfilter/*
+%{_libdir}/libavfilter.so
+%{_libdir}/pkgconfig/libavfilter.pc
+
+%files -n libswscale-devel
+%defattr(-,root,root,-)
+%{_includedir}/libswscale/*
+%{_libdir}/libswscale.so
+%{_libdir}/pkgconfig/libswscale.pc
+
+%files -n libswresample-devel
+%defattr(-,root,root,-)
+%{_includedir}/libswresample/*
+%{_libdir}/libswresample.so
+%{_libdir}/pkgconfig/libswresample.pc

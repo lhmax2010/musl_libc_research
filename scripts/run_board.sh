@@ -26,7 +26,7 @@ say() {
 }
 
 remote_capture() {
-    sdb shell "$1" | tr -d '\r'
+    sdb shell "$1" </dev/null | tr -d '\r'
 }
 
 run_remote() {

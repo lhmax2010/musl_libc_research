@@ -1,0 +1,11 @@
+frozen_commit=c15459c9fc8976827db7eaac643e84db2d1ea534
+declared_patch_count=0
+prep_patch_apply_count=0
+actual_patch_apply_count=0
+declared_begin
+declared_end
+prep_apply_begin
+prep_apply_end
+actual_begin
+actual_end
+patch_consistency=PASS

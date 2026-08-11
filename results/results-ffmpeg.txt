@@ -1,0 +1,1427 @@
+192.168.108.26:26101 is already connected
+### environment
+measurement.target=192.168.108.26
+measurement.sdb_serial=192.168.108.26:26101
+measurement.start_utc=2026-08-11T09:29:55Z
+measurement.decode_reps=10
+measurement.startup_reps=30
+measurement.mem_reps=3
+measurement.cooldown_seconds=30
+measurement.temperature_limit_c=65
+measurement.sample_sentinel=required
+clip.frozen_name=cabi.mp4
+clip.frozen_sha256=f58743eaba12f47320c4d8ea0ea7f9418b91728335c74df0c352d9730f63dd48
+decode.command.template=ffmpeg.Fx -nostdin -hide_banner -v info -c:v h264 -i /opt/usr/ffmpeg-demo/data/testclip.mp4 -map 0:v:0 -an -t 30 -f null - -benchmark
+memory.command.template=ffmpeg.Fx -nostdin -hide_banner -v info -re -c:v h264 -i /opt/usr/ffmpeg-demo/data/testclip.mp4 -map 0:v:0 -an -t 30 -f null - -benchmark
+configure.commands.sha256=09fef93ba2c10916c0b466c9963bda989ca1133f477902688e98efd207a68deb
+configure.equivalence.sha256=cf33e6d52cf1da3418fe2a83ec2552bb6e5cde73c7e17bc6332628375c3e95b2
+Linux localhost 6.12.80-arm-rpi4-v7l #1 SMP Tue Jul 28 02:41:25 UTC 2026 armv7l GNU/Linux
+loadavg.before=0.10 0.07 0.06 1/434 4351
+clip.board_sha256=f58743eaba12f47320c4d8ea0ea7f9418b91728335c74df0c352d9730f63dd48
+binary.ffmpeg.F1=present
+binary.ffmpeg.F2=present
+binary.ffmpeg.F3=present
+binary.timer=present
+residual.before=NONE
+### governor
+governor.cpu0=performance
+governor.cpu1=performance
+governor.cpu2=performance
+governor.cpu3=performance
+### decode benchmark: 30-second H.264 window
+temperature.decode.1.before.raw=33589
+frequency.decode.1.before.cpu0.cur=1500000,max=1500000
+frequency.decode.1.before.cpu1.cur=1500000,max=1500000
+frequency.decode.1.before.cpu2.cur=1500000,max=1500000
+frequency.decode.1.before.cpu3.cur=1500000,max=1500000
+decode_round,1,order=F1 F2 F3
+decode_output_begin,round=1,variant=F1
+[0;35m[aist#0:0/aac @ 0x18ef7d0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  202 fps=0.0 q=-0.0 size=N/A time=00:00:06.73 bitrate=N/A speed=13.4x elapsed=0:00:00.50    frame=  371 fps=371 q=-0.0 size=N/A time=00:00:12.36 bitrate=N/A speed=12.4x elapsed=0:00:01.00    frame=  538 fps=358 q=-0.0 size=N/A time=00:00:17.93 bitrate=N/A speed=11.9x elapsed=0:00:01.50    frame=  705 fps=352 q=-0.0 size=N/A time=00:00:23.50 bitrate=N/A speed=11.7x elapsed=0:00:02.00    frame=  890 fps=356 q=-0.0 size=N/A time=00:00:29.66 bitrate=N/A speed=11.9x elapsed=0:00:02.50    [1;35m[out#0/null @ 0x18f2360] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=355 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=11.8x elapsed=0:00:02.53    
+bench: utime=6.886s stime=0.365s rtime=2.537s
+bench: maxrss=26620KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=1,variant=F1
+decode_metric,1,F1,6.886,0.365,2.537,26620
+decode_output_begin,round=1,variant=F2
+[0;35m[aist#0:0/aac @ 0xb6f60dd0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  199 fps=0.0 q=-0.0 size=N/A time=00:00:06.73 bitrate=N/A speed=13.4x elapsed=0:00:00.50    frame=  381 fps=380 q=-0.0 size=N/A time=00:00:12.70 bitrate=N/A speed=12.7x elapsed=0:00:01.00    frame=  565 fps=376 q=-0.0 size=N/A time=00:00:18.83 bitrate=N/A speed=12.5x elapsed=0:00:01.50    frame=  740 fps=369 q=-0.0 size=N/A time=00:00:24.66 bitrate=N/A speed=12.3x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xb6fed970] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=372 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.4x elapsed=0:00:02.41    
+bench: utime=6.724s stime=0.622s rtime=2.418s
+bench: maxrss=25216KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=1,variant=F2
+decode_metric,1,F2,6.724,0.622,2.418,25216
+decode_output_begin,round=1,variant=F3
+[0;35m[aist#0:0/aac @ 0xaed16240] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  202 fps=0.0 q=-0.0 size=N/A time=00:00:06.73 bitrate=N/A speed=13.5x elapsed=0:00:00.50    frame=  387 fps=386 q=-0.0 size=N/A time=00:00:12.90 bitrate=N/A speed=12.9x elapsed=0:00:01.00    frame=  573 fps=382 q=-0.0 size=N/A time=00:00:19.10 bitrate=N/A speed=12.7x elapsed=0:00:01.50    frame=  745 fps=372 q=-0.0 size=N/A time=00:00:24.83 bitrate=N/A speed=12.4x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xaec48700] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=373 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.4x elapsed=0:00:02.41    
+bench: utime=6.861s stime=0.284s rtime=2.411s
+bench: maxrss=28300KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=1,variant=F3
+decode_metric,1,F3,6.861,0.284,2.411,28300
+frequency.decode.1.after.cpu0.cur=1500000,max=1500000
+frequency.decode.1.after.cpu1.cur=1500000,max=1500000
+frequency.decode.1.after.cpu2.cur=1500000,max=1500000
+frequency.decode.1.after.cpu3.cur=1500000,max=1500000
+decode_round_median_utime,1,6.861
+decode_valid,1,valid_index=1
+decode_cooldown_after_attempt.1=30
+temperature.decode.2.before.raw=33102
+frequency.decode.2.before.cpu0.cur=1500000,max=1500000
+frequency.decode.2.before.cpu1.cur=1500000,max=1500000
+frequency.decode.2.before.cpu2.cur=1500000,max=1500000
+frequency.decode.2.before.cpu3.cur=1500000,max=1500000
+decode_round,2,order=F2 F3 F1
+decode_output_begin,round=2,variant=F2
+[0;35m[aist#0:0/aac @ 0xb6ebddd0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  206 fps=0.0 q=-0.0 size=N/A time=00:00:06.86 bitrate=N/A speed=13.7x elapsed=0:00:00.50    frame=  387 fps=387 q=-0.0 size=N/A time=00:00:12.90 bitrate=N/A speed=12.9x elapsed=0:00:01.00    frame=  563 fps=375 q=-0.0 size=N/A time=00:00:18.76 bitrate=N/A speed=12.5x elapsed=0:00:01.50    frame=  739 fps=369 q=-0.0 size=N/A time=00:00:24.63 bitrate=N/A speed=12.3x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xb6f4a970] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=370 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.3x elapsed=0:00:02.43    
+bench: utime=6.882s stime=0.440s rtime=2.434s
+bench: maxrss=25356KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=2,variant=F2
+decode_metric,2,F2,6.882,0.440,2.434,25356
+decode_output_begin,round=2,variant=F3
+[0;35m[aist#0:0/aac @ 0xaed16240] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  190 fps=0.0 q=-0.0 size=N/A time=00:00:06.33 bitrate=N/A speed=12.7x elapsed=0:00:00.50    frame=  369 fps=369 q=-0.0 size=N/A time=00:00:12.30 bitrate=N/A speed=12.3x elapsed=0:00:01.00    frame=  554 fps=369 q=-0.0 size=N/A time=00:00:18.46 bitrate=N/A speed=12.3x elapsed=0:00:01.50    frame=  723 fps=361 q=-0.0 size=N/A time=00:00:24.13 bitrate=N/A speed=12.1x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xaec48700] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=363 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.1x elapsed=0:00:02.48    
+bench: utime=6.923s stime=0.390s rtime=2.483s
+bench: maxrss=28908KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=2,variant=F3
+decode_metric,2,F3,6.923,0.390,2.483,28908
+decode_output_begin,round=2,variant=F1
+[0;35m[aist#0:0/aac @ 0x20ea7d0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  206 fps=0.0 q=-0.0 size=N/A time=00:00:06.86 bitrate=N/A speed=13.7x elapsed=0:00:00.50    frame=  382 fps=382 q=-0.0 size=N/A time=00:00:12.73 bitrate=N/A speed=12.7x elapsed=0:00:01.00    frame=  565 fps=376 q=-0.0 size=N/A time=00:00:18.83 bitrate=N/A speed=12.5x elapsed=0:00:01.50    frame=  739 fps=369 q=-0.0 size=N/A time=00:00:24.63 bitrate=N/A speed=12.3x elapsed=0:00:02.00    [1;35m[out#0/null @ 0x20ed360] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=371 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.4x elapsed=0:00:02.42    
+bench: utime=6.770s stime=0.380s rtime=2.425s
+bench: maxrss=26840KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=2,variant=F1
+decode_metric,2,F1,6.770,0.380,2.425,26840
+frequency.decode.2.after.cpu0.cur=1500000,max=1500000
+frequency.decode.2.after.cpu1.cur=1500000,max=1500000
+frequency.decode.2.after.cpu2.cur=1500000,max=1500000
+frequency.decode.2.after.cpu3.cur=1500000,max=1500000
+decode_round_median_utime,2,6.882
+decode_valid,2,valid_index=2
+decode_cooldown_after_attempt.2=30
+temperature.decode.3.before.raw=33589
+frequency.decode.3.before.cpu0.cur=1500000,max=1500000
+frequency.decode.3.before.cpu1.cur=1500000,max=1500000
+frequency.decode.3.before.cpu2.cur=1500000,max=1500000
+frequency.decode.3.before.cpu3.cur=1500000,max=1500000
+decode_round,3,order=F3 F1 F2
+decode_output_begin,round=3,variant=F3
+[0;35m[aist#0:0/aac @ 0xaed16240] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  202 fps=0.0 q=-0.0 size=N/A time=00:00:06.73 bitrate=N/A speed=13.4x elapsed=0:00:00.50    frame=  380 fps=380 q=-0.0 size=N/A time=00:00:12.66 bitrate=N/A speed=12.7x elapsed=0:00:01.00    frame=  565 fps=376 q=-0.0 size=N/A time=00:00:18.83 bitrate=N/A speed=12.5x elapsed=0:00:01.50    frame=  740 fps=370 q=-0.0 size=N/A time=00:00:24.66 bitrate=N/A speed=12.3x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xaec48700] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=369 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.3x elapsed=0:00:02.43    
+bench: utime=6.940s stime=0.362s rtime=2.440s
+bench: maxrss=28812KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=3,variant=F3
+decode_metric,3,F3,6.940,0.362,2.440,28812
+decode_output_begin,round=3,variant=F1
+[0;35m[aist#0:0/aac @ 0x1f4f7d0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  207 fps=0.0 q=-0.0 size=N/A time=00:00:06.90 bitrate=N/A speed=13.8x elapsed=0:00:00.50    frame=  390 fps=390 q=-0.0 size=N/A time=00:00:13.00 bitrate=N/A speed=  13x elapsed=0:00:01.00    frame=  550 fps=366 q=-0.0 size=N/A time=00:00:18.33 bitrate=N/A speed=12.2x elapsed=0:00:01.50    frame=  709 fps=354 q=-0.0 size=N/A time=00:00:23.63 bitrate=N/A speed=11.8x elapsed=0:00:02.00    frame=  888 fps=355 q=-0.0 size=N/A time=00:00:29.60 bitrate=N/A speed=11.8x elapsed=0:00:02.50    [1;35m[out#0/null @ 0x1f52360] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=354 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=11.8x elapsed=0:00:02.54    
+bench: utime=6.954s stime=0.329s rtime=2.541s
+bench: maxrss=25904KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=3,variant=F1
+decode_metric,3,F1,6.954,0.329,2.541,25904
+decode_output_begin,round=3,variant=F2
+[0;35m[aist#0:0/aac @ 0xb6eb6dd0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  208 fps=0.0 q=-0.0 size=N/A time=00:00:06.93 bitrate=N/A speed=13.8x elapsed=0:00:00.50    frame=  392 fps=391 q=-0.0 size=N/A time=00:00:13.06 bitrate=N/A speed=  13x elapsed=0:00:01.00    frame=  589 fps=392 q=-0.0 size=N/A time=00:00:19.63 bitrate=N/A speed=13.1x elapsed=0:00:01.50    frame=  747 fps=373 q=-0.0 size=N/A time=00:00:24.90 bitrate=N/A speed=12.4x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xb6f43970] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=376 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.5x elapsed=0:00:02.39    
+bench: utime=6.714s stime=0.430s rtime=2.393s
+bench: maxrss=24524KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=3,variant=F2
+decode_metric,3,F2,6.714,0.430,2.393,24524
+frequency.decode.3.after.cpu0.cur=1500000,max=1500000
+frequency.decode.3.after.cpu1.cur=1500000,max=1500000
+frequency.decode.3.after.cpu2.cur=1500000,max=1500000
+frequency.decode.3.after.cpu3.cur=1500000,max=1500000
+decode_round_median_utime,3,6.940
+decode_valid,3,valid_index=3
+decode_cooldown_after_attempt.3=30
+temperature.decode.4.before.raw=34076
+frequency.decode.4.before.cpu0.cur=1500000,max=1500000
+frequency.decode.4.before.cpu1.cur=1500000,max=1500000
+frequency.decode.4.before.cpu2.cur=1500000,max=1500000
+frequency.decode.4.before.cpu3.cur=1500000,max=1500000
+decode_round,4,order=F1 F2 F3
+decode_output_begin,round=4,variant=F1
+[0;35m[aist#0:0/aac @ 0x10d87d0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  209 fps=0.0 q=-0.0 size=N/A time=00:00:06.96 bitrate=N/A speed=13.9x elapsed=0:00:00.50    frame=  401 fps=401 q=-0.0 size=N/A time=00:00:13.36 bitrate=N/A speed=13.4x elapsed=0:00:01.00    frame=  586 fps=391 q=-0.0 size=N/A time=00:00:19.53 bitrate=N/A speed=  13x elapsed=0:00:01.50    frame=  760 fps=379 q=-0.0 size=N/A time=00:00:25.33 bitrate=N/A speed=12.6x elapsed=0:00:02.00    [1;35m[out#0/null @ 0x10db360] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=377 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.6x elapsed=0:00:02.38    
+bench: utime=6.718s stime=0.362s rtime=2.389s
+bench: maxrss=26420KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=4,variant=F1
+decode_metric,4,F1,6.718,0.362,2.389,26420
+decode_output_begin,round=4,variant=F2
+[0;35m[aist#0:0/aac @ 0xb6f6cdd0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  204 fps=0.0 q=-0.0 size=N/A time=00:00:06.80 bitrate=N/A speed=13.6x elapsed=0:00:00.50    frame=  392 fps=392 q=-0.0 size=N/A time=00:00:13.06 bitrate=N/A speed=13.1x elapsed=0:00:01.00    frame=  573 fps=382 q=-0.0 size=N/A time=00:00:19.10 bitrate=N/A speed=12.7x elapsed=0:00:01.50    frame=  742 fps=371 q=-0.0 size=N/A time=00:00:24.73 bitrate=N/A speed=12.4x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xb6ff9970] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=372 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.4x elapsed=0:00:02.41    
+bench: utime=6.749s stime=0.485s rtime=2.418s
+bench: maxrss=25356KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=4,variant=F2
+decode_metric,4,F2,6.749,0.485,2.418,25356
+decode_output_begin,round=4,variant=F3
+[0;35m[aist#0:0/aac @ 0xaed16240] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  185 fps=0.0 q=-0.0 size=N/A time=00:00:06.16 bitrate=N/A speed=12.1x elapsed=0:00:00.51    frame=  347 fps=343 q=-0.0 size=N/A time=00:00:11.56 bitrate=N/A speed=11.4x elapsed=0:00:01.01    frame=  539 fps=357 q=-0.0 size=N/A time=00:00:17.96 bitrate=N/A speed=11.9x elapsed=0:00:01.51    frame=  712 fps=354 q=-0.0 size=N/A time=00:00:23.73 bitrate=N/A speed=11.8x elapsed=0:00:02.01    frame=  890 fps=354 q=-0.0 size=N/A time=00:00:29.66 bitrate=N/A speed=11.8x elapsed=0:00:02.51    [1;35m[out#0/null @ 0xaec48700] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=352 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=11.7x elapsed=0:00:02.55    
+bench: utime=6.905s stime=0.367s rtime=2.555s
+bench: maxrss=28964KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=4,variant=F3
+decode_metric,4,F3,6.905,0.367,2.555,28964
+frequency.decode.4.after.cpu0.cur=1500000,max=1500000
+frequency.decode.4.after.cpu1.cur=1500000,max=1500000
+frequency.decode.4.after.cpu2.cur=1500000,max=1500000
+frequency.decode.4.after.cpu3.cur=1500000,max=1500000
+decode_round_median_utime,4,6.749
+decode_valid,4,valid_index=4
+decode_cooldown_after_attempt.4=30
+temperature.decode.5.before.raw=34076
+frequency.decode.5.before.cpu0.cur=1500000,max=1500000
+frequency.decode.5.before.cpu1.cur=1500000,max=1500000
+frequency.decode.5.before.cpu2.cur=1500000,max=1500000
+frequency.decode.5.before.cpu3.cur=1500000,max=1500000
+decode_round,5,order=F2 F3 F1
+decode_output_begin,round=5,variant=F2
+[0;35m[aist#0:0/aac @ 0xb6ee3dd0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  198 fps=0.0 q=-0.0 size=N/A time=00:00:06.60 bitrate=N/A speed=13.2x elapsed=0:00:00.50    frame=  372 fps=372 q=-0.0 size=N/A time=00:00:12.40 bitrate=N/A speed=12.4x elapsed=0:00:01.00    frame=  560 fps=372 q=-0.0 size=N/A time=00:00:18.66 bitrate=N/A speed=12.4x elapsed=0:00:01.50    frame=  735 fps=366 q=-0.0 size=N/A time=00:00:24.50 bitrate=N/A speed=12.2x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xb6f70970] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=365 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.2x elapsed=0:00:02.46    
+bench: utime=6.755s stime=0.485s rtime=2.466s
+bench: maxrss=23640KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=5,variant=F2
+decode_metric,5,F2,6.755,0.485,2.466,23640
+decode_output_begin,round=5,variant=F3
+[0;35m[aist#0:0/aac @ 0xaed16240] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  196 fps=0.0 q=-0.0 size=N/A time=00:00:06.53 bitrate=N/A speed=13.1x elapsed=0:00:00.50    frame=  373 fps=373 q=-0.0 size=N/A time=00:00:12.43 bitrate=N/A speed=12.4x elapsed=0:00:01.00    frame=  565 fps=377 q=-0.0 size=N/A time=00:00:18.83 bitrate=N/A speed=12.6x elapsed=0:00:01.50    frame=  741 fps=370 q=-0.0 size=N/A time=00:00:24.70 bitrate=N/A speed=12.3x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xaec48700] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=370 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.3x elapsed=0:00:02.43    
+bench: utime=6.819s stime=0.383s rtime=2.432s
+bench: maxrss=28204KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=5,variant=F3
+decode_metric,5,F3,6.819,0.383,2.432,28204
+decode_output_begin,round=5,variant=F1
+[0;35m[aist#0:0/aac @ 0xbf87d0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  201 fps=0.0 q=-0.0 size=N/A time=00:00:06.70 bitrate=N/A speed=13.4x elapsed=0:00:00.50    frame=  380 fps=379 q=-0.0 size=N/A time=00:00:12.66 bitrate=N/A speed=12.6x elapsed=0:00:01.00    frame=  574 fps=381 q=-0.0 size=N/A time=00:00:19.13 bitrate=N/A speed=12.7x elapsed=0:00:01.50    frame=  715 fps=357 q=-0.0 size=N/A time=00:00:23.83 bitrate=N/A speed=11.9x elapsed=0:00:02.00    frame=  890 fps=355 q=-0.0 size=N/A time=00:00:29.66 bitrate=N/A speed=11.8x elapsed=0:00:02.50    [1;35m[out#0/null @ 0xbfb360] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=355 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=11.8x elapsed=0:00:02.53    
+bench: utime=6.895s stime=0.352s rtime=2.534s
+bench: maxrss=26392KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=5,variant=F1
+decode_metric,5,F1,6.895,0.352,2.534,26392
+frequency.decode.5.after.cpu0.cur=1500000,max=1500000
+frequency.decode.5.after.cpu1.cur=1500000,max=1500000
+frequency.decode.5.after.cpu2.cur=1500000,max=1500000
+frequency.decode.5.after.cpu3.cur=1500000,max=1500000
+decode_round_median_utime,5,6.819
+decode_valid,5,valid_index=5
+decode_cooldown_after_attempt.5=30
+temperature.decode.6.before.raw=34563
+frequency.decode.6.before.cpu0.cur=1500000,max=1500000
+frequency.decode.6.before.cpu1.cur=1500000,max=1500000
+frequency.decode.6.before.cpu2.cur=1500000,max=1500000
+frequency.decode.6.before.cpu3.cur=1500000,max=1500000
+decode_round,6,order=F3 F1 F2
+decode_output_begin,round=6,variant=F3
+[0;35m[aist#0:0/aac @ 0xaed16240] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  206 fps=0.0 q=-0.0 size=N/A time=00:00:06.86 bitrate=N/A speed=13.7x elapsed=0:00:00.50    frame=  387 fps=387 q=-0.0 size=N/A time=00:00:12.90 bitrate=N/A speed=12.9x elapsed=0:00:01.00    frame=  565 fps=376 q=-0.0 size=N/A time=00:00:18.83 bitrate=N/A speed=12.5x elapsed=0:00:01.50    frame=  738 fps=368 q=-0.0 size=N/A time=00:00:24.60 bitrate=N/A speed=12.3x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xaec48700] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=370 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.3x elapsed=0:00:02.43    
+bench: utime=6.930s stime=0.345s rtime=2.431s
+bench: maxrss=29056KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=6,variant=F3
+decode_metric,6,F3,6.930,0.345,2.431,29056
+decode_output_begin,round=6,variant=F1
+[0;35m[aist#0:0/aac @ 0xd577d0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  203 fps=0.0 q=-0.0 size=N/A time=00:00:06.76 bitrate=N/A speed=13.5x elapsed=0:00:00.50    frame=  386 fps=386 q=-0.0 size=N/A time=00:00:12.86 bitrate=N/A speed=12.9x elapsed=0:00:01.00    frame=  572 fps=380 q=-0.0 size=N/A time=00:00:19.06 bitrate=N/A speed=12.7x elapsed=0:00:01.50    frame=  737 fps=368 q=-0.0 size=N/A time=00:00:24.56 bitrate=N/A speed=12.3x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xd5a360] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=370 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.3x elapsed=0:00:02.43    
+bench: utime=6.785s stime=0.417s rtime=2.434s
+bench: maxrss=26184KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=6,variant=F1
+decode_metric,6,F1,6.785,0.417,2.434,26184
+decode_output_begin,round=6,variant=F2
+[0;35m[aist#0:0/aac @ 0xb6eb2dd0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  199 fps=0.0 q=-0.0 size=N/A time=00:00:06.63 bitrate=N/A speed=13.3x elapsed=0:00:00.50    frame=  379 fps=379 q=-0.0 size=N/A time=00:00:12.63 bitrate=N/A speed=12.6x elapsed=0:00:01.00    frame=  564 fps=376 q=-0.0 size=N/A time=00:00:18.80 bitrate=N/A speed=12.5x elapsed=0:00:01.50    frame=  735 fps=367 q=-0.0 size=N/A time=00:00:24.50 bitrate=N/A speed=12.2x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xb6f3f970] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=366 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.2x elapsed=0:00:02.46    
+bench: utime=6.843s stime=0.465s rtime=2.461s
+bench: maxrss=24984KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=6,variant=F2
+decode_metric,6,F2,6.843,0.465,2.461,24984
+frequency.decode.6.after.cpu0.cur=1500000,max=1500000
+frequency.decode.6.after.cpu1.cur=1500000,max=1500000
+frequency.decode.6.after.cpu2.cur=1500000,max=1500000
+frequency.decode.6.after.cpu3.cur=1500000,max=1500000
+decode_round_median_utime,6,6.843
+decode_valid,6,valid_index=6
+decode_cooldown_after_attempt.6=30
+temperature.decode.7.before.raw=34563
+frequency.decode.7.before.cpu0.cur=1500000,max=1500000
+frequency.decode.7.before.cpu1.cur=1500000,max=1500000
+frequency.decode.7.before.cpu2.cur=1500000,max=1500000
+frequency.decode.7.before.cpu3.cur=1500000,max=1500000
+decode_round,7,order=F1 F2 F3
+decode_output_begin,round=7,variant=F1
+[0;35m[aist#0:0/aac @ 0x1c457d0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  167 fps=0.0 q=-0.0 size=N/A time=00:00:05.56 bitrate=N/A speed=  11x elapsed=0:00:00.50    frame=  332 fps=331 q=-0.0 size=N/A time=00:00:11.06 bitrate=N/A speed=  11x elapsed=0:00:01.00    frame=  516 fps=343 q=-0.0 size=N/A time=00:00:17.33 bitrate=N/A speed=11.5x elapsed=0:00:01.50    frame=  699 fps=349 q=-0.0 size=N/A time=00:00:23.30 bitrate=N/A speed=11.6x elapsed=0:00:02.00    frame=  869 fps=347 q=-0.0 size=N/A time=00:00:28.93 bitrate=N/A speed=11.6x elapsed=0:00:02.50    [1;35m[out#0/null @ 0x1c48360] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=347 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=11.6x elapsed=0:00:02.59    
+bench: utime=7.035s stime=0.378s rtime=2.598s
+bench: maxrss=26872KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=7,variant=F1
+decode_metric,7,F1,7.035,0.378,2.598,26872
+decode_output_begin,round=7,variant=F2
+[0;35m[aist#0:0/aac @ 0xb6f4add0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  199 fps=0.0 q=-0.0 size=N/A time=00:00:06.63 bitrate=N/A speed=13.3x elapsed=0:00:00.50    frame=  373 fps=373 q=-0.0 size=N/A time=00:00:12.43 bitrate=N/A speed=12.4x elapsed=0:00:01.00    frame=  560 fps=373 q=-0.0 size=N/A time=00:00:18.70 bitrate=N/A speed=12.5x elapsed=0:00:01.50    frame=  725 fps=362 q=-0.0 size=N/A time=00:00:24.16 bitrate=N/A speed=12.1x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xb6fd7970] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=364 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.1x elapsed=0:00:02.47    
+bench: utime=6.722s stime=0.509s rtime=2.474s
+bench: maxrss=23696KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=7,variant=F2
+decode_metric,7,F2,6.722,0.509,2.474,23696
+decode_output_begin,round=7,variant=F3
+[0;35m[aist#0:0/aac @ 0xaed16240] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  209 fps=0.0 q=-0.0 size=N/A time=00:00:06.96 bitrate=N/A speed=13.9x elapsed=0:00:00.50    frame=  399 fps=399 q=-0.0 size=N/A time=00:00:13.30 bitrate=N/A speed=13.3x elapsed=0:00:01.00    frame=  585 fps=390 q=-0.0 size=N/A time=00:00:19.50 bitrate=N/A speed=  13x elapsed=0:00:01.50    frame=  752 fps=376 q=-0.0 size=N/A time=00:00:25.06 bitrate=N/A speed=12.5x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xaec48700] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=375 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.5x elapsed=0:00:02.39    
+bench: utime=6.845s stime=0.316s rtime=2.399s
+bench: maxrss=28040KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=7,variant=F3
+decode_metric,7,F3,6.845,0.316,2.399,28040
+frequency.decode.7.after.cpu0.cur=1500000,max=1500000
+frequency.decode.7.after.cpu1.cur=1500000,max=1500000
+frequency.decode.7.after.cpu2.cur=1500000,max=1500000
+frequency.decode.7.after.cpu3.cur=1500000,max=1500000
+decode_round_median_utime,7,6.845
+decode_valid,7,valid_index=7
+decode_cooldown_after_attempt.7=30
+temperature.decode.8.before.raw=35050
+frequency.decode.8.before.cpu0.cur=1500000,max=1500000
+frequency.decode.8.before.cpu1.cur=1500000,max=1500000
+frequency.decode.8.before.cpu2.cur=1500000,max=1500000
+frequency.decode.8.before.cpu3.cur=1500000,max=1500000
+decode_round,8,order=F2 F3 F1
+decode_output_begin,round=8,variant=F2
+[0;35m[aist#0:0/aac @ 0xb6f4add0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  200 fps=0.0 q=-0.0 size=N/A time=00:00:06.66 bitrate=N/A speed=13.3x elapsed=0:00:00.50    frame=  382 fps=381 q=-0.0 size=N/A time=00:00:12.73 bitrate=N/A speed=12.7x elapsed=0:00:01.00    frame=  562 fps=374 q=-0.0 size=N/A time=00:00:18.73 bitrate=N/A speed=12.5x elapsed=0:00:01.50    frame=  699 fps=349 q=-0.0 size=N/A time=00:00:23.30 bitrate=N/A speed=11.6x elapsed=0:00:02.00    frame=  883 fps=353 q=-0.0 size=N/A time=00:00:29.43 bitrate=N/A speed=11.8x elapsed=0:00:02.50    [1;35m[out#0/null @ 0xb6fd7970] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=352 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=11.7x elapsed=0:00:02.55    
+bench: utime=6.916s stime=0.496s rtime=2.555s
+bench: maxrss=24640KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=8,variant=F2
+decode_metric,8,F2,6.916,0.496,2.555,24640
+decode_output_begin,round=8,variant=F3
+[0;35m[aist#0:0/aac @ 0xaed16240] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  204 fps=0.0 q=-0.0 size=N/A time=00:00:06.80 bitrate=N/A speed=13.5x elapsed=0:00:00.50    frame=  388 fps=387 q=-0.0 size=N/A time=00:00:12.93 bitrate=N/A speed=12.9x elapsed=0:00:01.00    frame=  579 fps=385 q=-0.0 size=N/A time=00:00:19.30 bitrate=N/A speed=12.8x elapsed=0:00:01.50    frame=  744 fps=371 q=-0.0 size=N/A time=00:00:24.80 bitrate=N/A speed=12.4x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xaec48700] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=372 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.4x elapsed=0:00:02.42    
+bench: utime=6.805s stime=0.401s rtime=2.422s
+bench: maxrss=28972KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=8,variant=F3
+decode_metric,8,F3,6.805,0.401,2.422,28972
+decode_output_begin,round=8,variant=F1
+[0;35m[aist#0:0/aac @ 0x7e07d0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  206 fps=0.0 q=-0.0 size=N/A time=00:00:06.86 bitrate=N/A speed=13.7x elapsed=0:00:00.50    frame=  370 fps=370 q=-0.0 size=N/A time=00:00:12.33 bitrate=N/A speed=12.3x elapsed=0:00:01.00    frame=  555 fps=370 q=-0.0 size=N/A time=00:00:18.50 bitrate=N/A speed=12.3x elapsed=0:00:01.50    frame=  730 fps=365 q=-0.0 size=N/A time=00:00:24.30 bitrate=N/A speed=12.1x elapsed=0:00:02.00    [1;35m[out#0/null @ 0x7e3360] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=366 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.2x elapsed=0:00:02.45    
+bench: utime=6.928s stime=0.254s rtime=2.459s
+bench: maxrss=26940KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=8,variant=F1
+decode_metric,8,F1,6.928,0.254,2.459,26940
+frequency.decode.8.after.cpu0.cur=1500000,max=1500000
+frequency.decode.8.after.cpu1.cur=1500000,max=1500000
+frequency.decode.8.after.cpu2.cur=1500000,max=1500000
+frequency.decode.8.after.cpu3.cur=1500000,max=1500000
+decode_round_median_utime,8,6.916
+decode_valid,8,valid_index=8
+decode_cooldown_after_attempt.8=30
+temperature.decode.9.before.raw=34563
+frequency.decode.9.before.cpu0.cur=1500000,max=1500000
+frequency.decode.9.before.cpu1.cur=1500000,max=1500000
+frequency.decode.9.before.cpu2.cur=1500000,max=1500000
+frequency.decode.9.before.cpu3.cur=1500000,max=1500000
+decode_round,9,order=F3 F1 F2
+decode_output_begin,round=9,variant=F3
+[0;35m[aist#0:0/aac @ 0xaed16240] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  209 fps=0.0 q=-0.0 size=N/A time=00:00:06.96 bitrate=N/A speed=13.9x elapsed=0:00:00.50    frame=  395 fps=394 q=-0.0 size=N/A time=00:00:13.16 bitrate=N/A speed=13.1x elapsed=0:00:01.00    frame=  575 fps=383 q=-0.0 size=N/A time=00:00:19.20 bitrate=N/A speed=12.8x elapsed=0:00:01.50    frame=  747 fps=372 q=-0.0 size=N/A time=00:00:24.90 bitrate=N/A speed=12.4x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xaec48700] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=376 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.5x elapsed=0:00:02.39    
+bench: utime=6.853s stime=0.343s rtime=2.396s
+bench: maxrss=30740KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=9,variant=F3
+decode_metric,9,F3,6.853,0.343,2.396,30740
+decode_output_begin,round=9,variant=F1
+[0;35m[aist#0:0/aac @ 0xadf7d0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  192 fps=0.0 q=-0.0 size=N/A time=00:00:06.50 bitrate=N/A speed=  13x elapsed=0:00:00.50    frame=  349 fps=349 q=-0.0 size=N/A time=00:00:11.63 bitrate=N/A speed=11.6x elapsed=0:00:01.00    frame=  544 fps=362 q=-0.0 size=N/A time=00:00:18.13 bitrate=N/A speed=12.1x elapsed=0:00:01.50    frame=  713 fps=356 q=-0.0 size=N/A time=00:00:23.76 bitrate=N/A speed=11.9x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xae2360] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=362 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.1x elapsed=0:00:02.48    
+bench: utime=6.868s stime=0.392s rtime=2.486s
+bench: maxrss=25764KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=9,variant=F1
+decode_metric,9,F1,6.868,0.392,2.486,25764
+decode_output_begin,round=9,variant=F2
+[0;35m[aist#0:0/aac @ 0xb6f4edd0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  204 fps=0.0 q=-0.0 size=N/A time=00:00:06.90 bitrate=N/A speed=13.7x elapsed=0:00:00.50    frame=  392 fps=390 q=-0.0 size=N/A time=00:00:13.06 bitrate=N/A speed=  13x elapsed=0:00:01.00    frame=  579 fps=385 q=-0.0 size=N/A time=00:00:19.30 bitrate=N/A speed=12.8x elapsed=0:00:01.50    frame=  742 fps=370 q=-0.0 size=N/A time=00:00:24.80 bitrate=N/A speed=12.4x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xb6fdb970] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=369 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.3x elapsed=0:00:02.43    
+bench: utime=6.559s stime=0.651s rtime=2.438s
+bench: maxrss=25272KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=9,variant=F2
+decode_metric,9,F2,6.559,0.651,2.438,25272
+frequency.decode.9.after.cpu0.cur=1500000,max=1500000
+frequency.decode.9.after.cpu1.cur=1500000,max=1500000
+frequency.decode.9.after.cpu2.cur=1500000,max=1500000
+frequency.decode.9.after.cpu3.cur=1500000,max=1500000
+decode_round_median_utime,9,6.853
+decode_valid,9,valid_index=9
+decode_cooldown_after_attempt.9=30
+temperature.decode.10.before.raw=34076
+frequency.decode.10.before.cpu0.cur=1500000,max=1500000
+frequency.decode.10.before.cpu1.cur=1500000,max=1500000
+frequency.decode.10.before.cpu2.cur=1500000,max=1500000
+frequency.decode.10.before.cpu3.cur=1500000,max=1500000
+decode_round,10,order=F1 F2 F3
+decode_output_begin,round=10,variant=F1
+[0;35m[aist#0:0/aac @ 0xb4e7d0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  204 fps=0.0 q=-0.0 size=N/A time=00:00:06.80 bitrate=N/A speed=13.6x elapsed=0:00:00.50    frame=  390 fps=389 q=-0.0 size=N/A time=00:00:13.00 bitrate=N/A speed=  13x elapsed=0:00:01.00    frame=  571 fps=380 q=-0.0 size=N/A time=00:00:19.03 bitrate=N/A speed=12.7x elapsed=0:00:01.50    frame=  742 fps=370 q=-0.0 size=N/A time=00:00:24.73 bitrate=N/A speed=12.3x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xb51360] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=366 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.2x elapsed=0:00:02.46    
+bench: utime=6.792s stime=0.462s rtime=2.463s
+bench: maxrss=26800KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=10,variant=F1
+decode_metric,10,F1,6.792,0.462,2.463,26800
+decode_output_begin,round=10,variant=F2
+[0;35m[aist#0:0/aac @ 0xb6f6fdd0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  206 fps=0.0 q=-0.0 size=N/A time=00:00:06.86 bitrate=N/A speed=13.7x elapsed=0:00:00.50    frame=  396 fps=396 q=-0.0 size=N/A time=00:00:13.20 bitrate=N/A speed=13.2x elapsed=0:00:01.00    frame=  579 fps=386 q=-0.0 size=N/A time=00:00:19.30 bitrate=N/A speed=12.9x elapsed=0:00:01.50    frame=  739 fps=368 q=-0.0 size=N/A time=00:00:24.63 bitrate=N/A speed=12.3x elapsed=0:00:02.00    frame=  885 fps=353 q=-0.0 size=N/A time=00:00:29.50 bitrate=N/A speed=11.8x elapsed=0:00:02.50    [1;35m[out#0/null @ 0xb6ffc970] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=352 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=11.7x elapsed=0:00:02.55    
+bench: utime=6.799s stime=0.459s rtime=2.555s
+bench: maxrss=25484KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=10,variant=F2
+decode_metric,10,F2,6.799,0.459,2.555,25484
+decode_output_begin,round=10,variant=F3
+[0;35m[aist#0:0/aac @ 0xaed16240] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+frame=  211 fps=0.0 q=-0.0 size=N/A time=00:00:07.03 bitrate=N/A speed=14.1x elapsed=0:00:00.50    frame=  410 fps=410 q=-0.0 size=N/A time=00:00:13.66 bitrate=N/A speed=13.7x elapsed=0:00:01.00    frame=  604 fps=402 q=-0.0 size=N/A time=00:00:20.13 bitrate=N/A speed=13.4x elapsed=0:00:01.50    frame=  775 fps=387 q=-0.0 size=N/A time=00:00:25.83 bitrate=N/A speed=12.9x elapsed=0:00:02.00    [1;35m[out#0/null @ 0xaec48700] [0mvideo:253KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  900 fps=387 q=-0.0 Lsize=N/A time=00:00:30.00 bitrate=N/A speed=12.9x elapsed=0:00:02.32    
+bench: utime=6.613s stime=0.362s rtime=2.323s
+bench: maxrss=29004KiB
+decode_remote_rc=0
+sample_end=OK
+decode_output_end,round=10,variant=F3
+decode_metric,10,F3,6.613,0.362,2.323,29004
+frequency.decode.10.after.cpu0.cur=1500000,max=1500000
+frequency.decode.10.after.cpu1.cur=1500000,max=1500000
+frequency.decode.10.after.cpu2.cur=1500000,max=1500000
+frequency.decode.10.after.cpu3.cur=1500000,max=1500000
+decode_round_median_utime,10,6.792
+decode_valid,10,valid_index=10
+### startup triples
+temperature.startup.1.before.raw=37972
+frequency.startup.1.before.cpu0.cur=1500000,max=1500000
+frequency.startup.1.before.cpu1.cur=1500000,max=1500000
+frequency.startup.1.before.cpu2.cur=1500000,max=1500000
+frequency.startup.1.before.cpu3.cur=1500000,max=1500000
+MEASUREMENT_FAIL startup incomplete round=1 variant=F1

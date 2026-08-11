@@ -1,0 +1,5 @@
+strcoll=ABSENT
+iconv=PRESENT
+00182218 T iconv
+setlocale=ABSENT
+getaddrinfo=ABSENT

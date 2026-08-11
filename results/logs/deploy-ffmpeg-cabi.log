@@ -1,0 +1,389 @@
+bin/ffmpeg.F1: OK
+bin/ffmpeg.F1.gc: OK
+bin/ffmpeg.F2: OK
+bin/ffmpeg.F2.gc: OK
+bin/ffmpeg.F3: OK
+bin/ffmpeg.F3.gc: OK
+bin/timer: OK
+target=192.168.108.26
+rpm=/home/linhao/Toolchain/development/musl-libc-research/results/rpms/ffmpeg-musl-demo-8.0.1-1.armv7l.rpm
+rpm_sha256=daef87f36bdb6579db96eba4c570a893c9e3a6781508f7233e736274e3ef97da
+192.168.108.26:26101 is already connected
+sdb_serial=192.168.108.26:26101
+root_file_listing_begin
+/root/cabi.mp4
+/root/tensorflow2-lite-util-2.18.0-1.armv7l.rpm
+root_file_listing_end
+clip.source=/root/cabi.mp4
+clip.sha256=f58743eaba12f47320c4d8ea0ea7f9418b91728335c74df0c352d9730f63dd48
+WARNING: Your data are to be sent over an unencrypted connection and could be read by others.
+pushed ffmpeg-musl-demo-8.0.1-1.armv7l.rpm	  0%	      0KB	    0KB/spushed ffmpeg-musl-demo-8.0.1-1.armv7l.rpm	100%	   1526KB	    0KB/s
+1 file(s) pushed. 0 file(s) skipped.
+/home/linhao/Toolchain/development/musl-libc-research/results/rpms/ffmpeg-musl-demo-8.0.1-1.armv7l.rpm   5014KB/s (1563298 bytes in 0.304s)
+Preparing...                                                            (100%)#                                 (100%)##                                (100%)###                               (100%)####                              (100%)#####                             (100%)######                            (100%)#######                           (100%)########                          (100%)#########                         (100%)##########                        (100%)###########                       (100%)############                      (100%)#############                     (100%)##############                    (100%)###############                   (100%)################                  (100%)#################                 (100%)##################                (100%)###################               (100%)####################              (100%)#####################             (100%)######################            (100%)#######################           (100%)########################          (100%)#########################         (100%)##########################        (100%)###########################       (100%)############################      (100%)#############################     (100%)##############################    (100%)###############################   (100%)################################  (100%)################################# (100%)################################# [100%]
+Updating / installing...
+   1:ffmpeg-musl-demo-8.0.1-1                                           (  2%)#                                 (  5%)##                                (  8%)###                               ( 10%)####                              ( 13%)#####                             ( 16%)######                            ( 19%)#######                           ( 22%)########                          ( 25%)#########                         ( 28%)##########                        ( 31%)###########                       ( 34%)############                      ( 37%)#############                     ( 40%)##############                    ( 43%)###############                   ( 46%)################                  ( 49%)#################                 ( 51%)##################                ( 54%)###################               ( 57%)####################              ( 60%)#####################             ( 63%)######################            ( 66%)#######################           ( 69%)########################          ( 72%)#########################         ( 75%)##########################        ( 78%)###########################       ( 81%)############################      ( 84%)#############################     ( 87%)##############################    ( 90%)###############################   ( 93%)################################  ( 96%)################################# ( 99%)################################# [100%]
+bin/ffmpeg.F1: OK
+bin/ffmpeg.F1.gc: OK
+bin/ffmpeg.F2: OK
+bin/ffmpeg.F2.gc: OK
+bin/ffmpeg.F3: OK
+bin/ffmpeg.F3.gc: OK
+bin/timer: OK
+binary_hash_comparison=PASS
+/opt/usr/ffmpeg-demo/bin:
+User::Shell ffmpeg.F1	  User::Shell ffmpeg.F2.gc  User::Shell timer
+User::Shell ffmpeg.F1.gc  User::Shell ffmpeg.F3
+User::Shell ffmpeg.F2	  User::Shell ffmpeg.F3.gc
+
+/opt/usr/ffmpeg-demo/share:
+User::Shell artifacts.sha256
+User::Shell c8-ledger.txt
+User::Shell c8a-source-diff.txt
+User::Shell compiler-decision-ffmpeg.txt
+User::Shell configure-F1-baseline.txt
+User::Shell configure-F1-gc.txt
+User::Shell configure-F2-baseline.txt
+User::Shell configure-F2-gc.txt
+User::Shell configure-F3-baseline.txt
+User::Shell configure-F3-gc.txt
+User::Shell configure-equivalence.txt
+User::Shell ffmpeg-configure-commands.txt
+User::Shell ffmpeg.musl-mi.map
+User::Shell function-surface.txt
+User::Shell patch-consistency.txt
+User::Shell sizes-matrix.txt
+User::Shell tizen-ffmpeg-spec.orig
+f58743eaba12f47320c4d8ea0ea7f9418b91728335c74df0c352d9730f63dd48  /opt/usr/ffmpeg-demo/data/testclip.mp4
+clip.copy=/opt/usr/ffmpeg-demo/data/testclip.mp4
+clip_copy_hash_gate=PASS
+smoke.variant=F1
+ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+built with clang version 22.1.8
+configuration: --disable-everything --disable-autodetect --disable-doc --disable-network --disable-hwaccels --disable-v4l2-m2m --disable-mmal --disable-omx --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-demuxer=mov --enable-parser=h264 --enable-protocol=file --enable-ffmpeg --disable-ffprobe --disable-ffplay --disable-avdevice --enable-muxer=null --enable-encoder=wrapped_avframe --enable-filter=null --enable-pthreads --enable-neon --enable-static --disable-shared --disable-stripping --arch=arm --target-os=linux --prefix=/opt/usr/ffmpeg-demo --cc=clang --extra-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g -pthread' --extra-ldflags='--rtlib=libgcc -static-libgcc -pthread'
+libavutil      60.  8.100 / 60.  8.100
+libavcodec     62. 11.100 / 62. 11.100
+libavformat    62.  3.100 / 62.  3.100
+libavfilter    11.  4.100 / 11.  4.100
+libswscale      9.  1.100 /  9.  1.100
+libswresample   6.  1.100 /  6.  1.100
+
+Exiting with exit code 0
+decoders.F1.begin
+ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+  built with clang version 22.1.8
+  configuration: --disable-everything --disable-autodetect --disable-doc --disable-network --disable-hwaccels --disable-v4l2-m2m --disable-mmal --disable-omx --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-demuxer=mov --enable-parser=h264 --enable-protocol=file --enable-ffmpeg --disable-ffprobe --disable-ffplay --disable-avdevice --enable-muxer=null --enable-encoder=wrapped_avframe --enable-filter=null --enable-pthreads --enable-neon --enable-static --disable-shared --disable-stripping --arch=arm --target-os=linux --prefix=/opt/usr/ffmpeg-demo --cc=clang --extra-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g -pthread' --extra-ldflags='--rtlib=libgcc -static-libgcc -pthread'
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+Decoders:
+ V..... = Video
+ A..... = Audio
+ S..... = Subtitle
+ .F.... = Frame-level multithreading
+ ..S... = Slice-level multithreading
+ ...X.. = Codec is experimental
+ ....B. = Supports draw_horiz_band
+ .....D = Supports direct rendering method 1
+ ------
+ VFS..D h264                 H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10
+decoders.F1.end
+[0;35m[aist#0:0/aac @ 0x1ffb800] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+[1;35m[out#0/null @ 0x1ffe370] [0mvideo:0KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.03 bitrate=N/A speed=0.946x elapsed=0:00:00.03    
+smoke_remote_rc=0
+gate.smoke.F1=PASS decoder=h264 frames=1
+smoke.variant=F2
+ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+built with clang version 22.1.8
+configuration: --disable-everything --disable-autodetect --disable-doc --disable-network --disable-hwaccels --disable-v4l2-m2m --disable-mmal --disable-omx --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-demuxer=mov --enable-parser=h264 --enable-protocol=file --enable-ffmpeg --disable-ffprobe --disable-ffplay --disable-avdevice --enable-muxer=null --enable-encoder=wrapped_avframe --enable-filter=null --enable-pthreads --enable-neon --enable-static --disable-shared --disable-stripping --arch=arm --target-os=linux --prefix=/opt/usr/ffmpeg-demo --cc=/home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/musl-inst/bin/musl-clang --extra-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g -pthread -isystem /usr/lib/clang/22/include' --extra-ldflags='--rtlib=libgcc -static-libgcc -pthread -static' --host-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g' --host-ldflags=-static
+libavutil      60.  8.100 / 60.  8.100
+libavcodec     62. 11.100 / 62. 11.100
+libavformat    62.  3.100 / 62.  3.100
+libavfilter    11.  4.100 / 11.  4.100
+libswscale      9.  1.100 /  9.  1.100
+libswresample   6.  1.100 /  6.  1.100
+
+Exiting with exit code 0
+decoders.F2.begin
+ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+  built with clang version 22.1.8
+  configuration: --disable-everything --disable-autodetect --disable-doc --disable-network --disable-hwaccels --disable-v4l2-m2m --disable-mmal --disable-omx --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-demuxer=mov --enable-parser=h264 --enable-protocol=file --enable-ffmpeg --disable-ffprobe --disable-ffplay --disable-avdevice --enable-muxer=null --enable-encoder=wrapped_avframe --enable-filter=null --enable-pthreads --enable-neon --enable-static --disable-shared --disable-stripping --arch=arm --target-os=linux --prefix=/opt/usr/ffmpeg-demo --cc=/home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/musl-inst/bin/musl-clang --extra-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g -pthread -isystem /usr/lib/clang/22/include' --extra-ldflags='--rtlib=libgcc -static-libgcc -pthread -static' --host-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g' --host-ldflags=-static
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+Decoders:
+ V..... = Video
+ A..... = Audio
+ S..... = Subtitle
+ .F.... = Frame-level multithreading
+ ..S... = Slice-level multithreading
+ ...X.. = Codec is experimental
+ ....B. = Supports draw_horiz_band
+ .....D = Supports direct rendering method 1
+ ------
+ VFS..D h264                 H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10
+decoders.F2.end
+[0;35m[aist#0:0/aac @ 0xb6f3bdd0] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+[1;35m[out#0/null @ 0xb6fc8970] [0mvideo:0KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.03 bitrate=N/A speed=0.899x elapsed=0:00:00.03    
+smoke_remote_rc=0
+gate.smoke.F2=PASS decoder=h264 frames=1
+smoke.variant=F3
+ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+built with clang version 22.1.8
+configuration: --disable-everything --disable-autodetect --disable-doc --disable-network --disable-hwaccels --disable-v4l2-m2m --disable-mmal --disable-omx --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-demuxer=mov --enable-parser=h264 --enable-protocol=file --enable-ffmpeg --disable-ffprobe --disable-ffplay --disable-avdevice --enable-muxer=null --enable-encoder=wrapped_avframe --enable-filter=null --enable-pthreads --enable-neon --enable-static --disable-shared --disable-stripping --arch=arm --target-os=linux --prefix=/opt/usr/ffmpeg-demo --cc=/home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/musl-inst/bin/musl-clang --extra-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g -pthread -isystem /usr/lib/clang/22/include' --extra-ldflags='--rtlib=libgcc -static-libgcc -pthread -static -Wl,-Map,/home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/ffmpeg.F3.baseline.map' --extra-libs=/home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/mimalloc.o --host-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g' --host-ldflags=-static
+libavutil      60.  8.100 / 60.  8.100
+libavcodec     62. 11.100 / 62. 11.100
+libavformat    62.  3.100 / 62.  3.100
+libavfilter    11.  4.100 / 11.  4.100
+libswscale      9.  1.100 /  9.  1.100
+libswresample   6.  1.100 /  6.  1.100
+
+Exiting with exit code 0
+decoders.F3.begin
+ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+  built with clang version 22.1.8
+  configuration: --disable-everything --disable-autodetect --disable-doc --disable-network --disable-hwaccels --disable-v4l2-m2m --disable-mmal --disable-omx --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-demuxer=mov --enable-parser=h264 --enable-protocol=file --enable-ffmpeg --disable-ffprobe --disable-ffplay --disable-avdevice --enable-muxer=null --enable-encoder=wrapped_avframe --enable-filter=null --enable-pthreads --enable-neon --enable-static --disable-shared --disable-stripping --arch=arm --target-os=linux --prefix=/opt/usr/ffmpeg-demo --cc=/home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/musl-inst/bin/musl-clang --extra-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g -pthread -isystem /usr/lib/clang/22/include' --extra-ldflags='--rtlib=libgcc -static-libgcc -pthread -static -Wl,-Map,/home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/ffmpeg.F3.baseline.map' --extra-libs=/home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/mimalloc.o --host-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g' --host-ldflags=-static
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+Decoders:
+ V..... = Video
+ A..... = Audio
+ S..... = Subtitle
+ .F.... = Frame-level multithreading
+ ..S... = Slice-level multithreading
+ ...X.. = Codec is experimental
+ ....B. = Supports draw_horiz_band
+ .....D = Supports direct rendering method 1
+ ------
+ VFS..D h264                 H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10
+decoders.F3.end
+[0;35m[aist#0:0/aac @ 0xaed16240] [0m[0;33mGuessed Channel Layout: stereo
+[0mInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/opt/usr/ffmpeg-demo/data/testclip.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    creation_time   : 2012-02-14T03:27:52.000000Z
+  Duration: 00:04:30.74, start: 0.000000, bitrate: 2622 kb/s
+  Stream #0:0[0x1](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, 125 kb/s (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Video: h264 (Baseline) (avc1 / 0x31637661), yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], 2495 kb/s, 30 fps, 30 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: isommp42
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, progressive), 960x640 [SAR 1:1 DAR 3:2], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      creation_time   : 2012-02-14T03:27:52.000000Z
+      handler_name    : Mainconcept MP4 Video Media Handler
+      vendor_id       : [0][0][0][0]
+[1;35m[out#0/null @ 0xaec48700] [0mvideo:0KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.03 bitrate=N/A speed=0.854x elapsed=0:00:00.03    
+smoke_remote_rc=0
+gate.smoke.F3=PASS decoder=h264 frames=1
+banner.variant=F3 expected=present remote_rc=0
+stdout_begin
+ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+built with clang version 22.1.8
+configuration: --disable-everything --disable-autodetect --disable-doc --disable-network --disable-hwaccels --disable-v4l2-m2m --disable-mmal --disable-omx --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-demuxer=mov --enable-parser=h264 --enable-protocol=file --enable-ffmpeg --disable-ffprobe --disable-ffplay --disable-avdevice --enable-muxer=null --enable-encoder=wrapped_avframe --enable-filter=null --enable-pthreads --enable-neon --enable-static --disable-shared --disable-stripping --arch=arm --target-os=linux --prefix=/opt/usr/ffmpeg-demo --cc=/home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/musl-inst/bin/musl-clang --extra-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g -pthread -isystem /usr/lib/clang/22/include' --extra-ldflags='--rtlib=libgcc -static-libgcc -pthread -static -Wl,-Map,/home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/ffmpeg.F3.baseline.map' --extra-libs=/home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/mimalloc.o --host-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g' --host-ldflags=-static
+libavutil      60.  8.100 / 60.  8.100
+libavcodec     62. 11.100 / 62. 11.100
+libavformat    62.  3.100 / 62.  3.100
+libavfilter    11.  4.100 / 11.  4.100
+libswscale      9.  1.100 /  9.  1.100
+libswresample   6.  1.100 /  6.  1.100
+
+Exiting with exit code 0
+stdout_end
+stderr_begin
+mimalloc: option 'show_errors': 0 
+mimalloc: option 'show_stats': 0 
+mimalloc: option 'verbose': 1 
+mimalloc: option 'eager_commit': 1 
+mimalloc: option 'arena_eager_commit': 2 
+mimalloc: option 'purge_decommits': 1 
+mimalloc: option 'allow_large_os_pages': 0 
+mimalloc: option 'reserve_huge_os_pages': 0 
+mimalloc: option 'reserve_huge_os_pages_at': -1 
+mimalloc: option 'reserve_os_memory': 0 KiB
+mimalloc: option 'deprecated_segment_cache': 0 
+mimalloc: option 'deprecated_page_reset': 0 
+mimalloc: option 'abandoned_page_purge': 0 
+mimalloc: option 'deprecated_segment_reset': 0 
+mimalloc: option 'eager_commit_delay': 1 
+mimalloc: option 'purge_delay': 10 
+mimalloc: option 'use_numa_nodes': 0 
+mimalloc: option 'disallow_os_alloc': 0 
+mimalloc: option 'os_tag': 100 
+mimalloc: option 'max_errors': 32 
+mimalloc: option 'max_warnings': 32 
+mimalloc: option 'max_segment_reclaim': 10 
+mimalloc: option 'destroy_on_exit': 0 
+mimalloc: option 'arena_reserve': 131072 KiB
+mimalloc: option 'arena_purge_mult': 10 
+mimalloc: option 'purge_extend_delay': 1 
+mimalloc: option 'abandoned_reclaim_on_free': 1 
+mimalloc: option 'disallow_arena_alloc': 0 
+mimalloc: option 'retry_on_oom': 400 
+mimalloc: process init: 0x252C00
+mimalloc: secure level: 0
+mimalloc: mem tracking: none
+mimalloc: using 1 numa regions
+mimalloc: warning: unable to allocate aligned OS memory directly, fall back to over-allocation (size: 0x8000000 bytes, address: 0xAEF0F000, alignment: 0x400000, commit: 1)
+mimalloc: reserved 131072 KiB memory
+heap stats:     peak       total       freed     current        unit       count   
+  reserved:   132.0 MiB   260.0 MiB   132.0 MiB   128.0 MiB                          
+ committed:   132.0 MiB   260.0 MiB   136.0 MiB   124.0 MiB                          
+     reset:     0      
+    purged:     4.0 MiB
+   touched:    32.1 KiB    32.1 KiB    44.0 KiB   -11.9 KiB                          ok
+  segments:     1           1           1           0                                ok
+-abandoned:     0           0           0           0                                ok
+   -cached:     0           0           0           0                                ok
+     pages:     0           0           3          -3                                ok
+-abandoned:     0           0           0           0                                ok
+ -extended:     0      
+ -noretire:     0      
+    arenas:     1      
+-crossover:     0      
+ -rollback:     0      
+     mmaps:     0      
+   commits:     0      
+    resets:     0      
+    purges:     1      
+   threads:     0           0           0           0                                ok
+  searches:     0.0 avg
+numa nodes:     1
+   elapsed:     0.001 s
+   process: user: 0.003 s, system: 0.000 s, faults: 0, rss: 257.0 KiB, commit: 132.0 MiB
+mimalloc: process done: 0x252C00
+stderr_end
+remote_probe_rc=0
+gate.runtime_mimalloc_banner.F3=PASS expected=present
+banner.variant=F1 expected=absent remote_rc=0
+stdout_begin
+ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+built with clang version 22.1.8
+configuration: --disable-everything --disable-autodetect --disable-doc --disable-network --disable-hwaccels --disable-v4l2-m2m --disable-mmal --disable-omx --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-demuxer=mov --enable-parser=h264 --enable-protocol=file --enable-ffmpeg --disable-ffprobe --disable-ffplay --disable-avdevice --enable-muxer=null --enable-encoder=wrapped_avframe --enable-filter=null --enable-pthreads --enable-neon --enable-static --disable-shared --disable-stripping --arch=arm --target-os=linux --prefix=/opt/usr/ffmpeg-demo --cc=clang --extra-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g -pthread' --extra-ldflags='--rtlib=libgcc -static-libgcc -pthread'
+libavutil      60.  8.100 / 60.  8.100
+libavcodec     62. 11.100 / 62. 11.100
+libavformat    62.  3.100 / 62.  3.100
+libavfilter    11.  4.100 / 11.  4.100
+libswscale      9.  1.100 /  9.  1.100
+libswresample   6.  1.100 /  6.  1.100
+
+Exiting with exit code 0
+stdout_end
+stderr_begin
+stderr_end
+remote_probe_rc=0
+gate.runtime_mimalloc_banner.F1=PASS expected=absent
+banner.variant=F2 expected=absent remote_rc=0
+stdout_begin
+ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+built with clang version 22.1.8
+configuration: --disable-everything --disable-autodetect --disable-doc --disable-network --disable-hwaccels --disable-v4l2-m2m --disable-mmal --disable-omx --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-demuxer=mov --enable-parser=h264 --enable-protocol=file --enable-ffmpeg --disable-ffprobe --disable-ffplay --disable-avdevice --enable-muxer=null --enable-encoder=wrapped_avframe --enable-filter=null --enable-pthreads --enable-neon --enable-static --disable-shared --disable-stripping --arch=arm --target-os=linux --prefix=/opt/usr/ffmpeg-demo --cc=/home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/musl-inst/bin/musl-clang --extra-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g -pthread -isystem /usr/lib/clang/22/include' --extra-ldflags='--rtlib=libgcc -static-libgcc -pthread -static' --host-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g' --host-ldflags=-static
+libavutil      60.  8.100 / 60.  8.100
+libavcodec     62. 11.100 / 62. 11.100
+libavformat    62.  3.100 / 62.  3.100
+libavfilter    11.  4.100 / 11.  4.100
+libswscale      9.  1.100 /  9.  1.100
+libswresample   6.  1.100 /  6.  1.100
+
+Exiting with exit code 0
+stdout_end
+stderr_begin
+stderr_end
+remote_probe_rc=0
+gate.runtime_mimalloc_banner.F2=PASS expected=absent
+gate.runtime_mimalloc_override=PASS positive=1 negative_controls=2
+DEPLOY_FFMPEG_PASS clip_sha256=f58743eaba12f47320c4d8ea0ea7f9418b91728335c74df0c352d9730f63dd48

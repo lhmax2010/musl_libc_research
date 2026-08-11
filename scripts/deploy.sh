@@ -72,7 +72,7 @@ run_logged sdb root on
 run_logged sdb push "$rpm_path" "$remote_rpm"
 
 set +e
-sdb shell "rpm -Uvh --noplugins --force '$remote_rpm'" 2>&1 | tr -d '\r' | tee -a "$LOG_FILE"
+sdb shell "rpm -Uvh --noplugins --force '$remote_rpm'" </dev/null 2>&1 | tr -d '\r' | tee -a "$LOG_FILE"
 install_rc=${PIPESTATUS[0]}
 set -e
 if [[ "$install_rc" -ne 0 ]]; then
@@ -80,9 +80,9 @@ if [[ "$install_rc" -ne 0 ]]; then
     exit "$install_rc"
 fi
 
-sdb shell "cd '$PRIVATE_ROOT' && sha256sum -c share/artifacts.sha256" \
+sdb shell "cd '$PRIVATE_ROOT' && sha256sum -c share/artifacts.sha256" </dev/null \
     2>&1 | tr -d '\r' | tee -a "$LOG_FILE"
-sdb shell "cd '$PRIVATE_ROOT' && sha256sum bin/*" \
+sdb shell "cd '$PRIVATE_ROOT' && sha256sum bin/*" </dev/null \
     | tr -d '\r' | sort -k2 > "$EXTRACT_DIR/board-bin.sha256"
 if ! diff -u "$EXTRACT_DIR/host-bin.sha256" "$EXTRACT_DIR/board-bin.sha256" \
     | tee -a "$LOG_FILE"; then
@@ -93,7 +93,7 @@ echo "binary_hash_comparison=PASS" | tee -a "$LOG_FILE"
 
 for variant in micro.glibc-dyn micro.musl-static micro.musl-dyn micro.musl-mi; do
     echo "smoke.variant=$variant" | tee -a "$LOG_FILE"
-    sdb shell "$PRIVATE_ROOT/bin/$variant" 2>&1 | tr -d '\r' | tee -a "$LOG_FILE"
+    sdb shell "$PRIVATE_ROOT/bin/$variant" </dev/null 2>&1 | tr -d '\r' | tee -a "$LOG_FILE"
 done
 
 runtime_override_gate() {
@@ -104,7 +104,7 @@ runtime_override_gate() {
     local remote_out="/tmp/mimalloc-gate-$variant.out"
     local remote_err="/tmp/mimalloc-gate-$variant.err"
 
-    output="$(sdb shell "MIMALLOC_VERBOSE=1 '$PRIVATE_ROOT/bin/$variant' malloc 1 1000 >'$remote_out' 2>'$remote_err'; rc=\$?; printf 'stdout_begin\\n'; cat '$remote_out'; printf 'stdout_end\\nstderr_begin\\n'; cat '$remote_err'; printf 'stderr_end\\nremote_probe_rc=%s\\n' \"\$rc\"; rm -f '$remote_out' '$remote_err'" 2>&1 | tr -d '\r')"
+    output="$(sdb shell "MIMALLOC_VERBOSE=1 '$PRIVATE_ROOT/bin/$variant' malloc 1 1000 >'$remote_out' 2>'$remote_err'; rc=\$?; printf 'stdout_begin\\n'; cat '$remote_out'; printf 'stdout_end\\nstderr_begin\\n'; cat '$remote_err'; printf 'stderr_end\\nremote_probe_rc=%s\\n' \"\$rc\"; rm -f '$remote_out' '$remote_err'" </dev/null 2>&1 | tr -d '\r')"
     probe_rc="$(sed -n 's/^remote_probe_rc=//p' <<< "$output" | tail -n 1)"
     printf 'variant=%s expected_banner=%s remote_rc=%s\n%s\n' \
         "$variant" "$expected" "$probe_rc" "$output" | tee "$banner_log" | tee -a "$LOG_FILE"

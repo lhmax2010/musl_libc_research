@@ -1,0 +1,74 @@
+install prefix            /opt/usr/ffmpeg-demo
+source path               /home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/ffmpeg-tizen-src
+C compiler                /home/abuild/rpmbuild/BUILD/ffmpeg-musl-demo-8.0.1/musl-inst/bin/musl-clang
+C library                 
+ARCH                      arm (generic)
+big-endian                no
+runtime cpu detection     yes
+ARMv5TE enabled           yes
+ARMv6 enabled             yes
+ARMv6T2 enabled           yes
+VFP enabled               yes
+NEON enabled              yes
+THUMB enabled             yes
+debug symbols             yes
+strip symbols             no
+optimize for size         no
+optimizations             yes
+static                    yes
+shared                    no
+network support           no
+threading support         pthreads
+safe bitstream reader     yes
+texi2html enabled         no
+perl enabled              yes
+pod2man enabled           yes
+makeinfo enabled          no
+makeinfo supports HTML    no
+xmllint enabled           no
+
+External libraries:
+iconv
+
+External libraries providing hardware acceleration:
+
+Libraries:
+avcodec                 avformat                swresample
+avfilter                avutil                  swscale
+
+Programs:
+ffmpeg
+
+Enabled decoders:
+h264
+
+Enabled encoders:
+wrapped_avframe
+
+Enabled hwaccels:
+
+Enabled parsers:
+h264
+
+Enabled demuxers:
+mov
+
+Enabled muxers:
+null
+
+Enabled protocols:
+file
+
+Enabled filters:
+aformat                 format                  transpose
+anull                   hflip                   trim
+atrim                   null                    vflip
+crop                    rotate
+
+Enabled bsfs:
+
+Enabled indevs:
+
+Enabled outdevs:
+
+License: LGPL version 2.1 or later

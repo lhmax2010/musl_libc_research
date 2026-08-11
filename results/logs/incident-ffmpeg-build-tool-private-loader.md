@@ -1,0 +1,130 @@
+# Incident: ffmpeg F2 build tool requires undeployed private musl loader
+
+Status: **RESOLVED — all four musl host-tool gates passed**
+
+## Scope and stopping point
+
+The formal rerun command was:
+
+```text
+scripts/build_gbs_ffmpeg.sh
+```
+
+The Source0--Source8 preflight, FatTank review gate, frozen commit and source
+hash gates, clang 22.1.8 gate, patch-consistency gate, musl linker-wrapper gate,
+mimalloc LFS64 gate, and clang resource-header assertion passed. F1 baseline
+configured and linked. F2 baseline configured successfully with pthreads,
+native `h264` as its only decoder, an empty hwaccel section, and LGPL 2.1-or-
+later licensing. The run then stopped while building F2.
+
+F3, the formal configure-equivalence comparison, all gc-sections builds, the
+ELF/F3 gates, RPM, deployment, board measurements, and `report-ffmpeg.md` are
+`NOT_RUN`.
+
+## Failure text
+
+```text
+HOSTLD  ffbuild/bin2c
+BIN2C   fftools/resources/graph.html.c
+BIN2C   fftools/resources/graph.css.c
+qemu-arm: Could not open '/opt/usr/ffmpeg-demo/lib/ld-musl-arm.so.1': No such file or directory
+make: *** [.../ffbuild/common.mak:179: fftools/resources/graph.html.c] Error 255
+qemu-arm: Could not open '/opt/usr/ffmpeg-demo/lib/ld-musl-arm.so.1': No such file or directory
+make: *** [.../ffbuild/common.mak:175: fftools/resources/graph.css.c] Error 255
+make: Target 'ffmpeg' not remade because of errors.
+BUILD_GATE_FAIL: F2 baseline ffmpeg binary missing
+```
+
+No unresolved `__atomic_*` symbol was reported.
+
+## Confirmed mechanism
+
+FFmpeg's generated F2 configuration selected the musl target wrapper for both
+the target compiler/linker and the build-machine compiler/linker:
+
+```text
+CC=.../musl-inst/bin/musl-clang
+LD=.../musl-inst/bin/musl-clang
+HOSTCC=.../musl-inst/bin/musl-clang
+HOSTLD=.../musl-inst/bin/musl-clang
+```
+
+Consequently the build helper is an ARM target executable rather than a native
+chroot build-machine tool:
+
+```text
+ffbuild/bin2c: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /opt/usr/ffmpeg-demo/lib/ld-musl-arm.so.1
+[Requesting program interpreter: /opt/usr/ffmpeg-demo/lib/ld-musl-arm.so.1]
+```
+
+The make rules execute this helper immediately to generate embedded resource C
+files. The private musl loader path is a deployment path and does not exist in
+the build chroot, so QEMU cannot start the helper. This is a build-tool/target-
+tool role separation failure, not the previously fixed header lookup failure.
+
+## Evidence
+
+- The parked-run `results/logs/gbs-build-ffmpeg.log` had SHA-256
+  `f8ee2ff614d05dd5b200f3505f5ccdfbdd5b5d206288f3a9337ef418840cf38e`
+  - resource header assertion: line 2169
+  - F2 configure summary: lines 2674--2747
+  - QEMU loader errors: lines 3135 and 3137
+  - terminal build gate: line 3144
+  The authorized rerun subsequently replaced this rolling build-log path; the
+  failed-build chroot hashes below retain the configuration anchors, and the
+  rerun result is preserved in the next incident's current formal log.
+- Failed-build chroot probes (not delivery artifacts):
+  - F2 `ffbuild/config.log` SHA-256
+    `8c063b3df6fbccc438f1030a0faefb3e37570e5367499a672e7d1f1729ca4e50`
+  - F2 `ffbuild/config.mak` SHA-256
+    `09e4730e620d1c01fa07f2faefd5dd5eb7e1f436c0e69c1cec2a4a8ec52cd500`
+
+## Parking discipline
+
+No configure flag, wrapper, loader path, chroot filesystem, FFmpeg source,
+thread setting, or gate was changed. No `libatomic` was introduced. Deployment
+and measurements were not started.
+
+A likely remediation would explicitly separate FFmpeg's native build-machine
+compiler/linker from its musl target compiler/linker (for example via the
+upstream host-compiler configure mechanism), while retaining musl for target
+objects. That change is not authorized by the current prompt and was not
+attempted.
+
+## Authorized disposition
+
+FatTank confirmed that FFmpeg's build-time helpers run under the GBS QEMU
+chroot and authorized keeping `host_cc` on the same musl-clang toolchain while
+making those helpers static. Only F2/F3 configure calls now add:
+
+```text
+--host-cflags=<the same rpm target CFLAGS base set>
+--host-ldflags=-static
+```
+
+F1 and all target-side compiler/linker arguments remain unchanged. Before each
+configure invocation, an isolation gate removes the two `--host-*` arguments
+from the final argument vector and requires the remainder to match the target
+argument vector byte-for-byte. After each musl build, every executable ELF host
+helper discovered in the generated `ffbuild` directory is logged with `file`
+and full `readelf -lW` output, must be statically linked, and must have no
+`PT_INTERP`; the gate also requires `bin2c` to be present.
+
+The compiler decision ledger records `ffmpeg_host_tools=static-musl`. No loader
+was planted under the deployment path, the wrapper was not changed, no second
+toolchain was introduced, and no target parameter or existing gate was
+relaxed.
+
+## Rerun result
+
+The formal rerun verified `ffbuild/bin2c` for F2/F3 in both baseline and
+gc-sections builds. Each was reported by `file` as a statically linked ARM ELF;
+each full `readelf -lW` listing contained `ARM_EXIDX`, two `LOAD` segments, and
+`GNU_STACK`, with no `INTERP`. All four host-argument isolation diffs were empty
+and all four static host-tool gates passed with one discovered helper each.
+
+F2/F3 make and link completed. The six-way configure-equivalence gate, ELF
+softfp gate, F3 symbol-owner checks, source-tree immutability check, and final
+`BUILD_GATE_PASS` also completed. RPM generation later stopped on a separate
+automatic debuginfo packaging issue; see
+`incident-ffmpeg-rpm-timer-debuginfo.md`.

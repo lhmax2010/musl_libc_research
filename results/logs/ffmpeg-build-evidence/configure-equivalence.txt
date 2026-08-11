@@ -1,0 +1,10 @@
+F1,baseline,configure_equivalence=PASS,License: LGPL version 2.1 or later
+F2,baseline,configure_equivalence=PASS,License: LGPL version 2.1 or later
+F3,baseline,configure_equivalence=PASS,License: LGPL version 2.1 or later
+F1,gc,configure_equivalence=PASS,License: LGPL version 2.1 or later
+F2,gc,configure_equivalence=PASS,License: LGPL version 2.1 or later
+F3,gc,configure_equivalence=PASS,License: LGPL version 2.1 or later
+decoder_exact=h264
+hwaccels=EMPTY
+arm_summary_diff=EMPTY
+configure_equivalence=PASS

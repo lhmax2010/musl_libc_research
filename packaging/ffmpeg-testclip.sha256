@@ -1,0 +1,5 @@
+# ACTIVE: replacement PerfHotSpotAnalyzer-source H.264 sample, first used on board.
+# Reason: 首次上板文件为 HEVC 误置,已更换为同源 H.264 样本 cabi.mp4
+f58743eaba12f47320c4d8ea0ea7f9418b91728335c74df0c352d9730f63dd48  cabi.mp4
+# REVOKED: incompatible HEVC file mistakenly placed on the board; never use for this H.264 island.
+# 551e80dfa22fe1feccb1249a2dd924430fc48821272dd2f6ad6cad1fdffac2aa  64687_VID_BM_MM_h265_fhd_seamless.mp4
