@@ -1,6 +1,6 @@
 # Tizen ffmpeg frozen commit review gate
 
-- [ ] FatTank verified the frozen Tizen ffmpeg commit and archived provenance.
+- [x] FatTank verified the frozen Tizen ffmpeg commit and archived provenance.
 
 Formal GBS build is fail-closed until FatTank changes the checkbox above to `[x]`.
 Automation must not check it on FatTank's behalf.
