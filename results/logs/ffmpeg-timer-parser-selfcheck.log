@@ -1,0 +1,24 @@
+192.168.108.26:26101 is already connected
+target=192.168.108.26
+sdb_serial=192.168.108.26:26101
+real_output_begin
+ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+built with clang version 22.1.8
+configuration: --disable-everything --disable-autodetect --disable-doc --disable-network --disable-hwaccels --disable-v4l2-m2m --disable-mmal --disable-omx --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-demuxer=mov --enable-parser=h264 --enable-protocol=file --enable-ffmpeg --disable-ffprobe --disable-ffplay --disable-avdevice --enable-muxer=null --enable-encoder=wrapped_avframe --enable-filter=null --enable-pthreads --enable-neon --enable-static --disable-shared --disable-stripping --arch=arm --target-os=linux --prefix=/opt/usr/ffmpeg-demo --cc=clang --extra-cflags='-Os -fstack-protector -Wno-unused-command-line-argument -Wno-error=unused-but-set-variable -Wno-error=unused-command-line-argument -g2 -gdwarf-4 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -Wformat -Wformat-security -fmessage-length=0 -frecord-gcc-switches -march=armv7-a -mtune=cortex-a8 -mlittle-endian -mfpu=neon -mfloat-abi=softfp -mthumb -Wp,-D__SOFTFP__ -D_FILE_OFFSET_BITS=64 -g -pthread' --extra-ldflags='--rtlib=libgcc -static-libgcc -pthread'
+libavutil      60.  8.100 / 60.  8.100
+libavcodec     62. 11.100 / 62. 11.100
+libavformat    62.  3.100 / 62.  3.100
+libavfilter    11.  4.100 / 11.  4.100
+libswscale      9.  1.100 /  9.  1.100
+libswresample   6.  1.100 /  6.  1.100
+
+Exiting with exit code 0
+3851667
+timer_remote_rc=0
+sample_end=OK
+real_output_end
+real_capture=PASS extracted=3851667
+negative.no_decimal_line=PASS result=INVALID
+negative.two_decimal_lines=PASS result=INVALID
+compat.micro_single_decimal=PASS extracted=42424242
+TIMER_PARSER_SELFCHECK_PASS

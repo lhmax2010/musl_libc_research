@@ -18,6 +18,9 @@ SIZE_MATRIX="$ROOT_DIR/results/logs/ffmpeg-build-evidence/sizes-matrix.txt"
 CONFIGURE_COMMANDS="$ROOT_DIR/results/logs/ffmpeg-build-evidence/ffmpeg-configure-commands.txt"
 CONFIGURE_EQUIVALENCE="$ROOT_DIR/results/logs/ffmpeg-build-evidence/configure-equivalence.txt"
 
+# shellcheck source=scripts/ffmpeg_timer_parser.sh
+source "$SCRIPT_DIR/ffmpeg_timer_parser.sh"
+
 for value in "$DECODE_REPS" "$STARTUP_REPS" "$MEM_REPS" "$COOLDOWN_SECONDS"; do
     [[ "$value" =~ ^[0-9]+$ ]] || { echo "ERROR repetition/delay values must be integers" >&2; exit 2; }
 done
@@ -219,7 +222,11 @@ timer_one() {
     local variant="$1"
     local output rc sentinel_count value
     output="$(remote_capture "'$BIN_DIR/timer' '$BIN_DIR/ffmpeg.$variant' -version; rc=\$?; printf 'startup_remote_rc=%s\\n' \"\$rc\"; if [ \"\$rc\" -eq 0 ]; then printf 'sample_end=OK\\n'; fi")"
-    value="$(sed -n '1p' <<< "$output")"
+    if ! value="$(ffmpeg_timer_value <<< "$output")"; then
+        printf 'startup_timer_invalid_begin,variant=%s\n%s\nstartup_timer_invalid_end,variant=%s\n' \
+            "$variant" "$output" "$variant" | tee -a "$RESULT_FILE" >&2
+        return 1
+    fi
     rc="$(sed -n 's/^startup_remote_rc=//p' <<< "$output" | tail -n 1)"
     sentinel_count="$(grep -c '^sample_end=OK$' <<< "$output" || true)"
     [[ "$value" =~ ^[0-9]+$ && "$rc" == 0 && "$sentinel_count" -eq 1 ]] || return 1
