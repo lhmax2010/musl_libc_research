@@ -1,0 +1,71 @@
+SDB stdin isolation self-check
+target=192.168.108.26:26101
+
+=== grep: all scripts sdb shell calls ===
+scripts/run_board.sh:29:    sdb shell "$1" </dev/null | tr -d '\r'
+scripts/deploy_ffmpeg.sh:73:    sdb -s "$sdb_serial" shell "$1" </dev/null 2>&1 | tr -d '\r'
+scripts/deploy_ffmpeg.sh:140:sdb -s "$sdb_serial" shell "rpm -Uvh --noplugins --force '$remote_rpm'" </dev/null 2>&1 \
+scripts/run_board_ffmpeg.sh:93:    sdb -s "$sdb_serial" shell "$1" </dev/null 2>&1 | tr -d '\r'
+scripts/deploy.sh:75:sdb shell "rpm -Uvh --noplugins --force '$remote_rpm'" </dev/null 2>&1 | tr -d '\r' | tee -a "$LOG_FILE"
+scripts/deploy.sh:83:sdb shell "cd '$PRIVATE_ROOT' && sha256sum -c share/artifacts.sha256" </dev/null \
+scripts/deploy.sh:85:sdb shell "cd '$PRIVATE_ROOT' && sha256sum bin/*" </dev/null \
+scripts/deploy.sh:96:    sdb shell "$PRIVATE_ROOT/bin/$variant" </dev/null 2>&1 | tr -d '\r' | tee -a "$LOG_FILE"
+scripts/deploy.sh:107:    output="$(sdb shell "MIMALLOC_VERBOSE=1 ..." </dev/null 2>&1 | tr -d '\r')"
+scripts/check_ffmpeg_timer_parser.sh:38:    sdb -s "$sdb_serial" shell \
+scripts/check_ffmpeg_timer_parser.sh:40:        </dev/null 2>&1 | tr -d '\r'
+
+=== effective logical-call isolation assertions ===
+scripts/check_ffmpeg_timer_parser.sh calls=1 isolated=1 conclusion=PASS
+scripts/deploy_ffmpeg.sh calls=2 isolated=2 conclusion=PASS
+scripts/run_board.sh calls=1 isolated=1 conclusion=PASS
+scripts/run_board_ffmpeg.sh calls=1 isolated=1 conclusion=PASS
+scripts/deploy.sh calls=5 isolated=5 conclusion=PASS
+
+=== grep: while/read review and per-site conclusions ===
+scripts/fetch_musl.sh:163,224 conclusion=NOT_APPLICABLE no_sdb_in_loop
+scripts/run_board.sh:73,85 conclusion=PASS remote data already captured through isolated remote_capture
+scripts/deploy_ffmpeg.sh:103 conclusion=PASS remote data already captured through isolated remote_capture
+scripts/run_board_ffmpeg.sh:171 conclusion=PASS remote data already captured through isolated remote_capture
+scripts/run_board_ffmpeg.sh:331 conclusion=PASS loop remote call uses isolated remote_capture
+scripts/build_gbs_ffmpeg.sh:49 conclusion=NOT_APPLICABLE no_sdb_in_loop
+scripts/build_gbs.sh:39 conclusion=NOT_APPLICABLE no_sdb_in_loop
+scripts/fetch_tizen_ffmpeg.sh:124 conclusion=NOT_APPLICABLE no_sdb_in_loop
+
+=== negative: unisolated multiline loop ===
+negative.first_cell=F1,baseline,stripped expected=2353184
+negative.capture.begin
+F2,baseline,unstripped,11881532
+F2,baseline,stripped,2967556
+F3,baseline,unstripped,12493148
+F3,baseline,stripped,3071876
+F1,gc,unstripped,10969056
+F1,gc,stripped,2177984
+F2,gc,unstripped,11953964
+F2,gc,stripped,2782396
+F3,gc,unstripped,12565496
+F3,gc,stripped,2886716
+2353184
+negative.capture.end
+negative.conclusion=POLLUTION_REPRODUCED
+
+=== positive: isolated size matrix and independent stat ===
+host_matrix,F1,baseline,unstripped,10874676
+host_matrix,F1,baseline,stripped,2353184
+board_cell,F1,baseline,stripped expected=2353184 captured=2353184 independent=2353184 result=PASS
+host_matrix,F2,baseline,unstripped,11881532
+host_matrix,F2,baseline,stripped,2967556
+board_cell,F2,baseline,stripped expected=2967556 captured=2967556 independent=2967556 result=PASS
+host_matrix,F3,baseline,unstripped,12493148
+host_matrix,F3,baseline,stripped,3071876
+board_cell,F3,baseline,stripped expected=3071876 captured=3071876 independent=3071876 result=PASS
+host_matrix,F1,gc,unstripped,10969056
+host_matrix,F1,gc,stripped,2177984
+board_cell,F1,gc,stripped expected=2177984 captured=2177984 independent=2177984 result=PASS
+host_matrix,F2,gc,unstripped,11953964
+host_matrix,F2,gc,stripped,2782396
+board_cell,F2,gc,stripped expected=2782396 captured=2782396 independent=2782396 result=PASS
+host_matrix,F3,gc,unstripped,12565496
+host_matrix,F3,gc,stripped,2886716
+board_cell,F3,gc,stripped expected=2886716 captured=2886716 independent=2886716 result=PASS
+positive.anchor.F1_baseline=2353184
+SIZE_STDIN_ISOLATION_REGRESSION_PASS

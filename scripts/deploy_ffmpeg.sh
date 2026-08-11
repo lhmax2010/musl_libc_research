@@ -70,7 +70,7 @@ run_logged() {
 }
 
 remote_capture() {
-    sdb -s "$sdb_serial" shell "$1" 2>&1 | tr -d '\r'
+    sdb -s "$sdb_serial" shell "$1" </dev/null 2>&1 | tr -d '\r'
 }
 
 echo "target=$TARGET" | tee -a "$LOG_FILE"
@@ -137,7 +137,7 @@ echo "clip.sha256=$actual_clip_hash" | tee -a "$LOG_FILE"
 
 run_logged sdb -s "$sdb_serial" push "$rpm_path" "$remote_rpm"
 set +e
-sdb -s "$sdb_serial" shell "rpm -Uvh --noplugins --force '$remote_rpm'" 2>&1 \
+sdb -s "$sdb_serial" shell "rpm -Uvh --noplugins --force '$remote_rpm'" </dev/null 2>&1 \
     | tr -d '\r' | tee -a "$LOG_FILE"
 install_rc=${PIPESTATUS[0]}
 set -e

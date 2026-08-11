@@ -37,7 +37,7 @@ log "sdb_serial=$sdb_serial"
 real_output="$(
     sdb -s "$sdb_serial" shell \
         "'$PRIVATE_ROOT/bin/timer' '$PRIVATE_ROOT/bin/ffmpeg.F1' -version; rc=\$?; printf 'timer_remote_rc=%s\\n' \"\$rc\"; if [ \"\$rc\" -eq 0 ]; then printf 'sample_end=OK\\n'; fi" \
-        2>&1 | tr -d '\r'
+        </dev/null 2>&1 | tr -d '\r'
 )"
 printf 'real_output_begin\n%s\nreal_output_end\n' "$real_output" | tee -a "$LOG_FILE"
 real_value="$(ffmpeg_timer_value <<< "$real_output")" || {

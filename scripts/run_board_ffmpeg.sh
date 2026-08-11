@@ -90,7 +90,7 @@ fi
 }
 
 remote_capture() {
-    sdb -s "$sdb_serial" shell "$1" 2>&1 | tr -d '\r'
+    sdb -s "$sdb_serial" shell "$1" </dev/null 2>&1 | tr -d '\r'
 }
 
 run_remote() {
