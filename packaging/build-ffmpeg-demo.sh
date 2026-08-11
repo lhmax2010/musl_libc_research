@@ -259,6 +259,8 @@ mimalloc_lfs64_symbols="$(
     echo "mimalloc_lfs64_gate=PASS"
     echo "ffmpeg_f2f3_isystem_resource=$RESDIR/include"
     echo "ffmpeg_include_order=musl_first_resource_fill"
+    echo "ffmpeg_host_tools=static-musl"
+    echo "ffmpeg_host_tools_basis=host_cc_musl-clang,host_ldflags_static,no_pt_interp"
 } >> "$DECISION"
 echo "gate.mimalloc_lfs64_symbols=PASS"
 
@@ -330,6 +332,12 @@ build_one() {
     local source_binary
     local unstripped_size stripped_size
     local configure_args=()
+    local target_args_before target_args_after
+    local normalized_args=()
+    local configure_arg
+    local host_tool host_tool_file
+    local host_tool_count=0
+    local bin2c_seen=0
 
     [[ "$size_mode" == "gc" ]] && {
         extra_cflags="$extra_cflags -ffunction-sections -fdata-sections"
@@ -354,6 +362,27 @@ build_one() {
     [[ "$allocator" == "mimalloc" ]] && \
         configure_args+=("--extra-libs=$MIMALLOC_OBJECT")
 
+    target_args_before="$(printf '%q\n' "${configure_args[@]}")"
+    if [[ "$cc_path" == "$MUSL_CC" ]]; then
+        configure_args+=(
+            "--host-cflags=$OPTFLAGS_TEXT"
+            "--host-ldflags=-static"
+        )
+    fi
+    for configure_arg in "${configure_args[@]}"; do
+        case "$configure_arg" in
+            --host-cflags=*|--host-ldflags=*) ;;
+            *) normalized_args+=("$configure_arg") ;;
+        esac
+    done
+    target_args_after="$(printf '%q\n' "${normalized_args[@]}")"
+    echo "host_arg_isolation.diff_begin variant=$variant size_mode=$size_mode"
+    diff -u <(printf '%s\n' "$target_args_before") \
+        <(printf '%s\n' "$target_args_after") || \
+        fail "$variant $size_mode host parameters changed target configure arguments"
+    echo "host_arg_isolation.diff_end variant=$variant size_mode=$size_mode"
+    echo "gate.host_arg_isolation=PASS variant=$variant size_mode=$size_mode"
+
     mkdir -p "$build_dir"
     record_command "variant=$variant" "size_mode=$size_mode" \
         "$FFMPEG_SOURCE_DIR/configure" "${configure_args[@]}"
@@ -362,6 +391,31 @@ build_one() {
         "$FFMPEG_SOURCE_DIR/configure" "${configure_args[@]}" 2>&1 | tee "$configure_log"
         make -j "$jobs" ffmpeg
     )
+    if [[ "$cc_path" == "$MUSL_CC" ]]; then
+        while IFS= read -r host_tool; do
+            host_tool_file="$(file "$host_tool")"
+            case "$host_tool_file" in
+                *ELF*) ;;
+                *) continue ;;
+            esac
+            host_tool_count=$((host_tool_count + 1))
+            [[ "$(basename "$host_tool")" == "bin2c" ]] && bin2c_seen=1
+            echo "host_tool.file variant=$variant size_mode=$size_mode"
+            printf '%s\n' "$host_tool_file"
+            echo "host_tool.readelf_begin path=$host_tool"
+            readelf -lW "$host_tool"
+            echo "host_tool.readelf_end path=$host_tool"
+            grep -q 'statically linked' <<< "$host_tool_file" || \
+                fail "$variant $size_mode host tool is not static: $host_tool"
+            ! grep -q 'INTERP' < <(readelf -lW "$host_tool") || \
+                fail "$variant $size_mode host tool has PT_INTERP: $host_tool"
+        done < <(find "$build_dir/ffbuild" -maxdepth 1 -type f -perm -100 -print | sort)
+        [[ "$host_tool_count" -gt 0 ]] || \
+            fail "$variant $size_mode found no ELF host tools"
+        [[ "$bin2c_seen" -eq 1 ]] || \
+            fail "$variant $size_mode bin2c was not included in host-tool gate"
+        echo "gate.host_tools_static=PASS variant=$variant size_mode=$size_mode count=$host_tool_count"
+    fi
     source_binary="$build_dir/ffmpeg"
     [[ -x "$source_binary" ]] || fail "$variant $size_mode ffmpeg binary missing"
     unstripped_size="$(stat -c '%s' "$source_binary")"

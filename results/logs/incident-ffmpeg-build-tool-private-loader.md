@@ -1,6 +1,6 @@
 # Incident: ffmpeg F2 build tool requires undeployed private musl loader
 
-Status: **PARKED — new failure requires authorization**
+Status: **AUTHORIZED — static-musl host-tool fix applied; rerun pending**
 
 ## Scope and stopping point
 
@@ -87,3 +87,27 @@ compiler/linker from its musl target compiler/linker (for example via the
 upstream host-compiler configure mechanism), while retaining musl for target
 objects. That change is not authorized by the current prompt and was not
 attempted.
+
+## Authorized disposition
+
+FatTank confirmed that FFmpeg's build-time helpers run under the GBS QEMU
+chroot and authorized keeping `host_cc` on the same musl-clang toolchain while
+making those helpers static. Only F2/F3 configure calls now add:
+
+```text
+--host-cflags=<the same rpm target CFLAGS base set>
+--host-ldflags=-static
+```
+
+F1 and all target-side compiler/linker arguments remain unchanged. Before each
+configure invocation, an isolation gate removes the two `--host-*` arguments
+from the final argument vector and requires the remainder to match the target
+argument vector byte-for-byte. After each musl build, every executable ELF host
+helper discovered in the generated `ffbuild` directory is logged with `file`
+and full `readelf -lW` output, must be statically linked, and must have no
+`PT_INTERP`; the gate also requires `bin2c` to be present.
+
+The compiler decision ledger records `ffmpeg_host_tools=static-musl`. No loader
+was planted under the deployment path, the wrapper was not changed, no second
+toolchain was introduced, and no target parameter or existing gate was
+relaxed.
