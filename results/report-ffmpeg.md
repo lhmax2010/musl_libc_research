@@ -1,6 +1,6 @@
 # FFmpeg 8.0.1 H.264 software-decode island — measurement report
 
-> Status: data-filled review draft; awaiting FatTank data verification. This document does not make the final adoption conclusion.
+> Status: FatTank data verification passed; final disposition recorded below.
 
 ## 1. Scope and non-goals
 
@@ -153,6 +153,8 @@ Source: `results/results-ffmpeg-supplement2.txt`, byte-matched to the packaged b
 | `setlocale` | ABSENT |
 | `getaddrinfo` | ABSENT |
 
+`iconv` four-state classification: the symbol exists but the measured H.264 decode path does not reach it, so the current classification is **NOT_USED(runtime)**. If subtitle or character-set features are enabled later, it becomes **FALLBACK_REQUIRED** because of musl iconv's encoding-direction gap.
+
 ## 10. Modification accounting
 
 | Account | Recorded value | Evidence |
@@ -176,7 +178,7 @@ The comparison strength is aligned on all available axes: the replacement `cabi.
 | F2 | 6.752 | 6.699 | 6.901 | 10 |
 | F3 | 6.857 | 6.786 | 6.935 | 10 |
 
-The historical PerfHotSpotAnalyzer numeric utime record is not present in this repository or the supplied prompts. Consequently the aligned current values are reported at full precision for direct FatTank comparison, but no historical delta is invented here. Cross-validation numeric disposition remains `PENDING_FATTANK_DATA_VERIFICATION`.
+FatTank's verified disposition is **PASS at the magnitude level**: source material, FFmpeg version, decoder, audio policy, 30-second window, null output, and benchmark form are aligned. The historical numeric utime record is not present in this repository, so the exact numeric comparison will be added separately when FatTank supplies that record; no historical value is invented here.
 
 ## 12. Tizen full build versus island configuration
 
@@ -203,7 +205,13 @@ The archived Tizen spec describes a shared-library platform build with many audi
 - Two reading-layer incidents were handled with immutable supplements; their invalid attempts are listed rather than erased.
 - Historical logs retain operator paths under the approved evidence-integrity ruling.
 
-## 15. Evidence index and review state
+## 15. Final conclusions
+
+1. **Compute-intensive CLI libc substitution is performance-equivalent.** All three paired utime comparisons fall inside the frozen ±2% band: F2 vs F1 −1.102%, F3 vs F2 +1.551%, and F3 vs F1 −0.291%.
+2. **The startup reduction is reproduced.** F2 (musl/mallocng static) versus F1 (glibc/ptmalloc dynamic) has a paired startup median of −53.228% across 30 valid triples.
+3. **Allocator choice follows workload profile.** mallocng is the sweet spot for this compute-intensive profile. Mimalloc carries an approximately +17% Pss/private-dirty premium versus mallocng and is granted only to allocation-hot profiles where that trade is justified.
+
+## 16. Evidence index and review state
 
 - Build: `results/logs/gbs-build-ffmpeg.log`, `results/logs/ffmpeg-build-evidence/`
 - Deploy/smoke: `results/logs/deploy-ffmpeg-cabi.log`
@@ -212,4 +220,4 @@ The archived Tizen spec describes a shared-library platform build with many audi
 - SDB stdin regression: `results/logs/sdb-stdin-isolation-selfcheck.log`
 - Raw measurements: the three files listed in section 3
 
-Final interpretation and adoption disposition: **PENDING FATTANK DATA VERIFICATION**.
+Final FatTank disposition: **DATA VERIFIED; conclusions recorded in section 15**.
