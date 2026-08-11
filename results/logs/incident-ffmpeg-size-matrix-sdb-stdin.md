@@ -1,6 +1,6 @@
 # Incident: SDB consumed the size-matrix loop input
 
-Status: **PARKED — stdin detachment and a second supplement require authorization**
+Status: **RESOLVED — stdin detached globally; size/function supplement passed**
 
 ## Stopping point
 
@@ -79,3 +79,36 @@ Neither raw file may be modified or overwritten. A safe fix would detach SDB
 stdin inside `remote_capture`, then collect only the still-missing board-size
 and function-surface phases into a new second supplement. That fix and merge
 policy are not pre-authorized, so execution remains parked.
+
+## Resolution
+
+FatTank authorized stdin isolation as a board-script-wide invariant and a
+second supplement limited to the invalid/missing phases. Every `sdb shell`
+logical call under `scripts/` now has explicit `< /dev/null`; the while/read
+scan and per-site conclusions are archived in
+`results/logs/sdb-stdin-isolation-selfcheck.log`.
+
+The causal regression first reproduced the unisolated multiline pollution,
+then verified all six deployed stripped binaries against both the frozen size
+matrix and a second independent `stat`. The F1 baseline anchor was `2353184`.
+
+`results/results-ffmpeg-supplement2.txt` subsequently collected only size and
+function evidence:
+
+```text
+decode=NOT_RUN
+startup=NOT_RUN
+memory=NOT_RUN
+size_board_cells=6
+size_board_verification=PASS
+function_surface_verification=PASS
+MEASUREMENT_FFMPEG_SUPPLEMENT2_PASS
+```
+
+The three immutable data-source hashes and their merge routing are frozen in
+`results/logs/ffmpeg-three-source-sha256.log`. The board-script standard now
+includes this lesson:
+
+```text
+循环体内的远端命令必须显式断开 stdin,与哨兵机制同级列为板端脚本标准约束
+```

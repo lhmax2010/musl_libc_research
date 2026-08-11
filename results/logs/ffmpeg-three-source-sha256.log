@@ -1,0 +1,18 @@
+FFmpeg three-source immutable measurement evidence
+
+e1c8378ed3639eb274fb2eefe25a791142ee2bf427b17565aa367a03e93451f6  results/results-ffmpeg.txt
+2fa4971036581f1b69412138949604755536ba161e371694737ccda46b4c006d  results/results-ffmpeg-supplement.txt
+477149ad2c933a231448e5ad013759131fad4eeb54fb8bf6b5bc80b3b9e6ecb7  results/results-ffmpeg-supplement2.txt
+
+source.decode=results/results-ffmpeg.txt
+source.startup=results/results-ffmpeg-supplement.txt
+source.memory=results/results-ffmpeg-supplement.txt
+source.size=results/results-ffmpeg-supplement2.txt
+source.function=results/results-ffmpeg-supplement2.txt
+
+decode_metrics=30
+startup_triples=30
+memory_metrics=9
+board_size_cells=6
+function_surface_verification=PASS
+THREE_SOURCE_HASH_GATE=PASS

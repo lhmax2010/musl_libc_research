@@ -1,0 +1,60 @@
+192.168.108.26:26101 is already connected
+### environment
+measurement.mode=supplement2
+measurement.scope=size,function
+measurement.target=192.168.108.26
+measurement.sdb_serial=192.168.108.26:26101
+measurement.start_utc=2026-08-11T11:20:12Z
+primary_result.path=results/results-ffmpeg.txt
+primary_result.sha256=e1c8378ed3639eb274fb2eefe25a791142ee2bf427b17565aa367a03e93451f6
+supplement_result.path=results/results-ffmpeg-supplement.txt
+supplement_result.sha256=2fa4971036581f1b69412138949604755536ba161e371694737ccda46b4c006d
+decode=NOT_RUN reason=authorized_supplement2_scope
+startup=NOT_RUN reason=authorized_supplement2_scope
+memory=NOT_RUN reason=authorized_supplement2_scope
+loadavg.before=0.02 0.03 0.02 1/431 7236
+residual.before=NONE
+governor.cpu0=performance
+governor.cpu1=performance
+governor.cpu2=performance
+governor.cpu3=performance
+temperature.before.thermal_zone0=33102
+### board size matrix verification
+size_host,F1,baseline,unstripped,10874676
+size_host,F1,baseline,stripped,2353184
+size_board,F1,baseline,stripped,2353184
+size_board_independent,F1,baseline,stripped,2353184
+size_host,F2,baseline,unstripped,11881532
+size_host,F2,baseline,stripped,2967556
+size_board,F2,baseline,stripped,2967556
+size_board_independent,F2,baseline,stripped,2967556
+size_host,F3,baseline,unstripped,12493148
+size_host,F3,baseline,stripped,3071876
+size_board,F3,baseline,stripped,3071876
+size_board_independent,F3,baseline,stripped,3071876
+size_host,F1,gc,unstripped,10969056
+size_host,F1,gc,stripped,2177984
+size_board,F1,gc,stripped,2177984
+size_board_independent,F1,gc,stripped,2177984
+size_host,F2,gc,unstripped,11953964
+size_host,F2,gc,stripped,2782396
+size_board,F2,gc,stripped,2782396
+size_board_independent,F2,gc,stripped,2782396
+size_host,F3,gc,unstripped,12565496
+size_host,F3,gc,stripped,2886716
+size_board,F3,gc,stripped,2886716
+size_board_independent,F3,gc,stripped,2886716
+size_board_verification=PASS
+### F2 function surface
+function_surface_begin
+strcoll=ABSENT
+iconv=PRESENT
+00182218 T iconv
+setlocale=ABSENT
+getaddrinfo=ABSENT
+function_surface_end
+function_surface_verification=PASS
+residual.after=NONE
+loadavg.after=0.02 0.03 0.02 1/432 8173
+measurement.finish_utc=2026-08-11T11:20:17Z
+MEASUREMENT_FFMPEG_SUPPLEMENT2_PASS
