@@ -167,8 +167,19 @@ for variant in F1 F2 F3; do
         echo "DEPLOY_FAIL $variant hardware h264 decoder visible" | tee -a "$LOG_FILE" >&2
         exit 6
     }
-    remote_capture "'$PRIVATE_ROOT/bin/ffmpeg.$variant' -hide_banner -v info -c:v h264 -i '$remote_clip' -frames:v 1 -f null -" \
-        | tee -a "$LOG_FILE"
+    smoke_output="$(remote_capture "'$PRIVATE_ROOT/bin/ffmpeg.$variant' -nostdin -hide_banner -v info -xerror -c:v h264 -i '$remote_clip' -map 0:v:0 -an -frames:v 1 -f null -; rc=\$?; printf 'smoke_remote_rc=%s\\n' \"\$rc\"")"
+    printf '%s\n' "$smoke_output" | tee -a "$LOG_FILE"
+    smoke_rc="$(sed -n 's/^smoke_remote_rc=//p' <<< "$smoke_output" | tail -n 1)"
+    [[ "$smoke_rc" =~ ^[0-9]+$ && "$smoke_rc" -eq 0 ]] || {
+        echo "DEPLOY_FAIL $variant h264 smoke remote_rc=${smoke_rc:-MISSING}" \
+            | tee -a "$LOG_FILE" >&2
+        exit 6
+    }
+    grep -Eq 'frame=[[:space:]]*1([[:space:]]|$)' <<< "$smoke_output" || {
+        echo "DEPLOY_FAIL $variant h264 smoke produced no frame" \
+            | tee -a "$LOG_FILE" >&2
+        exit 6
+    }
     echo "gate.smoke.$variant=PASS decoder=h264" | tee -a "$LOG_FILE"
 done
 
