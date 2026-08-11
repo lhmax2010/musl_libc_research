@@ -1,6 +1,6 @@
 # Incident: ffmpeg F2 configure cannot see clang `stdatomic.h`
 
-Status: **AUTHORIZED — precedent reuse applied; rerun pending**
+Status: **RESOLVED — precedent reuse applied and F2 configure passed**
 
 ## Scope and stopping point
 
@@ -54,10 +54,11 @@ disablement, or include-path change was attempted.
   `2cba549fe00a80d416c0fbb388aa7b94177d20a8415d4f6a6c6658b4480d01ca`
   - missing header: lines 16036 and 16049
   - terminal configure diagnosis: line 17462
-- `results/logs/gbs-build-ffmpeg.log`, SHA-256
+- The initial `results/logs/gbs-build-ffmpeg.log` had SHA-256
   `82dfcf33da657f4792fcccdbc4ec05aa10549d6e36a1dce96ca494fbb9dcde7e`
-  - terminal diagnosis: line 3045
-  - build gate stop: line 3052
+  (terminal diagnosis at line 3045 and build-gate stop at line 3052). The
+  authorized formal rerun subsequently replaced that rolling build-log path;
+  the immutable failed-config log above retains the underlying probe evidence.
 - Chroot resource header SHA-256:
   `728b690f127fc85faa32b9031e3a0019da92f77db92ca91b749571e45617a9ea`
 
@@ -87,3 +88,19 @@ Rerun after authorization:
 ```text
 scripts/build_gbs_ffmpeg.sh
 ```
+
+The rerun recorded:
+
+```text
+gate.clang_resource_stdatomic=PASS path=/usr/lib/clang/22/include/stdatomic.h
+threading support         pthreads
+Enabled decoders:
+h264
+Enabled hwaccels:
+License: LGPL version 2.1 or later
+```
+
+F2 configure therefore progressed past the original C11 atomics failure. The
+formal three-way configure-equivalence gate was not reached because a separate,
+new build-host-tool incident stopped the run; see
+`incident-ffmpeg-build-tool-private-loader.md`.
