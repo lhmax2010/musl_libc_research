@@ -1,0 +1,46 @@
+Tizen ffmpeg frozen source provenance
+generated_utc=2026-08-11T05:04:16Z
+remote_url=git://review.tizen.org/git/platform/upstream/ffmpeg
+remote_branch=tizen
+frozen_commit=c15459c9fc8976827db7eaac643e84db2d1ea534
+checkout_head=c15459c9fc8976827db7eaac643e84db2d1ea534
+checkout_status_porcelain=EMPTY
+archive=packaging/ffmpeg-tizen-src.tar.gz.frozen
+archive_sha256=f12101bcbec88f664bf50daf96bb4dbdd9326615ff11e1555f0eb3b1ff37f2f8
+archive_embedded_commit=c15459c9fc8976827db7eaac643e84db2d1ea534
+release_file=8.0.1
+patch_declaration_count=0
+patch_file_count=0
+prep_patch_apply_count=0
+
+[git log -1 --decorate=full --date=iso-strict --format=fuller]
+commit c15459c9fc8976827db7eaac643e84db2d1ea534 (HEAD -> refs/heads/tizen, refs/remotes/origin/tizen)
+Author:     Sangchul Lee <sc11.lee@samsung.com>
+AuthorDate: 2026-07-01T19:07:28+09:00
+Commit:     Sangchul Lee <sc11.lee@samsung.com>
+CommitDate: 2026-07-07T12:31:28+09:00
+
+    spec: Enable vpx codec regardless of tv profile
+    
+    [Version] 8.0.1-1
+    [Issue Type] Feature modification
+    
+    Change-Id: Ib5c9edb92e3572246049ff331b8e549a964b254e
+    Signed-off-by: Sangchul Lee <sc11.lee@samsung.com>
+
+[libavutil/version.h extracted defines]
+#define LIBAVUTIL_VERSION_MAJOR  60
+#define LIBAVUTIL_VERSION_MINOR   8
+#define LIBAVUTIL_VERSION_MICRO 100
+
+[Tizen packaging spec]
+path=packaging/ffmpeg.spec
+archived_as=share/tizen-ffmpeg-spec.orig
+sha256=da79e3571a2938200b73ca6ac88010ad137890d323065f02eabcad3278d8a652
+
+[Tizen patch declarations and prep sequence]
+archived_as=share/tizen-ffmpeg-patch-sequence.orig
+sha256=63e4105084fe77ebe620bd336ff8a85560b368f88519e78853255a4f5c0b389d
+
+[git status --porcelain]
+<EMPTY>
