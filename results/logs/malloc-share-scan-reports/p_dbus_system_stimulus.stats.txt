@@ -1,0 +1,14 @@
+
+Aggregated stats:
+               TOTAL events:        113
+                MMAP events:         11  ( 9.7%)
+                COMM events:          2  ( 1.8%)
+              SAMPLE events:         21  (18.6%)
+               MMAP2 events:         74  (65.5%)
+      FINISHED_ROUND events:          1  ( 0.9%)
+            ID_INDEX events:          1  ( 0.9%)
+          THREAD_MAP events:          1  ( 0.9%)
+             CPU_MAP events:          1  ( 0.9%)
+       FINISHED_INIT events:          1  ( 0.9%)
+task-clock:ppp stats:
+              SAMPLE events:         21

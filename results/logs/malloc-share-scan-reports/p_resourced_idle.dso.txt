@@ -1,0 +1,4 @@
+Error:
+The /tmp/p_resourced_idle.data data has no samples!
+# To display the perf.data header info, please use --header/--header-only options.
+#

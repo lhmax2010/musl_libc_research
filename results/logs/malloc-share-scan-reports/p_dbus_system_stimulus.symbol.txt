@@ -1,0 +1,707 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 21  of event 'task-clock:ppp'
+# Event count (approx.): 212121210
+#
+# Children      Self  Symbol                                     IPC   [IPC Coverage]
+# ........  ........  .........................................  ....................
+#
+    38.10%     0.00%  [k] __sys_trace_return                     -      -            
+            |          
+            |--14.29%--__sys_accept4
+            |          do_accept
+            |          |          
+            |          |--9.52%--unix_accept
+            |          |          __kfree_skb
+            |          |          skb_release_data
+            |          |          kmem_cache_free
+            |          |          __slab_free
+            |          |          
+            |           --4.76%--sock_alloc_file
+            |                     alloc_file_pseudo
+            |                     d_alloc_pseudo
+            |                     __d_alloc
+            |                     kmem_cache_alloc_lru_noprof
+            |                     __memcg_slab_post_alloc_hook
+            |          
+            |--4.76%--__se_sys_sendmsg
+            |          ___sys_sendmsg
+            |          ____sys_sendmsg
+            |          unix_stream_sendmsg
+            |          sock_alloc_send_pskb
+            |          alloc_skb_with_frags
+            |          __alloc_skb
+            |          kmem_cache_alloc_node_noprof
+            |          __memcg_slab_post_alloc_hook
+            |          mod_objcg_state
+            |          
+            |--4.76%--__se_sys_epoll_wait
+            |          do_epoll_wait
+            |          
+            |--4.76%--ksys_read
+            |          vfs_read
+            |          proc_pid_cmdline_read
+            |          get_free_pages_noprof
+            |          __alloc_pages_noprof
+            |          get_page_from_freelist
+            |          __sched_text_end
+            |          
+            |--4.76%--do_faccessat
+            |          user_path_at
+            |          filename_lookup
+            |          path_lookupat
+            |          walk_component
+            |          lookup_fast
+            |          __d_lookup
+            |          
+             --4.76%--__se_sys_openat
+                       do_sys_openat2
+                       do_filp_open
+                       path_openat
+                       link_path_walk
+                       security_inode_permission
+                       smack_inode_permission
+                       smk_tskacc
+
+    19.05%     0.00%  [.] 00000000                               -      -            
+            |          
+            |--4.76%--0xb6f2c2d0
+            |          __und_usr
+            |          do_undefinstr
+            |          _raw_spin_unlock_irqrestore
+            |          
+            |--4.76%--0xb6f19acc
+            |          
+            |--4.76%--_dbus_auth_do_work
+            |          
+             --4.76%--_int_malloc
+
+    14.29%     0.00%  [k] 0x00000073                             -      -            
+            |          
+            |--4.76%--read
+            |          __sys_trace_return
+            |          ksys_read
+            |          vfs_read
+            |          proc_pid_cmdline_read
+            |          get_free_pages_noprof
+            |          __alloc_pages_noprof
+            |          get_page_from_freelist
+            |          __sched_text_end
+            |          
+            |--4.76%--__libc_open64
+            |          __sys_trace_return
+            |          __se_sys_openat
+            |          do_sys_openat2
+            |          do_filp_open
+            |          path_openat
+            |          link_path_walk
+            |          security_inode_permission
+            |          smack_inode_permission
+            |          smk_tskacc
+            |          
+             --4.76%--__GI___access
+                       __sys_trace_return
+                       do_faccessat
+                       user_path_at
+                       filename_lookup
+                       path_lookupat
+                       walk_component
+                       lookup_fast
+                       __d_lookup
+
+    14.29%     0.00%  [k] 0x00b9b280                             -      -            
+            |
+            ---accept4
+               __sys_trace_return
+               __sys_accept4
+               do_accept
+               |          
+               |--9.52%--unix_accept
+               |          __kfree_skb
+               |          skb_release_data
+               |          kmem_cache_free
+               |          __slab_free
+               |          
+                --4.76%--sock_alloc_file
+                          alloc_file_pseudo
+                          d_alloc_pseudo
+                          __d_alloc
+                          kmem_cache_alloc_lru_noprof
+                          __memcg_slab_post_alloc_hook
+
+    14.29%     0.00%  [.] accept4                                -      -            
+            |
+            ---__sys_trace_return
+               __sys_accept4
+               do_accept
+               |          
+               |--9.52%--unix_accept
+               |          __kfree_skb
+               |          skb_release_data
+               |          kmem_cache_free
+               |          __slab_free
+               |          
+                --4.76%--sock_alloc_file
+                          alloc_file_pseudo
+                          d_alloc_pseudo
+                          __d_alloc
+                          kmem_cache_alloc_lru_noprof
+                          __memcg_slab_post_alloc_hook
+
+    14.29%     0.00%  [k] __sys_accept4                          -      -            
+            |
+            ---do_accept
+               |          
+               |--9.52%--unix_accept
+               |          __kfree_skb
+               |          skb_release_data
+               |          kmem_cache_free
+               |          __slab_free
+               |          
+                --4.76%--sock_alloc_file
+                          alloc_file_pseudo
+                          d_alloc_pseudo
+                          __d_alloc
+                          kmem_cache_alloc_lru_noprof
+                          __memcg_slab_post_alloc_hook
+
+    14.29%     0.00%  [k] do_accept                              -      -            
+            |          
+            |--9.52%--unix_accept
+            |          __kfree_skb
+            |          skb_release_data
+            |          kmem_cache_free
+            |          __slab_free
+            |          
+             --4.76%--sock_alloc_file
+                       alloc_file_pseudo
+                       d_alloc_pseudo
+                       __d_alloc
+                       kmem_cache_alloc_lru_noprof
+                       __memcg_slab_post_alloc_hook
+
+     9.52%     0.00%  [.] __libc_sendmsg                         -      -            
+            |          
+            |--4.76%--__sys_trace_return
+            |          __se_sys_sendmsg
+            |          ___sys_sendmsg
+            |          ____sys_sendmsg
+            |          unix_stream_sendmsg
+            |          sock_alloc_send_pskb
+            |          alloc_skb_with_frags
+            |          __alloc_skb
+            |          kmem_cache_alloc_node_noprof
+            |          __memcg_slab_post_alloc_hook
+            |          mod_objcg_state
+            |          
+             --4.76%--__sys_trace
+                       syscall_trace_enter
+                       __audit_syscall_entry
+
+     9.52%     4.76%  [k] __memcg_slab_post_alloc_hook           -      -            
+            |          
+            |--4.76%--__memcg_slab_post_alloc_hook
+            |          mod_objcg_state
+            |          
+             --4.76%--0xb9b280
+                       accept4
+                       __sys_trace_return
+                       __sys_accept4
+                       do_accept
+                       sock_alloc_file
+                       alloc_file_pseudo
+                       d_alloc_pseudo
+                       __d_alloc
+                       kmem_cache_alloc_lru_noprof
+                       __memcg_slab_post_alloc_hook
+
+     9.52%     9.52%  [k] __slab_free                            -      -            
+            |
+            ---accept4
+               __sys_trace_return
+               __sys_accept4
+               do_accept
+               unix_accept
+               __kfree_skb
+               skb_release_data
+               kmem_cache_free
+               __slab_free
+
+     9.52%     0.00%  [k] unix_accept                            -      -            
+            |
+            ---__kfree_skb
+               skb_release_data
+               kmem_cache_free
+               __slab_free
+
+     9.52%     0.00%  [k] __kfree_skb                            -      -            
+            |
+            ---skb_release_data
+               kmem_cache_free
+               __slab_free
+
+     9.52%     0.00%  [k] skb_release_data                       -      -            
+            |
+            ---kmem_cache_free
+               __slab_free
+
+     9.52%     0.00%  [k] kmem_cache_free                        -      -            
+            |
+            ---__slab_free
+
+     4.76%     4.76%  [k] mod_objcg_state                        -      -            
+            |
+            ---__libc_sendmsg
+               __sys_trace_return
+               __se_sys_sendmsg
+               ___sys_sendmsg
+               ____sys_sendmsg
+               unix_stream_sendmsg
+               sock_alloc_send_pskb
+               alloc_skb_with_frags
+               __alloc_skb
+               kmem_cache_alloc_node_noprof
+               __memcg_slab_post_alloc_hook
+               mod_objcg_state
+
+     4.76%     0.00%  [k] 0x00c58b08                             -      -            
+            |
+            ---__libc_sendmsg
+               __sys_trace_return
+               __se_sys_sendmsg
+               ___sys_sendmsg
+               ____sys_sendmsg
+               unix_stream_sendmsg
+               sock_alloc_send_pskb
+               alloc_skb_with_frags
+               __alloc_skb
+               kmem_cache_alloc_node_noprof
+               __memcg_slab_post_alloc_hook
+               mod_objcg_state
+
+     4.76%     4.76%  [k] smk_tskacc                             -      -            
+            |
+            ---__libc_open64
+               __sys_trace_return
+               __se_sys_openat
+               do_sys_openat2
+               do_filp_open
+               path_openat
+               link_path_walk
+               security_inode_permission
+               smack_inode_permission
+               smk_tskacc
+
+     4.76%     4.76%  [k] __d_lookup                             -      -            
+            |
+            ---__GI___access
+               __sys_trace_return
+               do_faccessat
+               user_path_at
+               filename_lookup
+               path_lookupat
+               walk_component
+               lookup_fast
+               __d_lookup
+
+     4.76%     4.76%  [k] __sched_text_end                       -      -            
+            |
+            ---read
+               __sys_trace_return
+               ksys_read
+               vfs_read
+               proc_pid_cmdline_read
+               get_free_pages_noprof
+               __alloc_pages_noprof
+               get_page_from_freelist
+               __sched_text_end
+
+     4.76%     0.00%  [.] __libc_open64                          -      -            
+            |
+            ---__sys_trace_return
+               __se_sys_openat
+               do_sys_openat2
+               do_filp_open
+               path_openat
+               link_path_walk
+               security_inode_permission
+               smack_inode_permission
+               smk_tskacc
+
+     4.76%     0.00%  [k] __se_sys_sendmsg                       -      -            
+            |
+            ---___sys_sendmsg
+               ____sys_sendmsg
+               unix_stream_sendmsg
+               sock_alloc_send_pskb
+               alloc_skb_with_frags
+               __alloc_skb
+               kmem_cache_alloc_node_noprof
+               __memcg_slab_post_alloc_hook
+               mod_objcg_state
+
+     4.76%     0.00%  [.] __GI___access                          -      -            
+            |
+            ---__sys_trace_return
+               do_faccessat
+               user_path_at
+               filename_lookup
+               path_lookupat
+               walk_component
+               lookup_fast
+               __d_lookup
+
+     4.76%     0.00%  [k] ___sys_sendmsg                         -      -            
+            |
+            ---____sys_sendmsg
+               unix_stream_sendmsg
+               sock_alloc_send_pskb
+               alloc_skb_with_frags
+               __alloc_skb
+               kmem_cache_alloc_node_noprof
+               __memcg_slab_post_alloc_hook
+               mod_objcg_state
+
+     4.76%     0.00%  [.] read                                   -      -            
+            |
+            ---__sys_trace_return
+               ksys_read
+               vfs_read
+               proc_pid_cmdline_read
+               get_free_pages_noprof
+               __alloc_pages_noprof
+               get_page_from_freelist
+               __sched_text_end
+
+     4.76%     0.00%  [k] ____sys_sendmsg                        -      -            
+            |
+            ---unix_stream_sendmsg
+               sock_alloc_send_pskb
+               alloc_skb_with_frags
+               __alloc_skb
+               kmem_cache_alloc_node_noprof
+               __memcg_slab_post_alloc_hook
+               mod_objcg_state
+
+     4.76%     0.00%  [k] __se_sys_openat                        -      -            
+            |
+            ---do_sys_openat2
+               do_filp_open
+               path_openat
+               link_path_walk
+               security_inode_permission
+               smack_inode_permission
+               smk_tskacc
+
+     4.76%     0.00%  [k] do_faccessat                           -      -            
+            |
+            ---user_path_at
+               filename_lookup
+               path_lookupat
+               walk_component
+               lookup_fast
+               __d_lookup
+
+     4.76%     0.00%  [k] do_sys_openat2                         -      -            
+            |
+            ---do_filp_open
+               path_openat
+               link_path_walk
+               security_inode_permission
+               smack_inode_permission
+               smk_tskacc
+
+     4.76%     0.00%  [k] ksys_read                              -      -            
+            |
+            ---vfs_read
+               proc_pid_cmdline_read
+               get_free_pages_noprof
+               __alloc_pages_noprof
+               get_page_from_freelist
+               __sched_text_end
+
+     4.76%     0.00%  [k] unix_stream_sendmsg                    -      -            
+            |
+            ---sock_alloc_send_pskb
+               alloc_skb_with_frags
+               __alloc_skb
+               kmem_cache_alloc_node_noprof
+               __memcg_slab_post_alloc_hook
+               mod_objcg_state
+
+     4.76%     0.00%  [k] do_filp_open                           -      -            
+            |
+            ---path_openat
+               link_path_walk
+               security_inode_permission
+               smack_inode_permission
+               smk_tskacc
+
+     4.76%     0.00%  [k] sock_alloc_file                        -      -            
+            |
+            ---alloc_file_pseudo
+               d_alloc_pseudo
+               __d_alloc
+               kmem_cache_alloc_lru_noprof
+               __memcg_slab_post_alloc_hook
+
+     4.76%     0.00%  [k] sock_alloc_send_pskb                   -      -            
+            |
+            ---alloc_skb_with_frags
+               __alloc_skb
+               kmem_cache_alloc_node_noprof
+               __memcg_slab_post_alloc_hook
+               mod_objcg_state
+
+     4.76%     0.00%  [k] user_path_at                           -      -            
+            |
+            ---filename_lookup
+               path_lookupat
+               walk_component
+               lookup_fast
+               __d_lookup
+
+     4.76%     0.00%  [k] vfs_read                               -      -            
+            |
+            ---proc_pid_cmdline_read
+               get_free_pages_noprof
+               __alloc_pages_noprof
+               get_page_from_freelist
+               __sched_text_end
+
+     4.76%     4.76%  [k] __audit_syscall_entry                  -      -            
+            |
+            ---__libc_sendmsg
+               __sys_trace
+               syscall_trace_enter
+               __audit_syscall_entry
+
+     4.76%     4.76%  [k] _raw_spin_unlock_irqrestore            -      -            
+            |
+            ---0xb6f2c2d0
+               __und_usr
+               do_undefinstr
+               _raw_spin_unlock_irqrestore
+
+     4.76%     4.76%  [k] do_epoll_wait                          -      -            
+            |
+            ---epoll_wait
+               __sys_trace_return
+               __se_sys_epoll_wait
+               do_epoll_wait
+
+     4.76%     0.00%  [k] alloc_file_pseudo                      -      -            
+            |
+            ---d_alloc_pseudo
+               __d_alloc
+               kmem_cache_alloc_lru_noprof
+               __memcg_slab_post_alloc_hook
+
+     4.76%     0.00%  [k] alloc_skb_with_frags                   -      -            
+            |
+            ---__alloc_skb
+               kmem_cache_alloc_node_noprof
+               __memcg_slab_post_alloc_hook
+               mod_objcg_state
+
+     4.76%     0.00%  [k] filename_lookup                        -      -            
+            |
+            ---path_lookupat
+               walk_component
+               lookup_fast
+               __d_lookup
+
+     4.76%     0.00%  [k] path_openat                            -      -            
+            |
+            ---link_path_walk
+               security_inode_permission
+               smack_inode_permission
+               smk_tskacc
+
+     4.76%     0.00%  [k] proc_pid_cmdline_read                  -      -            
+            |
+            ---get_free_pages_noprof
+               __alloc_pages_noprof
+               get_page_from_freelist
+               __sched_text_end
+
+     4.76%     0.00%  [k] 0x000c5e6b                             -      -            
+            |
+            ---epoll_wait
+               __sys_trace_return
+               __se_sys_epoll_wait
+               do_epoll_wait
+
+     4.76%     0.00%  [k] 0x00c12e80                             -      -            
+            |
+            ---__libc_sendmsg
+               __sys_trace
+               syscall_trace_enter
+               __audit_syscall_entry
+
+     4.76%     0.00%  [k] __alloc_skb                            -      -            
+            |
+            ---kmem_cache_alloc_node_noprof
+               __memcg_slab_post_alloc_hook
+               mod_objcg_state
+
+     4.76%     0.00%  [k] d_alloc_pseudo                         -      -            
+            |
+            ---__d_alloc
+               kmem_cache_alloc_lru_noprof
+               __memcg_slab_post_alloc_hook
+
+     4.76%     0.00%  [.] epoll_wait                             -      -            
+            |
+            ---__sys_trace_return
+               __se_sys_epoll_wait
+               do_epoll_wait
+
+     4.76%     0.00%  [k] get_free_pages_noprof                  -      -            
+            |
+            ---__alloc_pages_noprof
+               get_page_from_freelist
+               __sched_text_end
+
+     4.76%     0.00%  [k] link_path_walk                         -      -            
+            |
+            ---security_inode_permission
+               smack_inode_permission
+               smk_tskacc
+
+     4.76%     0.00%  [k] path_lookupat                          -      -            
+            |
+            ---walk_component
+               lookup_fast
+               __d_lookup
+
+     4.76%     0.00%  [.] 0xb6f2c2d0                             -      -            
+            |
+            ---__und_usr
+               do_undefinstr
+               _raw_spin_unlock_irqrestore
+
+     4.76%     0.00%  [k] __alloc_pages_noprof                   -      -            
+            |
+            ---get_page_from_freelist
+               __sched_text_end
+
+     4.76%     0.00%  [k] __d_alloc                              -      -            
+            |
+            ---kmem_cache_alloc_lru_noprof
+               __memcg_slab_post_alloc_hook
+
+     4.76%     0.00%  [k] __sys_trace                            -      -            
+            |
+            ---syscall_trace_enter
+               __audit_syscall_entry
+
+     4.76%     0.00%  [k] __und_usr                              -      -            
+            |
+            ---do_undefinstr
+               _raw_spin_unlock_irqrestore
+
+     4.76%     0.00%  [k] kmem_cache_alloc_node_noprof           -      -            
+            |
+            ---__memcg_slab_post_alloc_hook
+               mod_objcg_state
+
+     4.76%     0.00%  [k] security_inode_permission              -      -            
+            |
+            ---smack_inode_permission
+               smk_tskacc
+
+     4.76%     0.00%  [k] walk_component                         -      -            
+            |
+            ---lookup_fast
+               __d_lookup
+
+     4.76%     4.76%  [.] _dbus_auth_do_work                     -      -            
+            |
+            ---_dbus_auth_do_work
+
+     4.76%     4.76%  [.] _int_malloc                            -      -            
+            |
+            ---_int_malloc
+
+     4.76%     4.76%  [.] dbus_connection_get_outgoing_unix_fds  -      -            
+            |
+            ---dbus_connection_get_outgoing_unix_fds
+
+     4.76%     4.76%  [.] dbus_timeout_get_enabled               -      -            
+            |
+            ---dbus_timeout_get_enabled
+
+     4.76%     4.76%  [.] dbus_type_is_valid                     -      -            
+            |
+            ---dbus_type_is_valid
+
+     4.76%     4.76%  [.] 0x00016acc                             -      -            
+            |
+            ---0xb6f19acc
+
+     4.76%     4.76%  [.] 0x000199ac                             -      -            
+            |
+            ---0x5169ac
+
+     4.76%     0.00%  [k] __se_sys_epoll_wait                    -      -            
+            |
+            ---do_epoll_wait
+
+     4.76%     0.00%  [k] do_undefinstr                          -      -            
+            |
+            ---_raw_spin_unlock_irqrestore
+
+     4.76%     0.00%  [k] get_page_from_freelist                 -      -            
+            |
+            ---__sched_text_end
+
+     4.76%     0.00%  [k] kmem_cache_alloc_lru_noprof            -      -            
+            |
+            ---__memcg_slab_post_alloc_hook
+
+     4.76%     0.00%  [k] lookup_fast                            -      -            
+            |
+            ---__d_lookup
+
+     4.76%     0.00%  [k] smack_inode_permission                 -      -            
+            |
+            ---smk_tskacc
+
+     4.76%     0.00%  [k] syscall_trace_enter                    -      -            
+            |
+            ---__audit_syscall_entry
+
+     4.76%     0.00%  [.] 0x00000039                             -      -            
+            |
+            ---0x5169ac
+
+     4.76%     0.00%  [.] 0x00000099                             -      -            
+            |
+            ---dbus_connection_get_outgoing_unix_fds
+
+     4.76%     0.00%  [.] 0x000b6dbf                             -      -            
+            |
+            ---dbus_timeout_get_enabled
+
+     4.76%     0.00%  [.] 0x00c3a5a8                             -      -            
+            |
+            ---dbus_type_is_valid
+
+     4.76%     4.76%  [.] pthread_mutex_init@@GLIBC_2.4          -      -            
+     4.76%     4.76%  [.] 0x00019c58                             -      -            
+     4.76%     4.76%  [.] 0x0001d578                             -      -            
+     4.76%     4.76%  [.] 0x0002d004                             -      -            
+     4.76%     0.00%  [.] 0x005169ac                             -      -            
+     4.76%     0.00%  [.] 0x0051a578                             -      -            
+     4.76%     0.00%  [.] 0xb6f19acc                             -      -            
+     4.76%     0.00%  [.] 0xb6f1cc58                             -      -            
+     4.76%     0.00%  [.] 0xb6f30004                             -      -            
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

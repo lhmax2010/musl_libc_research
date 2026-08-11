@@ -1,0 +1,128 @@
+malloc-share scan capture evidence
+target=192.168.108.26
+sampling_command=perf record -F 99 -g -p PID -o /tmp/p_NAME_ROUND.data -- sleep 30
+stdin_isolation=sdb shell calls used explicit host-side /dev/null input
+
+## Process discovery
+
+dlog_logger pid=413 cmd=/usr/bin/dlog_logger
+dbus_system pid=442 cmd=/usr/bin/dbus-daemon --system
+enlightenment pid=509 cmd=/usr/bin/enlightenment
+pulseaudio pid=508 cmd=/usr/bin/pulseaudio
+resourced pid=412 cmd=/usr/bin/resourced
+SystemUI pid=1011 cmd=/usr/apps/org.tizen.systemui/bin/SystemUI.dll
+homescreen pid=983 cmd=/usr/apps/org.tizen.homescreen/bin/runner
+
+All PIDs remained present across their own sampling rounds.
+
+## WebEngine driveability probe
+
+Installed package: `chromium-efl-1.1.144-1.armv7l`.
+Candidate: `/usr/apps/org.tizen.chromium-efl/bin/mini_browser`.
+All HOME/XDG cache/config paths were redirected under `/tmp/malloc-scan-web`.
+
+Owner execution output:
+bash: /usr/apps/org.tizen.chromium-efl/bin/mini_browser: Permission denied
+
+Root execution created a browser, zygote, and renderer process, but page-load
+success could not be established. Original output is archived in
+`malloc-share-scan-reports/web-probe-root.log`; key failures were:
+
+eina_module: could not dlopen wayland_egl module.so: libGLESv2.so.2: cannot open shared object file
+ecore_wl2_window_show: win:0, surface present but invalid window state
+org.freedesktop.DBus.Error.NotSupported: DBus session autolaunch unavailable
+
+The spawned browser/zygote/renderer processes were terminated and verified
+absent. Classification: `NOT_RUN` because the page could not be proven loaded;
+an empty WebEngine process was not sampled.
+
+## Sampling rounds
+
+### dlog_logger idle
+
+pid=413
+before: Threads=5 VmRSS=3432_kB State=sleeping
+perf: Captured 2 samples, rc=0
+after: Threads=5 VmRSS=3432_kB State=sleeping
+
+### dlog_logger stimulus
+
+pid=413
+driver=`dlogutil -v time` continuous consumer for the full 30-second round
+driver_alive_before=YES
+driver_alive_after=YES
+before: Threads=5 VmRSS=3432_kB State=sleeping
+perf: Captured 0 samples, rc=0
+after: Threads=5 VmRSS=3432_kB State=sleeping
+
+### dbus-daemon system idle
+
+pid=442
+before: Threads=1 VmRSS=5804_kB State=sleeping
+perf: Captured 1 sample, rc=0
+after: Threads=1 VmRSS=5804_kB State=sleeping
+
+### dbus-daemon system stimulus
+
+pid=442
+driver=`org.freedesktop.DBus.ListNames` at 5 calls/second for 30 seconds
+driver_calls=150 driver_ok=150 driver_fail=0
+before: Threads=1 VmRSS=5804_kB State=sleeping
+perf: Captured 21 samples, rc=0
+after: Threads=1 VmRSS=5804_kB State=sleeping
+
+### enlightenment idle
+
+pid=509
+before: Threads=15 VmRSS=17176_kB State=sleeping
+perf: Captured 17 samples, rc=0
+after: Threads=15 VmRSS=17176_kB State=sleeping
+stimulus=STIMULUS_UNAVAILABLE
+
+### pulseaudio idle
+
+pid=508
+before: Threads=5 VmRSS=5304_kB State=sleeping
+perf: Captured 0 samples, rc=0
+after: Threads=5 VmRSS=5304_kB State=sleeping
+stimulus=STIMULUS_UNAVAILABLE
+
+### resourced idle
+
+pid=412
+before: Threads=12 VmRSS=7324_kB State=sleeping
+perf: Captured 0 samples, rc=0
+after: Threads=12 VmRSS=7324_kB State=sleeping
+stimulus=STIMULUS_UNAVAILABLE
+
+### SystemUI idle
+
+pid=1011
+before: Threads=13 VmRSS=19692_kB State=sleeping
+perf: Captured 0 samples, rc=0
+after: Threads=13 VmRSS=19692_kB State=sleeping
+stimulus=STIMULUS_UNAVAILABLE
+
+### homescreen idle
+
+pid=983
+before: Threads=21 VmRSS=45972_kB State=sleeping
+perf: Captured 42 samples, rc=0
+after: Threads=21 VmRSS=46304_kB State=sleeping
+stimulus=STIMULUS_UNAVAILABLE
+
+## Raw pull and cleanup
+
+All nine `perf.data` files were hashed on the board, pulled to
+`results/perf-raw/`, hash-checked on the host, and made read-only. The complete
+symbol/DSO/stats output for every round is in
+`results/logs/malloc-share-scan-reports/`.
+
+The board cleanup removed only exact task-created paths: nine data files,
+their symbol/DSO/stats reports, the D-Bus driver summary, three self-test data
+files, four pushed RPM files, and `/tmp/malloc-scan-web`. Final remainder and
+WebEngine-process scans were empty. Installed RPMs were deliberately retained.
+
+board_tmp_cleanup=PASS
+web_process_cleanup=PASS
+raw_host_read_only=PASS

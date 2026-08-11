@@ -1,0 +1,269 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 17  of event 'task-clock:ppp'
+# Event count (approx.): 171717170
+#
+# Children      Self  Shared Object                 
+# ........  ........  ..............................
+#
+    70.59%     0.00%  [unknown]                     
+            |          
+            |--29.41%--0x99
+            |          |          
+            |          |--23.53%--__ioctl_time64
+            |          |          __sys_trace_return
+            |          |          __se_sys_ioctl
+            |          |          drm_ioctl
+            |          |          drm_ioctl_kernel
+            |          |          v3d_create_bo_ioctl
+            |          |          v3d_bo_create_finish
+            |          |          drm_gem_shmem_get_pages_sgt
+            |          |          |          
+            |          |          |--17.65%--drm_gem_get_pages
+            |          |          |          shmem_read_folio_gfp
+            |          |          |          shmem_get_folio_gfp
+            |          |          |          |          
+            |          |          |          |--5.88%--__mem_cgroup_charge
+            |          |          |          |          charge_memcg
+            |          |          |          |          try_charge_memcg
+            |          |          |          |          
+            |          |          |          |--5.88%--__kmap_local_page_prot
+            |          |          |          |          kmap_high_get
+            |          |          |          |          _raw_spin_unlock_irqrestore
+            |          |          |          |          
+            |          |          |           --5.88%--__kmap_local_pfn_prot
+            |          |          |          
+            |          |           --5.88%--dma_map_sgtable
+            |          |                     __dma_map_sg_attrs
+            |          |                     dma_direct_map_sg
+            |          |                     arch_sync_dma_for_device
+            |          |                     __kmap_local_pfn_prot
+            |          |          
+            |           --5.88%--0xb1ba6dc8
+            |          
+            |--29.41%--0
+            |          |          
+            |          |--5.88%--0xb0f47db4
+            |          |          
+            |          |--5.88%--0x4dc37c
+            |          |          
+            |          |--5.88%--e_client_util_ignored_get
+            |          |          
+            |          |--5.88%--__ioctl_time64
+            |          |          __sys_trace_return
+            |          |          __se_sys_ioctl
+            |          |          drm_ioctl
+            |          |          arm_copy_to_user
+            |          |          
+            |           --5.88%--_int_free_merge_chunk
+            |          
+            |--5.88%--0x1288e00a
+            |          0xb6658848
+            |          
+             --5.88%--0x6
+                       _efl_object_call_resolve
+
+    64.71%     5.88%  libc.so.6                     
+            |          
+            |--52.94%--__ioctl_time64
+            |          |          
+            |          |--47.06%--__sys_trace_return
+            |          |          __se_sys_ioctl
+            |          |          drm_ioctl
+            |          |          |          
+            |          |          |--41.18%--drm_ioctl_kernel
+            |          |          |          |          
+            |          |          |          |--23.53%--v3d_create_bo_ioctl
+            |          |          |          |          v3d_bo_create_finish
+            |          |          |          |          drm_gem_shmem_get_pages_sgt
+            |          |          |          |          |          
+            |          |          |          |          |--17.65%--drm_gem_get_pages
+            |          |          |          |          |          shmem_read_folio_gfp
+            |          |          |          |          |          shmem_get_folio_gfp
+            |          |          |          |          |          |          
+            |          |          |          |          |          |--5.88%--__mem_cgroup_charge
+            |          |          |          |          |          |          charge_memcg
+            |          |          |          |          |          |          try_charge_memcg
+            |          |          |          |          |          |          
+            |          |          |          |          |          |--5.88%--__kmap_local_page_prot
+            |          |          |          |          |          |          kmap_high_get
+            |          |          |          |          |          |          _raw_spin_unlock_irqrestore
+            |          |          |          |          |          |          
+            |          |          |          |          |           --5.88%--__kmap_local_pfn_prot
+            |          |          |          |          |          
+            |          |          |          |           --5.88%--dma_map_sgtable
+            |          |          |          |                     __dma_map_sg_attrs
+            |          |          |          |                     dma_direct_map_sg
+            |          |          |          |                     arch_sync_dma_for_device
+            |          |          |          |                     __kmap_local_pfn_prot
+            |          |          |          |          
+            |          |          |          |--11.76%--drm_gem_handle_delete
+            |          |          |          |          drm_gem_object_release_handle
+            |          |          |          |          drm_gem_shmem_free
+            |          |          |          |          |          
+            |          |          |          |          |--5.88%--drm_gem_shmem_put_pages
+            |          |          |          |          |          drm_gem_put_pages
+            |          |          |          |          |          check_move_unevictable_folios
+            |          |          |          |          |          
+            |          |          |          |           --5.88%--dma_direct_unmap_sg
+            |          |          |          |                     arch_sync_dma_for_cpu
+            |          |          |          |                     v7_dma_inv_range
+            |          |          |          |          
+            |          |          |           --5.88%--v3d_drm_gem_prime_fd_to_handle
+            |          |          |                     drm_gem_prime_fd_to_handle
+            |          |          |                     drm_gem_prime_import_dev
+            |          |          |                     dma_buf_dynamic_attach
+            |          |          |                     drm_gem_pin
+            |          |          |                     ww_mutex_unlock
+            |          |          |          
+            |          |           --5.88%--arm_copy_to_user
+            |          |          
+            |           --5.88%--slow_work_pending
+            |                     do_work_pending
+            |                     resume_user_mode_work
+            |                     task_work_run
+            |                     __fput
+            |                     dput
+            |                     __dentry_kill
+            |                     evict
+            |                     shmem_evict_inode
+            |                     shmem_undo_range
+            |                     folios_put_refs
+            |                     free_unref_folios
+            |                     __sched_text_end
+            |          
+            |--5.88%--__poll
+            |          __sys_trace_return
+            |          __se_sys_poll
+            |          do_sys_poll
+            |          
+             --5.88%--0
+                       _int_free_merge_chunk
+
+    58.82%    58.82%  [kernel.kallsyms]             
+            |          
+            |--23.53%--__ioctl_time64
+            |          |          
+            |          |--17.65%--__sys_trace_return
+            |          |          __se_sys_ioctl
+            |          |          drm_ioctl
+            |          |          drm_ioctl_kernel
+            |          |          |          
+            |          |          |--11.76%--drm_gem_handle_delete
+            |          |          |          drm_gem_object_release_handle
+            |          |          |          drm_gem_shmem_free
+            |          |          |          |          
+            |          |          |          |--5.88%--drm_gem_shmem_put_pages
+            |          |          |          |          drm_gem_put_pages
+            |          |          |          |          check_move_unevictable_folios
+            |          |          |          |          
+            |          |          |           --5.88%--dma_direct_unmap_sg
+            |          |          |                     arch_sync_dma_for_cpu
+            |          |          |                     v7_dma_inv_range
+            |          |          |          
+            |          |           --5.88%--v3d_drm_gem_prime_fd_to_handle
+            |          |                     drm_gem_prime_fd_to_handle
+            |          |                     drm_gem_prime_import_dev
+            |          |                     dma_buf_dynamic_attach
+            |          |                     drm_gem_pin
+            |          |                     ww_mutex_unlock
+            |          |          
+            |           --5.88%--slow_work_pending
+            |                     do_work_pending
+            |                     resume_user_mode_work
+            |                     task_work_run
+            |                     __fput
+            |                     dput
+            |                     __dentry_kill
+            |                     evict
+            |                     shmem_evict_inode
+            |                     shmem_undo_range
+            |                     folios_put_refs
+            |                     free_unref_folios
+            |                     __sched_text_end
+            |          
+            |--23.53%--0x99
+            |          __ioctl_time64
+            |          __sys_trace_return
+            |          __se_sys_ioctl
+            |          drm_ioctl
+            |          drm_ioctl_kernel
+            |          v3d_create_bo_ioctl
+            |          v3d_bo_create_finish
+            |          drm_gem_shmem_get_pages_sgt
+            |          |          
+            |          |--17.65%--drm_gem_get_pages
+            |          |          shmem_read_folio_gfp
+            |          |          shmem_get_folio_gfp
+            |          |          |          
+            |          |          |--5.88%--__mem_cgroup_charge
+            |          |          |          charge_memcg
+            |          |          |          try_charge_memcg
+            |          |          |          
+            |          |          |--5.88%--__kmap_local_page_prot
+            |          |          |          kmap_high_get
+            |          |          |          _raw_spin_unlock_irqrestore
+            |          |          |          
+            |          |           --5.88%--__kmap_local_pfn_prot
+            |          |          
+            |           --5.88%--dma_map_sgtable
+            |                     __dma_map_sg_attrs
+            |                     dma_direct_map_sg
+            |                     arch_sync_dma_for_device
+            |                     __kmap_local_pfn_prot
+            |          
+            |--5.88%--__poll
+            |          __sys_trace_return
+            |          __se_sys_poll
+            |          do_sys_poll
+            |          
+             --5.88%--0
+                       __ioctl_time64
+                       __sys_trace_return
+                       __se_sys_ioctl
+                       drm_ioctl
+                       arm_copy_to_user
+
+    11.76%    11.76%  enlightenment                 
+            |
+            ---0
+               |          
+               |--5.88%--0x4dc37c
+               |          
+                --5.88%--e_client_util_ignored_get
+
+     5.88%     5.88%  libdlog.so.0.0.0              
+            |
+            ---0xb6ee0263
+               0x1288e00a
+               0xb6658848
+
+     5.88%     5.88%  libeo.so.1.25.1               
+            |
+            ---0x6
+               _efl_object_call_resolve
+
+     5.88%     5.88%  libgallium-24.3.4.so (deleted)
+            |
+            ---0x99
+               0xb1ba6dc8
+
+     5.88%     5.88%  module.so                     
+            |
+            ---0
+               0xb0f47db4
+
+     5.88%     0.00%  libtdm.so.1.0.0               
+            |
+            ---0xb6ee0263
+               0x1288e00a
+               0xb6658848
+
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

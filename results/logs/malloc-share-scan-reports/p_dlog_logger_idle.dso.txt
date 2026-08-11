@@ -1,0 +1,48 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 2  of event 'task-clock:ppp'
+# Event count (approx.): 20202020
+#
+# Children      Self  Shared Object    
+# ........  ........  .................
+#
+   100.00%     0.00%  [unknown]        
+            |          
+            |--50.00%--0xb5fb8cbc
+            |          __fstatat64_time64
+            |          __sys_trace_return
+            |          do_statx_fd
+            |          cp_statx
+            |          from_kuid_munged
+            |          
+             --50.00%--0x49
+                       __GI___strchrnul
+
+   100.00%    50.00%  libc.so.6        
+            |          
+            |--50.00%--__fstatat64_time64
+            |          __sys_trace_return
+            |          do_statx_fd
+            |          cp_statx
+            |          from_kuid_munged
+            |          
+             --50.00%--0x49
+                       __GI___strchrnul
+
+    50.00%    50.00%  [kernel.kallsyms]
+            |
+            ---0xb5fb8cbc
+               __fstatat64_time64
+               __sys_trace_return
+               do_statx_fd
+               cp_statx
+               from_kuid_munged
+
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

@@ -1,0 +1,30 @@
+malloc-share mechanical extraction
+malloc_symbol_regex=^(malloc|_int_malloc|_int_free.*|free|calloc|realloc|tcache.*|malloc_consolidate|arena_get)$
+percent_column=Self
+low_samples_threshold=500
+round=p_dbus_system_idle samples=1 malloc_self=0.00% libc_self=0.00% quality=LOW_SAMPLES
+round=p_dbus_system_stimulus samples=21 malloc_self=4.76% libc_self=9.52% quality=LOW_SAMPLES
+malloc_source_row=     4.76%     4.76%  [.] _int_malloc                            -      -
+libc_source_row=    52.38%     9.52%  libc.so.6
+round=p_dlog_logger_idle samples=2 malloc_self=0.00% libc_self=50.00% quality=LOW_SAMPLES
+libc_source_row=   100.00%    50.00%  libc.so.6
+round=p_dlog_logger_stimulus samples=0 malloc_self=0.00% libc_self=0.00% quality=LOW_SAMPLES
+round=p_enlightenment_idle samples=17 malloc_self=5.88% libc_self=5.88% quality=LOW_SAMPLES
+malloc_source_row=     5.88%     5.88%  [.] _int_free_merge_chunk           -      -
+libc_source_row=    64.71%     5.88%  libc.so.6
+round=p_homescreen_idle samples=42 malloc_self=0.00% libc_self=4.76% quality=LOW_SAMPLES
+libc_source_row=    92.86%     4.76%  libc.so.6
+round=p_pulseaudio_idle samples=0 malloc_self=0.00% libc_self=0.00% quality=LOW_SAMPLES
+round=p_resourced_idle samples=0 malloc_self=0.00% libc_self=0.00% quality=LOW_SAMPLES
+round=p_systemui_idle samples=0 malloc_self=0.00% libc_self=0.00% quality=LOW_SAMPLES
+raw_sha256_begin
+1e8c7b7d37fda02ccf79f9797a253b897442fa52a1a62400f0e2a0b3a54eeca1  /home/linhao/Toolchain/development/musl-libc-research/results/perf-raw/p_dbus_system_idle.data
+ffa7c1228e01307846929943fd3e784be0cf8077d93cf54fa2fb11ad366a04ad  /home/linhao/Toolchain/development/musl-libc-research/results/perf-raw/p_dbus_system_stimulus.data
+1ac33b303f98d9d5d765961d5fd642e7ed2b2691d3718075ee899048603c15d4  /home/linhao/Toolchain/development/musl-libc-research/results/perf-raw/p_dlog_logger_idle.data
+43713ec4b9aefe0eb3641a3eb3e9ed0a790d8a4d6500b91dc646afcd5073e82e  /home/linhao/Toolchain/development/musl-libc-research/results/perf-raw/p_dlog_logger_stimulus.data
+b850bf59d8edd2c27b328d798cc10d3f326f622158aef7eafdbf0b529b9f98b1  /home/linhao/Toolchain/development/musl-libc-research/results/perf-raw/p_enlightenment_idle.data
+1c0e4c0a525aa731fbcccf076ec823fac9131ddf00dff5312ecff71b91a447e8  /home/linhao/Toolchain/development/musl-libc-research/results/perf-raw/p_homescreen_idle.data
+bf0cfe42ba0bb57ae01d696c11fa65200cb4def769df9f52f41b31b84d898ba0  /home/linhao/Toolchain/development/musl-libc-research/results/perf-raw/p_pulseaudio_idle.data
+b77e0e06c0e2fbd93d02037bcd90deb1204aac818631f06ab19f3dba1ee77715  /home/linhao/Toolchain/development/musl-libc-research/results/perf-raw/p_resourced_idle.data
+a362c10931ac9946aeff92d8164cf10d84fd1cfe50f4594485524607ebf7bc16  /home/linhao/Toolchain/development/musl-libc-research/results/perf-raw/p_systemui_idle.data
+raw_sha256_end

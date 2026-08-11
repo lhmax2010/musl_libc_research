@@ -1,0 +1,319 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 21  of event 'task-clock:ppp'
+# Event count (approx.): 212121210
+#
+# Children      Self  Shared Object       
+# ........  ........  ....................
+#
+    80.95%     0.00%  [unknown]           
+            |          
+            |--19.05%--0
+            |          |          
+            |          |--4.76%--0xb6f2c2d0
+            |          |          __und_usr
+            |          |          do_undefinstr
+            |          |          _raw_spin_unlock_irqrestore
+            |          |          
+            |          |--4.76%--0xb6f19acc
+            |          |          
+            |          |--4.76%--_dbus_auth_do_work
+            |          |          
+            |           --4.76%--_int_malloc
+            |          
+            |--14.29%--0xb9b280
+            |          accept4
+            |          __sys_trace_return
+            |          __sys_accept4
+            |          do_accept
+            |          |          
+            |          |--9.52%--unix_accept
+            |          |          __kfree_skb
+            |          |          skb_release_data
+            |          |          kmem_cache_free
+            |          |          __slab_free
+            |          |          
+            |           --4.76%--sock_alloc_file
+            |                     alloc_file_pseudo
+            |                     d_alloc_pseudo
+            |                     __d_alloc
+            |                     kmem_cache_alloc_lru_noprof
+            |                     __memcg_slab_post_alloc_hook
+            |          
+            |--14.29%--0x73
+            |          |          
+            |          |--4.76%--read
+            |          |          __sys_trace_return
+            |          |          ksys_read
+            |          |          vfs_read
+            |          |          proc_pid_cmdline_read
+            |          |          get_free_pages_noprof
+            |          |          __alloc_pages_noprof
+            |          |          get_page_from_freelist
+            |          |          __sched_text_end
+            |          |          
+            |          |--4.76%--__libc_open64
+            |          |          __sys_trace_return
+            |          |          __se_sys_openat
+            |          |          do_sys_openat2
+            |          |          do_filp_open
+            |          |          path_openat
+            |          |          link_path_walk
+            |          |          security_inode_permission
+            |          |          smack_inode_permission
+            |          |          smk_tskacc
+            |          |          
+            |           --4.76%--__GI___access
+            |                     __sys_trace_return
+            |                     do_faccessat
+            |                     user_path_at
+            |                     filename_lookup
+            |                     path_lookupat
+            |                     walk_component
+            |                     lookup_fast
+            |                     __d_lookup
+            |          
+            |--4.76%--0xc58b08
+            |          __libc_sendmsg
+            |          __sys_trace_return
+            |          __se_sys_sendmsg
+            |          ___sys_sendmsg
+            |          ____sys_sendmsg
+            |          unix_stream_sendmsg
+            |          sock_alloc_send_pskb
+            |          alloc_skb_with_frags
+            |          __alloc_skb
+            |          kmem_cache_alloc_node_noprof
+            |          __memcg_slab_post_alloc_hook
+            |          mod_objcg_state
+            |          
+            |--4.76%--0xc3a5a8
+            |          dbus_type_is_valid
+            |          
+            |--4.76%--0xc12e80
+            |          __libc_sendmsg
+            |          __sys_trace
+            |          syscall_trace_enter
+            |          __audit_syscall_entry
+            |          
+            |--4.76%--0xc5e6b
+            |          epoll_wait
+            |          __sys_trace_return
+            |          __se_sys_epoll_wait
+            |          do_epoll_wait
+            |          
+            |--4.76%--0xb6dbf
+            |          dbus_timeout_get_enabled
+            |          
+            |--4.76%--0x99
+            |          dbus_connection_get_outgoing_unix_fds
+            |          
+             --4.76%--0x39
+                       0x5169ac
+
+    52.38%     9.52%  libc.so.6           
+            |          
+            |--14.29%--accept4
+            |          __sys_trace_return
+            |          __sys_accept4
+            |          do_accept
+            |          |          
+            |          |--9.52%--unix_accept
+            |          |          __kfree_skb
+            |          |          skb_release_data
+            |          |          kmem_cache_free
+            |          |          __slab_free
+            |          |          
+            |           --4.76%--sock_alloc_file
+            |                     alloc_file_pseudo
+            |                     d_alloc_pseudo
+            |                     __d_alloc
+            |                     kmem_cache_alloc_lru_noprof
+            |                     __memcg_slab_post_alloc_hook
+            |          
+            |--9.52%--__libc_sendmsg
+            |          |          
+            |          |--4.76%--__sys_trace_return
+            |          |          __se_sys_sendmsg
+            |          |          ___sys_sendmsg
+            |          |          ____sys_sendmsg
+            |          |          unix_stream_sendmsg
+            |          |          sock_alloc_send_pskb
+            |          |          alloc_skb_with_frags
+            |          |          __alloc_skb
+            |          |          kmem_cache_alloc_node_noprof
+            |          |          __memcg_slab_post_alloc_hook
+            |          |          mod_objcg_state
+            |          |          
+            |           --4.76%--__sys_trace
+            |                     syscall_trace_enter
+            |                     __audit_syscall_entry
+            |          
+            |--4.76%--epoll_wait
+            |          __sys_trace_return
+            |          __se_sys_epoll_wait
+            |          do_epoll_wait
+            |          
+            |--4.76%--read
+            |          __sys_trace_return
+            |          ksys_read
+            |          vfs_read
+            |          proc_pid_cmdline_read
+            |          get_free_pages_noprof
+            |          __alloc_pages_noprof
+            |          get_page_from_freelist
+            |          __sched_text_end
+            |          
+            |--4.76%--__libc_open64
+            |          __sys_trace_return
+            |          __se_sys_openat
+            |          do_sys_openat2
+            |          do_filp_open
+            |          path_openat
+            |          link_path_walk
+            |          security_inode_permission
+            |          smack_inode_permission
+            |          smk_tskacc
+            |          
+            |--4.76%--__GI___access
+            |          __sys_trace_return
+            |          do_faccessat
+            |          user_path_at
+            |          filename_lookup
+            |          path_lookupat
+            |          walk_component
+            |          lookup_fast
+            |          __d_lookup
+            |          
+            |--4.76%--pthread_mutex_init@@GLIBC_2.4
+            |          
+             --4.76%--0
+                       _int_malloc
+
+    47.62%    47.62%  [kernel.kallsyms]   
+            |          
+            |--14.29%--0xb9b280
+            |          accept4
+            |          __sys_trace_return
+            |          __sys_accept4
+            |          do_accept
+            |          |          
+            |          |--9.52%--unix_accept
+            |          |          __kfree_skb
+            |          |          skb_release_data
+            |          |          kmem_cache_free
+            |          |          __slab_free
+            |          |          
+            |           --4.76%--sock_alloc_file
+            |                     alloc_file_pseudo
+            |                     d_alloc_pseudo
+            |                     __d_alloc
+            |                     kmem_cache_alloc_lru_noprof
+            |                     __memcg_slab_post_alloc_hook
+            |          
+            |--14.29%--0x73
+            |          |          
+            |          |--4.76%--read
+            |          |          __sys_trace_return
+            |          |          ksys_read
+            |          |          vfs_read
+            |          |          proc_pid_cmdline_read
+            |          |          get_free_pages_noprof
+            |          |          __alloc_pages_noprof
+            |          |          get_page_from_freelist
+            |          |          __sched_text_end
+            |          |          
+            |          |--4.76%--__libc_open64
+            |          |          __sys_trace_return
+            |          |          __se_sys_openat
+            |          |          do_sys_openat2
+            |          |          do_filp_open
+            |          |          path_openat
+            |          |          link_path_walk
+            |          |          security_inode_permission
+            |          |          smack_inode_permission
+            |          |          smk_tskacc
+            |          |          
+            |           --4.76%--__GI___access
+            |                     __sys_trace_return
+            |                     do_faccessat
+            |                     user_path_at
+            |                     filename_lookup
+            |                     path_lookupat
+            |                     walk_component
+            |                     lookup_fast
+            |                     __d_lookup
+            |          
+            |--4.76%--0xc58b08
+            |          __libc_sendmsg
+            |          __sys_trace_return
+            |          __se_sys_sendmsg
+            |          ___sys_sendmsg
+            |          ____sys_sendmsg
+            |          unix_stream_sendmsg
+            |          sock_alloc_send_pskb
+            |          alloc_skb_with_frags
+            |          __alloc_skb
+            |          kmem_cache_alloc_node_noprof
+            |          __memcg_slab_post_alloc_hook
+            |          mod_objcg_state
+            |          
+            |--4.76%--0xc12e80
+            |          __libc_sendmsg
+            |          __sys_trace
+            |          syscall_trace_enter
+            |          __audit_syscall_entry
+            |          
+            |--4.76%--0xc5e6b
+            |          epoll_wait
+            |          __sys_trace_return
+            |          __se_sys_epoll_wait
+            |          do_epoll_wait
+            |          
+             --4.76%--0
+                       0xb6f2c2d0
+                       __und_usr
+                       do_undefinstr
+                       _raw_spin_unlock_irqrestore
+
+    38.10%    33.33%  libdbus-1.so.3.19.13
+            |          
+            |--9.52%--0
+            |          |          
+            |          |--4.76%--0xb6f19acc
+            |          |          
+            |           --4.76%--_dbus_auth_do_work
+            |          
+            |--4.76%--0xb6f30004
+            |          
+            |--4.76%--0xb6f2c2d0
+            |          __und_usr
+            |          do_undefinstr
+            |          _raw_spin_unlock_irqrestore
+            |          
+            |--4.76%--0xb6f1cc58
+            |          
+            |--4.76%--0xc3a5a8
+            |          dbus_type_is_valid
+            |          
+            |--4.76%--0xb6dbf
+            |          dbus_timeout_get_enabled
+            |          
+             --4.76%--0x99
+                       dbus_connection_get_outgoing_unix_fds
+
+     9.52%     9.52%  dbus-daemon         
+            |          
+            |--4.76%--0x51a578
+            |          
+             --4.76%--0x39
+                       0x5169ac
+
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

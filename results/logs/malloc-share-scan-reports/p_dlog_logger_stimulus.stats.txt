@@ -1,0 +1,10 @@
+
+Aggregated stats:
+               TOTAL events:         33
+                MMAP events:         11  (33.3%)
+                COMM events:          6  (18.2%)
+               MMAP2 events:         12  (36.4%)
+            ID_INDEX events:          1  ( 3.0%)
+          THREAD_MAP events:          1  ( 3.0%)
+             CPU_MAP events:          1  ( 3.0%)
+       FINISHED_INIT events:          1  ( 3.0%)
