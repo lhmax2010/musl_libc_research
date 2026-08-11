@@ -1,6 +1,6 @@
 # Incident: FFmpeg startup timer output parser assumes a silent child
 
-Status: **PARKED — parser correction and resume-data policy require authorization**
+Status: **RESOLVED — strict parser shipped; supplement startup data is complete**
 
 ## Stopping point
 
@@ -97,4 +97,27 @@ Until that ruling:
 ```text
 board_measurement=PARKED
 report-ffmpeg.md=NOT_CREATED
+```
+
+## Resolution
+
+FatTank selected the supplement approach, following the malloc truncation
+precedent: preserve the valid primary raw data, collect only missing phases in
+a new file, and combine VALID samples without rewriting either source.
+
+Commit `967d6d8e97da3a781a4f817bbdfacef70875abf7` changed the parser to accept
+exactly one line matching `^[0-9]+$`. Zero or multiple decimal-only lines are
+INVALID; remote rc=0 and exactly one `sample_end=OK` remain mandatory. The
+board-captured verbose FFmpeg case, both negative cases, and the historical
+micro single-line format passed the archived regression at
+`results/logs/ffmpeg-timer-parser-selfcheck.log`.
+
+The supplement produced 30/30 valid startup triples under the same thermal
+and frequency gates. Root cause and lesson are therefore closed as:
+
+```text
+root_cause=micro_zero_output_assumption_broken_by_ffmpeg_version_banner
+fix=exactly_one_standalone_decimal_line_plus_rc_and_sentinel
+precedent=incident-board-measurement-malloc-truncation
+lesson=解析器对被测程序输出形态的假设,须随被测对象更换而重审
 ```

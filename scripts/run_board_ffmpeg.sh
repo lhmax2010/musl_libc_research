@@ -5,6 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 ROOT_DIR="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
 TARGET="${SDB_TARGET:-192.168.108.26}"
+RUN_MODE="${RUN_MODE:-full}"
 DECODE_REPS="${DECODE_REPS:-10}"
 STARTUP_REPS="${STARTUP_REPS:-30}"
 MEM_REPS="${MEM_REPS:-3}"
@@ -12,7 +13,15 @@ COOLDOWN_SECONDS="${COOLDOWN_SECONDS:-30}"
 PRIVATE_ROOT="/opt/usr/ffmpeg-demo"
 BIN_DIR="$PRIVATE_ROOT/bin"
 CLIP="$PRIVATE_ROOT/data/testclip.mp4"
-RESULT_FILE="${RESULT_FILE:-$ROOT_DIR/results/results-ffmpeg.txt}"
+PRIMARY_RESULT="$ROOT_DIR/results/results-ffmpeg.txt"
+PRIMARY_EXPECTED_SHA256="e1c8378ed3639eb274fb2eefe25a791142ee2bf427b17565aa367a03e93451f6"
+if [[ -z "${RESULT_FILE:-}" ]]; then
+    if [[ "$RUN_MODE" == supplement ]]; then
+        RESULT_FILE="$ROOT_DIR/results/results-ffmpeg-supplement.txt"
+    else
+        RESULT_FILE="$PRIMARY_RESULT"
+    fi
+fi
 CLIP_HASH_FILE="$ROOT_DIR/packaging/ffmpeg-testclip.sha256"
 SIZE_MATRIX="$ROOT_DIR/results/logs/ffmpeg-build-evidence/sizes-matrix.txt"
 CONFIGURE_COMMANDS="$ROOT_DIR/results/logs/ffmpeg-build-evidence/ffmpeg-configure-commands.txt"
@@ -20,6 +29,11 @@ CONFIGURE_EQUIVALENCE="$ROOT_DIR/results/logs/ffmpeg-build-evidence/configure-eq
 
 # shellcheck source=scripts/ffmpeg_timer_parser.sh
 source "$SCRIPT_DIR/ffmpeg_timer_parser.sh"
+
+[[ "$RUN_MODE" == full || "$RUN_MODE" == supplement ]] || {
+    echo "ERROR RUN_MODE must be full or supplement" >&2
+    exit 2
+}
 
 for value in "$DECODE_REPS" "$STARTUP_REPS" "$MEM_REPS" "$COOLDOWN_SECONDS"; do
     [[ "$value" =~ ^[0-9]+$ ]] || { echo "ERROR repetition/delay values must be integers" >&2; exit 2; }
@@ -35,6 +49,14 @@ done
 for path in "$CLIP_HASH_FILE" "$SIZE_MATRIX" "$CONFIGURE_COMMANDS" "$CONFIGURE_EQUIVALENCE"; do
     [[ -f "$path" ]] || { echo "ERROR required evidence missing: $path" >&2; exit 2; }
 done
+if [[ "$RUN_MODE" == supplement ]]; then
+    [[ -f "$PRIMARY_RESULT" ]] || { echo "ERROR primary result missing: $PRIMARY_RESULT" >&2; exit 2; }
+    primary_actual_sha256="$(sha256sum "$PRIMARY_RESULT" | awk '{print $1}')"
+    [[ "$primary_actual_sha256" == "$PRIMARY_EXPECTED_SHA256" ]] || {
+        echo "ERROR primary result hash changed: $primary_actual_sha256" >&2
+        exit 2
+    }
+fi
 for tool in awk grep sdb sed sha256sum sort stat tee; do
     command -v "$tool" >/dev/null 2>&1 || { echo "ERROR required host tool missing: $tool" >&2; exit 2; }
 done
@@ -84,6 +106,7 @@ expected_clip_name="$(awk 'NF && $1 !~ /^#/ {print $2; exit}' "$CLIP_HASH_FILE")
 say "### environment"
 say "measurement.target=$TARGET"
 say "measurement.sdb_serial=$sdb_serial"
+say "measurement.mode=$RUN_MODE"
 say "measurement.start_utc=$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
 say "measurement.decode_reps=$DECODE_REPS"
 say "measurement.startup_reps=$STARTUP_REPS"
@@ -97,6 +120,11 @@ say "decode.command.template=ffmpeg.Fx -nostdin -hide_banner -v info -c:v h264 -
 say "memory.command.template=ffmpeg.Fx -nostdin -hide_banner -v info -re -c:v h264 -i $CLIP -map 0:v:0 -an -t 30 -f null - -benchmark"
 say "configure.commands.sha256=$(sha256sum "$CONFIGURE_COMMANDS" | awk '{print $1}')"
 say "configure.equivalence.sha256=$(sha256sum "$CONFIGURE_EQUIVALENCE" | awk '{print $1}')"
+if [[ "$RUN_MODE" == supplement ]]; then
+    say "primary_result.path=results/results-ffmpeg.txt"
+    say "primary_result.sha256=$primary_actual_sha256"
+    say "decode=NOT_RUN reason=authorized_supplement_preserves_primary_decode"
+fi
 run_remote "uname -a"
 run_remote "printf 'loadavg.before='; cat /proc/loadavg; ps -ef | grep -E '[f]fmpeg|[t]imer' || true"
 
@@ -175,48 +203,50 @@ decode_one() {
     DECODE_UTIME="$utime"
 }
 
-say "### decode benchmark: 30-second H.264 window"
-valid_rounds=0
-attempt=0
-max_attempts=$(( DECODE_REPS + 5 ))
-while (( valid_rounds < DECODE_REPS )); do
-    attempt=$(( attempt + 1 ))
-    (( attempt <= max_attempts )) || { say "MEASUREMENT_FAIL insufficient valid decode rounds"; exit 5; }
-    wait_until_cool "decode.$attempt.before"
-    frequency_snapshot "decode.$attempt.before"
-    round_freq_invalid="$FREQ_INVALID"
-    case $(( (attempt - 1) % 3 )) in
-        0) order=(F1 F2 F3) ;;
-        1) order=(F2 F3 F1) ;;
-        2) order=(F3 F1 F2) ;;
-    esac
-    say "decode_round,$attempt,order=${order[*]}"
-    declare -A round_utime=()
-    for variant in "${order[@]}"; do
-        decode_one "$variant" "$attempt" || exit 5
-        round_utime[$variant]="$DECODE_UTIME"
-    done
-    frequency_snapshot "decode.$attempt.after"
-    (( FREQ_INVALID == 0 )) || round_freq_invalid=1
-    median="$(printf '%s\n' "${round_utime[F1]}" "${round_utime[F2]}" "${round_utime[F3]}" | sort -n | sed -n '2p')"
-    say "decode_round_median_utime,$attempt,$median"
-    for variant in F1 F2 F3; do
-        if ! awk -v sample="${round_utime[$variant]}" -v median="$median" 'BEGIN { exit !(sample >= median * 0.5) }'; then
-            say "MEASUREMENT_FAIL L3 utime_below_half_median round=$attempt variant=$variant utime=${round_utime[$variant]} median=$median"
-            exit 5
+if [[ "$RUN_MODE" == full ]]; then
+    say "### decode benchmark: 30-second H.264 window"
+    valid_rounds=0
+    attempt=0
+    max_attempts=$(( DECODE_REPS + 5 ))
+    while (( valid_rounds < DECODE_REPS )); do
+        attempt=$(( attempt + 1 ))
+        (( attempt <= max_attempts )) || { say "MEASUREMENT_FAIL insufficient valid decode rounds"; exit 5; }
+        wait_until_cool "decode.$attempt.before"
+        frequency_snapshot "decode.$attempt.before"
+        round_freq_invalid="$FREQ_INVALID"
+        case $(( (attempt - 1) % 3 )) in
+            0) order=(F1 F2 F3) ;;
+            1) order=(F2 F3 F1) ;;
+            2) order=(F3 F1 F2) ;;
+        esac
+        say "decode_round,$attempt,order=${order[*]}"
+        declare -A round_utime=()
+        for variant in "${order[@]}"; do
+            decode_one "$variant" "$attempt" || exit 5
+            round_utime[$variant]="$DECODE_UTIME"
+        done
+        frequency_snapshot "decode.$attempt.after"
+        (( FREQ_INVALID == 0 )) || round_freq_invalid=1
+        median="$(printf '%s\n' "${round_utime[F1]}" "${round_utime[F2]}" "${round_utime[F3]}" | sort -n | sed -n '2p')"
+        say "decode_round_median_utime,$attempt,$median"
+        for variant in F1 F2 F3; do
+            if ! awk -v sample="${round_utime[$variant]}" -v median="$median" 'BEGIN { exit !(sample >= median * 0.5) }'; then
+                say "MEASUREMENT_FAIL L3 utime_below_half_median round=$attempt variant=$variant utime=${round_utime[$variant]} median=$median"
+                exit 5
+            fi
+        done
+        if (( round_freq_invalid != 0 )); then
+            say "decode_invalid,$attempt,reason=cur_freq_below_max"
+        else
+            valid_rounds=$(( valid_rounds + 1 ))
+            say "decode_valid,$attempt,valid_index=$valid_rounds"
+        fi
+        if (( valid_rounds < DECODE_REPS )); then
+            say "decode_cooldown_after_attempt.$attempt=$COOLDOWN_SECONDS"
+            sleep "$COOLDOWN_SECONDS"
         fi
     done
-    if (( round_freq_invalid != 0 )); then
-        say "decode_invalid,$attempt,reason=cur_freq_below_max"
-    else
-        valid_rounds=$(( valid_rounds + 1 ))
-        say "decode_valid,$attempt,valid_index=$valid_rounds"
-    fi
-    if (( valid_rounds < DECODE_REPS )); then
-        say "decode_cooldown_after_attempt.$attempt=$COOLDOWN_SECONDS"
-        sleep "$COOLDOWN_SECONDS"
-    fi
-done
+fi
 
 timer_one() {
     local variant="$1"
@@ -324,4 +354,8 @@ assert_no_residual after
 run_remote "printf 'loadavg.after='; cat /proc/loadavg; ps -ef | grep -E '[f]fmpeg|[t]imer' || true"
 wait_until_cool after
 say "measurement.finish_utc=$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-say "MEASUREMENT_FFMPEG_PASS"
+if [[ "$RUN_MODE" == supplement ]]; then
+    say "MEASUREMENT_FFMPEG_SUPPLEMENT_PASS"
+else
+    say "MEASUREMENT_FFMPEG_PASS"
+fi
