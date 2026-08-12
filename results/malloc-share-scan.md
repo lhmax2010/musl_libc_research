@@ -1,10 +1,10 @@
 # malloc CPU-share screening — RPI4 bare-perf scan
 
-> Status: **CAPTURE COMPLETE; all measured rounds are `LOW_SAMPLES`, so no threshold routing conclusion is made. Awaiting FatTank routing disposition.**
+> Status: **FatTank routing disposition recorded; 9/9 measured rounds are `OUT_IDLE` or excluded.**
 
 ## Expected result declared before sampling
 
-Existing L6 measurements indicate that allocation is generally inactive in resident platform daemons. This scan may therefore place every sampled process in `OUT`; that result would remain valid and would mean “the platform-daemon layer can run bare mallocng without concern.” This was declared for falsification before sampling. Because every completed round has fewer than 500 samples, this run neither validates nor falsifies that expectation.
+Existing L6 measurements indicate that allocation is generally inactive in resident platform daemons. This scan may therefore place every sampled process in `OUT`; that result would remain valid and would mean “the platform-daemon layer can run bare mallocng without concern.” This was declared for falsification before sampling. The final absolute-CPU disposition below supports that expectation.
 
 ## 1. Identity and perf gates
 
@@ -34,46 +34,52 @@ malloc | _int_malloc | _int_free* | free | calloc | realloc |
 tcache* | malloc_consolidate | arena_get
 ```
 
-The libc comparison is the sum of `Self` rows whose DSO is libc. Any round below 500 samples is `LOW_SAMPLES` and cannot feed the `<2% / 2–5% / >5%` routing thresholds. A one-thread process is always `SINGLE_THREADED_EXCLUDED`.
+The libc comparison is the sum of `Self` rows whose DSO is libc. Any round below 500 samples remains `LOW_SAMPLES` for malloc-share precision and cannot feed the original `<2% / 2–5% / >5%` malloc-share thresholds. FatTank's final disposition adds an absolute-CPU screen: a 30-second round at 99 Hz has 2,970 possible samples, so `est_CPU% = samples / 2970 × 100`. This is an estimate of the process's sampled CPU occupancy, not a precise utilization measurement. A round with `est_CPU% < 5%` and `LOW_SAMPLES` is `OUT_IDLE`: allocator performance does not constitute a selection factor for that process. A one-thread process is additionally `SINGLE_THREADED_EXCLUDED`.
 
 ## 3. Screening table
 
-Percentages below are retained observations, not routing inputs when marked `LOW_SAMPLES`. `N/A` means zero samples, so no percentage exists.
+Malloc-family percentages below remain low-resolution observations. `N/A` means zero samples, so no malloc-family percentage exists. Estimated CPU is shown as idle/stimulus and uses the 2,970-sample denominator above.
 
-| Process | Threads | VmRSS before→after | idle malloc share | stimulus malloc share | samples idle/stimulus | routing result |
-|---|---:|---:|---:|---:|---:|---|
-| `dlog_logger` | 5 | 3432→3432 KiB | 0.00% (`LOW_SAMPLES`) | N/A (`LOW_SAMPLES`) | 2 / 0 | `LOW_SAMPLES — NO ROUTING` |
-| `dbus-daemon --system` | 1 | 5804→5804 KiB | 0.00% (`LOW_SAMPLES`) | 4.76% (`LOW_SAMPLES`) | 1 / 21 | `SINGLE_THREADED_EXCLUDED`; both rounds also low |
-| `enlightenment` | 15 | 17176→17176 KiB | 5.88% (`LOW_SAMPLES`) | `STIMULUS_UNAVAILABLE` | 17 / — | `LOW_SAMPLES — NO ROUTING` |
-| `pulseaudio` | 5 | 5304→5304 KiB | N/A (`LOW_SAMPLES`) | `STIMULUS_UNAVAILABLE` | 0 / — | `LOW_SAMPLES — NO ROUTING` |
-| `resourced` | 12 | 7324→7324 KiB | N/A (`LOW_SAMPLES`) | `STIMULUS_UNAVAILABLE` | 0 / — | `LOW_SAMPLES — NO ROUTING` |
-| `SystemUI` | 13 | 19692→19692 KiB | N/A (`LOW_SAMPLES`) | `STIMULUS_UNAVAILABLE` | 0 / — | `LOW_SAMPLES — NO ROUTING` |
-| homescreen `runner` | 21 | 45972→46304 KiB | 0.00% (`LOW_SAMPLES`) | `STIMULUS_UNAVAILABLE` | 42 / — | `LOW_SAMPLES — NO ROUTING` |
+| Process | Threads | VmRSS before→after | idle malloc share | stimulus malloc share | samples idle/stimulus | est_CPU% idle/stimulus | routing result |
+|---|---:|---:|---:|---:|---:|---:|---|
+| `dlog_logger` | 5 | 3432→3432 KiB | 0.00% (`LOW_SAMPLES`) | N/A (`LOW_SAMPLES`) | 2 / 0 | 0.067% / 0.000% | `OUT_IDLE` (both rounds) |
+| `dbus-daemon --system` | 1 | 5804→5804 KiB | 0.00% (`LOW_SAMPLES`) | 4.76% (`LOW_SAMPLES`) | 1 / 21 | 0.034% / 0.707% | `OUT_IDLE` + `SINGLE_THREADED_EXCLUDED` (both rounds) |
+| `enlightenment` | 15 | 17176→17176 KiB | 5.88% (`LOW_SAMPLES`) | `STIMULUS_UNAVAILABLE` | 17 / — | 0.572% / — | `OUT_IDLE` |
+| `pulseaudio` | 5 | 5304→5304 KiB | N/A (`LOW_SAMPLES`) | `STIMULUS_UNAVAILABLE` | 0 / — | 0.000% / — | `OUT_IDLE` |
+| `resourced` | 12 | 7324→7324 KiB | N/A (`LOW_SAMPLES`) | `STIMULUS_UNAVAILABLE` | 0 / — | 0.000% / — | `OUT_IDLE` |
+| `SystemUI` | 13 | 19692→19692 KiB | N/A (`LOW_SAMPLES`) | `STIMULUS_UNAVAILABLE` | 0 / — | 0.000% / — | `OUT_IDLE` |
+| homescreen `runner` | 21 | 45972→46304 KiB | 0.00% (`LOW_SAMPLES`) | `STIMULUS_UNAVAILABLE` | 42 / — | 1.414% / — | `OUT_IDLE` |
 
-No row is mechanically classified `OUT`, `GREY`, or `SHOOTOUT` because no round reaches the 500-sample gate. In particular, the observed 5.88% enlightenment value must not be promoted to `SHOOTOUT`.
+All nine measured rounds satisfy the frozen final rule: `LOW_SAMPLES` and estimated absolute CPU below 5%. They are therefore `OUT_IDLE`; the two D-Bus rounds carry the additional single-thread exclusion. In particular, enlightenment's low-resolution 5.88% malloc-family observation is not promoted to `SHOOTOUT`, because its process occupies only an estimated 0.572% CPU during the round.
 
 ## 4. libc control shares
 
-| Process/round | samples | malloc-family Self | libc Self | quality |
-|---|---:|---:|---:|---|
-| dlog idle | 2 | 0.00% | 50.00% | `LOW_SAMPLES` |
-| dlog stimulus | 0 | N/A | N/A | `LOW_SAMPLES` |
-| D-Bus idle | 1 | 0.00% | 0.00% | `LOW_SAMPLES` |
-| D-Bus stimulus | 21 | 4.76% | 9.52% | `LOW_SAMPLES` |
-| enlightenment idle | 17 | 5.88% | 5.88% | `LOW_SAMPLES` |
-| pulseaudio idle | 0 | N/A | N/A | `LOW_SAMPLES` |
-| resourced idle | 0 | N/A | N/A | `LOW_SAMPLES` |
-| SystemUI idle | 0 | N/A | N/A | `LOW_SAMPLES` |
-| homescreen idle | 42 | 0.00% | 4.76% | `LOW_SAMPLES` |
+| Process/round | samples | est_CPU% | malloc-family Self | libc Self | quality / routing |
+|---|---:|---:|---:|---:|---|
+| dlog idle | 2 | 0.067% | 0.00% | 50.00% | `LOW_SAMPLES / OUT_IDLE` |
+| dlog stimulus | 0 | 0.000% | N/A | N/A | `LOW_SAMPLES / OUT_IDLE` |
+| D-Bus idle | 1 | 0.034% | 0.00% | 0.00% | `LOW_SAMPLES / OUT_IDLE / SINGLE_THREADED_EXCLUDED` |
+| D-Bus stimulus | 21 | 0.707% | 4.76% | 9.52% | `LOW_SAMPLES / OUT_IDLE / SINGLE_THREADED_EXCLUDED` |
+| enlightenment idle | 17 | 0.572% | 5.88% | 5.88% | `LOW_SAMPLES / OUT_IDLE` |
+| pulseaudio idle | 0 | 0.000% | N/A | N/A | `LOW_SAMPLES / OUT_IDLE` |
+| resourced idle | 0 | 0.000% | N/A | N/A | `LOW_SAMPLES / OUT_IDLE` |
+| SystemUI idle | 0 | 0.000% | N/A | N/A | `LOW_SAMPLES / OUT_IDLE` |
+| homescreen idle | 42 | 1.414% | 0.00% | 4.76% | `LOW_SAMPLES / OUT_IDLE` |
 
 The only retained malloc-family source rows were `_int_malloc` at 4.76% in the D-Bus stimulus round and `_int_free_merge_chunk` at 5.88% in the enlightenment idle round. Their full original lines are preserved in `results/logs/malloc-share-scan-analysis.log` and the per-round reports.
 
-## 5. NOT_RUN list
+## 5. Final conclusion
+
+RPI4 平台 daemon 层在系统级分配冷（9/9 `OUT_IDLE/EXCLUDED`），musl 缺省 mallocng 对该层零性能顾虑，allowlist 空清单为有证据状态；分配热画像的搜索转入第二批候选（AIFW/TFLite 岛及后续真实 App 层）。
+
+P2: If review requires a precise malloc-share percentage, a follow-up may resample at `-F 999 × 120s` to improve resolution. It would not change the absolute-CPU disposition, so it is not run by default.
+
+## 6. NOT_RUN list
 
 - Chromium/WebEngine: `NOT_RUN`. `chromium-efl` was present. Owner execution was denied by the package security label; root execution created browser/zygote/renderer processes but reported a missing Wayland EGL dependency (`libGLESv2.so.2`), invalid window setup, and unavailable session D-Bus. Page loading could not be proven, so no empty-process sample was accepted. All spawned processes and temporary HOME/cache/config data were removed.
 - No requested resident daemon was absent. All seven named process classes were located; homescreen was identified as `/usr/apps/org.tizen.homescreen/bin/runner`.
 
-## 6. Evidence index
+## 7. Evidence index
 
 - Identity and original zypper parking evidence: `results/logs/malloc-share-scan-preflight.log`.
 - Route A repository search, dependency closure, RPM hashes, install, and self-test: `results/logs/malloc-share-scan-perf-supply.log`.
@@ -96,7 +102,7 @@ b77e0e06c0e2fbd93d02037bcd90deb1204aac818631f06ab19f3dba1ee77715  p_resourced_id
 a362c10931ac9946aeff92d8164cf10d84fd1cfe50f4594485524607ebf7bc16  p_systemui_idle.data
 ```
 
-## 7. Cleanup and stop state
+## 8. Cleanup and stop state
 
 - Board `/tmp` exact-name remainder scan: empty.
 - Task-launched WebEngine process scan: empty.
@@ -104,4 +110,4 @@ a362c10931ac9946aeff92d8164cf10d84fd1cfe50f4594485524607ebf7bc16  p_systemui_idl
 - Installed perf RPM and its three supplied dependencies: retained as authorized.
 - Other persistent board changes: none.
 
-No shootout list is selected here. Execution stops for FatTank's routing decision.
+FatTank's routing disposition is fully recorded. No daemon enters the allocator shootout from this batch; the evidenced allowlist is empty. Execution stops here.
