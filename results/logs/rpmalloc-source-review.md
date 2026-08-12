@@ -1,6 +1,6 @@
 # rpmalloc 1.4.5 source review gate
 
-- [ ] FatTank verified the frozen rpmalloc digest and archived corroborating records.
+- [x] FatTank verified the frozen rpmalloc digest and archived corroborating records.
 
 Formal GBS build is fail-closed until FatTank changes the checkbox above to
 `[x]`. Automation must not check it on FatTank's behalf.
