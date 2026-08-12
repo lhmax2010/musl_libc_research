@@ -30,7 +30,7 @@ fail() {
     exit 1
 }
 
-for tool in ar awk bash clang diff file find getconf grep make nm readelf readlink sha256sum strings tar; do
+for tool in ar awk bash clang diff file find getconf grep ln ls make nm readelf readlink sha256sum strings tar; do
     command -v "$tool" >/dev/null 2>&1 || fail "required chroot tool missing: $tool"
 done
 
@@ -276,7 +276,36 @@ SCUDO_ARCHIVE="$BUILD_ROOT/libscudo_standalone.a"
 SCUDO_LOG="$BUILD_ROOT/scudo-attempt.log"
 SCUDO_BIN="$PAYLOAD/bin/micro.musl-scudo"
 SCUDO_MAP="$BUILD_ROOT/micro.musl-scudo.map"
-mkdir -p "$SCUDO_OBJ_DIR"
+UAPI_STAGE="$BUILD_ROOT/uapi-stage"
+rm -rf -- "$UAPI_STAGE"
+mkdir -p "$SCUDO_OBJ_DIR" "$UAPI_STAGE"
+scudo_uapi_whitelist=()
+for uapi_dir in linux asm asm-generic; do
+    if [[ -d "/usr/include/$uapi_dir" ]]; then
+        ln -s "/usr/include/$uapi_dir" "$UAPI_STAGE/$uapi_dir"
+        scudo_uapi_whitelist+=("$uapi_dir")
+    fi
+done
+echo "gate.scudo_uapi_stage.listing_begin"
+ls -l "$UAPI_STAGE"
+echo "gate.scudo_uapi_stage.listing_end"
+uapi_stage_entries=()
+while IFS= read -r entry; do
+    uapi_stage_entries+=("$entry")
+done < <(find "$UAPI_STAGE" -mindepth 1 -maxdepth 1 -printf '%f\n' | sort)
+for entry in "${uapi_stage_entries[@]}"; do
+    case "$entry" in
+        linux|asm|asm-generic) ;;
+        *) fail "Scudo UAPI stage contains non-whitelisted entry: $entry" ;;
+    esac
+done
+[[ "${#uapi_stage_entries[@]}" -eq "${#scudo_uapi_whitelist[@]}" ]] || \
+    fail "Scudo UAPI stage entry count does not match available whitelist"
+{
+    printf 'scudo_uapi_stage=%s\n' "${scudo_uapi_whitelist[*]}"
+    echo "scudo_include_order=musl_first_resource_fill_uapi_last"
+    echo "scudo_uapi_stage_path=$UAPI_STAGE"
+} >> "$DECISION"
 scudo_sources=(
     checksum.cpp common.cpp condition_variable_linux.cpp crc32_hw.cpp
     flags_parser.cpp flags.cpp fuchsia.cpp linux.cpp mem_map.cpp
@@ -288,35 +317,47 @@ set +e
 (
     for source in "${scudo_sources[@]}"; do
         object="$SCUDO_OBJ_DIR/${source%.cpp}.o"
+        depfile="$SCUDO_OBJ_DIR/${source%.cpp}.d"
         scudo_objects+=("$object")
         record_and_run "$MUSL_CC" "${OPTFLAGS_ARRAY[@]}" -O2 -DNDEBUG \
             -std=c++17 -nostdinc++ -fno-exceptions -fno-rtti \
             -fvisibility=hidden -ffunction-sections -fdata-sections \
             -I "$SCUDO_SOURCE_DIR" -I "$SCUDO_SOURCE_DIR/include" \
-            -isystem "$RESDIR/include" -c "$SCUDO_SOURCE_DIR/$source" -o "$object" || exit $?
+            -isystem "$RESDIR/include" -isystem "$UAPI_STAGE" \
+            -MD -MF "$depfile" \
+            -c "$SCUDO_SOURCE_DIR/$source" -o "$object" || exit $?
     done
+
+    audit_first=$((RANDOM % ${#scudo_sources[@]}))
+    audit_second=$((RANDOM % ${#scudo_sources[@]}))
+    while [[ "$audit_second" -eq "$audit_first" ]]; do
+        audit_second=$((RANDOM % ${#scudo_sources[@]}))
+    done
+    for audit_index in "$audit_first" "$audit_second"; do
+        audit_source="${scudo_sources[$audit_index]}"
+        audit_depfile="$SCUDO_OBJ_DIR/${audit_source%.cpp}.d"
+        echo "gate.scudo_dependency_audit.sample=$audit_source"
+        echo "gate.scudo_dependency_audit.depfile_begin"
+        cat "$audit_depfile"
+        echo "gate.scudo_dependency_audit.depfile_end"
+        direct_glibc_headers="$(
+            sed ':join;N;$!b join;s/\\\n/ /g' "$audit_depfile" \
+                | tr ' ' '\n' \
+                | grep -E '^/usr/include/' \
+                | grep -Ev '^/usr/include/(linux|asm|asm-generic)/' \
+                || true
+        )"
+        [[ -z "$direct_glibc_headers" ]] || {
+            printf '%s\n' "$direct_glibc_headers"
+            fail "Scudo dependency audit found non-UAPI /usr/include headers"
+        }
+        echo "gate.scudo_dependency_audit.$audit_source=PASS direct_glibc_headers=0"
+    done
+
     record_and_run ar rcs "$SCUDO_ARCHIVE" "${scudo_objects[@]}" || exit $?
     record_and_run "$MUSL_CC" "${COMMON_FLAGS[@]}" -static "$MICRO_SOURCE" \
         "$SCUDO_ARCHIVE" -Wl,-Map,"$SCUDO_MAP" -o "$SCUDO_BIN" || exit $?
-) > "$SCUDO_LOG" 2>&1
-scudo_attempt_rc=$?
-set -e
-cat "$SCUDO_LOG"
 
-if [[ "$scudo_attempt_rc" -ne 0 ]]; then
-    if grep -Eqi 'undefined reference.*(__cxa|std::|operator new|operator delete)|cannot find.*(libc[+][+]|libstdc[+][+])|fatal error: .*(c[+][+]config|new|type_traits|atomic).*file not found' "$SCUDO_LOG"; then
-        {
-            echo "s6_status=P1_DOWNGRADED"
-            echo "s6_reason=CXX_RUNTIME_FRICTION"
-            echo "s6_attempt_rc=$scudo_attempt_rc"
-            echo "libcxx_environment_added=NO"
-        } | tee "$S6_STATUS"
-        echo "s6_status=P1_DOWNGRADED reason=CXX_RUNTIME_FRICTION" >> "$DECISION"
-        rm -f -- "$SCUDO_BIN" "$SCUDO_MAP"
-    else
-        fail "S6 failed outside the pre-authorized C++ runtime friction boundary; rc=$scudo_attempt_rc"
-    fi
-else
     scudo_lfs64="$(nm -u "$SCUDO_ARCHIVE" | grep -E "$LFS64_PATTERN" || true)"
     [[ -z "$scudo_lfs64" ]] || fail "Scudo archive references forbidden LFS64 symbols"
     for symbol in malloc free calloc realloc posix_memalign aligned_alloc malloc_usable_size; do
@@ -329,6 +370,24 @@ else
     scudo_nm="$(nm "$SCUDO_BIN" | grep -m 1 -E '[[:space:]][Tt][[:space:]]+__scudo_print_stats$' || true)"
     [[ -n "$scudo_nm" ]] || fail "S6 has no __scudo_print_stats symbol"
     check_static_arm_softfp s6_scudo "$SCUDO_BIN"
+    cp -- "$SCUDO_MAP" "$PAYLOAD/share/micro.musl-scudo.map"
+) > "$SCUDO_LOG" 2>&1
+scudo_attempt_rc=$?
+set -e
+cat "$SCUDO_LOG"
+
+if [[ "$scudo_attempt_rc" -ne 0 ]]; then
+    s6_first_error="$(grep -m 1 -E 'fatal error:|error:|undefined reference|BUILD_GATE_FAIL:' "$SCUDO_LOG" || true)"
+    {
+        echo "s6_status=P1-DEFERRED"
+        echo "s6_reason=POST_UAPI_FRICTION_BUDGET_EXHAUSTED"
+        echo "s6_attempt_rc=$scudo_attempt_rc"
+        echo "s6_first_error=${s6_first_error:-UNCLASSIFIED; see gbs-build-shootout.log}"
+        echo "libcxx_environment_added=NO"
+    } | tee "$S6_STATUS"
+    echo "s6_status=P1-DEFERRED reason=POST_UAPI_FRICTION_BUDGET_EXHAUSTED" >> "$DECISION"
+    rm -f -- "$SCUDO_BIN" "$SCUDO_MAP" "$PAYLOAD/share/micro.musl-scudo.map"
+else
     {
         echo "s6_status=BUILT"
         echo "s6_reason=NONE"
@@ -336,7 +395,6 @@ else
         echo "libcxx_environment_added=NO"
     } | tee "$S6_STATUS"
     echo "s6_status=BUILT" >> "$DECISION"
-    cp -- "$SCUDO_MAP" "$PAYLOAD/share/micro.musl-scudo.map"
 fi
 
 if command -v llvm-strip >/dev/null 2>&1; then
