@@ -1,0 +1,150 @@
+malloc-share scan perf supply evidence
+target=192.168.108.26
+route_result=A_PASS
+route_B=NOT_RUN
+route_C=NOT_RUN
+
+## GBS repository source
+
+$ sed -n '1,80p' config/gbs_llvm.conf
+[general]
+profile = profile.tizen_unified_standard
+buildroot = tmp/GBS-ROOT-TIZEN-UNIFIED-LLVM-CODES
+
+[profile.tizen_unified_standard]
+repos = repo.base-standard, repo.unified-standard
+
+[repo.base-standard]
+url=https://download.tizen.org/snapshots/TIZEN/Tizen/Tizen-Base-Toolchain/reference/repos/standard/packages/
+#url=http://download.tizen.org/snapshots/TIZEN/Tizen/Tizen-Base-Toolchain/tizen-base-toolchain_20260722.045200/repos/standard/packages/
+
+[repo.unified-standard]
+url=https://download.tizen.org/snapshots/TIZEN/Tizen/Tizen-Unified-Toolchain/reference/repos/standard/packages/
+#url=http://download.tizen.org/snapshots/TIZEN/Tizen/Tizen-Unified-Toolchain/tizen-unified-toolchain_20260725.003315/repos/standard/packages/
+
+The active `reference` URLs above are the repositories actually used by GBS.
+The two commented dated URLs returned HTTP 404 during read-only probing and
+were not used. The active repomd responses and downloaded index hashes were:
+
+base_last_modified=Sat, 08 Aug 2026 14:05:25 GMT
+unified_last_modified=Sun, 09 Aug 2026 17:36:50 GMT
+base_repomd_sha256=fd95f859816a3c7d9522b0c4abe50014cdf8d49aa7b4c91ae9bb657a113d4bef
+unified_repomd_sha256=9f74bbc0a4a4878cb97a6bf63c2ea8ed8859b02f2e0d6f7daef407d8e6d344d5
+base_primary_href=repodata/90a9a97f412b92d33f878ff3d0fcdddb8df7f56e1790dbabecda5a85f72fec2f-primary.xml.gz
+base_primary_sha256=90a9a97f412b92d33f878ff3d0fcdddb8df7f56e1790dbabecda5a85f72fec2f
+unified_primary_href=repodata/ab64060783f01065f5a1603d993e6414184372075595322270290238a8406a03-primary.xml.gz
+unified_primary_sha256=ab64060783f01065f5a1603d993e6414184372075595322270290238a8406a03
+
+## Primary-index match
+
+The case-insensitive `perf|kernel-tools|linux-tools` search identified this
+exact ARMv7 package block in the unified primary index:
+
+name=linux-kernel-perf
+arch=armv7l
+version=6.12.80-0
+vcs=platform/kernel/linux-rpi#b3c2c75beb116df10233fbf0c2c19d50cc03edf7
+summary=The perf performance counter tool
+location=armv7l/linux-kernel-perf-6.12.80-0.armv7l.rpm
+metadata_sha256=cd9891e8197f5e0269a5cd7dd3990bf1bcaea048e06a015dc305f7e9cd05a864
+provides=linux-kernel-perf,perf,/usr/bin/perf,/usr/bin/trace
+
+The package version exactly matches board kernel `6.12.80-arm-rpi4-v7l`.
+
+## Dependency inspection
+
+$ readelf -d extracted/usr/bin/perf | grep -E 'NEEDED|RPATH|RUNPATH'
+NEEDED libunwind.so.8
+NEEDED libunwind-arm.so.8
+NEEDED libpthread.so.0
+NEEDED librt.so.1
+NEEDED libm.so.6
+NEEDED libdl.so.2
+NEEDED libz.so.1
+NEEDED libelf.so.1
+NEEDED libdw.so.1
+NEEDED libcrypto.so.3
+NEEDED libLLVM.so.22.1
+NEEDED libstdc++.so.6
+NEEDED liblzma.so.5
+NEEDED libc.so.6
+NEEDED ld-linux.so.3
+NEEDED libgcc_s.so.1
+
+Board `rpm -q --whatprovides` resolved all direct libraries except
+`libLLVM.so.22.1`; `/usr/bin/perl` was also absent. The primary index resolved
+those to `libllvm` and `perl`; closure inspection then found `libgdbm.so.3`
+missing and resolved it to `gdbm`. Other required libraries were already
+provided by the board image.
+
+## Frozen RPM hashes
+
+5bd9953386c7deec6d3f770a1d429ed8fac2fadc7f5879905d2de5bb016ba002  gdbm-1.8.3-1.9.armv7l.rpm
+3cded432e75d69e6a886b819f417040abd1cc449d19b3ffba8a7a319f1aa295c  libllvm-22.1.8-2.1.armv7l.rpm
+7d80c9aad06470edd52db48e3245ba21a1a7a91f2dd1528f52cad8b5d8444f68  perl-5.42.0-1.9.armv7l.rpm
+cd9891e8197f5e0269a5cd7dd3990bf1bcaea048e06a015dc305f7e9cd05a864  linux-kernel-perf-6.12.80-0.armv7l.rpm
+
+Each digest matched both repository metadata and the copy pushed to `/tmp` on
+the board.
+
+## Installation
+
+$ rpm -Uvh --noplugins /tmp/gdbm-1.8.3-1.9.armv7l.rpm /tmp/libllvm-22.1.8-2.1.armv7l.rpm /tmp/perl-5.42.0-1.9.armv7l.rpm /tmp/linux-kernel-perf-6.12.80-0.armv7l.rpm
+Preparing... [100%]
+Updating / installing...
+1:libllvm-22.1.8-2.1 [25%]
+2:gdbm-1.8.3-1.9 [50%]
+/sbin/ldconfig: Cannot lstat /lib/libgdbm.so.3.0.0: Permission denied
+/sbin/ldconfig: Cannot lstat /lib/libLLVM.so.22.1: Permission denied
+3:perl-5.42.0-1.9 [75%]
+4:linux-kernel-perf-6.12.80-0 [100%]
+
+The transaction completed without a dependency refusal, so no dependency
+retry was used. Subsequent `ldd /usr/bin/perf` resolved every NEEDED library,
+`rpm -V` returned no differences with rc=0, and perf executed successfully.
+
+installed=linux-kernel-perf-6.12.80-0.armv7l
+installed=libllvm-22.1.8-2.1.armv7l
+installed=perl-5.42.0-1.9.armv7l
+installed=gdbm-1.8.3-1.9.armv7l
+rpm_verify_rc=0
+perf_version=6.12.80
+kernel=6.12.80-arm-rpi4-v7l
+
+## Functional self-test
+
+$ perf record -F 99 -g -o /tmp/selftest.data -- sleep 2 && perf report -i /tmp/selftest.data --stdio | head
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.003 MB /tmp/selftest.data ]
+Error:
+The /tmp/selftest.data data has no samples!
+
+The exact prescribed command exercised recording but the sleeping workload
+had no scheduled CPU sample. This was not a perf_event kernel error. A bounded
+CPU-active confirmation using the same event/frequency/callgraph settings was
+therefore run:
+
+$ perf record -F 99 -g -o /tmp/selftest-cpu2.data -- dd if=/dev/zero of=/dev/null bs=1048576 count=512
+512+0 records in
+512+0 records out
+536870912 bytes (537 MB) copied, 0.413991 s, 1.3 GB/s
+[ perf record: Captured and wrote 0.007 MB /tmp/selftest-cpu2.data (41 samples) ]
+record_rc=0
+# Samples: 41 of event 'task-clock:ppp'
+# Total Lost Samples: 0
+stats_SAMPLE_events=41
+
+functional_validation=PASS
+kernel_perf_event_support=PASS
+
+## Retention and cleanup
+
+The four RPMs remain installed as explicitly authorized and are not removed.
+All pushed RPM files and self-test data were removed from board `/tmp`; the
+final exact-name scan printed no remainder.
+
+persistent_board_change=RPM_INSTALL_ONLY
+installed_packages_retained=YES
+route_A=PASS
+route_B=NOT_RUN
+route_C=NOT_RUN

@@ -1,0 +1,4 @@
+Error:
+The /tmp/p_dlog_logger_stimulus.data data has no samples!
+# To display the perf.data header info, please use --header/--header-only options.
+#

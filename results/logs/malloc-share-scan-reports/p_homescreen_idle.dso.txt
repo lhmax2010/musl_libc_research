@@ -1,0 +1,284 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 42  of event 'task-clock:ppp'
+# Event count (approx.): 424242420
+#
+# Children      Self  Shared Object                 
+# ........  ........  ..............................
+#
+    92.86%     4.76%  libc.so.6                     
+            |          
+            |--85.71%--__ioctl_time64
+            |          |          
+            |          |--78.57%--__sys_trace_return
+            |          |          __se_sys_ioctl
+            |          |          drm_ioctl
+            |          |          drm_ioctl_kernel
+            |          |          |          
+            |          |          |--61.90%--v3d_create_bo_ioctl
+            |          |          |          v3d_bo_create_finish
+            |          |          |          drm_gem_shmem_get_pages_sgt
+            |          |          |          |          
+            |          |          |          |--50.00%--drm_gem_get_pages
+            |          |          |          |          shmem_read_folio_gfp
+            |          |          |          |          shmem_get_folio_gfp
+            |          |          |          |          |          
+            |          |          |          |          |--11.90%--memset
+            |          |          |          |          |          
+            |          |          |          |          |--9.52%--__kmap_local_page_prot
+            |          |          |          |          |          kmap_high_get
+            |          |          |          |          |          _raw_spin_unlock_irqrestore
+            |          |          |          |          |          
+            |          |          |          |          |--7.14%--__folio_alloc_noprof
+            |          |          |          |          |          __alloc_pages_noprof
+            |          |          |          |          |          get_page_from_freelist
+            |          |          |          |          |          |          
+            |          |          |          |          |           --2.38%--__sched_text_end
+            |          |          |          |          |          
+            |          |          |          |          |--7.14%--kunmap_local_indexed
+            |          |          |          |          |          
+            |          |          |          |          |--4.76%--__mem_cgroup_charge
+            |          |          |          |          |          charge_memcg
+            |          |          |          |          |          memcg1_commit_charge
+            |          |          |          |          |          
+            |          |          |          |          |--4.76%--shmem_add_to_page_cache
+            |          |          |          |          |          
+            |          |          |          |           --4.76%--shmem_inode_acct_blocks
+            |          |          |          |                     __vm_enough_memory
+            |          |          |          |                     |          
+            |          |          |          |                      --2.38%--percpu_counter_add_batch
+            |          |          |          |          
+            |          |          |           --11.90%--dma_map_sgtable
+            |          |          |                     __dma_map_sg_attrs
+            |          |          |                     dma_direct_map_sg
+            |          |          |                     arch_sync_dma_for_device
+            |          |          |                     |          
+            |          |          |                     |--7.14%--__kmap_local_page_prot
+            |          |          |                     |          kmap_high_get
+            |          |          |                     |          _raw_spin_unlock_irqrestore
+            |          |          |                     |          
+            |          |          |                      --2.38%--kunmap_local_indexed
+            |          |          |          
+            |          |          |--14.29%--drm_gem_handle_delete
+            |          |          |          drm_gem_object_release_handle
+            |          |          |          drm_gem_shmem_free
+            |          |          |          |          
+            |          |          |          |--7.14%--drm_gem_shmem_put_pages
+            |          |          |          |          drm_gem_put_pages
+            |          |          |          |          |          
+            |          |          |          |          |--4.76%--check_move_unevictable_folios
+            |          |          |          |          |          
+            |          |          |          |           --2.38%--noop_dirty_folio
+            |          |          |          |                     _test_and_set_bit
+            |          |          |          |          
+            |          |          |           --7.14%--dma_direct_unmap_sg
+            |          |          |                     arch_sync_dma_for_cpu
+            |          |          |                     |          
+            |          |          |                     |--4.76%--kunmap_local_indexed
+            |          |          |                     |          
+            |          |          |                      --2.38%--__kmap_local_page_prot
+            |          |          |                                kmap_high_get
+            |          |          |                                _raw_spin_unlock_irqrestore
+            |          |          |          
+            |          |           --2.38%--v3d_wait_bo_ioctl
+            |          |          
+            |           --7.14%--slow_work_pending
+            |                     do_work_pending
+            |                     resume_user_mode_work
+            |                     task_work_run
+            |                     __fput
+            |                     dput
+            |                     __dentry_kill
+            |                     evict
+            |                     shmem_evict_inode
+            |                     shmem_undo_range
+            |                     |          
+            |                     |--4.76%--truncate_inode_folio
+            |                     |          |          
+            |                     |          |--2.38%--truncate_cleanup_folio
+            |                     |          |          _clear_bit
+            |                     |          |          
+            |                     |           --2.38%--filemap_remove_folio
+            |                     |          
+            |                      --2.38%--folios_put_refs
+            |                                free_unref_folios
+            |                                free_unref_page_commit
+            |                                _raw_spin_unlock_irqrestore
+            |          
+            |--2.38%--__poll
+            |          __sys_trace_return
+            |          __se_sys_poll
+            |          do_sys_poll
+            |          schedule_hrtimeout_range
+            |          schedule_hrtimeout_range_clock
+            |          schedule
+            |          __sched_text_start
+            |          finish_task_switch
+            |          
+            |--2.38%--0xa8bfc080
+            |          0xa8bfd610
+            |          __printf_fp_buffer_1.isra.0
+            |          
+             --2.38%--0
+                       memcmp
+
+    88.10%    88.10%  [kernel.kallsyms]             
+            |          
+            |--85.71%--__ioctl_time64
+            |          |          
+            |          |--78.57%--__sys_trace_return
+            |          |          __se_sys_ioctl
+            |          |          drm_ioctl
+            |          |          drm_ioctl_kernel
+            |          |          |          
+            |          |          |--61.90%--v3d_create_bo_ioctl
+            |          |          |          v3d_bo_create_finish
+            |          |          |          drm_gem_shmem_get_pages_sgt
+            |          |          |          |          
+            |          |          |          |--50.00%--drm_gem_get_pages
+            |          |          |          |          shmem_read_folio_gfp
+            |          |          |          |          shmem_get_folio_gfp
+            |          |          |          |          |          
+            |          |          |          |          |--11.90%--memset
+            |          |          |          |          |          
+            |          |          |          |          |--9.52%--__kmap_local_page_prot
+            |          |          |          |          |          kmap_high_get
+            |          |          |          |          |          _raw_spin_unlock_irqrestore
+            |          |          |          |          |          
+            |          |          |          |          |--7.14%--__folio_alloc_noprof
+            |          |          |          |          |          __alloc_pages_noprof
+            |          |          |          |          |          get_page_from_freelist
+            |          |          |          |          |          |          
+            |          |          |          |          |           --2.38%--__sched_text_end
+            |          |          |          |          |          
+            |          |          |          |          |--7.14%--kunmap_local_indexed
+            |          |          |          |          |          
+            |          |          |          |          |--4.76%--__mem_cgroup_charge
+            |          |          |          |          |          charge_memcg
+            |          |          |          |          |          memcg1_commit_charge
+            |          |          |          |          |          
+            |          |          |          |          |--4.76%--shmem_add_to_page_cache
+            |          |          |          |          |          
+            |          |          |          |           --4.76%--shmem_inode_acct_blocks
+            |          |          |          |                     __vm_enough_memory
+            |          |          |          |                     |          
+            |          |          |          |                      --2.38%--percpu_counter_add_batch
+            |          |          |          |          
+            |          |          |           --11.90%--dma_map_sgtable
+            |          |          |                     __dma_map_sg_attrs
+            |          |          |                     dma_direct_map_sg
+            |          |          |                     arch_sync_dma_for_device
+            |          |          |                     |          
+            |          |          |                     |--7.14%--__kmap_local_page_prot
+            |          |          |                     |          kmap_high_get
+            |          |          |                     |          _raw_spin_unlock_irqrestore
+            |          |          |                     |          
+            |          |          |                      --2.38%--kunmap_local_indexed
+            |          |          |          
+            |          |          |--14.29%--drm_gem_handle_delete
+            |          |          |          drm_gem_object_release_handle
+            |          |          |          drm_gem_shmem_free
+            |          |          |          |          
+            |          |          |          |--7.14%--drm_gem_shmem_put_pages
+            |          |          |          |          drm_gem_put_pages
+            |          |          |          |          |          
+            |          |          |          |          |--4.76%--check_move_unevictable_folios
+            |          |          |          |          |          
+            |          |          |          |           --2.38%--noop_dirty_folio
+            |          |          |          |                     _test_and_set_bit
+            |          |          |          |          
+            |          |          |           --7.14%--dma_direct_unmap_sg
+            |          |          |                     arch_sync_dma_for_cpu
+            |          |          |                     |          
+            |          |          |                     |--4.76%--kunmap_local_indexed
+            |          |          |                     |          
+            |          |          |                      --2.38%--__kmap_local_page_prot
+            |          |          |                                kmap_high_get
+            |          |          |                                _raw_spin_unlock_irqrestore
+            |          |          |          
+            |          |           --2.38%--v3d_wait_bo_ioctl
+            |          |          
+            |           --7.14%--slow_work_pending
+            |                     do_work_pending
+            |                     resume_user_mode_work
+            |                     task_work_run
+            |                     __fput
+            |                     dput
+            |                     __dentry_kill
+            |                     evict
+            |                     shmem_evict_inode
+            |                     shmem_undo_range
+            |                     |          
+            |                     |--4.76%--truncate_inode_folio
+            |                     |          |          
+            |                     |          |--2.38%--truncate_cleanup_folio
+            |                     |          |          _clear_bit
+            |                     |          |          
+            |                     |           --2.38%--filemap_remove_folio
+            |                     |          
+            |                      --2.38%--folios_put_refs
+            |                                free_unref_folios
+            |                                free_unref_page_commit
+            |                                _raw_spin_unlock_irqrestore
+            |          
+             --2.38%--0xbed2c3c0
+                       __poll
+                       __sys_trace_return
+                       __se_sys_poll
+                       do_sys_poll
+                       schedule_hrtimeout_range
+                       schedule_hrtimeout_range_clock
+                       schedule
+                       __sched_text_start
+                       finish_task_switch
+
+    14.29%     0.00%  [unknown]                     
+            |          
+            |--4.76%--0
+            |          |          
+            |          |--2.38%--memcmp
+            |          |          
+            |           --2.38%--_kDartVmSnapshotInstructions
+            |          
+            |--2.38%--0xbed2c3c0
+            |          __poll
+            |          __sys_trace_return
+            |          __se_sys_poll
+            |          do_sys_poll
+            |          schedule_hrtimeout_range
+            |          schedule_hrtimeout_range_clock
+            |          schedule
+            |          __sched_text_start
+            |          finish_task_switch
+            |          
+            |--2.38%--0xa8bfc080
+            |          0xa8bfd610
+            |          __printf_fp_buffer_1.isra.0
+            |          
+            |--2.38%--0x1809
+            |          0xab366658
+            |          
+             --2.38%--0x4
+                       _kDartIsolateSnapshotInstructions
+
+     4.76%     4.76%  libapp.so                     
+            |          
+            |--2.38%--0x4
+            |          _kDartIsolateSnapshotInstructions
+            |          
+             --2.38%--0
+                       _kDartVmSnapshotInstructions
+
+     2.38%     2.38%  libgallium-24.3.4.so (deleted)
+            |
+            ---0x1809
+               0xab366658
+
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

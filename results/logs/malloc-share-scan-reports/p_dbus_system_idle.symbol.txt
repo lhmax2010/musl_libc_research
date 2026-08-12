@@ -1,0 +1,17 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 1  of event 'task-clock:ppp'
+# Event count (approx.): 10101010
+#
+# Children      Self  Symbol                        IPC   [IPC Coverage]
+# ........  ........  ............................  ....................
+#
+   100.00%   100.00%  [.] _dbus_string_insert_byte  -      -            
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

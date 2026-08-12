@@ -1,0 +1,66 @@
+ERR<31395>:elementary ../src/lib/elementary/elm_config.c:2194 _config_system_load() System loading config failed! Check your setup! Falling back to compile time defaults
+ERR<31395>:elementary ../src/lib/elementary/elm_config.c:1493 _elm_config_extension_font_overlay_get() try to load extension font overlays of (default) theme
+ERR<31395>:elementary ../src/lib/elementary/elm_config.c:1502 _elm_config_extension_font_overlay_get() failed to open extension font overlay of RW. try to load RO data.
+ERR<31395>:elementary ../src/lib/elementary/elm_config.c:1509 _elm_config_extension_font_overlay_get() failed to open extension font overlay of RO(/usr/share/elementary/config/default/default_font_overlays.cfg).
+ERR<31395>:elementary ../src/lib/elementary/elm_config.c:1338 _elm_config_extension_color_overlay_get() try to load extension color overlays of (default) theme
+ERR<31395>:elementary ../src/lib/elementary/elm_config.c:1347 _elm_config_extension_color_overlay_get() failed to open extension color overlay of RW. try to load RO data.
+ERR<31395>:elementary ../src/lib/elementary/elm_config.c:1354 _elm_config_extension_color_overlay_get() failed to open extension color overlay of RO(/usr/share/elementary/config/default/default_color_overlays.cfg)
+ERR<31395>: ../src/lib/ecore_wl2/ecore_wl2_input.c:4662 ecore_wl2_input_cursor_theme_name_set() input=0x11bb850, cursor_theme_name=(null): same as current theme_name, return
+ERR<31395>:eina_safety ../src/lib/ecore_evas/ecore_evas.c:4559 ecore_evas_gl_x11_new() safety check failed: m == NULL
+ERR<31395>:eina_module ../src/lib/eina/eina_module.c:320 eina_module_load() could not dlopen("/usr/lib/evas/modules/engines/wayland_egl/v-1.25/module.so", libGLESv2.so.2: cannot open shared object file: No such file or directory): RTLD_NOW
+ERR<31395>:eina_safety ../src/lib/evas/canvas/evas_callbacks.c:497 evas_object_event_callback_priority_add() safety check failed: obj == NULL
+ERR<31395>:edje ../src/lib/edje/edje_load.c:391 edje_file_data_get() File [/usr/share/elementary/themes/default.edj] can not be opened.
+ERR<31395>:ecore_evas ../src/lib/elementary/efl_ui_win.c:5483 _efl_system_theme_path_get() Default system theme is too old, something is wrong with your installation of EFL.
+ERR<31395>:ecore_evas ../src/lib/elementary/efl_ui_win.c:5531 _elm_win_frame_add() Failed to set main border theme for the window.
+CRI<31395>:ecore_evas ../src/lib/elementary/efl_ui_win.c:5729 _elm_win_frame_style_update() Window has no frame object!
+ERR<31395>:ecore_evas ../src/lib/elementary/efl_ui_win.c:3932 _efl_ui_win_efl_gfx_entity_size_set() Call resize request set w: 1920 h: 1080
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_bg.c:42 _efl_ui_bg_efl_object_constructor() Failed to set layout!
+ERR<31395>:eo ../src/lib/eo/eo.c:969 efl_class_functions_set() There is an API implemented, whoms type is not part of this class. Efl.Ui.Image vs. Elm.Layout
+ERR<31395>:eo ../src/lib/eo/eo.c:969 efl_class_functions_set() There is an API implemented, whoms type is not part of this class. Elm.Widget.Item vs. Efl.Access.Widget.Action
+ERR<31395>:elementary ../src/lib/elementary/efl_ui_widget.c:5761 _efl_ui_widget_efl_object_constructor() You passed a wrong parent parameter (0x80003a64 EWebView). Elementary widget's parent should be an elementary widget.
+CRI<31395>:elementary ../src/lib/elementary/elm_entry.c:5263 _elm_entry_efl_canvas_group_group_add() Failed to set layout!
+ERR<31395>:eo ../src/lib/eo/eo_base_class.c:2354 _efl_object_event_thaw() Events for object 0x80002bc7 have already been thawed.
+ERR<31395>:eina_safety ../src/lib/evas/canvas/evas_object_textblock.c:10139 evas_object_textblock_cursor_new() safety check failed: eo_obj == NULL
+ERR<31395>:elementary ../src/lib/elementary/elm_entry.c:4468 _elm_entry_text_get() text=NULL for edje 0x8000467c, part 'elm.text'
+ERR<31395>:eo ../src/lib/eo/eo_base_class.c:2354 _efl_object_event_thaw() Events for object 0x80002bc7 have already been thawed.
+ERR<31395>:elementary ../src/lib/elementary/elm_entry.c:4468 _elm_entry_text_get() text=NULL for edje 0x8000467c, part 'elm.text'
+ERR<31395>:eo ../src/lib/eo/eo_base_class.c:2354 _efl_object_event_thaw() Events for object 0x80002bc7 have already been thawed.
+ERR<31395>:elementary ../src/lib/elementary/elm_entry.c:4468 _elm_entry_text_get() text=NULL for edje 0x8000467c, part 'elm.text'
+ERR<31395>:eo ../src/lib/eo/eo_base_class.c:2354 _efl_object_event_thaw() Events for object 0x80002bc7 have already been thawed.
+ERR<31395>:eo ../src/lib/eo/eo_base_class.c:2354 _efl_object_event_thaw() Events for object 0x80002bc7 have already been thawed.
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_button.c:273 _efl_ui_button_efl_canvas_group_group_add() Failed to set layout!
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_button.c:273 _efl_ui_button_efl_canvas_group_group_add() Failed to set layout!
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_button.c:273 _efl_ui_button_efl_canvas_group_group_add() Failed to set layout!
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_button.c:273 _efl_ui_button_efl_canvas_group_group_add() Failed to set layout!
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_button.c:273 _efl_ui_button_efl_canvas_group_group_add() Failed to set layout!
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_button.c:273 _efl_ui_button_efl_canvas_group_group_add() Failed to set layout!
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_button.c:273 _efl_ui_button_efl_canvas_group_group_add() Failed to set layout!
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_button.c:273 _efl_ui_button_efl_canvas_group_group_add() Failed to set layout!
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_button.c:273 _efl_ui_button_efl_canvas_group_group_add() Failed to set layout!
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_button.c:273 _efl_ui_button_efl_canvas_group_group_add() Failed to set layout!
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_button.c:273 _efl_ui_button_efl_canvas_group_group_add() Failed to set layout!
+ERR<31395>:elementary ../src/lib/elementary/elm_entry.c:4468 _elm_entry_text_get() text=NULL for edje 0x8000467c, part 'elm.text'
+ERR<31395>:eo ../src/lib/eo/eo_base_class.c:2354 _efl_object_event_thaw() Events for object 0x80002bc7 have already been thawed.
+ERR<31395>:evas_main ../src/lib/evas/canvas/evas_object_main.c:2075 _efl_canvas_object_efl_gfx_color_color_set() Evas only handles premultiplied colors (0 <= R,G,B <= A <= 255)
+ERR<31395>:ecore_wl2 ../src/lib/ecore_wl2/ecore_wl2_window.c:1502 ecore_wl2_window_show() [WINDOW] ecore_wl2_window_show. win:0
+ERR<31395>:ecore_wl2 ../src/lib/ecore_wl2/ecore_wl2_window.c:1541 ecore_wl2_window_show() [WINDOW] call tizen_policy_show. win:0, surface:0x1242d48
+ERR<31395>:ecore_wl2 ../src/lib/ecore_wl2/ecore_wl2_window.c:276 _ecore_wl2_window_configure_send() [WINDOW] win:0, CHECK.. pending.user_resize:1, size(1920x1080) BUT NOT USED..
+ERR<31395>:ecore_wl2 ../src/lib/ecore_wl2/ecore_wl2_window.c:306 _ecore_wl2_window_configure_send() [WINDOW] Generate WINDOW_CONFIGURE event.. win:0, states:2, geo(0,0,1920x1079), type:2, def(size:1920x1079,serial:25)
+ERR<31395>:eldbus ../src/lib/eldbus/eldbus_core.c:1082 _connection_get() Error connecting to bus of type 1. error name: org.freedesktop.DBus.Error.NotSupported error message: Using X11 for dbus-daemon autolaunch was disabled at compile time, set your DBUS_SESSION_BUS_ADDRESS instead
+ERR<31395>:eina_safety ../src/lib/eldbus/eldbus_core.c:1145 eldbus_connection_get() safety check failed: conn == NULL
+ERR<31395>:eina_safety ../src/lib/eldbus/eldbus_object.c:192 eldbus_object_get() safety check failed: conn == NULL
+ERR<31395>:eina_safety ../src/lib/eldbus/eldbus_proxy.c:212 eldbus_proxy_get() safety check failed: obj == NULL
+ERR<31395>:eina_safety ../src/lib/eldbus/eldbus_core.c:1421 eldbus_name_owner_changed_callback_add() safety check failed: conn == NULL
+ERR<31395>:eina_safety ../src/lib/eldbus/eldbus_proxy.c:663 eldbus_proxy_signal_handler_add() safety check failed: proxy == NULL
+CRI<31395>:ecore_evas ../src/lib/elementary/efl_ui_win.c:5729 _elm_win_frame_style_update() Window has no frame object!
+CRI<31395>:elementary ../src/lib/elementary/efl_ui_bg.c:42 _efl_ui_bg_efl_object_constructor() Failed to set layout!
+ERR<31395>:ecore_wl2 ../src/lib/ecore_wl2/ecore_wl2_window.c:4685 ecore_wl2_window_cursor_from_name_set() win=0x1242a88, cursor_name=watch
+ERR<31395>:ecore_wl2 ../src/lib/ecore_wl2/ecore_wl2_window.c:4696 ecore_wl2_window_cursor_from_name_set() win=0x1242a88, cursor_name=watch: no pointer device, return
+CRI<31395>:ecore_evas ../src/lib/elementary/efl_ui_win.c:5729 _elm_win_frame_style_update() Window has no frame object!
+ERR<31395>:elementary ../src/lib/elementary/efl_ui_widget.c:5761 _efl_ui_widget_efl_object_constructor() You passed a wrong parent parameter (0x80007d6b image). Elementary widget's parent should be an elementary widget.
+ERR<31395>:eo ../src/lib/eo/eo_base_class.c:2354 _efl_object_event_thaw() Events for object 0x80002bc7 have already been thawed.
+ERR<31395>:ecore_wl2 ../src/lib/ecore_wl2/ecore_wl2_window.c:4685 ecore_wl2_window_cursor_from_name_set() win=0x1242a88, cursor_name=left_ptr
+ERR<31395>:ecore_wl2 ../src/lib/ecore_wl2/ecore_wl2_window.c:4696 ecore_wl2_window_cursor_from_name_set() win=0x1242a88, cursor_name=left_ptr: no pointer device, return
+MINIB.C main 
+Runtime Profile : MOBILE(1)
+[_create_view][420][vibration] calling ewk_context_vibration_client_callbacks_set...

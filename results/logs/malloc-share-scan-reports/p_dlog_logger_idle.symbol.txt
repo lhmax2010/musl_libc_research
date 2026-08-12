@@ -1,0 +1,62 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 2  of event 'task-clock:ppp'
+# Event count (approx.): 20202020
+#
+# Children      Self  Symbol                  IPC   [IPC Coverage]
+# ........  ........  ......................  ....................
+#
+    50.00%    50.00%  [.] __GI___strchrnul    -      -            
+            |
+            ---__GI___strchrnul
+
+    50.00%    50.00%  [k] from_kuid_munged    -      -            
+            |
+            ---__fstatat64_time64
+               __sys_trace_return
+               do_statx_fd
+               cp_statx
+               from_kuid_munged
+
+    50.00%     0.00%  [k] 0xb5fb8cbc          -      -            
+            |
+            ---__fstatat64_time64
+               __sys_trace_return
+               do_statx_fd
+               cp_statx
+               from_kuid_munged
+
+    50.00%     0.00%  [.] __fstatat64_time64  -      -            
+            |
+            ---__sys_trace_return
+               do_statx_fd
+               cp_statx
+               from_kuid_munged
+
+    50.00%     0.00%  [k] __sys_trace_return  -      -            
+            |
+            ---do_statx_fd
+               cp_statx
+               from_kuid_munged
+
+    50.00%     0.00%  [k] do_statx_fd         -      -            
+            |
+            ---cp_statx
+               from_kuid_munged
+
+    50.00%     0.00%  [k] cp_statx            -      -            
+            |
+            ---from_kuid_munged
+
+    50.00%     0.00%  [.] 0x00000049          -      -            
+            |
+            ---__GI___strchrnul
+
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
