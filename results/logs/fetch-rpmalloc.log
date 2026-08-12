@@ -1,0 +1,17 @@
+fetch_started=2026-08-12T06:40:00Z
+version=1.4.5
+official_url=https://github.com/mjansson/rpmalloc/archive/refs/tags/1.4.5.tar.gz
+official_sha256=2513626697ef72a60957acc8caed17c39931a55c1a49202707de195742683d69
+frozen_sha256_verdict=PASS
+archive_layout_verdict=PASS
+source=github-release tag=1.4.5 page=https://github.com/mjansson/rpmalloc/releases/tag/1.4.5
+source_verdict.github_release=PASS
+source=xmake-repo commit=34812a68d605778d664af2b70e03d17de93d731c version=1.4.5 sha256=2513626697ef72a60957acc8caed17c39931a55c1a49202707de195742683d69
+source_verdict.xmake_repo=PASS
+archive=/home/linhao/Toolchain/development/musl-libc-research/packaging/rpmalloc-1.4.5.tar.gz.frozen
+archive_sha256=2513626697ef72a60957acc8caed17c39931a55c1a49202707de195742683d69
+packaging_digest_copy=/home/linhao/Toolchain/development/musl-libc-research/packaging/rpmalloc-1.4.5.sha256
+independent_sources_confirmed=2
+validation=PASS
+source_review=REQUIRED before formal GBS build
+fetch_finished=2026-08-12T06:40:03Z

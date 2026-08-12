@@ -1,0 +1,17 @@
+rpmalloc source review gate pre-approval self-test
+branch=execution/allocator-shootout
+base_commit=5b14f47e76f359a63c106dd388668dae21814404
+
+$ scripts/check_rpmalloc_source_review.sh
+RPMALLOC_BUILD_BLOCKED: FatTank source review checkbox is not checked.
+Expected exactly once: - [x] FatTank verified the frozen rpmalloc digest and archived corroborating records.
+gate_rc=7
+
+$ sha256sum packaging/rpmalloc-1.4.5.tar.gz.frozen
+2513626697ef72a60957acc8caed17c39931a55c1a49202707de195742683d69  packaging/rpmalloc-1.4.5.tar.gz.frozen
+
+$ cmp scripts/rpmalloc-1.4.5.sha256 packaging/rpmalloc-1.4.5.sha256
+digest_copy_cmp_rc=0
+
+verdict=PASS_FAIL_CLOSED
+formal_build=NOT_RUN
