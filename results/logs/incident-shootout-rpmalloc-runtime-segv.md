@@ -142,3 +142,53 @@ Source review also establishes H2's limitation before testing: with
 would initialize a worker heap, but the authorized constructor calls only
 `rpmalloc_initialize`, which initializes the constructor's thread. H2 is still
 built exactly as specified; qemu t1/t4/threads decides whether it is sufficient.
+
+## H2 result: FAIL — friction budget exhausted
+
+The H2 formal build passed the seven-interface ownership gate, LFS64 gate,
+musl allocator zero-extraction gate, ELF/softfp gate, and produced an RPM with
+SHA-256
+`678b5be6e3fe715f1e55cb920454d7dbde8f8891054178d82c79ed9a1dc0af3d`.
+The constructor object was linked before `rpmalloc.o`, exactly as authorized.
+
+Qemu tests of the formal artifact:
+
+```text
+malloc 1 1000 -> rc=139
+malloc 4 1000 -> rc=139
+threads 4     -> rc=0
+```
+
+An independent diagnostic link used `-O0 -g -gdwarf-4
+-fno-omit-frame-pointer`; it did not overwrite or enter the formal RPM. Its
+complete valid crash-thread backtrace is archived at
+`results/logs/shootout-h2-gdb-backtrace.log`. The decisive frames are:
+
+```text
+#0 _rpmalloc_allocate_small (heap=0x0) at rpmalloc.c:2202
+#1 _rpmalloc_allocate (heap=0x0) at rpmalloc.c:2285
+#2 rpmalloc (...) heap=0x0 at rpmalloc.c:3089
+#3 malloc_worker (...) at micro.c:88
+#4 start (...) at pthread_create.c:207
+#5 __clone () at clone.s:23
+```
+
+This confirms the failure phase and mechanism: the worker reaches its first
+allocation with a null rpmalloc thread heap. The H2 process constructor does
+not initialize future worker threads, and OVERRIDE-only has no lazy worker
+initialization path.
+
+Both authorized hypotheses are now exhausted. Per the frozen budget, no H3,
+source patch, rpmalloc version change, S5 downgrade, board retest, deployment
+transport fix, or measurement was attempted. The task is parked for FatTank to
+choose between a newer rpmalloc branch and `S5 P1-DEFERRED` (or to authorize a
+different bounded integration).
+
+H2 evidence hashes:
+
+- `results/logs/shootout-h2-gdb-backtrace.log`:
+  `a03ecff04ff9dc61957785b723748cef940e9ba4f219697f52a95a0b90a82e4e`
+- `results/logs/shootout-h2-qemu.txt`:
+  `7603898b5b1babe0e402a2d07212474de9d61c814a76f3d6d7f9caf15013b1f1`
+- `results/logs/gbs-build-shootout.log`:
+  `fcf6b5492f83d938ee264a7dc69fa8e43230e013fd41934b309fe9b291a49384`

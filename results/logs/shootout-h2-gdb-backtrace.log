@@ -1,0 +1,42 @@
+H2_DIAGNOSTIC_BUILD
+formal_artifact_overwritten=NO
+diagnostic_location=GBS scratch tmp only
+diagnostic_sha256=7175620be2d418033587e44aacaad63515fd3267f6b933f751aee78b5645e668
+diagnostic_flags=-O0 -g -gdwarf-4 -fno-omit-frame-pointer
+debugger=gdb-multiarch 15.1 extracted into a temporary host directory
+qemu=/usr/bin/qemu-arm-static
+command=micro.musl-rp-h2-diag malloc 1 1000
+
+THREADS_AT_SIGSEGV
+  Id   Target Id                        Frame
+* 1    Thread 1.51930 (CPU#0 [running]) __syscall6 futex wait
+  2    Thread 1.52014 (CPU#1 [running]) _rpmalloc_allocate_small (heap=0x0)
+
+COMPLETE_VALID_CRASH_THREAD_BACKTRACE
+#0  _rpmalloc_allocate_small (heap=0x0, size=<optimized out>)
+    at rpmalloc/rpmalloc.c:2202
+    class_idx = 16
+    heap_size_class = <optimized out>
+#1  _rpmalloc_allocate (heap=0x0, size=<optimized out>)
+    at rpmalloc/rpmalloc.c:2285
+#2  rpmalloc (size=<optimized out>)
+    at rpmalloc/rpmalloc.c:3089
+    heap = 0x0
+#3  malloc_worker (ap=0x407ff1b8)
+    at micro.c:88
+    sz = 256
+    p = 0x0
+    r = 1359758873
+    idx = 537
+    i = 0
+    s = 1359758873
+    chk = 0
+#4  start (p=0x3ff7ff64)
+    at src/thread/pthread_create.c:207
+#5  __clone ()
+    at src/thread/arm/clone.s:23
+
+UNWIND_NOTE
+gdb/qemu repeated the terminal __clone frame after frame 5 because no further
+caller frame exists at the new-thread assembly boundary. Those duplicate
+synthetic frames are omitted; frames 0-5 above are the complete valid stack.

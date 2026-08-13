@@ -194,9 +194,11 @@ COMMON_FLAGS=("${OPTFLAGS_ARRAY[@]}" "$RTLIB_FLAG" -static-libgcc -pthread)
 LFS64_PATTERN='[[:space:]](mmap64|munmap64|open64|openat64|pread64|pwrite64|lseek64|ftruncate64|fstat64|stat64|mmap2)$'
 RPMALLOC_OBJECT="$BUILD_ROOT/rpmalloc.o"
 RPMALLOC_DEPFILE="$BUILD_ROOT/rpmalloc.d"
+RPMALLOC_INIT_SOURCE="$BUILD_ROOT/rp-init.c"
+RPMALLOC_INIT_OBJECT="$BUILD_ROOT/rp-init.o"
 
-record_and_run "$MUSL_CC" "${OPTFLAGS_ARRAY[@]}" -O2 -DNDEBUG \
-    -DENABLE_PRELOAD=1 -DENABLE_OVERRIDE=1 \
+[[ -f "$RPMALLOC_INIT_SOURCE" ]] || fail "H2 constructor source missing: $RPMALLOC_INIT_SOURCE"
+record_and_run "$MUSL_CC" "${OPTFLAGS_ARRAY[@]}" -O2 -DNDEBUG -DENABLE_OVERRIDE=1 \
     -I "$RPMALLOC_SOURCE_DIR/rpmalloc" -isystem "$RESDIR/include" \
     -MMD -MF "$RPMALLOC_DEPFILE" \
     -c "$RPMALLOC_SOURCE_DIR/rpmalloc/rpmalloc.c" -o "$RPMALLOC_OBJECT"
@@ -208,11 +210,17 @@ echo "gate.rpmalloc_lfs64.scan_begin"
 echo "gate.rpmalloc_lfs64.scan_end"
 [[ -z "$rpmalloc_lfs64" ]] || fail "rpmalloc object references forbidden LFS64 symbols"
 echo "gate.rpmalloc_lfs64=PASS"
+record_and_run "$MUSL_CC" "${OPTFLAGS_ARRAY[@]}" -O2 -DNDEBUG \
+    -I "$RPMALLOC_SOURCE_DIR/rpmalloc" -isystem "$RESDIR/include" \
+    -c "$RPMALLOC_INIT_SOURCE" -o "$RPMALLOC_INIT_OBJECT"
+nm -u "$RPMALLOC_INIT_OBJECT" | grep -Eq '[[:space:]]rpmalloc_initialize$' || \
+    fail "H2 constructor object does not call rpmalloc_initialize"
+echo "gate.rpmalloc_h2_constructor=PASS object=$RPMALLOC_INIT_OBJECT"
 
 RP_BIN="$PAYLOAD/bin/micro.musl-rp"
 RP_MAP="$BUILD_ROOT/micro.musl-rp.map"
 record_and_run "$MUSL_CC" "${COMMON_FLAGS[@]}" -static "$MICRO_SOURCE" \
-    "$RPMALLOC_OBJECT" -Wl,-Map,"$RP_MAP" -o "$RP_BIN"
+    "$RPMALLOC_INIT_OBJECT" "$RPMALLOC_OBJECT" -Wl,-Map,"$RP_MAP" -o "$RP_BIN"
 
 map_symbol_owner() {
     local map_file="$1"
@@ -240,14 +248,10 @@ echo "gate.rpmalloc_musl_allocator_members.scan_begin"
 echo "gate.rpmalloc_musl_allocator_members.scan_end"
 [[ -z "$main_allocator_members" ]] || fail "musl primary allocator members were extracted into S5"
 echo "gate.rpmalloc_musl_allocator_members=PASS count=0"
-rpmalloc_pthread_owner="$(map_symbol_owner "$RP_MAP" "rpmalloc[.]o" "pthread_create")"
-rpmalloc_dlsym_owner="$(map_symbol_owner "$RP_MAP" "rpmalloc[.]o" "dlsym")"
-printf 'h1.pthread_create_owner=%s\n' "${rpmalloc_pthread_owner:-MISSING}"
-printf 'h1.dlsym_owner=%s\n' "${rpmalloc_dlsym_owner:-MISSING}"
 {
-    echo "rpmalloc_compile_defines=ENABLE_PRELOAD=1 ENABLE_OVERRIDE=1"
-    echo "rpmalloc_h1_pthread_create_owner=${rpmalloc_pthread_owner:-MISSING}"
-    echo "rpmalloc_h1_dlsym_owner=${rpmalloc_dlsym_owner:-MISSING}"
+    echo "rpmalloc_compile_defines=ENABLE_OVERRIDE=1"
+    echo "rpmalloc_initialization=H2 constructor rp-init.o before rpmalloc.o"
+    echo "rpmalloc_worker_lazy_init=ABSENT rpmalloc.c:775-784"
 } >> "$DECISION"
 
 check_static_arm_softfp() {

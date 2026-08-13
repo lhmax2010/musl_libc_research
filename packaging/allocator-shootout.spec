@@ -12,6 +12,7 @@ Source4:        rpmalloc-1.4.5.sha256
 Source5:        scudo-standalone-22.1.8.tar.gz.frozen
 Source6:        scudo-standalone-22.1.8.sha256
 Source7:        build-allocator-shootout.sh
+Source8:        rp-init.c
 BuildRequires:  bash
 BuildRequires:  clang
 BuildRequires:  coreutils
@@ -38,6 +39,7 @@ cp -p %{SOURCE4} rpmalloc-1.4.5.sha256
 cp -p %{SOURCE5} scudo-standalone-22.1.8.tar.gz
 cp -p %{SOURCE6} scudo-standalone-22.1.8.sha256
 cp -p %{SOURCE7} build-allocator-shootout.sh
+cp -p %{SOURCE8} rp-init.c
 
 %build
 chmod +x build-allocator-shootout.sh

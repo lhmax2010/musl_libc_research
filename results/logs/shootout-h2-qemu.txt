@@ -1,0 +1,25 @@
+H2_FORMAL_ARTIFACT_QEMU_TEST
+rpm_sha256=678b5be6e3fe715f1e55cb920454d7dbde8f8891054178d82c79ed9a1dc0af3d
+binary_sha256=c181f8e9d15be7201afa824a4cb8a3a36200d4873f8faef464e50209f1434c1a
+qemu=/usr/bin/qemu-arm-static
+
+qemu_test.args=malloc 1 1000
+qemu: uncaught target signal 11 (Segmentation fault) - core dumped
+qemu_test.rc=139
+
+qemu_test.args=malloc 4 1000
+qemu: uncaught target signal 11 (Segmentation fault) - core dumped
+qemu_test.rc=139
+
+qemu_test.args=threads 4
+threads.requested=4
+threads.created=4
+status.VmSize: 4605840 kB
+status.VmRSS: 11140 kB
+status.VmData: 159916 kB
+status.Threads: 6
+qemu_test.rc=0
+
+H2_RESULT=FAIL
+BOARD_RETEST=NOT_RUN
+MEASUREMENT=NOT_RUN

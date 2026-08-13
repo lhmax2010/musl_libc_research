@@ -20,11 +20,14 @@ clang_version_end
 ldwrapper_patch=start-group
 ldwrapper_before_line=exec $($cc -print-prog-name=ld) -nostdlib "$@" -lc -dynamic-linker "$ldso"
 ldwrapper_after_line=exec $($cc -print-prog-name=ld) -nostdlib "$@" --start-group -lc /usr/lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a /usr/lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc_eh.a --end-group -dynamic-linker "$ldso"
+rpmalloc_compile_defines=ENABLE_OVERRIDE=1
+rpmalloc_initialization=H2 constructor rp-init.o before rpmalloc.o
+rpmalloc_worker_lazy_init=ABSENT rpmalloc.c:775-784
 rpmalloc_compile_env=musl-clang(headers=musl,resource_fill=/usr/lib/clang/22/include,backend=clang 22.1.8)
 rpmalloc_malloc_c_incorporated=PASS
 rpmalloc_symbol_owner=rpmalloc.o
 rpmalloc_musl_primary_allocator_members=0
-rpmalloc_nm_evidence=00015218 T rpmalloc
+rpmalloc_nm_evidence=0001521c T rpmalloc
 s5_gate=PASS
 scudo_uapi_stage=linux asm asm-generic
 scudo_include_order=musl_first_resource_fill_uapi_last
