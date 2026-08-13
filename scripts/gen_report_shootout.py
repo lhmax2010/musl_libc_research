@@ -225,6 +225,7 @@ def main() -> int:
     deploy_log = root / "results/logs/deploy-shootout.log"
     sdb_rc_log = root / "results/logs/sdb-remote-rc-selftest.log"
     artifacts_path = root / "results/artifacts-shootout.sha256"
+    scudo_audit_path = root / "results/logs/scudo-build-config-audit.md"
     for path in (
         results_path,
         decision_path,
@@ -233,6 +234,7 @@ def main() -> int:
         deploy_log,
         sdb_rc_log,
         artifacts_path,
+        scudo_audit_path,
     ):
         if not path.is_file():
             raise SystemExit(f"required evidence missing: {path}")
@@ -291,11 +293,14 @@ def main() -> int:
         "",
         "## 状态",
         "",
-        "- 结论：**PENDING — 等待 FatTank 数据核验与选型裁决**。",
+        "- FatTank 数据核验通过；本报告结论已冻结。",
+        "- **缺省分配器维持 S2 musl mallocng。**",
+        "- **allowlist 处方定为 S3 mimalloc 默认配置。** S3 是 t4 性能追回达标者中的唯一候选；相对 S2 的 Private_Dirty `+16 kB` 与 stripped 体积 `+110.0 KiB` 为已接受代价。",
+        "- **S4 从处方矩阵除名。** 它没有达到 t4 追回目标，且在本画像中相对 S3 未换得 Pss、Private_Dirty 或体积收益；该结论只约束本次固定大小类 churn 画像，不否认 purge/eager-commit 调参在长驻、回收敏感真实负载中重新验证的可能性。",
         "- S1–S4 来自冻结的 `musl-libc-demo-1.0.0-2.armv7l.rpm`，未重编；S5/S6 来自 shootout 增量 RPM。",
         "- S3 与 S4 是同一个二进制；S4 每个样本仅注入 `MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0`。",
         "- S5 已裁决为 [`P1-DEFERRED`](logs/incident-shootout-rpmalloc-runtime-segv.md)，构建产物和诊断证据保留，但不进入测量。",
-        "- S6 状态：`BUILT`；未搭建 libc++ 环境。",
+        "- S6 状态：`BUILT`；未搭建 libc++ 环境；[构建配置审计](logs/scudo-build-config-audit.md)确认有效 `-O2` release-style 构建，无需补测。",
         "",
         "## 核心汇率表",
         "",
@@ -315,7 +320,13 @@ def main() -> int:
         vm = threads_med[variant]
         binary = size_kib[variant]
         output.append(
-            f"| {variant} | {LABELS[variant]} | {fmt(t1)} ({fmt(ratio(t1, malloc_med[('S1', 1)]), 2)}×) | "
+            f"| {variant} | "
+            + (
+                "musl + Scudo standalone — 实测即此；armv7/musl 组合下不适用于热路径，保留为安全敏感低分配组件的加固选项（[审计](logs/scudo-build-config-audit.md)）"
+                if variant == "S6"
+                else LABELS[variant]
+            )
+            + f" | {fmt(t1)} ({fmt(ratio(t1, malloc_med[('S1', 1)]), 2)}×) | "
             f"{fmt(t4)} ({fmt(ratio(t4, malloc_med[('S1', 4)]), 2)}×) | "
             f"{fmt(pss, 0)} ({pss - memory_med['S2']['Pss']:+.0f}) | "
             f"{fmt(dirty, 0)} ({dirty - memory_med['S2']['Private_Dirty']:+.0f}) | "
@@ -353,8 +364,8 @@ def main() -> int:
             "",
             "- malloc 使用 `{1,4}` 线程、每线程 2,000,000 次操作、轮内五方旋转交替；报告全部频率门禁有效样本的 median。",
             "- mem 为单实例 `smaps_rollup` 的 Pss、Private_Dirty、Rss，各 3 次；threads 为创建 200 线程后的 VmSize；startup 为五方交替 30 个有效轮。",
-            "- 处方判据冻结为：在 t4 追回达到目标的候选中选择 Private_Dirty 增量最小者，体积仅作次级 tiebreak。目标值和最终候选裁决留给 FatTank。",
-            "- 不做加权评分，也不宣布“冠军”。",
+            "- 处方判据冻结为：在 t4 追回达到目标的候选中选择 Private_Dirty 增量最小者，体积仅作次级 tiebreak；FatTank 已完成目标判定与最终裁决。",
+            "- FatTank 依冻结判据裁决：S2 为缺省；S3 是 t4 追回达标的唯一候选，进入 allowlist；不做加权评分。",
             "",
             "## 附加矩阵",
             "",
@@ -379,6 +390,7 @@ def main() -> int:
             "",
             "- micro 是固定大小类 churn 画像，不能外推为所有真实应用分配行为；汇率表用于处方筛选，不替代候选包真实负载验证。",
             f"- S4 调参相对 S3 的 t4 性能让渡倍率为 `{fmt(s4_concession, 3)}×`；其回收/提交策略差异也应结合 Private_Dirty 阅读。",
+            "- S4 已从处方矩阵除名：它在本画像中未达到 t4 追回目标，也未比同二进制的 S3 降低 Pss、Private_Dirty 或体积。此除名仅适用于当前画像；真实长驻且回收敏感负载可另案复验运行期调参。",
             "- S6 本轮没有触发 P1 降级；若后续平台复建触发摩擦预算，其列应标 `P1-DEFERRED` 并引用对应 incident，而不是用缺失样本参与排名。",
             "- S5 已按 FatTank 裁决降为 `P1-DEFERRED`；本报告不以缺失样本参与任何倍率或选型比较。复活条件见事故归档终章。",
             "- 单板、单会话和有限样本量会保留一定调度噪声；原始温度、频率、顺序、环境变量、哨兵与返回码均留在数据文件中。",
@@ -392,6 +404,7 @@ def main() -> int:
             f"- `results/logs/compiler-decision-shootout.txt` SHA-256: `{sha256(decision_path)}`",
             f"- `results/logs/shootout-s6-status.txt` SHA-256: `{sha256(s6_status_path)}`",
             f"- `results/artifacts-shootout.sha256` SHA-256: `{sha256(artifacts_path)}`",
+            f"- `results/logs/scudo-build-config-audit.md` SHA-256: `{sha256(scudo_audit_path)}`",
         ]
     )
     report_path.write_text("\n".join(output) + "\n", encoding="utf-8")
