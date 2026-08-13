@@ -1,0 +1,4 @@
+s6_status=BUILT
+s6_reason=NONE
+s6_attempt_rc=0
+libcxx_environment_added=NO

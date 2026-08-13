@@ -1,0 +1,1881 @@
+192.168.108.26:26101 is already connected
+### environment
+measurement.target=192.168.108.26
+measurement.sdb_serial=192.168.108.26:26101
+measurement.start_utc=2026-08-13T13:05:40Z
+measurement.malloc_reps=5
+measurement.mem_reps=3
+measurement.startup_reps=30
+measurement.sample_sentinel=required
+measurement.s4_env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+measurement.s3_s4_binary=/opt/usr/musl-demo/bin/micro.musl-mi
+measurement.malloc_iters_per_thread=2000000
+measurement.s5_status=P1-DEFERRED
+6.12.80-arm-rpi4-v7l
+NAME=Tizen
+VERSION="11.0.0 (Tizen11.0/Unified)"
+ID=tizen
+VERSION_ID=11.0.0
+gate.board_identity=PASS
+loadavg.before=0.20 0.16 0.09 4/470 4167
+binary.S1=/opt/usr/musl-demo/bin/micro.glibc-dyn
+binary.S2=/opt/usr/musl-demo/bin/micro.musl-static
+binary.S3=/opt/usr/musl-demo/bin/micro.musl-mi
+binary.S4=/opt/usr/musl-demo/bin/micro.musl-mi
+binary.S6=/opt/usr/musl-demo/bin/micro.musl-scudo
+binary.timer=/opt/usr/musl-demo/bin/timer
+gate.s3_s4_same_binary=PASS
+residual.before=NONE
+### governor
+governor.cpu0=performance
+governor.cpu1=performance
+governor.cpu2=performance
+governor.cpu3=performance
+### sizes stripped board matrix
+size,variant=S1,bytes=16388,path=/opt/usr/musl-demo/bin/micro.glibc-dyn
+size,variant=S2,bytes=439932,path=/opt/usr/musl-demo/bin/micro.musl-static
+size,variant=S3,bytes=552536,path=/opt/usr/musl-demo/bin/micro.musl-mi
+size,variant=S4,bytes=552536,path=/opt/usr/musl-demo/bin/micro.musl-mi
+size,variant=S6,bytes=513680,path=/opt/usr/musl-demo/bin/micro.musl-scudo
+### startup five-way interleaved
+temperature.startup.1.before.raw=56478
+frequency.startup.1.before.cpu0.cur=1500000,max=1500000
+frequency.startup.1.before.cpu1.cur=1500000,max=1500000
+frequency.startup.1.before.cpu2.cur=1500000,max=1500000
+frequency.startup.1.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=1,order=S1 S2 S3 S4 S6
+sample_env,phase=startup,rep=1,variant=S1,env=EMPTY
+2352833
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=1,variant=S1,ns=2352833,env=EMPTY
+sample_env,phase=startup,rep=1,variant=S2,env=EMPTY
+960296
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=1,variant=S2,ns=960296,env=EMPTY
+sample_env,phase=startup,rep=1,variant=S3,env=EMPTY
+1182593
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=1,variant=S3,ns=1182593,env=EMPTY
+sample_env,phase=startup,rep=1,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1215296
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=1,variant=S4,ns=1215296,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=1,variant=S6,env=EMPTY
+1060278
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=1,variant=S6,ns=1060278,env=EMPTY
+frequency.startup.1.after.cpu0.cur=1500000,max=1500000
+frequency.startup.1.after.cpu1.cur=1500000,max=1500000
+frequency.startup.1.after.cpu2.cur=1500000,max=1500000
+frequency.startup.1.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=1,valid_index=1
+temperature.startup.2.before.raw=56478
+frequency.startup.2.before.cpu0.cur=1500000,max=1500000
+frequency.startup.2.before.cpu1.cur=1500000,max=1500000
+frequency.startup.2.before.cpu2.cur=1500000,max=1500000
+frequency.startup.2.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=2,order=S2 S3 S4 S6 S1
+sample_env,phase=startup,rep=2,variant=S2,env=EMPTY
+1044945
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=2,variant=S2,ns=1044945,env=EMPTY
+sample_env,phase=startup,rep=2,variant=S3,env=EMPTY
+1202630
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=2,variant=S3,ns=1202630,env=EMPTY
+sample_env,phase=startup,rep=2,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1483129
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=2,variant=S4,ns=1483129,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=2,variant=S6,env=EMPTY
+1079815
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=2,variant=S6,ns=1079815,env=EMPTY
+sample_env,phase=startup,rep=2,variant=S1,env=EMPTY
+2390518
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=2,variant=S1,ns=2390518,env=EMPTY
+frequency.startup.2.after.cpu0.cur=1500000,max=1500000
+frequency.startup.2.after.cpu1.cur=1500000,max=1500000
+frequency.startup.2.after.cpu2.cur=1500000,max=1500000
+frequency.startup.2.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=2,valid_index=2
+temperature.startup.3.before.raw=56478
+frequency.startup.3.before.cpu0.cur=1500000,max=1500000
+frequency.startup.3.before.cpu1.cur=1500000,max=1500000
+frequency.startup.3.before.cpu2.cur=1500000,max=1500000
+frequency.startup.3.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=3,order=S3 S4 S6 S1 S2
+sample_env,phase=startup,rep=3,variant=S3,env=EMPTY
+1264093
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=3,variant=S3,ns=1264093,env=EMPTY
+sample_env,phase=startup,rep=3,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1463704
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=3,variant=S4,ns=1463704,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=3,variant=S6,env=EMPTY
+1185574
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=3,variant=S6,ns=1185574,env=EMPTY
+sample_env,phase=startup,rep=3,variant=S1,env=EMPTY
+2330703
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=3,variant=S1,ns=2330703,env=EMPTY
+sample_env,phase=startup,rep=3,variant=S2,env=EMPTY
+977796
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=3,variant=S2,ns=977796,env=EMPTY
+frequency.startup.3.after.cpu0.cur=1500000,max=1500000
+frequency.startup.3.after.cpu1.cur=1500000,max=1500000
+frequency.startup.3.after.cpu2.cur=1500000,max=1500000
+frequency.startup.3.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=3,valid_index=3
+temperature.startup.4.before.raw=55991
+frequency.startup.4.before.cpu0.cur=1500000,max=1500000
+frequency.startup.4.before.cpu1.cur=1500000,max=1500000
+frequency.startup.4.before.cpu2.cur=1500000,max=1500000
+frequency.startup.4.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=4,order=S4 S6 S1 S2 S3
+sample_env,phase=startup,rep=4,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1188148
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=4,variant=S4,ns=1188148,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=4,variant=S6,env=EMPTY
+1073685
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=4,variant=S6,ns=1073685,env=EMPTY
+sample_env,phase=startup,rep=4,variant=S1,env=EMPTY
+3811129
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=4,variant=S1,ns=3811129,env=EMPTY
+sample_env,phase=startup,rep=4,variant=S2,env=EMPTY
+2119926
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=4,variant=S2,ns=2119926,env=EMPTY
+sample_env,phase=startup,rep=4,variant=S3,env=EMPTY
+1876833
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=4,variant=S3,ns=1876833,env=EMPTY
+frequency.startup.4.after.cpu0.cur=1500000,max=1500000
+frequency.startup.4.after.cpu1.cur=1500000,max=1500000
+frequency.startup.4.after.cpu2.cur=1500000,max=1500000
+frequency.startup.4.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=4,valid_index=4
+temperature.startup.5.before.raw=56965
+frequency.startup.5.before.cpu0.cur=1500000,max=1500000
+frequency.startup.5.before.cpu1.cur=1500000,max=1500000
+frequency.startup.5.before.cpu2.cur=1500000,max=1500000
+frequency.startup.5.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=5,order=S6 S1 S2 S3 S4
+sample_env,phase=startup,rep=5,variant=S6,env=EMPTY
+1042222
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=5,variant=S6,ns=1042222,env=EMPTY
+sample_env,phase=startup,rep=5,variant=S1,env=EMPTY
+2357389
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=5,variant=S1,ns=2357389,env=EMPTY
+sample_env,phase=startup,rep=5,variant=S2,env=EMPTY
+971704
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=5,variant=S2,ns=971704,env=EMPTY
+sample_env,phase=startup,rep=5,variant=S3,env=EMPTY
+1223296
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=5,variant=S3,ns=1223296,env=EMPTY
+sample_env,phase=startup,rep=5,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1226166
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=5,variant=S4,ns=1226166,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+frequency.startup.5.after.cpu0.cur=1500000,max=1500000
+frequency.startup.5.after.cpu1.cur=1500000,max=1500000
+frequency.startup.5.after.cpu2.cur=1500000,max=1500000
+frequency.startup.5.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=5,valid_index=5
+temperature.startup.6.before.raw=56965
+frequency.startup.6.before.cpu0.cur=1500000,max=1500000
+frequency.startup.6.before.cpu1.cur=1500000,max=1500000
+frequency.startup.6.before.cpu2.cur=1500000,max=1500000
+frequency.startup.6.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=6,order=S1 S2 S3 S4 S6
+sample_env,phase=startup,rep=6,variant=S1,env=EMPTY
+2399704
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=6,variant=S1,ns=2399704,env=EMPTY
+sample_env,phase=startup,rep=6,variant=S2,env=EMPTY
+1089723
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=6,variant=S2,ns=1089723,env=EMPTY
+sample_env,phase=startup,rep=6,variant=S3,env=EMPTY
+1187297
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=6,variant=S3,ns=1187297,env=EMPTY
+sample_env,phase=startup,rep=6,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1186482
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=6,variant=S4,ns=1186482,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=6,variant=S6,env=EMPTY
+1065518
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=6,variant=S6,ns=1065518,env=EMPTY
+frequency.startup.6.after.cpu0.cur=1500000,max=1500000
+frequency.startup.6.after.cpu1.cur=1500000,max=1500000
+frequency.startup.6.after.cpu2.cur=1500000,max=1500000
+frequency.startup.6.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=6,valid_index=6
+temperature.startup.7.before.raw=56965
+frequency.startup.7.before.cpu0.cur=1500000,max=1500000
+frequency.startup.7.before.cpu1.cur=1500000,max=1500000
+frequency.startup.7.before.cpu2.cur=1500000,max=1500000
+frequency.startup.7.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=7,order=S2 S3 S4 S6 S1
+sample_env,phase=startup,rep=7,variant=S2,env=EMPTY
+987537
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=7,variant=S2,ns=987537,env=EMPTY
+sample_env,phase=startup,rep=7,variant=S3,env=EMPTY
+1159148
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=7,variant=S3,ns=1159148,env=EMPTY
+sample_env,phase=startup,rep=7,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1190000
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=7,variant=S4,ns=1190000,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=7,variant=S6,env=EMPTY
+1069111
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=7,variant=S6,ns=1069111,env=EMPTY
+sample_env,phase=startup,rep=7,variant=S1,env=EMPTY
+2304296
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=7,variant=S1,ns=2304296,env=EMPTY
+frequency.startup.7.after.cpu0.cur=1500000,max=1500000
+frequency.startup.7.after.cpu1.cur=1500000,max=1500000
+frequency.startup.7.after.cpu2.cur=1500000,max=1500000
+frequency.startup.7.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=7,valid_index=7
+temperature.startup.8.before.raw=56478
+frequency.startup.8.before.cpu0.cur=1500000,max=1500000
+frequency.startup.8.before.cpu1.cur=1500000,max=1500000
+frequency.startup.8.before.cpu2.cur=1500000,max=1500000
+frequency.startup.8.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=8,order=S3 S4 S6 S1 S2
+sample_env,phase=startup,rep=8,variant=S3,env=EMPTY
+1211333
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=8,variant=S3,ns=1211333,env=EMPTY
+sample_env,phase=startup,rep=8,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1196037
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=8,variant=S4,ns=1196037,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=8,variant=S6,env=EMPTY
+1032426
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=8,variant=S6,ns=1032426,env=EMPTY
+sample_env,phase=startup,rep=8,variant=S1,env=EMPTY
+2419574
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=8,variant=S1,ns=2419574,env=EMPTY
+sample_env,phase=startup,rep=8,variant=S2,env=EMPTY
+966296
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=8,variant=S2,ns=966296,env=EMPTY
+frequency.startup.8.after.cpu0.cur=1500000,max=1500000
+frequency.startup.8.after.cpu1.cur=1500000,max=1500000
+frequency.startup.8.after.cpu2.cur=1500000,max=1500000
+frequency.startup.8.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=8,valid_index=8
+temperature.startup.9.before.raw=56965
+frequency.startup.9.before.cpu0.cur=1500000,max=1500000
+frequency.startup.9.before.cpu1.cur=1500000,max=1500000
+frequency.startup.9.before.cpu2.cur=1500000,max=1500000
+frequency.startup.9.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=9,order=S4 S6 S1 S2 S3
+sample_env,phase=startup,rep=9,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1174907
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=9,variant=S4,ns=1174907,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=9,variant=S6,env=EMPTY
+1054315
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=9,variant=S6,ns=1054315,env=EMPTY
+sample_env,phase=startup,rep=9,variant=S1,env=EMPTY
+2390666
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=9,variant=S1,ns=2390666,env=EMPTY
+sample_env,phase=startup,rep=9,variant=S2,env=EMPTY
+968481
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=9,variant=S2,ns=968481,env=EMPTY
+sample_env,phase=startup,rep=9,variant=S3,env=EMPTY
+1181425
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=9,variant=S3,ns=1181425,env=EMPTY
+frequency.startup.9.after.cpu0.cur=1500000,max=1500000
+frequency.startup.9.after.cpu1.cur=1500000,max=1500000
+frequency.startup.9.after.cpu2.cur=1500000,max=1500000
+frequency.startup.9.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=9,valid_index=9
+temperature.startup.10.before.raw=55991
+frequency.startup.10.before.cpu0.cur=1500000,max=1500000
+frequency.startup.10.before.cpu1.cur=1500000,max=1500000
+frequency.startup.10.before.cpu2.cur=1500000,max=1500000
+frequency.startup.10.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=10,order=S6 S1 S2 S3 S4
+sample_env,phase=startup,rep=10,variant=S6,env=EMPTY
+1095315
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=10,variant=S6,ns=1095315,env=EMPTY
+sample_env,phase=startup,rep=10,variant=S1,env=EMPTY
+2374185
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=10,variant=S1,ns=2374185,env=EMPTY
+sample_env,phase=startup,rep=10,variant=S2,env=EMPTY
+1123240
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=10,variant=S2,ns=1123240,env=EMPTY
+sample_env,phase=startup,rep=10,variant=S3,env=EMPTY
+1270296
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=10,variant=S3,ns=1270296,env=EMPTY
+sample_env,phase=startup,rep=10,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1198981
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=10,variant=S4,ns=1198981,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+frequency.startup.10.after.cpu0.cur=1500000,max=1500000
+frequency.startup.10.after.cpu1.cur=1500000,max=1500000
+frequency.startup.10.after.cpu2.cur=1500000,max=1500000
+frequency.startup.10.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=10,valid_index=10
+temperature.startup.11.before.raw=56478
+frequency.startup.11.before.cpu0.cur=1500000,max=1500000
+frequency.startup.11.before.cpu1.cur=1500000,max=1500000
+frequency.startup.11.before.cpu2.cur=1500000,max=1500000
+frequency.startup.11.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=11,order=S1 S2 S3 S4 S6
+sample_env,phase=startup,rep=11,variant=S1,env=EMPTY
+2329981
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=11,variant=S1,ns=2329981,env=EMPTY
+sample_env,phase=startup,rep=11,variant=S2,env=EMPTY
+969204
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=11,variant=S2,ns=969204,env=EMPTY
+sample_env,phase=startup,rep=11,variant=S3,env=EMPTY
+1182056
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=11,variant=S3,ns=1182056,env=EMPTY
+sample_env,phase=startup,rep=11,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1211667
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=11,variant=S4,ns=1211667,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=11,variant=S6,env=EMPTY
+1062704
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=11,variant=S6,ns=1062704,env=EMPTY
+frequency.startup.11.after.cpu0.cur=1500000,max=1500000
+frequency.startup.11.after.cpu1.cur=1500000,max=1500000
+frequency.startup.11.after.cpu2.cur=1500000,max=1500000
+frequency.startup.11.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=11,valid_index=11
+temperature.startup.12.before.raw=56478
+frequency.startup.12.before.cpu0.cur=1500000,max=1500000
+frequency.startup.12.before.cpu1.cur=1500000,max=1500000
+frequency.startup.12.before.cpu2.cur=1500000,max=1500000
+frequency.startup.12.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=12,order=S2 S3 S4 S6 S1
+sample_env,phase=startup,rep=12,variant=S2,env=EMPTY
+980148
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=12,variant=S2,ns=980148,env=EMPTY
+sample_env,phase=startup,rep=12,variant=S3,env=EMPTY
+1214129
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=12,variant=S3,ns=1214129,env=EMPTY
+sample_env,phase=startup,rep=12,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1201908
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=12,variant=S4,ns=1201908,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=12,variant=S6,env=EMPTY
+1093259
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=12,variant=S6,ns=1093259,env=EMPTY
+sample_env,phase=startup,rep=12,variant=S1,env=EMPTY
+2300408
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=12,variant=S1,ns=2300408,env=EMPTY
+frequency.startup.12.after.cpu0.cur=1500000,max=1500000
+frequency.startup.12.after.cpu1.cur=1500000,max=1500000
+frequency.startup.12.after.cpu2.cur=1500000,max=1500000
+frequency.startup.12.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=12,valid_index=12
+temperature.startup.13.before.raw=56478
+frequency.startup.13.before.cpu0.cur=1500000,max=1500000
+frequency.startup.13.before.cpu1.cur=1500000,max=1500000
+frequency.startup.13.before.cpu2.cur=1500000,max=1500000
+frequency.startup.13.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=13,order=S3 S4 S6 S1 S2
+sample_env,phase=startup,rep=13,variant=S3,env=EMPTY
+1198851
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=13,variant=S3,ns=1198851,env=EMPTY
+sample_env,phase=startup,rep=13,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1197759
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=13,variant=S4,ns=1197759,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=13,variant=S6,env=EMPTY
+1066741
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=13,variant=S6,ns=1066741,env=EMPTY
+sample_env,phase=startup,rep=13,variant=S1,env=EMPTY
+2401259
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=13,variant=S1,ns=2401259,env=EMPTY
+sample_env,phase=startup,rep=13,variant=S2,env=EMPTY
+1123297
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=13,variant=S2,ns=1123297,env=EMPTY
+frequency.startup.13.after.cpu0.cur=1500000,max=1500000
+frequency.startup.13.after.cpu1.cur=1500000,max=1500000
+frequency.startup.13.after.cpu2.cur=1500000,max=1500000
+frequency.startup.13.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=13,valid_index=13
+temperature.startup.14.before.raw=55991
+frequency.startup.14.before.cpu0.cur=1500000,max=1500000
+frequency.startup.14.before.cpu1.cur=1500000,max=1500000
+frequency.startup.14.before.cpu2.cur=1500000,max=1500000
+frequency.startup.14.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=14,order=S4 S6 S1 S2 S3
+sample_env,phase=startup,rep=14,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1230907
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=14,variant=S4,ns=1230907,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=14,variant=S6,env=EMPTY
+1046222
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=14,variant=S6,ns=1046222,env=EMPTY
+sample_env,phase=startup,rep=14,variant=S1,env=EMPTY
+2350630
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=14,variant=S1,ns=2350630,env=EMPTY
+sample_env,phase=startup,rep=14,variant=S2,env=EMPTY
+967370
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=14,variant=S2,ns=967370,env=EMPTY
+sample_env,phase=startup,rep=14,variant=S3,env=EMPTY
+1219685
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=14,variant=S3,ns=1219685,env=EMPTY
+frequency.startup.14.after.cpu0.cur=1500000,max=1500000
+frequency.startup.14.after.cpu1.cur=1500000,max=1500000
+frequency.startup.14.after.cpu2.cur=1500000,max=1500000
+frequency.startup.14.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=14,valid_index=14
+temperature.startup.15.before.raw=57452
+frequency.startup.15.before.cpu0.cur=1500000,max=1500000
+frequency.startup.15.before.cpu1.cur=1500000,max=1500000
+frequency.startup.15.before.cpu2.cur=1500000,max=1500000
+frequency.startup.15.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=15,order=S6 S1 S2 S3 S4
+sample_env,phase=startup,rep=15,variant=S6,env=EMPTY
+1069352
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=15,variant=S6,ns=1069352,env=EMPTY
+sample_env,phase=startup,rep=15,variant=S1,env=EMPTY
+2341982
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=15,variant=S1,ns=2341982,env=EMPTY
+sample_env,phase=startup,rep=15,variant=S2,env=EMPTY
+992037
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=15,variant=S2,ns=992037,env=EMPTY
+sample_env,phase=startup,rep=15,variant=S3,env=EMPTY
+1190019
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=15,variant=S3,ns=1190019,env=EMPTY
+sample_env,phase=startup,rep=15,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1225759
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=15,variant=S4,ns=1225759,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+frequency.startup.15.after.cpu0.cur=1500000,max=1500000
+frequency.startup.15.after.cpu1.cur=1500000,max=1500000
+frequency.startup.15.after.cpu2.cur=1500000,max=1500000
+frequency.startup.15.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=15,valid_index=15
+temperature.startup.16.before.raw=56478
+frequency.startup.16.before.cpu0.cur=1500000,max=1500000
+frequency.startup.16.before.cpu1.cur=1500000,max=1500000
+frequency.startup.16.before.cpu2.cur=1500000,max=1500000
+frequency.startup.16.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=16,order=S1 S2 S3 S4 S6
+sample_env,phase=startup,rep=16,variant=S1,env=EMPTY
+2303796
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=16,variant=S1,ns=2303796,env=EMPTY
+sample_env,phase=startup,rep=16,variant=S2,env=EMPTY
+956926
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=16,variant=S2,ns=956926,env=EMPTY
+sample_env,phase=startup,rep=16,variant=S3,env=EMPTY
+1216945
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=16,variant=S3,ns=1216945,env=EMPTY
+sample_env,phase=startup,rep=16,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1208259
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=16,variant=S4,ns=1208259,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=16,variant=S6,env=EMPTY
+1080797
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=16,variant=S6,ns=1080797,env=EMPTY
+frequency.startup.16.after.cpu0.cur=1500000,max=1500000
+frequency.startup.16.after.cpu1.cur=1500000,max=1500000
+frequency.startup.16.after.cpu2.cur=1500000,max=1500000
+frequency.startup.16.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=16,valid_index=16
+temperature.startup.17.before.raw=56965
+frequency.startup.17.before.cpu0.cur=1500000,max=1500000
+frequency.startup.17.before.cpu1.cur=1500000,max=1500000
+frequency.startup.17.before.cpu2.cur=1500000,max=1500000
+frequency.startup.17.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=17,order=S2 S3 S4 S6 S1
+sample_env,phase=startup,rep=17,variant=S2,env=EMPTY
+958185
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=17,variant=S2,ns=958185,env=EMPTY
+sample_env,phase=startup,rep=17,variant=S3,env=EMPTY
+1222352
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=17,variant=S3,ns=1222352,env=EMPTY
+sample_env,phase=startup,rep=17,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1222130
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=17,variant=S4,ns=1222130,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=17,variant=S6,env=EMPTY
+1060112
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=17,variant=S6,ns=1060112,env=EMPTY
+sample_env,phase=startup,rep=17,variant=S1,env=EMPTY
+2293797
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=17,variant=S1,ns=2293797,env=EMPTY
+frequency.startup.17.after.cpu0.cur=1500000,max=1500000
+frequency.startup.17.after.cpu1.cur=1500000,max=1500000
+frequency.startup.17.after.cpu2.cur=1500000,max=1500000
+frequency.startup.17.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=17,valid_index=17
+temperature.startup.18.before.raw=56965
+frequency.startup.18.before.cpu0.cur=1500000,max=1500000
+frequency.startup.18.before.cpu1.cur=1500000,max=1500000
+frequency.startup.18.before.cpu2.cur=1500000,max=1500000
+frequency.startup.18.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=18,order=S3 S4 S6 S1 S2
+sample_env,phase=startup,rep=18,variant=S3,env=EMPTY
+1200407
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=18,variant=S3,ns=1200407,env=EMPTY
+sample_env,phase=startup,rep=18,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1194722
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=18,variant=S4,ns=1194722,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=18,variant=S6,env=EMPTY
+1054667
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=18,variant=S6,ns=1054667,env=EMPTY
+sample_env,phase=startup,rep=18,variant=S1,env=EMPTY
+2350278
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=18,variant=S1,ns=2350278,env=EMPTY
+sample_env,phase=startup,rep=18,variant=S2,env=EMPTY
+972407
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=18,variant=S2,ns=972407,env=EMPTY
+frequency.startup.18.after.cpu0.cur=1500000,max=1500000
+frequency.startup.18.after.cpu1.cur=1500000,max=1500000
+frequency.startup.18.after.cpu2.cur=1500000,max=1500000
+frequency.startup.18.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=18,valid_index=18
+temperature.startup.19.before.raw=56965
+frequency.startup.19.before.cpu0.cur=1500000,max=1500000
+frequency.startup.19.before.cpu1.cur=1500000,max=1500000
+frequency.startup.19.before.cpu2.cur=1500000,max=1500000
+frequency.startup.19.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=19,order=S4 S6 S1 S2 S3
+sample_env,phase=startup,rep=19,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1218352
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=19,variant=S4,ns=1218352,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=19,variant=S6,env=EMPTY
+2978796
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=19,variant=S6,ns=2978796,env=EMPTY
+sample_env,phase=startup,rep=19,variant=S1,env=EMPTY
+3615000
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=19,variant=S1,ns=3615000,env=EMPTY
+sample_env,phase=startup,rep=19,variant=S2,env=EMPTY
+960815
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=19,variant=S2,ns=960815,env=EMPTY
+sample_env,phase=startup,rep=19,variant=S3,env=EMPTY
+1242814
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=19,variant=S3,ns=1242814,env=EMPTY
+frequency.startup.19.after.cpu0.cur=1500000,max=1500000
+frequency.startup.19.after.cpu1.cur=1500000,max=1500000
+frequency.startup.19.after.cpu2.cur=1500000,max=1500000
+frequency.startup.19.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=19,valid_index=19
+temperature.startup.20.before.raw=57452
+frequency.startup.20.before.cpu0.cur=1500000,max=1500000
+frequency.startup.20.before.cpu1.cur=1500000,max=1500000
+frequency.startup.20.before.cpu2.cur=1500000,max=1500000
+frequency.startup.20.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=20,order=S6 S1 S2 S3 S4
+sample_env,phase=startup,rep=20,variant=S6,env=EMPTY
+1086611
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=20,variant=S6,ns=1086611,env=EMPTY
+sample_env,phase=startup,rep=20,variant=S1,env=EMPTY
+2348907
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=20,variant=S1,ns=2348907,env=EMPTY
+sample_env,phase=startup,rep=20,variant=S2,env=EMPTY
+1017852
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=20,variant=S2,ns=1017852,env=EMPTY
+sample_env,phase=startup,rep=20,variant=S3,env=EMPTY
+1213334
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=20,variant=S3,ns=1213334,env=EMPTY
+sample_env,phase=startup,rep=20,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1208481
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=20,variant=S4,ns=1208481,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+frequency.startup.20.after.cpu0.cur=1500000,max=1500000
+frequency.startup.20.after.cpu1.cur=1500000,max=1500000
+frequency.startup.20.after.cpu2.cur=1500000,max=1500000
+frequency.startup.20.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=20,valid_index=20
+temperature.startup.21.before.raw=57452
+frequency.startup.21.before.cpu0.cur=1500000,max=1500000
+frequency.startup.21.before.cpu1.cur=1500000,max=1500000
+frequency.startup.21.before.cpu2.cur=1500000,max=1500000
+frequency.startup.21.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=21,order=S1 S2 S3 S4 S6
+sample_env,phase=startup,rep=21,variant=S1,env=EMPTY
+2334426
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=21,variant=S1,ns=2334426,env=EMPTY
+sample_env,phase=startup,rep=21,variant=S2,env=EMPTY
+967240
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=21,variant=S2,ns=967240,env=EMPTY
+sample_env,phase=startup,rep=21,variant=S3,env=EMPTY
+1227092
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=21,variant=S3,ns=1227092,env=EMPTY
+sample_env,phase=startup,rep=21,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1207704
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=21,variant=S4,ns=1207704,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=21,variant=S6,env=EMPTY
+1152518
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=21,variant=S6,ns=1152518,env=EMPTY
+frequency.startup.21.after.cpu0.cur=1500000,max=1500000
+frequency.startup.21.after.cpu1.cur=1500000,max=1500000
+frequency.startup.21.after.cpu2.cur=1500000,max=1500000
+frequency.startup.21.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=21,valid_index=21
+temperature.startup.22.before.raw=56965
+frequency.startup.22.before.cpu0.cur=1500000,max=1500000
+frequency.startup.22.before.cpu1.cur=1500000,max=1500000
+frequency.startup.22.before.cpu2.cur=1500000,max=1500000
+frequency.startup.22.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=22,order=S2 S3 S4 S6 S1
+sample_env,phase=startup,rep=22,variant=S2,env=EMPTY
+1027963
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=22,variant=S2,ns=1027963,env=EMPTY
+sample_env,phase=startup,rep=22,variant=S3,env=EMPTY
+1232148
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=22,variant=S3,ns=1232148,env=EMPTY
+sample_env,phase=startup,rep=22,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1211037
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=22,variant=S4,ns=1211037,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=22,variant=S6,env=EMPTY
+1048092
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=22,variant=S6,ns=1048092,env=EMPTY
+sample_env,phase=startup,rep=22,variant=S1,env=EMPTY
+2338056
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=22,variant=S1,ns=2338056,env=EMPTY
+frequency.startup.22.after.cpu0.cur=1500000,max=1500000
+frequency.startup.22.after.cpu1.cur=1500000,max=1500000
+frequency.startup.22.after.cpu2.cur=1500000,max=1500000
+frequency.startup.22.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=22,valid_index=22
+temperature.startup.23.before.raw=56478
+frequency.startup.23.before.cpu0.cur=1500000,max=1500000
+frequency.startup.23.before.cpu1.cur=1500000,max=1500000
+frequency.startup.23.before.cpu2.cur=1500000,max=1500000
+frequency.startup.23.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=23,order=S3 S4 S6 S1 S2
+sample_env,phase=startup,rep=23,variant=S3,env=EMPTY
+1171222
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=23,variant=S3,ns=1171222,env=EMPTY
+sample_env,phase=startup,rep=23,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1185445
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=23,variant=S4,ns=1185445,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=23,variant=S6,env=EMPTY
+1127167
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=23,variant=S6,ns=1127167,env=EMPTY
+sample_env,phase=startup,rep=23,variant=S1,env=EMPTY
+2376963
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=23,variant=S1,ns=2376963,env=EMPTY
+sample_env,phase=startup,rep=23,variant=S2,env=EMPTY
+953834
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=23,variant=S2,ns=953834,env=EMPTY
+frequency.startup.23.after.cpu0.cur=1500000,max=1500000
+frequency.startup.23.after.cpu1.cur=1500000,max=1500000
+frequency.startup.23.after.cpu2.cur=1500000,max=1500000
+frequency.startup.23.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=23,valid_index=23
+temperature.startup.24.before.raw=57452
+frequency.startup.24.before.cpu0.cur=1500000,max=1500000
+frequency.startup.24.before.cpu1.cur=1500000,max=1500000
+frequency.startup.24.before.cpu2.cur=1500000,max=1500000
+frequency.startup.24.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=24,order=S4 S6 S1 S2 S3
+sample_env,phase=startup,rep=24,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1292351
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=24,variant=S4,ns=1292351,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=24,variant=S6,env=EMPTY
+1046371
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=24,variant=S6,ns=1046371,env=EMPTY
+sample_env,phase=startup,rep=24,variant=S1,env=EMPTY
+2298093
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=24,variant=S1,ns=2298093,env=EMPTY
+sample_env,phase=startup,rep=24,variant=S2,env=EMPTY
+987833
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=24,variant=S2,ns=987833,env=EMPTY
+sample_env,phase=startup,rep=24,variant=S3,env=EMPTY
+1259963
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=24,variant=S3,ns=1259963,env=EMPTY
+frequency.startup.24.after.cpu0.cur=1500000,max=1500000
+frequency.startup.24.after.cpu1.cur=1500000,max=1500000
+frequency.startup.24.after.cpu2.cur=1500000,max=1500000
+frequency.startup.24.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=24,valid_index=24
+temperature.startup.25.before.raw=57452
+frequency.startup.25.before.cpu0.cur=1500000,max=1500000
+frequency.startup.25.before.cpu1.cur=1500000,max=1500000
+frequency.startup.25.before.cpu2.cur=1500000,max=1500000
+frequency.startup.25.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=25,order=S6 S1 S2 S3 S4
+sample_env,phase=startup,rep=25,variant=S6,env=EMPTY
+1035760
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=25,variant=S6,ns=1035760,env=EMPTY
+sample_env,phase=startup,rep=25,variant=S1,env=EMPTY
+2355203
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=25,variant=S1,ns=2355203,env=EMPTY
+sample_env,phase=startup,rep=25,variant=S2,env=EMPTY
+995315
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=25,variant=S2,ns=995315,env=EMPTY
+sample_env,phase=startup,rep=25,variant=S3,env=EMPTY
+1257018
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=25,variant=S3,ns=1257018,env=EMPTY
+sample_env,phase=startup,rep=25,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1208759
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=25,variant=S4,ns=1208759,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+frequency.startup.25.after.cpu0.cur=1500000,max=1500000
+frequency.startup.25.after.cpu1.cur=1500000,max=1500000
+frequency.startup.25.after.cpu2.cur=1500000,max=1500000
+frequency.startup.25.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=25,valid_index=25
+temperature.startup.26.before.raw=56965
+frequency.startup.26.before.cpu0.cur=1500000,max=1500000
+frequency.startup.26.before.cpu1.cur=1500000,max=1500000
+frequency.startup.26.before.cpu2.cur=1500000,max=1500000
+frequency.startup.26.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=26,order=S1 S2 S3 S4 S6
+sample_env,phase=startup,rep=26,variant=S1,env=EMPTY
+2298796
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=26,variant=S1,ns=2298796,env=EMPTY
+sample_env,phase=startup,rep=26,variant=S2,env=EMPTY
+963093
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=26,variant=S2,ns=963093,env=EMPTY
+sample_env,phase=startup,rep=26,variant=S3,env=EMPTY
+1231111
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=26,variant=S3,ns=1231111,env=EMPTY
+sample_env,phase=startup,rep=26,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1247870
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=26,variant=S4,ns=1247870,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=26,variant=S6,env=EMPTY
+1104297
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=26,variant=S6,ns=1104297,env=EMPTY
+frequency.startup.26.after.cpu0.cur=1500000,max=1500000
+frequency.startup.26.after.cpu1.cur=1500000,max=1500000
+frequency.startup.26.after.cpu2.cur=1500000,max=1500000
+frequency.startup.26.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=26,valid_index=26
+temperature.startup.27.before.raw=57939
+frequency.startup.27.before.cpu0.cur=1500000,max=1500000
+frequency.startup.27.before.cpu1.cur=1500000,max=1500000
+frequency.startup.27.before.cpu2.cur=1500000,max=1500000
+frequency.startup.27.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=27,order=S2 S3 S4 S6 S1
+sample_env,phase=startup,rep=27,variant=S2,env=EMPTY
+970240
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=27,variant=S2,ns=970240,env=EMPTY
+sample_env,phase=startup,rep=27,variant=S3,env=EMPTY
+1224944
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=27,variant=S3,ns=1224944,env=EMPTY
+sample_env,phase=startup,rep=27,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1303797
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=27,variant=S4,ns=1303797,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=27,variant=S6,env=EMPTY
+1069092
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=27,variant=S6,ns=1069092,env=EMPTY
+sample_env,phase=startup,rep=27,variant=S1,env=EMPTY
+2326537
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=27,variant=S1,ns=2326537,env=EMPTY
+frequency.startup.27.after.cpu0.cur=1500000,max=1500000
+frequency.startup.27.after.cpu1.cur=1500000,max=1500000
+frequency.startup.27.after.cpu2.cur=1500000,max=1500000
+frequency.startup.27.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=27,valid_index=27
+temperature.startup.28.before.raw=57939
+frequency.startup.28.before.cpu0.cur=1500000,max=1500000
+frequency.startup.28.before.cpu1.cur=1500000,max=1500000
+frequency.startup.28.before.cpu2.cur=1500000,max=1500000
+frequency.startup.28.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=28,order=S3 S4 S6 S1 S2
+sample_env,phase=startup,rep=28,variant=S3,env=EMPTY
+2202259
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=28,variant=S3,ns=2202259,env=EMPTY
+sample_env,phase=startup,rep=28,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1194629
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=28,variant=S4,ns=1194629,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=28,variant=S6,env=EMPTY
+1048574
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=28,variant=S6,ns=1048574,env=EMPTY
+sample_env,phase=startup,rep=28,variant=S1,env=EMPTY
+2344352
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=28,variant=S1,ns=2344352,env=EMPTY
+sample_env,phase=startup,rep=28,variant=S2,env=EMPTY
+957778
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=28,variant=S2,ns=957778,env=EMPTY
+frequency.startup.28.after.cpu0.cur=1500000,max=1500000
+frequency.startup.28.after.cpu1.cur=1500000,max=1500000
+frequency.startup.28.after.cpu2.cur=1500000,max=1500000
+frequency.startup.28.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=28,valid_index=28
+temperature.startup.29.before.raw=57452
+frequency.startup.29.before.cpu0.cur=1500000,max=1500000
+frequency.startup.29.before.cpu1.cur=1500000,max=1500000
+frequency.startup.29.before.cpu2.cur=1500000,max=1500000
+frequency.startup.29.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=29,order=S4 S6 S1 S2 S3
+sample_env,phase=startup,rep=29,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1177519
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=29,variant=S4,ns=1177519,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+sample_env,phase=startup,rep=29,variant=S6,env=EMPTY
+1041204
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=29,variant=S6,ns=1041204,env=EMPTY
+sample_env,phase=startup,rep=29,variant=S1,env=EMPTY
+2375500
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=29,variant=S1,ns=2375500,env=EMPTY
+sample_env,phase=startup,rep=29,variant=S2,env=EMPTY
+977685
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=29,variant=S2,ns=977685,env=EMPTY
+sample_env,phase=startup,rep=29,variant=S3,env=EMPTY
+1191111
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=29,variant=S3,ns=1191111,env=EMPTY
+frequency.startup.29.after.cpu0.cur=1500000,max=1500000
+frequency.startup.29.after.cpu1.cur=1500000,max=1500000
+frequency.startup.29.after.cpu2.cur=1500000,max=1500000
+frequency.startup.29.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=29,valid_index=29
+temperature.startup.30.before.raw=57452
+frequency.startup.30.before.cpu0.cur=1500000,max=1500000
+frequency.startup.30.before.cpu1.cur=1500000,max=1500000
+frequency.startup.30.before.cpu2.cur=1500000,max=1500000
+frequency.startup.30.before.cpu3.cur=1500000,max=1500000
+startup_round,attempt=30,order=S6 S1 S2 S3 S4
+sample_env,phase=startup,rep=30,variant=S6,env=EMPTY
+1048593
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=30,variant=S6,ns=1048593,env=EMPTY
+sample_env,phase=startup,rep=30,variant=S1,env=EMPTY
+2339389
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=30,variant=S1,ns=2339389,env=EMPTY
+sample_env,phase=startup,rep=30,variant=S2,env=EMPTY
+964685
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=30,variant=S2,ns=964685,env=EMPTY
+sample_env,phase=startup,rep=30,variant=S3,env=EMPTY
+1188203
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=30,variant=S3,ns=1188203,env=EMPTY
+sample_env,phase=startup,rep=30,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+1267797
+probe_rc=0
+sample_end=OK
+startup_sample,attempt=30,variant=S4,ns=1267797,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+frequency.startup.30.after.cpu0.cur=1500000,max=1500000
+frequency.startup.30.after.cpu1.cur=1500000,max=1500000
+frequency.startup.30.after.cpu2.cur=1500000,max=1500000
+frequency.startup.30.after.cpu3.cur=1500000,max=1500000
+startup_round_valid,attempt=30,valid_index=30
+### mem smaps_rollup x3
+temperature.mem.1.before.raw=57939
+sample_env,phase=mem,rep=1,variant=S1,env=EMPTY
+memcfg=variant=S1,rep=1,env=EMPTY
+mem.pid=7556
+Rss:                 532 kB
+Pss:                 101 kB
+Private_Clean:        12 kB
+Private_Dirty:        76 kB
+probe_rc=0
+sample_end=OK
+sample_env,phase=mem,rep=1,variant=S2,env=EMPTY
+memcfg=variant=S2,rep=1,env=EMPTY
+mem.pid=7567
+Rss:                  52 kB
+Pss:                  52 kB
+Private_Clean:        44 kB
+Private_Dirty:         8 kB
+probe_rc=0
+sample_end=OK
+sample_env,phase=mem,rep=1,variant=S3,env=EMPTY
+memcfg=variant=S3,rep=1,env=EMPTY
+mem.pid=7605
+Rss:                 120 kB
+Pss:                 112 kB
+Private_Clean:        88 kB
+Private_Dirty:        24 kB
+probe_rc=0
+sample_end=OK
+sample_env,phase=mem,rep=1,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+memcfg=variant=S4,rep=1,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+mem.pid=7616
+Rss:                 120 kB
+Pss:                 112 kB
+Private_Clean:        88 kB
+Private_Dirty:        24 kB
+probe_rc=0
+sample_end=OK
+sample_env,phase=mem,rep=1,variant=S6,env=EMPTY
+memcfg=variant=S6,rep=1,env=EMPTY
+mem.pid=7638
+Rss:                  72 kB
+Pss:                  72 kB
+Private_Clean:        44 kB
+Private_Dirty:        28 kB
+probe_rc=0
+sample_end=OK
+temperature.mem.2.before.raw=56478
+sample_env,phase=mem,rep=2,variant=S1,env=EMPTY
+memcfg=variant=S1,rep=2,env=EMPTY
+mem.pid=7657
+Rss:                 532 kB
+Pss:                 101 kB
+Private_Clean:        12 kB
+Private_Dirty:        76 kB
+probe_rc=0
+sample_end=OK
+sample_env,phase=mem,rep=2,variant=S2,env=EMPTY
+memcfg=variant=S2,rep=2,env=EMPTY
+mem.pid=7674
+Rss:                  52 kB
+Pss:                  52 kB
+Private_Clean:        44 kB
+Private_Dirty:         8 kB
+probe_rc=0
+sample_end=OK
+sample_env,phase=mem,rep=2,variant=S3,env=EMPTY
+memcfg=variant=S3,rep=2,env=EMPTY
+mem.pid=7706
+Rss:                 120 kB
+Pss:                 112 kB
+Private_Clean:        88 kB
+Private_Dirty:        24 kB
+probe_rc=0
+sample_end=OK
+sample_env,phase=mem,rep=2,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+memcfg=variant=S4,rep=2,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+mem.pid=7717
+Rss:                 120 kB
+Pss:                 112 kB
+Private_Clean:        88 kB
+Private_Dirty:        24 kB
+probe_rc=0
+sample_end=OK
+sample_env,phase=mem,rep=2,variant=S6,env=EMPTY
+memcfg=variant=S6,rep=2,env=EMPTY
+mem.pid=7727
+Rss:                  72 kB
+Pss:                  72 kB
+Private_Clean:        44 kB
+Private_Dirty:        28 kB
+probe_rc=0
+sample_end=OK
+temperature.mem.3.before.raw=56478
+sample_env,phase=mem,rep=3,variant=S1,env=EMPTY
+memcfg=variant=S1,rep=3,env=EMPTY
+mem.pid=7757
+Rss:                 532 kB
+Pss:                 101 kB
+Private_Clean:        12 kB
+Private_Dirty:        76 kB
+probe_rc=0
+sample_end=OK
+sample_env,phase=mem,rep=3,variant=S2,env=EMPTY
+memcfg=variant=S2,rep=3,env=EMPTY
+mem.pid=7786
+Rss:                  52 kB
+Pss:                  52 kB
+Private_Clean:        44 kB
+Private_Dirty:         8 kB
+probe_rc=0
+sample_end=OK
+sample_env,phase=mem,rep=3,variant=S3,env=EMPTY
+memcfg=variant=S3,rep=3,env=EMPTY
+mem.pid=7808
+Rss:                 120 kB
+Pss:                 112 kB
+Private_Clean:        88 kB
+Private_Dirty:        24 kB
+probe_rc=0
+sample_end=OK
+sample_env,phase=mem,rep=3,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+memcfg=variant=S4,rep=3,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+mem.pid=7819
+Rss:                 120 kB
+Pss:                 112 kB
+Private_Clean:        88 kB
+Private_Dirty:        24 kB
+probe_rc=0
+sample_end=OK
+sample_env,phase=mem,rep=3,variant=S6,env=EMPTY
+memcfg=variant=S6,rep=3,env=EMPTY
+mem.pid=7840
+Rss:                  72 kB
+Pss:                  72 kB
+Private_Clean:        44 kB
+Private_Dirty:        28 kB
+probe_rc=0
+sample_end=OK
+### threads 200
+sample_env,phase=threads,rep=1,variant=S1,env=EMPTY
+threadscfg=variant=S1,rep=1,env=EMPTY
+threads.requested=200
+threads.created=200
+status.VmSize:	 1641112 kB
+status.VmRSS:	    2252 kB
+status.VmData:	 1638576 kB
+status.Threads:	201
+probe_rc=0
+sample_end=OK
+sample_env,phase=threads,rep=1,variant=S2,env=EMPTY
+threadscfg=variant=S2,rep=1,env=EMPTY
+threads.requested=200
+threads.created=200
+status.VmSize:	   28372 kB
+status.VmRSS:	     880 kB
+status.VmData:	   26416 kB
+status.Threads:	201
+probe_rc=0
+sample_end=OK
+sample_env,phase=threads,rep=1,variant=S3,env=EMPTY
+threadscfg=variant=S3,rep=1,env=EMPTY
+threads.requested=200
+threads.created=200
+status.VmSize:	  159552 kB
+status.VmRSS:	     976 kB
+status.VmData:	  157520 kB
+status.Threads:	201
+probe_rc=0
+sample_end=OK
+sample_env,phase=threads,rep=1,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+threadscfg=variant=S4,rep=1,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+threads.requested=200
+threads.created=200
+status.VmSize:	  159552 kB
+status.VmRSS:	     976 kB
+status.VmData:	   30544 kB
+status.Threads:	201
+probe_rc=0
+sample_end=OK
+sample_env,phase=threads,rep=1,variant=S6,env=EMPTY
+threadscfg=variant=S6,rep=1,env=EMPTY
+threads.requested=200
+threads.created=200
+status.VmSize:	   30768 kB
+status.VmRSS:	    1756 kB
+status.VmData:	   28780 kB
+status.Threads:	201
+probe_rc=0
+sample_end=OK
+### malloc churn
+temperature.malloc.t1.1.before.raw=55991
+frequency.malloc.t1.1.before.cpu0.cur=1500000,max=1500000
+frequency.malloc.t1.1.before.cpu1.cur=1500000,max=1500000
+frequency.malloc.t1.1.before.cpu2.cur=1500000,max=1500000
+frequency.malloc.t1.1.before.cpu3.cur=1500000,max=1500000
+malloc_round,threads=1,attempt=1,order=S2 S3 S4 S6 S1
+sample_env,phase=malloc-t1,rep=1,variant=S2,env=EMPTY
+malloccfg=variant=S2,threads=1,attempt=1,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=306.7
+malloc.wall_worst_thread_ns=613397574
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=1,variant=S3,env=EMPTY
+malloccfg=variant=S3,threads=1,attempt=1,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=80.7
+malloc.wall_worst_thread_ns=161493648
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=1,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloccfg=variant=S4,threads=1,attempt=1,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=223.5
+malloc.wall_worst_thread_ns=447033740
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=1,variant=S6,env=EMPTY
+malloccfg=variant=S6,threads=1,attempt=1,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1734.4
+malloc.wall_worst_thread_ns=3468882239
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=1,variant=S1,env=EMPTY
+malloccfg=variant=S1,threads=1,attempt=1,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=166.3
+malloc.wall_worst_thread_ns=332659351
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+frequency.malloc.t1.1.after.cpu0.cur=1500000,max=1500000
+frequency.malloc.t1.1.after.cpu1.cur=1500000,max=1500000
+frequency.malloc.t1.1.after.cpu2.cur=1500000,max=1500000
+frequency.malloc.t1.1.after.cpu3.cur=1500000,max=1500000
+malloc_round_valid,threads=1,attempt=1,valid_index=1
+temperature.malloc.t1.2.before.raw=57939
+frequency.malloc.t1.2.before.cpu0.cur=1500000,max=1500000
+frequency.malloc.t1.2.before.cpu1.cur=1500000,max=1500000
+frequency.malloc.t1.2.before.cpu2.cur=1500000,max=1500000
+frequency.malloc.t1.2.before.cpu3.cur=1500000,max=1500000
+malloc_round,threads=1,attempt=2,order=S3 S4 S6 S1 S2
+sample_env,phase=malloc-t1,rep=2,variant=S3,env=EMPTY
+malloccfg=variant=S3,threads=1,attempt=2,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=81.6
+malloc.wall_worst_thread_ns=163129204
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=2,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloccfg=variant=S4,threads=1,attempt=2,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=201.0
+malloc.wall_worst_thread_ns=402091518
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=2,variant=S6,env=EMPTY
+malloccfg=variant=S6,threads=1,attempt=2,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1726.3
+malloc.wall_worst_thread_ns=3452607794
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=2,variant=S1,env=EMPTY
+malloccfg=variant=S1,threads=1,attempt=2,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=170.1
+malloc.wall_worst_thread_ns=340169778
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=2,variant=S2,env=EMPTY
+malloccfg=variant=S2,threads=1,attempt=2,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=318.7
+malloc.wall_worst_thread_ns=637397981
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+frequency.malloc.t1.2.after.cpu0.cur=1500000,max=1500000
+frequency.malloc.t1.2.after.cpu1.cur=1500000,max=1500000
+frequency.malloc.t1.2.after.cpu2.cur=1500000,max=1500000
+frequency.malloc.t1.2.after.cpu3.cur=1500000,max=1500000
+malloc_round_valid,threads=1,attempt=2,valid_index=2
+temperature.malloc.t1.3.before.raw=58426
+frequency.malloc.t1.3.before.cpu0.cur=1500000,max=1500000
+frequency.malloc.t1.3.before.cpu1.cur=1500000,max=1500000
+frequency.malloc.t1.3.before.cpu2.cur=1500000,max=1500000
+frequency.malloc.t1.3.before.cpu3.cur=1500000,max=1500000
+malloc_round,threads=1,attempt=3,order=S4 S6 S1 S2 S3
+sample_env,phase=malloc-t1,rep=3,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloccfg=variant=S4,threads=1,attempt=3,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=198.7
+malloc.wall_worst_thread_ns=397469426
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=3,variant=S6,env=EMPTY
+malloccfg=variant=S6,threads=1,attempt=3,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1831.7
+malloc.wall_worst_thread_ns=3663386035
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=3,variant=S1,env=EMPTY
+malloccfg=variant=S1,threads=1,attempt=3,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=166.7
+malloc.wall_worst_thread_ns=333469240
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=3,variant=S2,env=EMPTY
+malloccfg=variant=S2,threads=1,attempt=3,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=303.1
+malloc.wall_worst_thread_ns=606231129
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=3,variant=S3,env=EMPTY
+malloccfg=variant=S3,threads=1,attempt=3,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=83.0
+malloc.wall_worst_thread_ns=166092963
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+frequency.malloc.t1.3.after.cpu0.cur=1500000,max=1500000
+frequency.malloc.t1.3.after.cpu1.cur=1500000,max=1500000
+frequency.malloc.t1.3.after.cpu2.cur=1500000,max=1500000
+frequency.malloc.t1.3.after.cpu3.cur=1500000,max=1500000
+malloc_round_valid,threads=1,attempt=3,valid_index=3
+temperature.malloc.t1.4.before.raw=60374
+frequency.malloc.t1.4.before.cpu0.cur=1500000,max=1500000
+frequency.malloc.t1.4.before.cpu1.cur=1500000,max=1500000
+frequency.malloc.t1.4.before.cpu2.cur=1500000,max=1500000
+frequency.malloc.t1.4.before.cpu3.cur=1500000,max=1500000
+malloc_round,threads=1,attempt=4,order=S6 S1 S2 S3 S4
+sample_env,phase=malloc-t1,rep=4,variant=S6,env=EMPTY
+malloccfg=variant=S6,threads=1,attempt=4,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1733.9
+malloc.wall_worst_thread_ns=3467887498
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=4,variant=S1,env=EMPTY
+malloccfg=variant=S1,threads=1,attempt=4,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=168.5
+malloc.wall_worst_thread_ns=336915259
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=4,variant=S2,env=EMPTY
+malloccfg=variant=S2,threads=1,attempt=4,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=303.9
+malloc.wall_worst_thread_ns=607866352
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=4,variant=S3,env=EMPTY
+malloccfg=variant=S3,threads=1,attempt=4,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=80.3
+malloc.wall_worst_thread_ns=160646944
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=4,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloccfg=variant=S4,threads=1,attempt=4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=199.4
+malloc.wall_worst_thread_ns=398811777
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+frequency.malloc.t1.4.after.cpu0.cur=1500000,max=1500000
+frequency.malloc.t1.4.after.cpu1.cur=1500000,max=1500000
+frequency.malloc.t1.4.after.cpu2.cur=1500000,max=1500000
+frequency.malloc.t1.4.after.cpu3.cur=1500000,max=1500000
+malloc_round_valid,threads=1,attempt=4,valid_index=4
+temperature.malloc.t1.5.before.raw=60861
+frequency.malloc.t1.5.before.cpu0.cur=1500000,max=1500000
+frequency.malloc.t1.5.before.cpu1.cur=1500000,max=1500000
+frequency.malloc.t1.5.before.cpu2.cur=1500000,max=1500000
+frequency.malloc.t1.5.before.cpu3.cur=1500000,max=1500000
+malloc_round,threads=1,attempt=5,order=S1 S2 S3 S4 S6
+sample_env,phase=malloc-t1,rep=5,variant=S1,env=EMPTY
+malloccfg=variant=S1,threads=1,attempt=5,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=166.2
+malloc.wall_worst_thread_ns=332339056
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=5,variant=S2,env=EMPTY
+malloccfg=variant=S2,threads=1,attempt=5,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=311.1
+malloc.wall_worst_thread_ns=622294555
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=5,variant=S3,env=EMPTY
+malloccfg=variant=S3,threads=1,attempt=5,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=80.1
+malloc.wall_worst_thread_ns=160100444
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=5,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloccfg=variant=S4,threads=1,attempt=5,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=198.8
+malloc.wall_worst_thread_ns=397625518
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t1,rep=5,variant=S6,env=EMPTY
+malloccfg=variant=S6,threads=1,attempt=5,env=EMPTY
+malloc.threads=1
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1726.5
+malloc.wall_worst_thread_ns=3453060443
+malloc.checksum=7dc87e4
+probe_rc=0
+sample_end=OK
+frequency.malloc.t1.5.after.cpu0.cur=1500000,max=1500000
+frequency.malloc.t1.5.after.cpu1.cur=1500000,max=1500000
+frequency.malloc.t1.5.after.cpu2.cur=1500000,max=1500000
+frequency.malloc.t1.5.after.cpu3.cur=1500000,max=1500000
+malloc_round_valid,threads=1,attempt=5,valid_index=5
+temperature.malloc.t4.1.before.raw=61348
+frequency.malloc.t4.1.before.cpu0.cur=1500000,max=1500000
+frequency.malloc.t4.1.before.cpu1.cur=1500000,max=1500000
+frequency.malloc.t4.1.before.cpu2.cur=1500000,max=1500000
+frequency.malloc.t4.1.before.cpu3.cur=1500000,max=1500000
+malloc_round,threads=4,attempt=1,order=S6 S1 S2 S3 S4
+sample_env,phase=malloc-t4,rep=1,variant=S6,env=EMPTY
+malloccfg=variant=S6,threads=4,attempt=1,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=5188.5
+malloc.wall_worst_thread_ns=10428481031
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=1,variant=S1,env=EMPTY
+malloccfg=variant=S1,threads=4,attempt=1,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=194.2
+malloc.wall_worst_thread_ns=401752314
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=1,variant=S2,env=EMPTY
+malloccfg=variant=S2,threads=4,attempt=1,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=995.1
+malloc.wall_worst_thread_ns=2003254795
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=1,variant=S3,env=EMPTY
+malloccfg=variant=S3,threads=4,attempt=1,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=166.3
+malloc.wall_worst_thread_ns=343092925
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=1,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloccfg=variant=S4,threads=4,attempt=1,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=331.6
+malloc.wall_worst_thread_ns=681459740
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+frequency.malloc.t4.1.after.cpu0.cur=1500000,max=1500000
+frequency.malloc.t4.1.after.cpu1.cur=1500000,max=1500000
+frequency.malloc.t4.1.after.cpu2.cur=1500000,max=1500000
+frequency.malloc.t4.1.after.cpu3.cur=1500000,max=1500000
+malloc_round_valid,threads=4,attempt=1,valid_index=1
+temperature.malloc.t4.2.before.raw=64270
+frequency.malloc.t4.2.before.cpu0.cur=1500000,max=1500000
+frequency.malloc.t4.2.before.cpu1.cur=1500000,max=1500000
+frequency.malloc.t4.2.before.cpu2.cur=1500000,max=1500000
+frequency.malloc.t4.2.before.cpu3.cur=1500000,max=1500000
+malloc_round,threads=4,attempt=2,order=S1 S2 S3 S4 S6
+sample_env,phase=malloc-t4,rep=2,variant=S1,env=EMPTY
+malloccfg=variant=S1,threads=4,attempt=2,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=253.3
+malloc.wall_worst_thread_ns=569100110
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=2,variant=S2,env=EMPTY
+malloccfg=variant=S2,threads=4,attempt=2,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1054.2
+malloc.wall_worst_thread_ns=2193588887
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=2,variant=S3,env=EMPTY
+malloccfg=variant=S3,threads=4,attempt=2,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=153.4
+malloc.wall_worst_thread_ns=365524519
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=2,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloccfg=variant=S4,threads=4,attempt=2,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=350.5
+malloc.wall_worst_thread_ns=810139999
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=2,variant=S6,env=EMPTY
+malloccfg=variant=S6,threads=4,attempt=2,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=5164.8
+malloc.wall_worst_thread_ns=10457619994
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+frequency.malloc.t4.2.after.cpu0.cur=1500000,max=1500000
+frequency.malloc.t4.2.after.cpu1.cur=1500000,max=1500000
+frequency.malloc.t4.2.after.cpu2.cur=1500000,max=1500000
+frequency.malloc.t4.2.after.cpu3.cur=1500000,max=1500000
+malloc_round_valid,threads=4,attempt=2,valid_index=2
+temperature.malloc.t4.3.before.raw=66218
+temperature.malloc.t4.3.before.wait=ABOVE_65C
+temperature.malloc.t4.3.before.raw=62809
+frequency.malloc.t4.3.before.cpu0.cur=1500000,max=1500000
+frequency.malloc.t4.3.before.cpu1.cur=1500000,max=1500000
+frequency.malloc.t4.3.before.cpu2.cur=1500000,max=1500000
+frequency.malloc.t4.3.before.cpu3.cur=1500000,max=1500000
+malloc_round,threads=4,attempt=3,order=S2 S3 S4 S6 S1
+sample_env,phase=malloc-t4,rep=3,variant=S2,env=EMPTY
+malloccfg=variant=S2,threads=4,attempt=3,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=936.7
+malloc.wall_worst_thread_ns=1940485388
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=3,variant=S3,env=EMPTY
+malloccfg=variant=S3,threads=4,attempt=3,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=152.1
+malloc.wall_worst_thread_ns=362946630
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=3,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloccfg=variant=S4,threads=4,attempt=3,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=430.7
+malloc.wall_worst_thread_ns=965338166
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=3,variant=S6,env=EMPTY
+malloccfg=variant=S6,threads=4,attempt=3,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=4326.2
+malloc.wall_worst_thread_ns=8678348439
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=3,variant=S1,env=EMPTY
+malloccfg=variant=S1,threads=4,attempt=3,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=190.9
+malloc.wall_worst_thread_ns=386580833
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+frequency.malloc.t4.3.after.cpu0.cur=1500000,max=1500000
+frequency.malloc.t4.3.after.cpu1.cur=1500000,max=1500000
+frequency.malloc.t4.3.after.cpu2.cur=1500000,max=1500000
+frequency.malloc.t4.3.after.cpu3.cur=1500000,max=1500000
+malloc_round_valid,threads=4,attempt=3,valid_index=3
+temperature.malloc.t4.4.before.raw=67192
+temperature.malloc.t4.4.before.wait=ABOVE_65C
+temperature.malloc.t4.4.before.raw=60374
+frequency.malloc.t4.4.before.cpu0.cur=1500000,max=1500000
+frequency.malloc.t4.4.before.cpu1.cur=1500000,max=1500000
+frequency.malloc.t4.4.before.cpu2.cur=1500000,max=1500000
+frequency.malloc.t4.4.before.cpu3.cur=1500000,max=1500000
+malloc_round,threads=4,attempt=4,order=S3 S4 S6 S1 S2
+sample_env,phase=malloc-t4,rep=4,variant=S3,env=EMPTY
+malloccfg=variant=S3,threads=4,attempt=4,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=161.3
+malloc.wall_worst_thread_ns=329105537
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=4,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloccfg=variant=S4,threads=4,attempt=4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=326.5
+malloc.wall_worst_thread_ns=662348851
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=4,variant=S6,env=EMPTY
+malloccfg=variant=S6,threads=4,attempt=4,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=4380.4
+malloc.wall_worst_thread_ns=8807440643
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=4,variant=S1,env=EMPTY
+malloccfg=variant=S1,threads=4,attempt=4,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=190.2
+malloc.wall_worst_thread_ns=392478703
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=4,variant=S2,env=EMPTY
+malloccfg=variant=S2,threads=4,attempt=4,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=980.2
+malloc.wall_worst_thread_ns=1965914666
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+frequency.malloc.t4.4.after.cpu0.cur=1500000,max=1500000
+frequency.malloc.t4.4.after.cpu1.cur=1500000,max=1500000
+frequency.malloc.t4.4.after.cpu2.cur=1500000,max=1500000
+frequency.malloc.t4.4.after.cpu3.cur=1500000,max=1500000
+malloc_round_valid,threads=4,attempt=4,valid_index=4
+temperature.malloc.t4.5.before.raw=66705
+temperature.malloc.t4.5.before.wait=ABOVE_65C
+temperature.malloc.t4.5.before.raw=60861
+frequency.malloc.t4.5.before.cpu0.cur=1500000,max=1500000
+frequency.malloc.t4.5.before.cpu1.cur=1500000,max=1500000
+frequency.malloc.t4.5.before.cpu2.cur=1500000,max=1500000
+frequency.malloc.t4.5.before.cpu3.cur=1500000,max=1500000
+malloc_round,threads=4,attempt=5,order=S4 S6 S1 S2 S3
+sample_env,phase=malloc-t4,rep=5,variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloccfg=variant=S4,threads=4,attempt=5,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=324.9
+malloc.wall_worst_thread_ns=661439926
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=5,variant=S6,env=EMPTY
+malloccfg=variant=S6,threads=4,attempt=5,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=4136.6
+malloc.wall_worst_thread_ns=8315217069
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=5,variant=S1,env=EMPTY
+malloccfg=variant=S1,threads=4,attempt=5,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=242.3
+malloc.wall_worst_thread_ns=528161741
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=5,variant=S2,env=EMPTY
+malloccfg=variant=S2,threads=4,attempt=5,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=1052.0
+malloc.wall_worst_thread_ns=2115749147
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+sample_env,phase=malloc-t4,rep=5,variant=S3,env=EMPTY
+malloccfg=variant=S3,threads=4,attempt=5,env=EMPTY
+malloc.threads=4
+malloc.iters_per_thread=2000000
+malloc.ns_per_op_mean=157.7
+malloc.wall_worst_thread_ns=317955055
+malloc.checksum=26cddf
+probe_rc=0
+sample_end=OK
+frequency.malloc.t4.5.after.cpu0.cur=1500000,max=1500000
+frequency.malloc.t4.5.after.cpu1.cur=1500000,max=1500000
+frequency.malloc.t4.5.after.cpu2.cur=1500000,max=1500000
+frequency.malloc.t4.5.after.cpu3.cur=1500000,max=1500000
+malloc_round_valid,threads=4,attempt=5,valid_index=5
+residual.after=NONE
+loadavg.after=2.27 1.07 0.45 2/447 11355
+measurement.finish_utc=2026-08-13T13:08:52Z
+MEASUREMENT_PASS

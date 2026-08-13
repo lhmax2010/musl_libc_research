@@ -1,0 +1,41 @@
+expected_clang_version=22.1.8
+clang_path=/bin/clang
+clang_dumpmachine=armv7l-tizen-linux-gnueabi
+selected_rtlib=libgcc.a
+selected_rtlib_flag=--rtlib=libgcc
+selected_rtlib_archive=/usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a
+rpmalloc_version=1.4.5
+rpmalloc_source_sha256=2513626697ef72a60957acc8caed17c39931a55c1a49202707de195742683d69
+scudo_version=llvmorg-22.1.8
+scudo_source_commit=ca7933e47d3a3451d81e72ac174dcb5aa28b59d1
+baseline_binary_source=musl-libc-demo-1.0.0-2.armv7l.rpm
+baseline_binaries_rebuilt=NO
+clang_version_begin
+clang version 22.1.8
+Target: armv7l-tizen-linux-gnueabi
+Thread model: posix
+InstalledDir: /usr/bin
+Configuration file: /usr/bin/clang.cfg
+clang_version_end
+ldwrapper_patch=start-group
+ldwrapper_before_line=exec $($cc -print-prog-name=ld) -nostdlib "$@" -lc -dynamic-linker "$ldso"
+ldwrapper_after_line=exec $($cc -print-prog-name=ld) -nostdlib "$@" --start-group -lc /usr/lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a /usr/lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc_eh.a --end-group -dynamic-linker "$ldso"
+rpmalloc_compile_defines=ENABLE_OVERRIDE=1
+rpmalloc_initialization=H2 constructor rp-init.o before rpmalloc.o
+rpmalloc_worker_lazy_init=ABSENT rpmalloc.c:775-784
+rpmalloc_compile_env=musl-clang(headers=musl,resource_fill=/usr/lib/clang/22/include,backend=clang 22.1.8)
+rpmalloc_malloc_c_incorporated=PASS
+rpmalloc_symbol_owner=rpmalloc.o
+rpmalloc_musl_primary_allocator_members=0
+rpmalloc_nm_evidence=0001521c T rpmalloc
+s5_gate=PASS
+scudo_uapi_stage=linux asm asm-generic
+scudo_include_order=musl_first_resource_fill_uapi_last
+scudo_uapi_stage_path=/home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/uapi-stage
+scudo_symbol_owner=libscudo_standalone.a
+scudo_musl_primary_allocator_members=0
+scudo_lfs64_gate=PASS
+scudo_nm_evidence=00012030 T __scudo_print_stats
+s6_gate=PASS
+s6_status=BUILT
+s5_status=P1-DEFERRED artifact_retained=YES
