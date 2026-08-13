@@ -32,4 +32,10 @@ s5_gate=PASS
 scudo_uapi_stage=linux asm asm-generic
 scudo_include_order=musl_first_resource_fill_uapi_last
 scudo_uapi_stage_path=/home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/uapi-stage
+scudo_symbol_owner=libscudo_standalone.a
+scudo_musl_primary_allocator_members=0
+scudo_lfs64_gate=PASS
+scudo_nm_evidence=00012030 T __scudo_print_stats
+s6_gate=PASS
 s6_status=BUILT
+s5_status=P1-DEFERRED artifact_retained=YES

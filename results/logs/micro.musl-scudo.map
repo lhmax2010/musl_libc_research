@@ -1,7 +1,7 @@
 Archive member included to satisfy reference by file (symbol)
 
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
-                              /tmp/micro-4b396b.o (calloc)
+                              /tmp/micro-045f8b.o (calloc)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(checksum.o)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o) (scudo::hasHardwareCRC32())
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(common.o)
@@ -25,7 +25,7 @@ Archive member included to satisfy reference by file (symbol)
 /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a(_udivsi3.o)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o) (__aeabi_uidiv)
 /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a(_arm_addsubdf3.o)
-                              /tmp/micro-4b396b.o (__aeabi_ul2d)
+                              /tmp/micro-045f8b.o (__aeabi_ul2d)
 /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a(_aeabi_uldivmod.o)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(string_utils.o) (__aeabi_uldivmod)
 /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a(_dvmd_lnx.o)
@@ -43,13 +43,13 @@ Archive member included to satisfy reference by file (symbol)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(__libc_start_main.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crt1.o (__libc_start_main)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(__stack_chk_fail.lo)
-                              /tmp/micro-4b396b.o (__stack_chk_guard)
+                              /tmp/micro-045f8b.o (__stack_chk_guard)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(getenv.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(linux.o) (getenv)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(__errno_location.lo)
-                              /tmp/micro-4b396b.o (__errno_location)
+                              /tmp/micro-045f8b.o (__errno_location)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strerror.lo)
-                              /tmp/micro-4b396b.o (strerror)
+                              /tmp/micro-045f8b.o (strerror)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(abort.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(linux.o) (abort)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(abort_lock.lo)
@@ -69,15 +69,15 @@ Archive member included to satisfy reference by file (symbol)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(__lctrans.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strerror.lo) (__lctrans)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(iconv.lo)
-                              /tmp/micro-4b396b.o (iconv_open)
+                              /tmp/micro-045f8b.o (iconv_open)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(iconv_close.lo)
-                              /tmp/micro-4b396b.o (iconv_close)
+                              /tmp/micro-045f8b.o (iconv_close)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(langinfo.lo)
-                              /tmp/micro-4b396b.o (nl_langinfo)
+                              /tmp/micro-045f8b.o (nl_langinfo)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(setlocale.lo)
-                              /tmp/micro-4b396b.o (setlocale)
+                              /tmp/micro-045f8b.o (setlocale)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strcoll.lo)
-                              /tmp/micro-4b396b.o (strcoll)
+                              /tmp/micro-045f8b.o (strcoll)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(getauxval.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(sysconf.lo) (__getauxval)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(getrlimit.lo)
@@ -99,13 +99,13 @@ Archive member included to satisfy reference by file (symbol)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(wctomb.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(iconv.lo) (wctomb)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(freeaddrinfo.lo)
-                              /tmp/micro-4b396b.o (freeaddrinfo)
+                              /tmp/micro-045f8b.o (freeaddrinfo)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(gai_strerror.lo)
-                              /tmp/micro-4b396b.o (gai_strerror)
+                              /tmp/micro-045f8b.o (gai_strerror)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(getaddrinfo.lo)
-                              /tmp/micro-4b396b.o (getaddrinfo)
+                              /tmp/micro-045f8b.o (getaddrinfo)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(getnameinfo.lo)
-                              /tmp/micro-4b396b.o (getnameinfo)
+                              /tmp/micro-045f8b.o (getnameinfo)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(htons.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(getaddrinfo.lo) (htons)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(if_indextoname.lo)
@@ -157,15 +157,15 @@ Archive member included to satisfy reference by file (symbol)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(__stdio_seek.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(__fopen_rb_ca.lo) (__stdio_seek)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(fclose.lo)
-                              /tmp/micro-4b396b.o (fclose)
+                              /tmp/micro-045f8b.o (fclose)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(fflush.lo)
-                              /tmp/micro-4b396b.o (fflush)
+                              /tmp/micro-045f8b.o (fflush)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(fgets.lo)
-                              /tmp/micro-4b396b.o (fgets)
+                              /tmp/micro-045f8b.o (fgets)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(fopen.lo)
-                              /tmp/micro-4b396b.o (fopen)
+                              /tmp/micro-045f8b.o (fopen)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(fprintf.lo)
-                              /tmp/micro-4b396b.o (fprintf)
+                              /tmp/micro-045f8b.o (fprintf)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(fwrite.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o) (fwrite)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(getc.lo)
@@ -173,15 +173,15 @@ Archive member included to satisfy reference by file (symbol)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(ofl.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(fclose.lo) (__ofl_lock)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(printf.lo)
-                              /tmp/micro-4b396b.o (printf)
+                              /tmp/micro-045f8b.o (printf)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(puts.lo)
-                              /tmp/micro-4b396b.o (puts)
+                              /tmp/micro-045f8b.o (puts)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(snprintf.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(inet_ntop.lo) (snprintf)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(sprintf.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(getnameinfo.lo) (sprintf)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(stderr.lo)
-                              /tmp/micro-4b396b.o (stderr)
+                              /tmp/micro-045f8b.o (stderr)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(stdout.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(printf.lo) (__stdout_FILE)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(vfprintf.lo)
@@ -191,7 +191,7 @@ Archive member included to satisfy reference by file (symbol)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(vsprintf.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(sprintf.lo) (vsprintf)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(atoi.lo)
-                              /tmp/micro-4b396b.o (atoi)
+                              /tmp/micro-045f8b.o (atoi)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(qsort_nr.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(lookup_name.lo) (qsort)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strtol.lo)
@@ -199,7 +199,7 @@ Archive member included to satisfy reference by file (symbol)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(memcpy.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o) (memcpy)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(bcmp.lo)
-                              /tmp/micro-4b396b.o (bcmp)
+                              /tmp/micro-045f8b.o (bcmp)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(memchr.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(fgets.lo) (memchr)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(memcmp.lo)
@@ -207,7 +207,7 @@ Archive member included to satisfy reference by file (symbol)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(memmove.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(inet_ntop.lo) (memmove)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(memset.lo)
-                              /tmp/micro-4b396b.o (memset)
+                              /tmp/micro-045f8b.o (memset)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strcat.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(getnameinfo.lo) (strcat)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strchr.lo)
@@ -215,11 +215,11 @@ Archive member included to satisfy reference by file (symbol)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strchrnul.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(getenv.lo) (__strchrnul)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strcmp.lo)
-                              /tmp/micro-4b396b.o (strcmp)
+                              /tmp/micro-045f8b.o (strcmp)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strcpy.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(getnameinfo.lo) (strcpy)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strcspn.lo)
-                              /tmp/micro-4b396b.o (strcspn)
+                              /tmp/micro-045f8b.o (strcspn)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strlen.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(flags_parser.o) (strlen)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strncmp.lo)
@@ -239,15 +239,15 @@ Archive member included to satisfy reference by file (symbol)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(pthread_atfork.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o) (pthread_atfork)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(pthread_barrier_init.lo)
-                              /tmp/micro-4b396b.o (pthread_barrier_init)
+                              /tmp/micro-045f8b.o (pthread_barrier_init)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(pthread_barrier_wait.lo)
-                              /tmp/micro-4b396b.o (pthread_barrier_wait)
+                              /tmp/micro-045f8b.o (pthread_barrier_wait)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(pthread_cleanup_push.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(res_msend.lo) (_pthread_cleanup_push)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(pthread_create.lo)
-                              /tmp/micro-4b396b.o (pthread_create)
+                              /tmp/micro-045f8b.o (pthread_create)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(pthread_join.lo)
-                              /tmp/micro-4b396b.o (pthread_join)
+                              /tmp/micro-045f8b.o (pthread_join)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(pthread_key_create.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o) (pthread_key_create)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(pthread_once.lo)
@@ -271,21 +271,21 @@ Archive member included to satisfy reference by file (symbol)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(vmlock.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(pthread_barrier_wait.lo) (__vm_lock)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(clock_gettime.lo)
-                              /tmp/micro-4b396b.o (__clock_gettime64)
+                              /tmp/micro-045f8b.o (__clock_gettime64)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(localtime_r.lo)
-                              /tmp/micro-4b396b.o (__localtime64_r)
+                              /tmp/micro-045f8b.o (__localtime64_r)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(strftime.lo)
-                              /tmp/micro-4b396b.o (strftime)
+                              /tmp/micro-045f8b.o (strftime)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(_exit.lo)
-                              /tmp/micro-4b396b.o (_exit)
+                              /tmp/micro-045f8b.o (_exit)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(close.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(linux.o) (close)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(getpid.lo)
-                              /tmp/micro-4b396b.o (getpid)
+                              /tmp/micro-045f8b.o (getpid)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(lseek.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(__stdio_seek.lo) (__lseek)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(pause.lo)
-                              /tmp/micro-4b396b.o (pause)
+                              /tmp/micro-045f8b.o (pause)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(read.lo)
                               /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(linux.o) (read)
 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/libc.a(write.lo)
@@ -423,8 +423,8 @@ Discarded input sections
  .note.GNU-stack
                 0x00000000        0x0 /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/crtbeginT.o
  .note.GNU-stack
-                0x00000000        0x0 /tmp/micro-4b396b.o
- .llvm_addrsig  0x00000000        0x4 /tmp/micro-4b396b.o
+                0x00000000        0x0 /tmp/micro-045f8b.o
+ .llvm_addrsig  0x00000000        0x4 /tmp/micro-045f8b.o
  .group         0x00000000       0x14 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .group         0x00000000       0x14 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .group         0x00000000       0x14 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
@@ -1146,7 +1146,7 @@ Linker script and memory map
 LOAD /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crt1.o
 LOAD /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crti.o
 LOAD /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/crtbeginT.o
-LOAD /tmp/micro-4b396b.o
+LOAD /tmp/micro-045f8b.o
 LOAD /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a
 START GROUP
 LOAD /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a
@@ -1268,7 +1268,7 @@ END GROUP
                 0x00010138                _start_c
  .text          0x00010170        0x0 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crti.o
  .text          0x00010170       0xa8 /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/crtbeginT.o
- .text          0x00010218      0x968 /tmp/micro-4b396b.o
+ .text          0x00010218      0x968 /tmp/micro-045f8b.o
                 0x00010218                main
  .text          0x00010b80        0x0 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .text.malloc_postinit
@@ -2916,9 +2916,9 @@ END GROUP
 .rodata         0x000264c0    0x251cc
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.1
-                0x000264c0     0x1d14 /tmp/micro-4b396b.o
+                0x000264c0     0x1d14 /tmp/micro-045f8b.o
                                 0x355 (size before relaxing)
- .rodata        0x000281d4       0x34 /tmp/micro-4b396b.o
+ .rodata        0x000281d4       0x34 /tmp/micro-045f8b.o
  .rodata.str1.1
                 0x00028208      0x802 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .rodata.str1.1
@@ -3059,7 +3059,7 @@ END GROUP
 
 .ARM.extab      0x0004b68c       0xec
  *(.ARM.extab* .gnu.linkonce.armextab.*)
- .ARM.extab     0x0004b68c       0x1c /tmp/micro-4b396b.o
+ .ARM.extab     0x0004b68c       0x1c /tmp/micro-045f8b.o
  .ARM.extab     0x0004b6a8        0x0 /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc.a(_udivmoddi4.o)
  .ARM.extab     0x0004b6a8        0xc /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc_eh.a(unwind-arm.o)
  .ARM.extab     0x0004b6b4       0x18 /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/libgcc_eh.a(pr-support.o)
@@ -3109,7 +3109,7 @@ END GROUP
  .ARM.exidx.text._start_c
                 0x0004b790       0x10 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crt1.o
                                   0x8 (size before relaxing)
- .ARM.exidx     0x0004b7a0       0x28 /tmp/micro-4b396b.o
+ .ARM.exidx     0x0004b7a0       0x28 /tmp/micro-045f8b.o
  .ARM.exidx.text.malloc_postinit
                 0x0004b7c8        0x8 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .ARM.exidx.text.calloc
@@ -4443,7 +4443,7 @@ END GROUP
  *(.dynbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
  .bss           0x0004d2c0       0x1c /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/crtbeginT.o
- .bss           0x0004d2dc       0x28 /tmp/micro-4b396b.o
+ .bss           0x0004d2dc       0x28 /tmp/micro-045f8b.o
  *fill*         0x0004d304       0x3c 
  .bss.Allocator
                 0x0004d340     0x55c0 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
@@ -4622,7 +4622,7 @@ END GROUP
  .comment       0x00000000       0x41 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crt1.o
                                  0x16 (size before relaxing)
  .comment       0x00000041       0x2d /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/crtbeginT.o
- .comment       0x00000041       0x16 /tmp/micro-4b396b.o
+ .comment       0x00000041       0x16 /tmp/micro-045f8b.o
  .comment       0x00000041       0x16 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .comment       0x00000041       0x16 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(checksum.o)
  .comment       0x00000041       0x16 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(common.o)
@@ -4829,7 +4829,7 @@ END GROUP
  .GCC.command.line
                 0x00040fde      0x1df /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/crtbeginT.o
  .GCC.command.line
-                0x00040fde      0x532 /tmp/micro-4b396b.o
+                0x00040fde      0x532 /tmp/micro-045f8b.o
  .GCC.command.line
                 0x00040fde      0x611 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .GCC.command.line
@@ -5234,7 +5234,7 @@ END GROUP
  .ARM.attributes
                 0x0000005c       0x33 /usr/bin/../lib/gcc/armv7l-tizen-linux-gnueabi/14.2.0/crtbeginT.o
  .ARM.attributes
-                0x0000008f       0x3e /tmp/micro-4b396b.o
+                0x0000008f       0x3e /tmp/micro-045f8b.o
  .ARM.attributes
                 0x000000cd       0x3e /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .ARM.attributes
@@ -5687,7 +5687,7 @@ END GROUP
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000       0x8b /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crt1.o
  .debug_info    0x0000008b       0xa4 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crti.o
- .debug_info    0x0000012f      0xc6a /tmp/micro-4b396b.o
+ .debug_info    0x0000012f      0xc6a /tmp/micro-045f8b.o
  .debug_info    0x00000d99    0x19163 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .debug_info    0x00019efc       0x98 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(checksum.o)
  .debug_info    0x00019f94      0x149 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(common.o)
@@ -5890,7 +5890,7 @@ END GROUP
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0x61 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crt1.o
  .debug_abbrev  0x00000061       0x1f /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crti.o
- .debug_abbrev  0x00000080      0x204 /tmp/micro-4b396b.o
+ .debug_abbrev  0x00000080      0x204 /tmp/micro-045f8b.o
  .debug_abbrev  0x00000284      0xab1 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .debug_abbrev  0x00000d35       0x7a /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(checksum.o)
  .debug_abbrev  0x00000daf       0xd1 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(common.o)
@@ -6093,7 +6093,7 @@ END GROUP
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000       0x4d /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crt1.o
  .debug_line    0x0000004d       0x4c /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crti.o
- .debug_line    0x00000099      0x552 /tmp/micro-4b396b.o
+ .debug_line    0x00000099      0x552 /tmp/micro-045f8b.o
  .debug_line    0x000005eb     0x749c /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .debug_line    0x00007a87       0xaf /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(checksum.o)
  .debug_line    0x00007b36       0xbf /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(common.o)
@@ -6295,7 +6295,7 @@ END GROUP
 .debug_frame    0x00000000     0x4214
  *(.debug_frame)
  .debug_frame   0x00000000       0x30 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crt1.o
- .debug_frame   0x00000030       0xdc /tmp/micro-4b396b.o
+ .debug_frame   0x00000030       0xdc /tmp/micro-045f8b.o
  .debug_frame   0x0000010c      0xc24 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .debug_frame   0x00000d30       0x2c /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(checksum.o)
  .debug_frame   0x00000d5c       0x30 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(common.o)
@@ -6485,7 +6485,7 @@ END GROUP
  *(.debug_str)
  .debug_str     0x00000000    0x19381 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crt1.o
                                  0x88 (size before relaxing)
- .debug_str     0x00019381      0x384 /tmp/micro-4b396b.o
+ .debug_str     0x00019381      0x384 /tmp/micro-045f8b.o
  .debug_str     0x00019381    0x14731 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .debug_str     0x00019381      0x144 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(checksum.o)
  .debug_str     0x00019381      0x1f7 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(common.o)
@@ -6683,7 +6683,7 @@ END GROUP
 .debug_loc      0x00000000    0x28601
  *(.debug_loc)
  .debug_loc     0x00000000       0x44 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crt1.o
- .debug_loc     0x00000044      0x80c /tmp/micro-4b396b.o
+ .debug_loc     0x00000044      0x80c /tmp/micro-045f8b.o
  .debug_loc     0x00000850    0x108e8 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .debug_loc     0x00011138      0x550 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(flags_parser.o)
  .debug_loc     0x00011688       0xc5 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(flags.o)
@@ -6876,7 +6876,7 @@ END GROUP
 .debug_ranges   0x00000000     0x5980
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x28 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/musl-inst/lib/../lib/crti.o
- .debug_ranges  0x00000028      0x110 /tmp/micro-4b396b.o
+ .debug_ranges  0x00000028      0x110 /tmp/micro-045f8b.o
  .debug_ranges  0x00000138     0x36b0 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(wrappers_c.o)
  .debug_ranges  0x000037e8      0x110 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(flags_parser.o)
  .debug_ranges  0x000038f8       0x60 /home/abuild/rpmbuild/BUILD/allocator-shootout-demo-1.0.0/libscudo_standalone.a(flags.o)
