@@ -192,3 +192,18 @@ H2 evidence hashes:
   `7603898b5b1babe0e402a2d07212474de9d61c814a76f3d6d7f9caf15013b1f1`
 - `results/logs/gbs-build-shootout.log`:
   `fcf6b5492f83d938ee264a7dc69fa8e43230e013fd41934b309fe9b291a49384`
+
+## Final ruling: S5 P1-DEFERRED
+
+FatTank ruled S5 `P1-DEFERRED`; its build artifact and all diagnostic evidence
+remain archived, but S5 is removed from the measurement matrix.
+
+Frozen root cause, in three lines:
+
+1. rpmalloc 1.4.5 per-thread heaps depend on the `pthread_create` interception path for automatic worker initialization.
+2. That intercepted PRELOAD variant breaks allocator exclusivity under static musl by pulling musl allocator members into the link.
+3. The 1.4.5 OVERRIDE fast path has no lazy per-thread initialization, so a new worker reaches allocation with a null heap.
+
+Revival condition: only when a real candidate is both size-sensitive and
+allocation-hot, reassess S5 through a source-level integration or a newer
+rpmalloc version. Neither route is part of the present shootout.

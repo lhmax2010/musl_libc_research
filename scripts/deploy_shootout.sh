@@ -86,14 +86,15 @@ cat "$EXTRACT_DIR/board.sha256" | sed 's/^/board_hash=/' | tee -a "$LOG_FILE"
 diff -u "$EXTRACT_DIR/host.sha256" "$EXTRACT_DIR/board.sha256" | tee -a "$LOG_FILE"
 log "gate.host_board_hashes=PASS"
 
-for variant in micro.glibc-dyn micro.musl-static micro.musl-mi micro.musl-rp micro.musl-scudo; do
+for variant in micro.glibc-dyn micro.musl-static micro.musl-mi micro.musl-scudo; do
     run_remote "'$PRIVATE_ROOT/bin/$variant'; rc=\$?; printf 'smoke.variant=$variant,rc=%s\n' \"\$rc\"; [ \"\$rc\" -eq 0 ]"
 done
 run_remote "'$PRIVATE_ROOT/bin/micro.musl-dyn'; rc=\$?; printf 'smoke.variant=micro.musl-dyn,loader=$PRIVATE_ROOT/lib/ld-musl-arm.so.1,rc=%s\n' \"\$rc\"; [ \"\$rc\" -eq 0 ]"
 run_remote "MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0 '$PRIVATE_ROOT/bin/micro.musl-mi'; rc=\$?; printf 'smoke.variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0,rc=%s\n' \"\$rc\"; [ \"\$rc\" -eq 0 ]"
-for variant in micro.glibc-dyn micro.musl-static micro.musl-mi micro.musl-rp micro.musl-scudo; do
+for variant in micro.glibc-dyn micro.musl-static micro.musl-mi micro.musl-scudo; do
     run_remote "'$PRIVATE_ROOT/bin/$variant' malloc 1 1000; rc=\$?; printf 'allocator_smoke.variant=$variant,rc=%s\n' \"\$rc\"; [ \"\$rc\" -eq 0 ]"
 done
 run_remote "MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0 '$PRIVATE_ROOT/bin/micro.musl-mi' malloc 1 1000; rc=\$?; printf 'allocator_smoke.variant=S4,env=MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0,rc=%s\n' \"\$rc\"; [ \"\$rc\" -eq 0 ]"
 log "gate.s3_s4_same_binary=PASS path=$PRIVATE_ROOT/bin/micro.musl-mi"
+log "s5_status=P1-DEFERRED artifact_hash_verified=YES runtime_smoke=NOT_RUN"
 log "DEPLOY_SHOOTOUT_PASS"

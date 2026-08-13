@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run the six-variant allocator shootout in one gated board session.
+# Run the five measured allocator variants in one gated board session.
 set -euo pipefail
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
@@ -12,7 +12,7 @@ MALLOC_REPS="${MALLOC_REPS:-5}"
 MEM_REPS="${MEM_REPS:-3}"
 STARTUP_REPS="${STARTUP_REPS:-30}"
 S4_ENV="MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0"
-VARIANTS=(S1 S2 S3 S4 S5 S6)
+VARIANTS=(S1 S2 S3 S4 S6)
 
 [[ "$MALLOC_REPS" -ge 5 && "$MEM_REPS" -eq 3 && "$STARTUP_REPS" -eq 30 ]] || {
     echo "ERROR frozen sample counts require malloc>=5 mem=3 startup=30" >&2
@@ -80,6 +80,7 @@ say "measurement.sample_sentinel=required"
 say "measurement.s4_env=$S4_ENV"
 say "measurement.s3_s4_binary=$BIN_DIR/micro.musl-mi"
 say "measurement.malloc_iters_per_thread=2000000"
+say "measurement.s5_status=P1-DEFERRED"
 identity="$(remote_capture "uname -r; cat /etc/os-release | head -4")"
 printf '%s\n' "$identity" | tee -a "$RESULT_FILE"
 grep -qi rpi4 <<< "$identity" || { say "MEASUREMENT_FAIL kernel identity lacks rpi4"; exit 4; }
@@ -160,7 +161,7 @@ for variant in "${VARIANTS[@]}"; do
     run_remote "stat -c 'size,variant=$variant,bytes=%s,path=%n' '$binary'"
 done
 
-say "### startup six-way interleaved"
+say "### startup five-way interleaved"
 startup_valid=0
 startup_attempt=0
 while (( startup_valid < STARTUP_REPS )); do
@@ -170,7 +171,7 @@ while (( startup_valid < STARTUP_REPS )); do
     frequency_snapshot "startup.$startup_attempt.before"
     round_invalid="$FREQ_INVALID"
     order=()
-    while IFS= read -r variant; do order+=("$variant"); done < <(rotated_order $(( (startup_attempt - 1) % 6 )))
+    while IFS= read -r variant; do order+=("$variant"); done < <(rotated_order $(( (startup_attempt - 1) % ${#VARIANTS[@]} )))
     say "startup_round,attempt=$startup_attempt,order=${order[*]}"
     for variant in "${order[@]}"; do
         sample_env_line startup "$startup_attempt" "$variant"
@@ -231,7 +232,7 @@ for threads in 1 4; do
         frequency_snapshot "malloc.t$threads.$attempt.before"
         round_invalid="$FREQ_INVALID"
         order=()
-        while IFS= read -r variant; do order+=("$variant"); done < <(rotated_order $(( (attempt + threads - 1) % 6 )))
+        while IFS= read -r variant; do order+=("$variant"); done < <(rotated_order $(( (attempt + threads - 1) % ${#VARIANTS[@]} )))
         say "malloc_round,threads=$threads,attempt=$attempt,order=${order[*]}"
         for variant in "${order[@]}"; do
             sample_env_line "malloc-t$threads" "$attempt" "$variant"

@@ -12,6 +12,7 @@ from pathlib import Path
 
 
 VARIANTS = ("S1", "S2", "S3", "S4", "S5", "S6")
+MEASURED_VARIANTS = ("S1", "S2", "S3", "S4", "S6")
 LABELS = {
     "S1": "glibc-dyn",
     "S2": "musl-static (mallocng)",
@@ -234,7 +235,7 @@ def main() -> int:
     thread_values = parsed["threads"]
 
     completeness_errors: list[str] = []
-    for variant in VARIANTS:
+    for variant in MEASURED_VARIANTS:
         for thread in (1, 4):
             count = len(malloc[(variant, thread)])
             if count < 5:
@@ -283,6 +284,7 @@ def main() -> int:
         "- 结论：**PENDING — 等待 FatTank 数据核验与选型裁决**。",
         "- S1–S4 来自冻结的 `musl-libc-demo-1.0.0-2.armv7l.rpm`，未重编；S5/S6 来自 shootout 增量 RPM。",
         "- S3 与 S4 是同一个二进制；S4 每个样本仅注入 `MIMALLOC_PURGE_DELAY=0 MIMALLOC_ARENA_EAGER_COMMIT=0`。",
+        "- S5 已裁决为 [`P1-DEFERRED`](logs/incident-shootout-rpmalloc-runtime-segv.md)，构建产物和诊断证据保留，但不进入测量。",
         "- S6 状态：`BUILT`；未搭建 libc++ 环境。",
         "",
         "## 核心汇率表",
@@ -291,6 +293,11 @@ def main() -> int:
         "|---|---|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for variant in VARIANTS:
+        if variant == "S5":
+            output.append(
+                "| S5 | musl + rpmalloc — [P1-DEFERRED](logs/incident-shootout-rpmalloc-runtime-segv.md) | P1-DEFERRED | P1-DEFERRED | P1-DEFERRED | P1-DEFERRED | P1-DEFERRED | P1-DEFERRED | P1-DEFERRED |"
+            )
+            continue
         t1 = malloc_med[(variant, 1)]
         t4 = malloc_med[(variant, 4)]
         pss = memory_med[variant]["Pss"]
@@ -318,6 +325,9 @@ def main() -> int:
         ]
     )
     for variant in VARIANTS:
+        if variant == "S5":
+            output.append("| S5 | P1-DEFERRED | P1-DEFERRED | P1-DEFERRED | P1-DEFERRED | P1-DEFERRED |")
+            continue
         output.append(
             f"| {variant} | {len(malloc[(variant, 1)])} | {len(malloc[(variant, 4)])} | "
             f"{len(memory[variant]['Pss'])} | {len(startup[variant])} | {len(thread_values[variant])} |"
@@ -331,8 +341,8 @@ def main() -> int:
             "",
             "## 方法与裁决口径",
             "",
-            "- malloc 使用 `{1,4}` 线程、每线程 2,000,000 次操作、轮内六方旋转交替；报告全部频率门禁有效样本的 median。",
-            "- mem 为单实例 `smaps_rollup` 的 Pss、Private_Dirty、Rss，各 3 次；threads 为创建 200 线程后的 VmSize；startup 为六方交替 30 个有效轮。",
+            "- malloc 使用 `{1,4}` 线程、每线程 2,000,000 次操作、轮内五方旋转交替；报告全部频率门禁有效样本的 median。",
+            "- mem 为单实例 `smaps_rollup` 的 Pss、Private_Dirty、Rss，各 3 次；threads 为创建 200 线程后的 VmSize；startup 为五方交替 30 个有效轮。",
             "- 处方判据冻结为：在 t4 追回达到目标的候选中选择 Private_Dirty 增量最小者，体积仅作次级 tiebreak。目标值和最终候选裁决留给 FatTank。",
             "- 不做加权评分，也不宣布“冠军”。",
             "",
@@ -344,6 +354,9 @@ def main() -> int:
     )
     s4_concession = ratio(malloc_med[("S4", 4)], malloc_med[("S3", 4)])
     for variant in VARIANTS:
+        if variant == "S5":
+            output.append("| S5 | P1-DEFERRED | P1-DEFERRED | — |")
+            continue
         concession = f"{fmt(s4_concession, 2)}×" if variant == "S4" else "—"
         output.append(
             f"| {variant} | {fmt(memory_med[variant]['Rss'], 0)} | {len(memory[variant]['Pss'])} | {concession} |"
@@ -357,6 +370,7 @@ def main() -> int:
             "- micro 是固定大小类 churn 画像，不能外推为所有真实应用分配行为；汇率表用于处方筛选，不替代候选包真实负载验证。",
             f"- S4 调参相对 S3 的 t4 性能让渡倍率为 `{fmt(s4_concession, 3)}×`；其回收/提交策略差异也应结合 Private_Dirty 阅读。",
             "- S6 本轮没有触发 P1 降级；若后续平台复建触发摩擦预算，其列应标 `P1-DEFERRED` 并引用对应 incident，而不是用缺失样本参与排名。",
+            "- S5 已按 FatTank 裁决降为 `P1-DEFERRED`；本报告不以缺失样本参与任何倍率或选型比较。复活条件见事故归档终章。",
             "- 单板、单会话和有限样本量会保留一定调度噪声；原始温度、频率、顺序、环境变量、哨兵与返回码均留在数据文件中。",
             "",
             "## Evidence",
