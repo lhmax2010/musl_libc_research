@@ -223,7 +223,17 @@ def main() -> int:
     s6_status_path = root / "results/logs/shootout-s6-status.txt"
     build_log = root / "results/logs/gbs-build-shootout.log"
     deploy_log = root / "results/logs/deploy-shootout.log"
-    for path in (results_path, decision_path, s6_status_path, build_log, deploy_log):
+    sdb_rc_log = root / "results/logs/sdb-remote-rc-selftest.log"
+    artifacts_path = root / "results/artifacts-shootout.sha256"
+    for path in (
+        results_path,
+        decision_path,
+        s6_status_path,
+        build_log,
+        deploy_log,
+        sdb_rc_log,
+        artifacts_path,
+    ):
         if not path.is_file():
             raise SystemExit(f"required evidence missing: {path}")
 
@@ -378,8 +388,10 @@ def main() -> int:
             f"- `results/results-shootout.txt` SHA-256: `{sha256(results_path)}`",
             f"- `results/logs/gbs-build-shootout.log` SHA-256: `{sha256(build_log)}`",
             f"- `results/logs/deploy-shootout.log` SHA-256: `{sha256(deploy_log)}`",
+            f"- `results/logs/sdb-remote-rc-selftest.log` SHA-256: `{sha256(sdb_rc_log)}`",
             f"- `results/logs/compiler-decision-shootout.txt` SHA-256: `{sha256(decision_path)}`",
             f"- `results/logs/shootout-s6-status.txt` SHA-256: `{sha256(s6_status_path)}`",
+            f"- `results/artifacts-shootout.sha256` SHA-256: `{sha256(artifacts_path)}`",
         ]
     )
     report_path.write_text("\n".join(output) + "\n", encoding="utf-8")
