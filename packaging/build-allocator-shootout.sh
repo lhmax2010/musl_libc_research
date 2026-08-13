@@ -195,7 +195,8 @@ LFS64_PATTERN='[[:space:]](mmap64|munmap64|open64|openat64|pread64|pwrite64|lsee
 RPMALLOC_OBJECT="$BUILD_ROOT/rpmalloc.o"
 RPMALLOC_DEPFILE="$BUILD_ROOT/rpmalloc.d"
 
-record_and_run "$MUSL_CC" "${OPTFLAGS_ARRAY[@]}" -O2 -DNDEBUG -DENABLE_OVERRIDE=1 \
+record_and_run "$MUSL_CC" "${OPTFLAGS_ARRAY[@]}" -O2 -DNDEBUG \
+    -DENABLE_PRELOAD=1 -DENABLE_OVERRIDE=1 \
     -I "$RPMALLOC_SOURCE_DIR/rpmalloc" -isystem "$RESDIR/include" \
     -MMD -MF "$RPMALLOC_DEPFILE" \
     -c "$RPMALLOC_SOURCE_DIR/rpmalloc/rpmalloc.c" -o "$RPMALLOC_OBJECT"
@@ -239,6 +240,15 @@ echo "gate.rpmalloc_musl_allocator_members.scan_begin"
 echo "gate.rpmalloc_musl_allocator_members.scan_end"
 [[ -z "$main_allocator_members" ]] || fail "musl primary allocator members were extracted into S5"
 echo "gate.rpmalloc_musl_allocator_members=PASS count=0"
+rpmalloc_pthread_owner="$(map_symbol_owner "$RP_MAP" "rpmalloc[.]o" "pthread_create")"
+rpmalloc_dlsym_owner="$(map_symbol_owner "$RP_MAP" "rpmalloc[.]o" "dlsym")"
+printf 'h1.pthread_create_owner=%s\n' "${rpmalloc_pthread_owner:-MISSING}"
+printf 'h1.dlsym_owner=%s\n' "${rpmalloc_dlsym_owner:-MISSING}"
+{
+    echo "rpmalloc_compile_defines=ENABLE_PRELOAD=1 ENABLE_OVERRIDE=1"
+    echo "rpmalloc_h1_pthread_create_owner=${rpmalloc_pthread_owner:-MISSING}"
+    echo "rpmalloc_h1_dlsym_owner=${rpmalloc_dlsym_owner:-MISSING}"
+} >> "$DECISION"
 
 check_static_arm_softfp() {
     local label="$1"
