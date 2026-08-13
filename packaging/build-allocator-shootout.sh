@@ -373,17 +373,33 @@ set +e
         "$SCUDO_ARCHIVE" -Wl,-Map,"$SCUDO_MAP" -o "$SCUDO_BIN" || exit $?
 
     scudo_lfs64="$(nm -u "$SCUDO_ARCHIVE" | grep -E "$LFS64_PATTERN" || true)"
+    echo "gate.scudo_lfs64.scan_begin"
+    [[ -z "$scudo_lfs64" ]] || printf '%s\n' "$scudo_lfs64"
+    echo "gate.scudo_lfs64.scan_end"
     [[ -z "$scudo_lfs64" ]] || fail "Scudo archive references forbidden LFS64 symbols"
+    echo "gate.scudo_lfs64=PASS"
     for symbol in malloc free calloc realloc posix_memalign aligned_alloc malloc_usable_size; do
         owner="$(map_symbol_owner "$SCUDO_MAP" "libscudo_standalone[.]a" "$symbol")"
         [[ "$owner" == *"libscudo_standalone.a"* ]] || \
             fail "$symbol is not defined by Scudo archive evidence=${owner:-MISSING}"
+        printf 'gate.scudo_symbol.%s=PASS owner=%s\n' "$symbol" "$owner"
     done
     scudo_musl_members="$(grep -E 'libc[.]a[(](malloc|calloc|free|realloc|reallocarray|memalign|aligned_alloc|posix_memalign|malloc_usable_size)[.]lo[)]' "$SCUDO_MAP" || true)"
+    echo "gate.scudo_musl_allocator_members.scan_begin"
+    [[ -z "$scudo_musl_members" ]] || printf '%s\n' "$scudo_musl_members"
+    echo "gate.scudo_musl_allocator_members.scan_end"
     [[ -z "$scudo_musl_members" ]] || fail "musl primary allocator members extracted into S6"
+    echo "gate.scudo_musl_allocator_members=PASS count=0"
     scudo_nm="$(nm "$SCUDO_BIN" | grep -m 1 -E '[[:space:]][Tt][[:space:]]+__scudo_print_stats$' || true)"
     [[ -n "$scudo_nm" ]] || fail "S6 has no __scudo_print_stats symbol"
     check_static_arm_softfp s6_scudo "$SCUDO_BIN"
+    {
+        echo "scudo_symbol_owner=libscudo_standalone.a"
+        echo "scudo_musl_primary_allocator_members=0"
+        echo "scudo_lfs64_gate=PASS"
+        echo "scudo_nm_evidence=$scudo_nm"
+        echo "s6_gate=PASS"
+    } >> "$DECISION"
     cp -- "$SCUDO_MAP" "$PAYLOAD/share/micro.musl-scudo.map"
 ) > "$SCUDO_LOG" 2>&1
 scudo_attempt_rc=$?
@@ -425,4 +441,5 @@ if [[ -x "$SCUDO_BIN" ]]; then "$STRIP_TOOL" --strip-unneeded "$SCUDO_BIN"; fi
     cd "$PAYLOAD"
     sha256sum bin/micro.musl-* > share/shootout-artifacts.sha256
 )
-echo "BUILD_GATE_PASS: S5 complete; S6 status=$(awk -F= '$1 == "s6_status" { print $2 }' "$S6_STATUS")"
+echo "s5_status=P1-DEFERRED artifact_retained=YES" >> "$DECISION"
+echo "BUILD_GATE_PASS: S5 artifact retained P1-DEFERRED; S6 status=$(awk -F= '$1 == "s6_status" { print $2 }' "$S6_STATUS")"
