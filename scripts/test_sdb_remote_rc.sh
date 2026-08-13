@@ -26,6 +26,10 @@ constructed_output="$(
 )" || constructed_rc=$?
 printf '%s\n' "$constructed_output"
 printf 'constructed_remote_rc=%s\n' "$constructed_rc"
+[[ "$constructed_output" == "constructed_remote_failure=YES" ]] || {
+    printf 'SELFTEST_FAIL payload_changed=<%s>\n' "$constructed_output" >&2
+    exit 3
+}
 [[ "$constructed_rc" -eq 37 ]] || {
     echo "SELFTEST_FAIL expected remote rc=37" >&2
     exit 3

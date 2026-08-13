@@ -4,7 +4,7 @@
 sdb_remote_capture() {
     local serial="$1"
     local command="$2"
-    local marker transport_output transport_rc marker_count remote_rc
+    local marker transport_output transport_rc marker_count remote_rc marker_line payload
 
     marker="__CODEX_SDB_REMOTE_RC_${BASHPID:-$$}_${RANDOM}__="
     transport_rc=0
@@ -28,6 +28,16 @@ sdb_remote_capture() {
         return 125
     fi
 
-    sed "/^${marker}[0-9][0-9]*$/d" <<< "$transport_output"
+    marker_line="${marker}${remote_rc}"
+    if [[ "$transport_output" == "$marker_line" ]]; then
+        payload=""
+    elif [[ "$transport_output" == *$'\n'"$marker_line" ]]; then
+        payload="${transport_output%$'\n'"$marker_line"}"
+    else
+        printf '%s\n' "$transport_output"
+        printf 'SDB_REMOTE_PROTOCOL_FAIL marker_not_terminal\n' >&2
+        return 125
+    fi
+    printf '%s' "$payload"
     return "$remote_rc"
 }
