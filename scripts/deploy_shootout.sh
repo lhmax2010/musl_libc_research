@@ -4,6 +4,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 ROOT_DIR="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
+# shellcheck source=sdb_remote_rc.sh
+source "$SCRIPT_DIR/sdb_remote_rc.sh"
 TARGET="${SDB_TARGET:-192.168.108.26}"
 BASE_RPM="$ROOT_DIR/results/rpms/musl-libc-demo-1.0.0-2.armv7l.rpm"
 ADDON_RPM="$ROOT_DIR/results/rpms/allocator-shootout-demo-1.0.0-1.armv7l.rpm"
@@ -13,7 +15,7 @@ LOG_FILE="$ROOT_DIR/results/logs/deploy-shootout.log"
 EXTRACT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deploy-shootout.XXXXXXXX")"
 trap 'rm -rf -- "$EXTRACT_DIR"' EXIT HUP INT TERM
 
-for tool in awk cpio diff rpm2cpio sdb sha256sum sort tee; do
+for tool in awk cpio diff grep rpm2cpio sdb sed sha256sum sort tee; do
     command -v "$tool" >/dev/null 2>&1 || { echo "ERROR missing host tool: $tool" >&2; exit 2; }
 done
 for rpm_path in "$BASE_RPM" "$ADDON_RPM"; do
@@ -40,7 +42,7 @@ sdb_serial="$(
     log "DEPLOY_FAIL expected exactly one SDB serial for target=$TARGET"
     exit 3
 }
-remote_capture() { sdb -s "$sdb_serial" shell "$1" </dev/null 2>&1 | tr -d '\r'; }
+remote_capture() { sdb_remote_capture "$sdb_serial" "$1"; }
 run_remote() { remote_capture "$1" | tee -a "$LOG_FILE"; }
 run_logged sdb -s "$sdb_serial" root on
 

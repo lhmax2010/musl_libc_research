@@ -4,6 +4,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 ROOT_DIR="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
+# shellcheck source=sdb_remote_rc.sh
+source "$SCRIPT_DIR/sdb_remote_rc.sh"
 TARGET="${SDB_TARGET:-192.168.108.26}"
 PRIVATE_ROOT="/opt/usr/musl-demo"
 BIN_DIR="$PRIVATE_ROOT/bin"
@@ -65,7 +67,7 @@ sdb_serial="$(
     say "MEASUREMENT_FAIL expected exactly one SDB serial target=$TARGET"
     exit 3
 }
-remote_capture() { sdb -s "$sdb_serial" shell "$1" </dev/null 2>&1 | tr -d '\r'; }
+remote_capture() { sdb_remote_capture "$sdb_serial" "$1"; }
 run_remote() { remote_capture "$1" | tee -a "$RESULT_FILE"; }
 run_logged sdb -s "$sdb_serial" root on
 
