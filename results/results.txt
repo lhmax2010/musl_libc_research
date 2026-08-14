@@ -1,6 +1,6 @@
-192.168.108.25:26101 is already connected
+BOARD_RPI4:26101 is already connected
 ### environment
-measurement.target=192.168.108.25
+measurement.target=BOARD_RPI4
 measurement.start_utc=2026-08-06T08:27:02Z
 measurement.startup_reps=30
 Linux localhost 6.12.80-arm-rpi4-v7l #1 SMP Mon Jul 27 09:29:29 UTC 2026 armv7l GNU/Linux

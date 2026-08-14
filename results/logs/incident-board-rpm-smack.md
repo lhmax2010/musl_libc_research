@@ -1,7 +1,7 @@
 # Incident: board RPM installation blocked by Smack policy setup
 
 Date: 2026-08-06
-Target: `192.168.108.25`
+Target: `BOARD_RPI4`
 
 ## Reached state
 

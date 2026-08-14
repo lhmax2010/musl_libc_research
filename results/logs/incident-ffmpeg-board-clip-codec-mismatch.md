@@ -4,7 +4,7 @@ Status: **RESOLVED — replacement H.264 material frozen for resumed execution**
 
 ## Stopping point
 
-The release-1 RPM was installed on `192.168.108.26` with
+The release-1 RPM was installed on `BOARD_RPI4` with
 `rpm -Uvh --noplugins --force`. Host/RPM/board payload hashes matched, the
 single `/root` media candidate was copied to the private data directory with
 its frozen SHA-256 intact, and the F3 mimalloc runtime banner produced one
@@ -65,9 +65,9 @@ DEPLOY_FAIL F1 h264 smoke remote_rc=183
 Evidence hashes:
 
 ```text
-8ce5d41718a7fe627542303473c4e1863248cb1d117f804f391c836024c025e9  results/logs/deploy-ffmpeg-initial-false-positive.log
+083b9e93812fc3761352de412e90d9e232b24255400d654173499be07a2ece9a  results/logs/deploy-ffmpeg-initial-false-positive.log
 d6dcb109338c2dd7213e876e4a5f8e707699a366c288ca67423a939de48aea5a  results/logs/ffmpeg-clip-codec-confirmation.log
-772089bad158b237e47e96e6f0deb96c88d79b82e0dbcbcfb00e0c28c8219c78  results/logs/deploy-ffmpeg.log
+028b5b8431a781690bb518c262bd18cd05ac2d20779719f03732b9336be97ff6  results/logs/deploy-ffmpeg.log
 ```
 
 ## Boundary and next action
@@ -88,7 +88,7 @@ results/report-ffmpeg.md=NOT_CREATED
 Resume command after the material and frozen hash are explicitly updated:
 
 ```text
-SDB_TARGET=192.168.108.26 scripts/deploy_ffmpeg.sh
+SDB_TARGET=BOARD_RPI4 scripts/deploy_ffmpeg.sh
 ```
 
 ## Resolution and replacement freeze

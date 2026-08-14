@@ -1,5 +1,5 @@
 mimalloc_measurement_audit=2026-08-06
-target=192.168.108.25
+target=BOARD_RPI4
 measurement_start_utc=2026-08-06T13:33:38Z
 measurement_finish_utc=2026-08-06T13:35:01Z
 measurement_duration_seconds=83
@@ -29,8 +29,8 @@ post_measurement_loadavg=0.80_0.47_0.25
 concurrent_board_commands_during_measurement=NONE
 dns=NOT_RUN reason=allocator-independent carried_from=results/results.txt
 locale=NOT_RUN reason=allocator-independent carried_from=results/results.txt
-results_mimalloc_sha256=3ddc357e6dfe60dad842c9ec10aa9029a333bb8b3aab90fe79ec42240d4d842c
-report_mimalloc_sha256=3805a9e42e3ba831a5f643490e159218135114984cfe2559ed15b75520ad3fb4
+results_mimalloc_sha256=657b0f44256a693307351501b3dc132dfce149b58f0a03f581dd56f1dbf3d24b
+report_mimalloc_sha256=7dd3208c3668020c600e4bedd5f5168fcd322ae49cc3a99db0f5ed1bdc12b2b5
 report_absolute_path_regeneration=BYTE_IDENTICAL
 report_relative_path_difference=PROVENANCE_PATH_ONLY
 python_unit_tests=PASS count=4

@@ -73,7 +73,7 @@ are archived in `results/`.
 
 `packaging/micro.c` and `packaging/timer.c` match their committed blobs exactly.
 The original `results/results.txt` remains unchanged at SHA-256
-`78a1b548df00c7742e3fa5d3cca598faa1da5bdfccdf28c365e019bf5ee596f1`.
+`24ffb2ab105b3dcbe11c73a60aa0b5bfb18348062c748b19a40a6fff394d8faf`.
 
 ## Release 2 deployment and runtime gate: PASS
 
@@ -101,7 +101,7 @@ remained at 1.5 GHz with the performance governor. Temperature rose from
 other board command was launched during measurement.
 
 `results/results-mimalloc.txt` is now immutable at SHA-256
-`3ddc357e6dfe60dad842c9ec10aa9029a333bb8b3aab90fe79ec42240d4d842c`.
+`657b0f44256a693307351501b3dc132dfce149b58f0a03f581dd56f1dbf3d24b`.
 The data-filled report regenerates byte-identically when invoked with the same
 absolute provenance paths, and all four parser unit tests pass. DNS and locale
 remain explicitly carried from the previous allocator-independent run.

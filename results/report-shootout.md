@@ -67,10 +67,10 @@
 
 ## Evidence
 
-- `results/results-shootout.txt` SHA-256: `307f0213d3b20d955936ae6399da244b0a687d4df1d3c35801952d377de20c7c`
+- `results/results-shootout.txt` SHA-256: `d89fd6146b15b5e0e7d2ea5a1e90cff89ff880d40cb2debec50df4426755d343`
 - `results/logs/gbs-build-shootout.log` SHA-256: `bc5e20a1e05db7e0e224c7cdf5c50182079501b2fc1e871aa012d0c84e7a2bb1`
-- `results/logs/deploy-shootout.log` SHA-256: `b8ae6a3f671ce5c5b0752afd58f4ee69086178dfd766cc4d2ca3847b947b4c9a`
-- `results/logs/sdb-remote-rc-selftest.log` SHA-256: `869a062292cd03ed5938557c10dc6fb51a6b093b70d9a5c7e3ad17332141cacc`
+- `results/logs/deploy-shootout.log` SHA-256: `4ce8f07d5570e70e168248b8c601c31dccf5ae521fad3f2715a29675a0020271`
+- `results/logs/sdb-remote-rc-selftest.log` SHA-256: `f18e540fad9d64b88d963e3661c4249510b61e2e135c0ba162ef21046c1fff37`
 - `results/logs/compiler-decision-shootout.txt` SHA-256: `5615491449f553738851efecf3a01b19e0edece872b81917bb3e0df9e4789b8c`
 - `results/logs/shootout-s6-status.txt` SHA-256: `297b6a201e13574a1e26b93704a40b53eb9f62f88d4447225f3a9b35a113d202`
 - `results/artifacts-shootout.sha256` SHA-256: `f49cc489a4d3c63d12e96c45376e12f3015dacb5f81f02f200958c5d9669ff0f`

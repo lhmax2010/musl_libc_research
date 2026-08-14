@@ -35,14 +35,14 @@ rescan are preserved in `results/logs/repro-confidentiality-scan.log`.
   no private URL was confirmed. The first URL expression was rejected by
   ripgrep, so the log records that error and contains a complete rescan with a
   corrected expression.
-- `192.168.108.25` occurs in logs/evidence. This is not a blocker because the
+- `BOARD_RPI4` occurs in logs/evidence. This is not a blocker because the
   authorization explicitly permits private board addresses in evidence. No new
   guide or configuration template was created.
 
 ## Disposition
 
 The original scan artifact has SHA-256
-`1aeb1b372b44834ab29e679792a10cc632c38562f5ce6be68c3b5bc411d90165`.
+`12dcb7eef85e604338c7a3ebbdb5f2f1af12b26c41c0ce332636dc253dd19d9d`.
 It confirmed zero findings in the sensitive categories that the gate was meant
 to prevent: credentials, private keys, tokens, and private URLs. The remaining
 personal-path and host-name findings are accepted by the following ruling.

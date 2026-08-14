@@ -48,7 +48,7 @@ correct `stat` number, and the exact comparison fails closed.
 A read-only mechanical confirmation showed the stdin behavior:
 
 ```text
-$ printf '%s\n' '#HOST_STDIN_SENTINEL' | sdb -s 192.168.108.26:26101 shell \
+$ printf '%s\n' '#HOST_STDIN_SENTINEL' | sdb -s BOARD_RPI4:26101 shell \
     "stat -c %s /opt/usr/ffmpeg-demo/bin/ffmpeg.F1"
 #HOST_STDIN_SENTINEL
 2353184
@@ -57,7 +57,7 @@ $ printf '%s\n' '#HOST_STDIN_SENTINEL' | sdb -s 192.168.108.26:26101 shell \
 With stdin detached, only the expected value remains:
 
 ```text
-$ sdb -s 192.168.108.26:26101 shell \
+$ sdb -s BOARD_RPI4:26101 shell \
     "stat -c %s /opt/usr/ffmpeg-demo/bin/ffmpeg.F1" </dev/null
 2353184
 ```
@@ -68,8 +68,8 @@ been observed; the failure is confined to host capture contamination.
 ## Immutable evidence and boundary
 
 ```text
-e1c8378ed3639eb274fb2eefe25a791142ee2bf427b17565aa367a03e93451f6  results/results-ffmpeg.txt
-2fa4971036581f1b69412138949604755536ba161e371694737ccda46b4c006d  results/results-ffmpeg-supplement.txt
+69784e43a288bdce04c6e9b5d2492f411cf9f2a5d0457fad63734923f85893ce  results/results-ffmpeg.txt
+c08c5896b7a85623bae89320f081128ebebfbe383b9110dd086f9d50ab665194  results/results-ffmpeg-supplement.txt
 board_size_verification=NOT_COMPLETED
 function_surface_verification=NOT_RUN
 report-ffmpeg.md=NOT_CREATED

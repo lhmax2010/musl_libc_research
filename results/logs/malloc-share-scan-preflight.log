@@ -1,12 +1,12 @@
 malloc-share scan preflight evidence
 timestamp=2026-08-11T20:22:24+08:00
-target=192.168.108.26
+target=BOARD_RPI4
 branch=execution/malloc-share-scan
 base_commit=ad278e486649f820f365c75a89dd89e6cfaba42b
 
 ## Required board identity gate
 
-$ sdb -s 192.168.108.26 shell "uname -r; cat /etc/os-release | head -4"
+$ sdb -s BOARD_RPI4 shell "uname -r; cat /etc/os-release | head -4"
 6.12.80-arm-rpi4-v7l
 NAME=Tizen
 VERSION="11.0.0 (Tizen11.0/Unified)"
@@ -18,7 +18,7 @@ identity_os_gate=PASS (Tizen 11 Unified image)
 
 ## Read-only image detail
 
-$ sdb -s 192.168.108.26 shell "cat /etc/os-release; printf '\n--- tizen-release ---\n'; cat /etc/tizen-release 2>/dev/null || true; printf '\n--- image markers ---\n'; find /etc -maxdepth 2 -type f \( -iname '*release*' -o -iname '*image*' \) 2>/dev/null | sort | head -40"
+$ sdb -s BOARD_RPI4 shell "cat /etc/os-release; printf '\n--- tizen-release ---\n'; cat /etc/tizen-release 2>/dev/null || true; printf '\n--- image markers ---\n'; find /etc -maxdepth 2 -type f \( -iname '*release*' -o -iname '*image*' \) 2>/dev/null | sort | head -40"
 NAME=Tizen
 VERSION="11.0.0 (Tizen11.0/Unified)"
 ID=tizen
@@ -40,14 +40,14 @@ BUILD_ID=tizen-unified-toolchain_20260728.012216_tizen-headed-armv7l
 
 ## Required perf availability check
 
-$ sdb -s 192.168.108.26 shell "which perf || ls /usr/bin/perf /prd/bin/perf 2>/dev/null"
+$ sdb -s BOARD_RPI4 shell "which perf || ls /usr/bin/perf /prd/bin/perf 2>/dev/null"
 /bin/sh: which: command not found
 
 No permitted perf path was printed. The read-only follow-up below confirms absence.
 
 ## Authorized installation attempt
 
-$ sdb -s 192.168.108.26 shell "zypper --non-interactive install perf"
+$ sdb -s BOARD_RPI4 shell "zypper --non-interactive install perf"
 /bin/sh: zypper: command not found
 
 install_result=BLOCKED
@@ -56,7 +56,7 @@ perf_retention=NOT_APPLICABLE (nothing was installed)
 
 ## Read-only absence confirmation
 
-$ sdb -s 192.168.108.26 shell "echo 'perf-command:'; command -v perf || true; echo 'perf-known-paths:'; ls -l /usr/bin/perf /prd/bin/perf 2>&1 || true; echo 'zypper-command:'; command -v zypper || true; echo 'zypper-known-paths:'; ls -l /usr/bin/zypper /bin/zypper 2>&1 || true; echo 'rpm-query:'; rpm -q perf 2>&1 || true"
+$ sdb -s BOARD_RPI4 shell "echo 'perf-command:'; command -v perf || true; echo 'perf-known-paths:'; ls -l /usr/bin/perf /prd/bin/perf 2>&1 || true; echo 'zypper-command:'; command -v zypper || true; echo 'zypper-known-paths:'; ls -l /usr/bin/zypper /bin/zypper 2>&1 || true; echo 'rpm-query:'; rpm -q perf 2>&1 || true"
 perf-command:
 perf-known-paths:
 ls: cannot access /usr/bin/perf: No such file or directory
@@ -70,7 +70,7 @@ package perf is not installed
 
 ## Board temporary-file verification
 
-$ sdb -s 192.168.108.26 shell "echo 'scan-temp-files:'; find /tmp -maxdepth 1 -type f -name 'p_*.data' -print 2>/dev/null; echo 'scan-temp-reports:'; find /tmp -maxdepth 1 -type f -name 'p_*_report.txt' -print 2>/dev/null"
+$ sdb -s BOARD_RPI4 shell "echo 'scan-temp-files:'; find /tmp -maxdepth 1 -type f -name 'p_*.data' -print 2>/dev/null; echo 'scan-temp-reports:'; find /tmp -maxdepth 1 -type f -name 'p_*_report.txt' -print 2>/dev/null"
 scan-temp-files:
 scan-temp-reports:
 

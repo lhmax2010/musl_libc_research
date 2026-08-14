@@ -24,7 +24,7 @@ returned status 0. `micro.musl-dyn` successfully used package loader
 
 ## Measurement remediation: complete, awaiting FatTank review
 
-`SDB_TARGET=192.168.108.25 scripts/run_board.sh` completed and generated raw
+`SDB_TARGET=BOARD_RPI4 scripts/run_board.sh` completed and generated raw
 results plus a report. It captured 30/30 frequency-valid startup triples, nine
 memory configs, three thread configs, DNS and locale matrices, and stable
 1.5 GHz pre/post frequencies.
@@ -46,7 +46,7 @@ micro-process exception, or matching journal event was found. The original
 parser lacked completeness checks and consequently misattributed `310.7`.
 
 The original `results/results.txt` remains read-only at SHA-256
-`78a1b548df00c7742e3fa5d3cca598faa1da5bdfccdf28c365e019bf5ee596f1`.
+`24ffb2ab105b3dcbe11c73a60aa0b5bfb18348062c748b19a40a6fff394d8faf`.
 The parser now resynchronizes mid-line headers and requires four malloc keys;
 new runs require the `sample_end=OK` sentinel. The authorized rep=6 t=4
 supplement passed all board gates and added three VALID samples. The merged

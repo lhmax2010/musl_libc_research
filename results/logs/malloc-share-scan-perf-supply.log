@@ -1,5 +1,5 @@
 malloc-share scan perf supply evidence
-target=192.168.108.26
+target=BOARD_RPI4
 route_result=A_PASS
 route_B=NOT_RUN
 route_C=NOT_RUN

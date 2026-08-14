@@ -1,5 +1,5 @@
 board_release2_deploy=2026-08-06
-target=192.168.108.25
+target=BOARD_RPI4
 rpm=results/rpms/musl-libc-demo-1.0.0-2.armv7l.rpm
 host_rpm_sha256=f55957aaca2968877e8cf4dc6bd017e7875a8ed7bd1783b067574fd2f4030ead
 board_rpm_sha256=f55957aaca2968877e8cf4dc6bd017e7875a8ed7bd1783b067574fd2f4030ead

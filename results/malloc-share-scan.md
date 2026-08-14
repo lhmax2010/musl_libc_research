@@ -4,11 +4,11 @@
 
 ## Expected result declared before sampling
 
-Existing L6 measurements indicate that allocation is generally inactive in resident platform daemons. This scan may therefore place every sampled process in `OUT`; that result would remain valid and would mean “the platform-daemon layer can run bare mallocng without concern.” This was declared for falsification before sampling. The final absolute-CPU disposition below supports that expectation.
+previous platform measurements indicate that allocation is generally inactive in resident platform daemons. This scan may therefore place every sampled process in `OUT`; that result would remain valid and would mean “the platform-daemon layer can run bare mallocng without concern.” This was declared for falsification before sampling. The final absolute-CPU disposition below supports that expectation.
 
 ## 1. Identity and perf gates
 
-- Target: `192.168.108.26`; the address was not treated as identity.
+- Target: `BOARD_RPI4`; the address was not treated as identity.
 - Kernel: `6.12.80-arm-rpi4-v7l` — RPI4 identity gate `PASS`.
 - Image: Tizen 11.0 Unified, build `tizen-unified-toolchain_20260728.012216_tizen-headed-armv7l` — image gate `PASS`.
 - Provisioning: route A `PASS`; routes B/C `NOT_RUN`.

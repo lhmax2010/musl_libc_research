@@ -8,15 +8,15 @@
     },
     "baseline_results": {
       "path": "results/results.txt",
-      "sha256": "78a1b548df00c7742e3fa5d3cca598faa1da5bdfccdf28c365e019bf5ee596f1"
+      "sha256": "24ffb2ab105b3dcbe11c73a60aa0b5bfb18348062c748b19a40a6fff394d8faf"
     },
     "baseline_supplement": {
       "path": "results/results-supplement.txt",
-      "sha256": "49f3210d507d7e96a855e087e5127ff2a89ac60990e79a9a020a9b7092c67ab6"
+      "sha256": "fda962cfad7095d2d74695c108195e3ba15b73ca53610ed650eba88bcd4e26ae"
     },
     "mimalloc_results": {
       "path": "results/results-mimalloc.txt",
-      "sha256": "3ddc357e6dfe60dad842c9ec10aa9029a333bb8b3aab90fe79ec42240d4d842c"
+      "sha256": "657b0f44256a693307351501b3dc132dfce149b58f0a03f581dd56f1dbf3d24b"
     }
   },
   "sample_integrity": {

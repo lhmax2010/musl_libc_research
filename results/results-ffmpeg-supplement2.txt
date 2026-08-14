@@ -1,14 +1,14 @@
-192.168.108.26:26101 is already connected
+BOARD_RPI4:26101 is already connected
 ### environment
 measurement.mode=supplement2
 measurement.scope=size,function
-measurement.target=192.168.108.26
-measurement.sdb_serial=192.168.108.26:26101
+measurement.target=BOARD_RPI4
+measurement.sdb_serial=BOARD_RPI4:26101
 measurement.start_utc=2026-08-11T11:20:12Z
 primary_result.path=results/results-ffmpeg.txt
-primary_result.sha256=e1c8378ed3639eb274fb2eefe25a791142ee2bf427b17565aa367a03e93451f6
+primary_result.sha256=69784e43a288bdce04c6e9b5d2492f411cf9f2a5d0457fad63734923f85893ce
 supplement_result.path=results/results-ffmpeg-supplement.txt
-supplement_result.sha256=2fa4971036581f1b69412138949604755536ba161e371694737ccda46b4c006d
+supplement_result.sha256=c08c5896b7a85623bae89320f081128ebebfbe383b9110dd086f9d50ab665194
 decode=NOT_RUN reason=authorized_supplement2_scope
 startup=NOT_RUN reason=authorized_supplement2_scope
 memory=NOT_RUN reason=authorized_supplement2_scope

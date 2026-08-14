@@ -1,4 +1,4 @@
-target=192.168.108.25
+target=BOARD_RPI4
 
 command=ls -Z /opt/usr
                 _ apps                        _ home

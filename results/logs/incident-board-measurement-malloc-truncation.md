@@ -69,7 +69,7 @@ misattribution.
 
 The original `results/results.txt` was neither edited nor deleted and remains
 SHA-256
-`78a1b548df00c7742e3fa5d3cca598faa1da5bdfccdf28c365e019bf5ee596f1`.
+`24ffb2ab105b3dcbe11c73a60aa0b5bfb18348062c748b19a40a6fff394d8faf`.
 The parser regression, final completeness audit, and raw incident evidence are
 preserved under `results/logs/`. The regenerated report is delivered for
 FatTank data review; no performance conclusion is asserted here.

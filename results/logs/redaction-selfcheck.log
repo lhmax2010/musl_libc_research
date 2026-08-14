@@ -1,0 +1,55 @@
+WS-B stage 1 forward-redaction self-check
+date=2026-08-14
+
+== command-scoped identity gate ==
+command: git config user.name
+output: liushanshan
+command: git -c user.name=lhmax2010 config user.name
+output: lhmax2010
+verdict: PASS (persistent configuration unchanged; commit identity overridden per command)
+
+== ignored private paths ==
+command: git check-ignore -v research/ws-b-private/sentinel docs/ws-b-sentinel.md docs/ws-d-sentinel.md
+.gitignore:7:research/ research/ws-b-private/sentinel
+.gitignore:8:docs/ws-b-*.md docs/ws-b-sentinel.md
+.gitignore:9:docs/ws-d-*.md docs/ws-d-sentinel.md
+verdict: PASS
+
+== literal scans ==
+command: rg -n --hidden --glob '!.git/**' '192\.168\.[0-9]+\.[0-9]+' .
+output: empty
+worktree_192_168_count=0
+command: git grep -E '192\.168\.[0-9]+\.[0-9]+' --
+output: empty
+tracked_192_168_count=0
+packaging_exception_matches=0
+packaging_exception_note=no upstream-source archive matches remain, so no per-match exception is required
+command: rg -l --hidden --glob '!.git/**' liushanshan .
+output: ./.mailmap
+verdict: PASS
+
+== mandatory SDB_TARGET checks ==
+scripts/check_ffmpeg_timer_parser.sh bash_n=PASS unset_rc=1 first=scripts/check_ffmpeg_timer_parser.sh: line 7: SDB_TARGET: must be set
+scripts/deploy.sh bash_n=PASS unset_rc=1 first=scripts/deploy.sh: line 7: SDB_TARGET: must be set
+scripts/deploy_ffmpeg.sh bash_n=PASS unset_rc=1 first=scripts/deploy_ffmpeg.sh: line 7: SDB_TARGET: must be set
+scripts/deploy_shootout.sh bash_n=PASS unset_rc=1 first=scripts/deploy_shootout.sh: line 9: SDB_TARGET: must be set
+scripts/run_board.sh bash_n=PASS unset_rc=1 first=scripts/run_board.sh: line 7: SDB_TARGET: must be set
+scripts/run_board_ffmpeg.sh bash_n=PASS unset_rc=1 first=scripts/run_board_ffmpeg.sh: line 7: SDB_TARGET: must be set
+scripts/run_board_ffmpeg_supplement2.sh bash_n=PASS unset_rc=1 first=scripts/run_board_ffmpeg_supplement2.sh: line 7: SDB_TARGET: must be set
+scripts/run_board_shootout.sh bash_n=PASS unset_rc=1 first=scripts/run_board_shootout.sh: line 9: SDB_TARGET: must be set
+scripts/test_sdb_remote_rc.sh bash_n=PASS unset_rc=1 first=scripts/test_sdb_remote_rc.sh: line 6: SDB_TARGET: must be set
+verdict: PASS
+
+== evidence ledger coverage ==
+changed_evidence=42
+ledger_rows=42
+uncovered=0
+stale_old_hash_references=0
+verdict: PASS
+
+== final checks ==
+command: git diff --check
+output: empty
+verdict: PASS
+
+OVERALL=PASS

@@ -1,5 +1,5 @@
 malloc-share scan capture evidence
-target=192.168.108.26
+target=BOARD_RPI4
 sampling_command=perf record -F 99 -g -p PID -o /tmp/p_NAME_ROUND.data -- sleep 30
 stdin_isolation=sdb shell calls used explicit host-side /dev/null input
 

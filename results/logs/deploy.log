@@ -1,4 +1,4 @@
-target=192.168.108.25
+target=BOARD_RPI4
 rpm=results/rpms/musl-libc-demo-1.0.0-1.armv7l.rpm
 rpm_sha256=ed42d8978ffd838fc59e4b02a6ab7b36c2825475cd3be434ed952c5341f2fcfa
 
@@ -13,9 +13,9 @@ error: musl-libc-demo-1.0.0-1.armv7l: install failed
 error: Unable to write device security policy to /etc/device-sec-policy
 
 ### tiered retry preflight
-command=sdb connect 192.168.108.25
-connecting to 192.168.108.25:26101 ...
-connected to 192.168.108.25:26101
+command=sdb connect BOARD_RPI4
+connecting to BOARD_RPI4:26101 ...
+connected to BOARD_RPI4:26101
 command=sdb root on
 Switched to 'root' account mode
 command=sdb push results/rpms/musl-libc-demo-1.0.0-1.armv7l.rpm /tmp/musl-libc-demo-1.0.0-1.armv7l.rpm

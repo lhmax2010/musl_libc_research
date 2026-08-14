@@ -32,7 +32,7 @@ is the integer, so its completeness check rejects a successful timer run.
 An independent, read-only confirmation used:
 
 ```text
-sdb -s 192.168.108.26:26101 shell "/opt/usr/ffmpeg-demo/bin/timer /opt/usr/ffmpeg-demo/bin/ffmpeg.F1 -version; rc=\$?; printf 'timer_remote_rc=%s\\n' \"\$rc\""
+sdb -s BOARD_RPI4:26101 shell "/opt/usr/ffmpeg-demo/bin/timer /opt/usr/ffmpeg-demo/bin/ffmpeg.F1 -version; rc=\$?; printf 'timer_remote_rc=%s\\n' \"\$rc\""
 ```
 
 The relevant output was:
@@ -55,7 +55,7 @@ has not been made because it is a newly encountered, unpreauthorized failure.
 The raw partial session is immutable at `results/results-ffmpeg.txt`:
 
 ```text
-sha256=e1c8378ed3639eb274fb2eefe25a791142ee2bf427b17565aa367a03e93451f6
+sha256=69784e43a288bdce04c6e9b5d2492f411cf9f2a5d0457fad63734923f85893ce
 decode_valid_rounds=10
 decode_metrics=30
 native_decoder_mappings=30

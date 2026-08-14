@@ -1,6 +1,6 @@
-192.168.108.26:26101 is already connected
-target=192.168.108.26
-sdb_serial=192.168.108.26:26101
+BOARD_RPI4:26101 is already connected
+target=BOARD_RPI4
+sdb_serial=BOARD_RPI4:26101
 base_rpm_sha256=f55957aaca2968877e8cf4dc6bd017e7875a8ed7bd1783b067574fd2f4030ead
 addon_rpm_sha256=ace64cd19e883f199f2befa179ca5a1db305a5404e80a15278d95df081d219ee
 ### board identity gate

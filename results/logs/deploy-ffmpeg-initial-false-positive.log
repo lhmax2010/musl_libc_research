@@ -5,10 +5,10 @@ bin/ffmpeg.F2.gc: OK
 bin/ffmpeg.F3: OK
 bin/ffmpeg.F3.gc: OK
 bin/timer: OK
-target=192.168.108.26
+target=BOARD_RPI4
 rpm=/home/linhao/Toolchain/development/musl-libc-research/results/rpms/ffmpeg-musl-demo-8.0.1-1.armv7l.rpm
 rpm_sha256=daef87f36bdb6579db96eba4c570a893c9e3a6781508f7233e736274e3ef97da
-192.168.108.26:26101 is already connected
+BOARD_RPI4:26101 is already connected
 root_file_listing_begin
 /root/64687_VID_BM_MM_h265_fhd_seamless.mp4
 /root/tensorflow2-lite-util-2.18.0-1.armv7l.rpm

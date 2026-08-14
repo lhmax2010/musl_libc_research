@@ -1,7 +1,7 @@
-192.168.108.26:26101 is already connected
+BOARD_RPI4:26101 is already connected
 ### environment
-measurement.target=192.168.108.26
-measurement.sdb_serial=192.168.108.26:26101
+measurement.target=BOARD_RPI4
+measurement.sdb_serial=BOARD_RPI4:26101
 measurement.start_utc=2026-08-11T09:29:55Z
 measurement.decode_reps=10
 measurement.startup_reps=30

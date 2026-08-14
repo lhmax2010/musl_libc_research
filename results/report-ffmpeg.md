@@ -28,9 +28,9 @@ The primary run completed decode before a startup parser stop. Following the app
 
 | Measurement | Source file | SHA-256 |
 |---|---|---|
-| Decode | `results/results-ffmpeg.txt` | `e1c8378ed3639eb274fb2eefe25a791142ee2bf427b17565aa367a03e93451f6` |
-| Startup, memory | `results/results-ffmpeg-supplement.txt` | `2fa4971036581f1b69412138949604755536ba161e371694737ccda46b4c006d` |
-| Size, function surface | `results/results-ffmpeg-supplement2.txt` | `477149ad2c933a231448e5ad013759131fad4eeb54fb8bf6b5bc80b3b9e6ecb7` |
+| Decode | `results/results-ffmpeg.txt` | `69784e43a288bdce04c6e9b5d2492f411cf9f2a5d0457fad63734923f85893ce` |
+| Startup, memory | `results/results-ffmpeg-supplement.txt` | `c08c5896b7a85623bae89320f081128ebebfbe383b9110dd086f9d50ab665194` |
+| Size, function surface | `results/results-ffmpeg-supplement2.txt` | `2871978ecbbe556498092a8c93555628d031a6ed942b2b99d2c1ec692c055e83` |
 
 Decode used ten within-round rotating triples. Every command used `-c:v h264 -i $CLIP -map 0:v:0 -an -t 30 -f null - -benchmark`; rounds cooled for 30 seconds, waited until temperature was at most 65°C whenever necessary, and recorded current/max frequency before and after. Startup used 30 rotating timer triples. Memory used three rotating repetitions per variant, `-re` only to keep the decoder alive for the fifth-second smaps_rollup snapshot, and recorded FFmpeg maxrss at completion. Percentiles use linear interpolation at `(n-1)×p`; paired deltas are the median of within-round `(candidate-reference)/reference` values.
 

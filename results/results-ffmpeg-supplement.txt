@@ -1,7 +1,7 @@
-192.168.108.26:26101 is already connected
+BOARD_RPI4:26101 is already connected
 ### environment
-measurement.target=192.168.108.26
-measurement.sdb_serial=192.168.108.26:26101
+measurement.target=BOARD_RPI4
+measurement.sdb_serial=BOARD_RPI4:26101
 measurement.mode=supplement
 measurement.start_utc=2026-08-11T10:26:38Z
 measurement.decode_reps=10
@@ -17,7 +17,7 @@ memory.command.template=ffmpeg.Fx -nostdin -hide_banner -v info -re -c:v h264 -i
 configure.commands.sha256=09fef93ba2c10916c0b466c9963bda989ca1133f477902688e98efd207a68deb
 configure.equivalence.sha256=cf33e6d52cf1da3418fe2a83ec2552bb6e5cde73c7e17bc6332628375c3e95b2
 primary_result.path=results/results-ffmpeg.txt
-primary_result.sha256=e1c8378ed3639eb274fb2eefe25a791142ee2bf427b17565aa367a03e93451f6
+primary_result.sha256=69784e43a288bdce04c6e9b5d2492f411cf9f2a5d0457fad63734923f85893ce
 decode=NOT_RUN reason=authorized_supplement_preserves_primary_decode
 Linux localhost 6.12.80-arm-rpi4-v7l #1 SMP Tue Jul 28 02:41:25 UTC 2026 armv7l GNU/Linux
 loadavg.before=0.34 0.08 0.03 1/431 21777

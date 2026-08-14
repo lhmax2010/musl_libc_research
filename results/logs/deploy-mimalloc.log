@@ -4,9 +4,9 @@ bin/micro.musl-dyn: OK
 bin/micro.musl-mi: OK
 bin/timer: OK
 lib/libc.so: OK
-target=192.168.108.25
+target=BOARD_RPI4
 rpm=/home/linhao/Toolchain/development/musl-libc-research/results/rpms/musl-libc-demo-1.0.0-2.armv7l.rpm
-192.168.108.25:26101 is already connected
+BOARD_RPI4:26101 is already connected
 WARNING: Your data are to be sent over an unencrypted connection and could be read by others.
 pushed musl-libc-demo-1.0.0-2.armv7l.rpm	  0%	      0KB	    0KB/spushed musl-libc-demo-1.0.0-2.armv7l.rpm	100%	    446KB	    0KB/s
 1 file(s) pushed. 0 file(s) skipped.

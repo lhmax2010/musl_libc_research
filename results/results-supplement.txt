@@ -4,7 +4,7 @@ measurement.sample_sentinel=required
 supplement.rep=6
 supplement.threads=4
 supplement.order=musl-static,musl-dyn,glibc-dyn
-measurement.target=192.168.108.25
+measurement.target=BOARD_RPI4
 
 ### residual processes before
 residual.micro.glibc-dyn=NONE
