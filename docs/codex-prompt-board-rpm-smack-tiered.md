@@ -33,7 +33,7 @@
 ## 后续
 
 验证通过后,前序 prompt 全部条款继续有效:
-SDB_TARGET=192.168.108.25 scripts/run_board.sh → gen_report.py。
+SDB_TARGET=<BOARD_IP> scripts/run_board.sh → gen_report.py。
 事故归档 results/logs/incident-board-rpm-smack.md 补充最终采用的方案级别;
 report.md 的 Caveats 增加一行:安装方式偏离(A:插件跳过 / B:cpio 展开)
 及其对测量无影响的论证。

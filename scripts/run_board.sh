@@ -4,7 +4,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 ROOT_DIR="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
-TARGET="${SDB_TARGET:-192.168.108.25}"
+: "${SDB_TARGET:?must be set}"
+TARGET="$SDB_TARGET"
 REPS="${REPS:-30}"
 PRIVATE_ROOT="/opt/usr/musl-demo"
 BIN_DIR="$PRIVATE_ROOT/bin"

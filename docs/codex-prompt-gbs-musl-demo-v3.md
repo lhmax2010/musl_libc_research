@@ -129,7 +129,7 @@ gbs -c config/gbs_llvm.conf build -A armv7l --include-all
 日志存 `results/logs/gbs-build.log`。chroot 内编 musl 约 10–25 分钟属正常,不得因慢换路线。
 
 ### Phase 2: 部署
-`scripts/deploy.sh`:sdb connect(`SDB_TARGET` 默认 192.168.108.25)→ root on → push RPM → `rpm -Uvh --force` → 板端 `sha256sum /opt/usr/musl-demo/bin/*` 与 host 比对,不一致即停 → 三变体无参 smoke(musl-dyn 跑通即证明包内 loader 生效)。rpm 安装失败:原样报告错误输出(含 Smack/只读分区线索),等待指示,不自行改用其他安装方式。
+`scripts/deploy.sh`:sdb connect(`SDB_TARGET` 默认 <BOARD_IP>)→ root on → push RPM → `rpm -Uvh --force` → 板端 `sha256sum /opt/usr/musl-demo/bin/*` 与 host 比对,不一致即停 → 三变体无参 smoke(musl-dyn 跑通即证明包内 loader 生效)。rpm 安装失败:原样报告错误输出(含 Smack/只读分区线索),等待指示,不自行改用其他安装方式。
 
 ### Phase 3: 测量(改造 musl-quick-demo/run_board.sh → scripts/run_board.sh)
 门控:governor 全核 performance;测前测后记温度与 `scaling_cur_freq`,`cur_freq < max_freq` 的轮标 INVALID;全部绝对路径调用。

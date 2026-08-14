@@ -37,7 +37,7 @@ expected/actual 两行原文)。禁止改动 build-demo.sh 的任何门禁逻辑
 ## 三、后续
 
 构建成功后,**上一轮"继续执行 Prompt"的全部条款继续有效**,依序:
-`SDB_TARGET=192.168.108.25 scripts/deploy.sh` → `scripts/run_board.sh` →
+`SDB_TARGET=<BOARD_IP> scripts/deploy.sh` → `scripts/run_board.sh` →
 `gen_report.py`,交付清单、预授权边界(NEEDED 白名单一项)、测量纪律、
 "数据如实呈现不自行判读"均不变。
 

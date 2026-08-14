@@ -6,8 +6,8 @@
 
 ```bash
 scripts/build_gbs.sh
-SDB_TARGET=192.168.108.25 scripts/deploy.sh
-SDB_TARGET=192.168.108.25 scripts/run_board.sh
+SDB_TARGET=<BOARD_IP> scripts/deploy.sh
+SDB_TARGET=<BOARD_IP> scripts/run_board.sh
 python3 scripts/gen_report.py results/results.txt > results/report.md
 ```
 

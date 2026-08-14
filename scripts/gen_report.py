@@ -642,7 +642,7 @@ def main_mimalloc(results_path: Path, decision_path: Path, text: str) -> int:
             "",
             "- DNS：NOT_RUN；分配器无关，沿用前轮 `results/results.txt`。",
             "- locale：NOT_RUN；分配器无关，沿用前轮 `results/results.txt`。",
-            "- 补跑命令：`SDB_TARGET=192.168.108.25 scripts/run_board.sh`（该命令会完整重跑本轮四方会话，不会只补 DNS/locale）。",
+            "- 补跑命令：`SDB_TARGET=<BOARD_IP> scripts/run_board.sh`（该命令会完整重跑本轮四方会话，不会只补 DNS/locale）。",
             "",
             "## 6. Caveats",
             "",

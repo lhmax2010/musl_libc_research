@@ -122,7 +122,7 @@ F3 三件套沿用:LFS64 扫描、map 中 malloc 定义方=mimalloc.o 且 musl
 | 功能面 | F2 符号表对 strcoll/iconv/setlocale/getaddrinfo 引用扫描 | 一次 |
 
 温控加严:轮间 30s 冷却;轮前温度 >65°C 等待;逐轮 cur_freq 检查,
-降频样本 INVALID。结果落 `results/results-ffmpeg.txt`(新文件)。`SDB_TARGET` 默认 192.168.108.26(参数化,可覆盖)。
+降频样本 INVALID。结果落 `results/results-ffmpeg.txt`(新文件)。`SDB_TARGET` 默认 <BOARD_IP>(参数化,可覆盖)。
 
 ## 八、判据预冻结(FatTank 签字后执行)
 
@@ -154,6 +154,6 @@ configure 等价 diff 空、三层软解证据齐、横幅一正二负、C8a/C8b
 ## 十、FatTank 前置准备
 
 - [ ] 冻结 commit 审核勾选(Codex 克隆并生成 provenance 后)
-- [x] 板端目标已确认:192.168.108.26 = 原 .25 的 RPI4(仅 IP 变更),部署与 Smack 预期照旧
+- [x] 板端目标已确认:<BOARD_IP> = 原 .25 的 RPI4(仅 IP 变更),部署与 Smack 预期照旧
 - [x] E-P 等价带 2%/5% 已确认
 - [x] 板端当前空闲,可全程执行

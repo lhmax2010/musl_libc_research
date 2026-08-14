@@ -2,3 +2,8 @@ tmp/
 musl-quick-demo.zip
 __pycache__/
 *.py[cod]
+
+# Private research outputs and locally supplied frozen rules.
+research/
+docs/ws-b-*.md
+docs/ws-d-*.md

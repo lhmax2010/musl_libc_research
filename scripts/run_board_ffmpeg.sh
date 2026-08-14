@@ -4,7 +4,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 ROOT_DIR="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
-TARGET="${SDB_TARGET:-192.168.108.26}"
+: "${SDB_TARGET:?must be set}"
+TARGET="$SDB_TARGET"
 RUN_MODE="${RUN_MODE:-full}"
 DECODE_REPS="${DECODE_REPS:-10}"
 STARTUP_REPS="${STARTUP_REPS:-30}"
@@ -14,7 +15,7 @@ PRIVATE_ROOT="/opt/usr/ffmpeg-demo"
 BIN_DIR="$PRIVATE_ROOT/bin"
 CLIP="$PRIVATE_ROOT/data/testclip.mp4"
 PRIMARY_RESULT="$ROOT_DIR/results/results-ffmpeg.txt"
-PRIMARY_EXPECTED_SHA256="e1c8378ed3639eb274fb2eefe25a791142ee2bf427b17565aa367a03e93451f6"
+PRIMARY_EXPECTED_SHA256="69784e43a288bdce04c6e9b5d2492f411cf9f2a5d0457fad63734923f85893ce"
 if [[ -z "${RESULT_FILE:-}" ]]; then
     if [[ "$RUN_MODE" == supplement ]]; then
         RESULT_FILE="$ROOT_DIR/results/results-ffmpeg-supplement.txt"

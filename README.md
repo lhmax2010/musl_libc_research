@@ -54,3 +54,10 @@ The reviewed release-2 RPM is
 `f55957aaca2968877e8cf4dc6bd017e7875a8ed7bd1783b067574fd2f4030ead`.
 The annotated tag `demo-v1.0-repro` identifies the complete reproduction
 package; its tag message records the RPM and raw-result hashes.
+
+## Governance note
+
+Early commits were created on a shared development machine with shared Git
+identity settings. Operator attribution follows the reviewer sign-off files in
+the repository; `.mailmap` provides the forward display mapping for historical
+commits without rewriting evidence-anchored history.

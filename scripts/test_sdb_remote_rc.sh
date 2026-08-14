@@ -3,7 +3,8 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
-TARGET="${SDB_TARGET:-192.168.108.26}"
+: "${SDB_TARGET:?must be set}"
+TARGET="$SDB_TARGET"
 # shellcheck source=sdb_remote_rc.sh
 source "$SCRIPT_DIR/sdb_remote_rc.sh"
 

@@ -4,7 +4,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 ROOT_DIR="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
-TARGET="${SDB_TARGET:-192.168.108.26}"
+: "${SDB_TARGET:?must be set}"
+TARGET="$SDB_TARGET"
 RESULTS_DIR="$ROOT_DIR/results"
 LOG_DIR="$RESULTS_DIR/logs"
 LOG_FILE="${DEPLOY_LOG_FILE:-$LOG_DIR/deploy-ffmpeg.log}"

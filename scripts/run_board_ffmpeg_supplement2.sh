@@ -4,14 +4,15 @@ set -euo pipefail
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 ROOT_DIR="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
-TARGET="${SDB_TARGET:-192.168.108.26}"
+: "${SDB_TARGET:?must be set}"
+TARGET="$SDB_TARGET"
 PRIVATE_ROOT="/opt/usr/ffmpeg-demo"
 BIN_DIR="$PRIVATE_ROOT/bin"
 RESULT_FILE="${RESULT_FILE:-$ROOT_DIR/results/results-ffmpeg-supplement2.txt}"
 PRIMARY_RESULT="$ROOT_DIR/results/results-ffmpeg.txt"
 SUPPLEMENT_RESULT="$ROOT_DIR/results/results-ffmpeg-supplement.txt"
-PRIMARY_EXPECTED_SHA256="e1c8378ed3639eb274fb2eefe25a791142ee2bf427b17565aa367a03e93451f6"
-SUPPLEMENT_EXPECTED_SHA256="2fa4971036581f1b69412138949604755536ba161e371694737ccda46b4c006d"
+PRIMARY_EXPECTED_SHA256="69784e43a288bdce04c6e9b5d2492f411cf9f2a5d0457fad63734923f85893ce"
+SUPPLEMENT_EXPECTED_SHA256="c08c5896b7a85623bae89320f081128ebebfbe383b9110dd086f9d50ab665194"
 SIZE_MATRIX="$ROOT_DIR/results/logs/ffmpeg-build-evidence/sizes-matrix.txt"
 FUNCTION_SURFACE="$ROOT_DIR/results/logs/ffmpeg-build-evidence/function-surface.txt"
 
